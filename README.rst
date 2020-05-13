@@ -2,11 +2,9 @@
 Projet Île Interdite
 ====================
 
-**TODO: remplir votre cartouche d'identification**
-
-:**Équipe**: team-42
-:**Membres**: NOM Prénom, NOM Prénom, NOM Prénom, NOM Prénom, …
-:**Chef de projet**: NOM Prénom
+:**Équipe**: BUILD_SUCCESSFUL
+:**Membres**: JHISTARRY Thomas, SIGNORET Tanguy, MARTIN Joris, PAPPALARDO Mattéo
+:**Chef de projet**: JHISTARRY Thomas
 
 
 Description du projet

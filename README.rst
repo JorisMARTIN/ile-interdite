@@ -4,7 +4,7 @@ Projet Île Interdite
 
 **TODO: remplir votre cartouche d'identification**
 
-:**Équipe**: team-42
+:**Équipe**: team-43
 :**Membres**: NOM Prénom, NOM Prénom, NOM Prénom, NOM Prénom, …
 :**Chef de projet**: NOM Prénom
 

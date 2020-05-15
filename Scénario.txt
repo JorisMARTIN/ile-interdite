@@ -1,0 +1,43 @@
+Initialisation:
+
+    1: Création de l'île en faisant un carré de 4x4 avec les tuiles puis ajouter 2 tuiles de chaque cotés du carré.
+    2: Placer les figurines tésors au 4 coins de l'île.
+    3: Placer les piles carte "Trésor" et carte "Innondation".
+    4: Donner 2 cartes "Trésors" à chaque joueurs. Les placers face visible devant lui. (Les carte pioché ne peuvent pas être une carte "monté des eaux")
+    5: Révéler les 6 premières cartes de la pile innondations et les placer à coté pour constituer la défausse. Pour chaque carte tirée, retourner la tuile correspondante sur sa face "innondée".
+    6: Donner une carte "Aventurier" au hazard à chaque joueurs. Placer ensuite les piions de chaque joueur sur la tuile de départ correspondante.
+    7: Determiner la diffuclté en placant le marqueur sur la "piste de niveau d'eau".
+
+Tour de jeu:
+
+    1: Determiner aléatoirement quel joueur va commencer à jouer. (1er tour uniquement)
+    2: Tour de jeu décomposé en 3 parties:
+       
+        2.1: A son tour de jeu le joueur peut décider ou non d'effectuer jusqu'a 3 actions parmis les suivantes (le joueur peut effectuer plusieur fois la même action):
+            - Se déplacer : Le joueur peut se déplacer sur une tuile adjacente. Le déplacement en diagonale n'est pas possible tous comme le déplacement sur une tuile manquante. 
+            - Assécher : Le joueur peut assécher la tuile sur laquelle il se trouve, ou n'importe quelle tuile adjacente sauf en diagonale. Si la tuile est asséchée, la retourner sur sa face "non-innondée".
+            - Donner une carte "Trésor" : Le joueur peut donner une carte "Trésor" à un autre joueur si il se trouve sur la même tuile que ce dernier. La carte donnée doit être différente des cartes "Hélicoptère" et "Sac de sable".
+            - Récuperer un trésor : Le joueur peut récuperer un trésor s'il se trouve sur une tuile "trésor", cette dernière peut être innondée ou non, et si il possède 4 cartes "Trésor". Si ces conditions sont réunnies, le joueur est déffaussé de ces 4 cartes "Trésor" et récupère le trésor correspondant à la tuile sur laquelle il se trouve.
+        
+        2.2: Piocher 2 cartes "Trésor": Une fois les actions réalisées le joueur pioche 2 cartes "Trésor". Il en existe 3 types différents:
+            - Carte "Trésor". Un joueur ne peut avoir que 5 cartes trésors. Si il en pioche une de plus il devra en défausser une de son chois pour n'en conserver que 5. Les cartes "Action spéciale" peuvent être activé au moment d'être défaussées.
+            - Carte "Action spéciale" : Ces cartes peuvent être jouer à n'importe quel moment, même en dehors de votre tour et ne coute pas d'action. Il en exite 2 : 
+                # "Sac de Sable": Permet d'assécher n'importe quelle tuile de l'île.
+                # "Hélicoptère" : Permet de déplacer un pion ou un groupe de pions d'une tuile vers n'importe quelle autre tuile OU faire décoler l'équipe depuis l'héliport pour la victoire.
+                Une fois la carte jouée, elle est défausser avec les autres carte "Trésor".
+            - Carte "Montée des eaux": Lorqu'une carte monté des eaux est piochée, suivre les étapes indiquer sur la carte:
+                # Monter le marqueur de la "Piste de montée des eaux" d'un cran.
+                # Mélanger les carte "Innondation" de la défausse et les remettres sur la pile. Si la défausse est vide laisser tel quel.
+                # Défausser la carte "Montée des eaux" avec les cartes "Trésor".
+
+                * Si le joueur pioche 2 cartes "Montée des eaux" à la suite, ne mélanger qu'une seule fois la défausser et monter le marqueur de 2 crans.
+                * Si le la pile des cartes "Trésors" est vide, mélanger la déffausse pour en faire une nouvelle. De même pour la pile de carte "Innondation".
+
+        2.3: Innondation de l'île: Piocher autant de carte "Innondation" qu'indiqué par le marqueur sur la "Piste de montée de eaux". Pour chaque carte priocher:
+            - Si la tuile correspondante à la carte n'est pas encore "innondée", la retourner sur la face "innondée". Si un pion se trouve sur cette tuille, le laisser à sa place.
+            - Si la tuile est déjà "innondée", la faire disparaitre de l'île et retirer la carte "Innondation" correspondante du jeu. Si un pion se trouve sur cette tuile:
+                - Le déplacer sur un tuile adjacente sauf en diagonale.
+                - Si le déplacement est impossible, la partie est perdue.
+
+
+    **Scénario d'Initialisation et de tour de jeu (Sans prise en compte des pouvoir des aventuriers)**

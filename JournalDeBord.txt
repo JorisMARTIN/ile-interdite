@@ -1,5 +1,13 @@
 ** Journal De Bord De l'équipe BUILD_SUCCESSFUL **
 
 15/05/2020 :
-- Tanguy : Création Projet VPP
-- Joris : Creation Scénario d'initialisation du jeu + tour de jeu
+    - Création Projet VPP
+    - Creation Scénario d'initialisation du jeu + tour de jeu
+
+25/05/2020 :
+    - Refonte du DCU
+    - Début du DC
+    
+26/05/2020 : 
+    - Mise au point avancement
+    - Continuer DC

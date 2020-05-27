@@ -10,4 +10,12 @@
     
 26/05/2020 : 
     - Mise au point avancement
-    - Continuer DC
+    - Poursuite DC
+    
+27/05/2020 :
+    8h:
+        - Amélioration DCU
+        - Poursuite DC
+    10:
+        -
+        -

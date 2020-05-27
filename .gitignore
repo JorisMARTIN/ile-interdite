@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/vim,java,linux,macos,emacs,windows,eclipse,netbeans,intellij+all
 # Edit at https://www.gitignore.io/?templates=vim,java,linux,macos,emacs,windows,eclipse,netbeans,intellij+all
 
@@ -330,3 +329,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/vim,java,linux,macos,emacs,windows,eclipse,netbeans,intellij+all
+
+#fichier VPP inutiles
+VPP/Projet_ileInterdite.vpp.bak_*

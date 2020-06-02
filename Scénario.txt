@@ -1,12 +1,11 @@
 Initialisation:
 
     1: Création de l'île en faisant un carré de 4x4 avec les tuiles puis ajouter 2 tuiles de chaque cotés du carré.
-    2: Placer les figurines tésors au 4 coins de l'île.
-    3: Placer les piles carte "Trésor" et carte "Innondation".
-    4: Donner 2 cartes "Trésors" à chaque joueurs. Les placers face visible devant lui. (Les carte pioché ne peuvent pas être une carte "monté des eaux")
-    5: Révéler les 6 premières cartes de la pile innondations et les placer à coté pour constituer la défausse. Pour chaque carte tirée, retourner la tuile correspondante sur sa face "innondée".
-    6: Donner une carte "Aventurier" au hazard à chaque joueurs. Placer ensuite les piions de chaque joueur sur la tuile de départ correspondante.
-    7: Determiner la diffuclté en placant le marqueur sur la "piste de niveau d'eau".
+    2: Placer les piles carte "Trésor" et carte "Innondation".
+    3: Donner 2 cartes "Trésors" à chaque joueurs. Les placers face visible devant lui. (Les carte pioché ne peuvent pas être une carte "monté des eaux")
+    4: Révéler les 6 premières cartes de la pile innondations et les placer à coté pour constituer la défausse. Pour chaque carte tirée, retourner la tuile correspondante sur sa face "innondée".
+    5: Donner une carte "Aventurier" au hazard à chaque joueurs. Placer ensuite les pions de chaque joueur sur la tuile de départ correspondante.
+    6: Determiner la diffuclté en placant le marqueur sur la "piste de niveau d'eau".
 
 Tour de jeu:
 

@@ -18,10 +18,12 @@
         - Poursuite DC
     13h:
         - Poursuite DC
-        - Début DS Inisatilisation
+        - Début DS Initialisation
 29/05/2020 :
 	- Poursuite DC
 	- Poursuite DS Initialisation
-02/06/2020:
+02/06/2020 :
 	- Finalisation DC
 	- Finalisation DS Initialisation
+03/06/2020 :
+    - Finalisation DS Initialisation

@@ -14,15 +14,16 @@ public class Deck {
     }
 
     public void remplirPioche(ArrayList<Carte> cartes) {
-
+        pioche.addAll(cartes);
     }
 
     public void defausseCarte(Carte carte) {
-
+        pioche.remove(carte);
+        defausse.add(carte);
     }
 
     public boolean isVide() {
-        return true;
+        return pioche.isEmpty();
     }
 
     public Carte getPremiereCarte() {

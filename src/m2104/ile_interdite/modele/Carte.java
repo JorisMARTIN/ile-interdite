@@ -9,6 +9,8 @@ package m2104.ile_interdite.modele;
  *
  * @author tang
  */
-class Carte {
-    
+public abstract class Carte {
+    public Carte() {
+        
+    }
 }

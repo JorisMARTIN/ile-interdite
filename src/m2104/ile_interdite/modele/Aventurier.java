@@ -1,6 +1,6 @@
 package m2104.ile_interdite.modele;
 
-import java.util.Collection;
+import java.util.ArrayList;
 
 /**
  *
@@ -9,10 +9,12 @@ import java.util.Collection;
 public abstract class Aventurier {
     /*attribus*/
     private String nom;
+    private ArrayList<Carte> main;
     
     /*construteur*/
     public Aventurier(String nom){
         this.nom = nom;
+        this.main = new ArrayList<>();
     }
     
     /*méthodes*/
@@ -20,13 +22,14 @@ public abstract class Aventurier {
     }
     
     public boolean peutSeDeplacer(Tuile case){
-        return null;
+        return false;
     }
     
     public void assecher(Tuile case){
     }
     
     public boolean peutAssecher(Tuile case){
+        return false;
     }
     
     public void donnerCarteTresor(Aventurier a, Carte carte){
@@ -39,7 +42,7 @@ public abstract class Aventurier {
         return null;
     }
     
-    public Collection<Carte> getMain(){
+    public ArrayList<Carte> getMain(){
         return null;
     }
     

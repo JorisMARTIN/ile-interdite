@@ -5,6 +5,8 @@
  */
 package m2104.ile_interdite.modele;
 
+import java.util.Collection;
+
 /**
  *
  * @author tang
@@ -23,4 +25,23 @@ class Tuile {
     }
     
     /*méthodes*/
+    public boolean isInnondee() {
+        return false;
+    }
+    
+    public boolean isRetiree() {
+        return false;
+    }
+    
+    public String getNom() {
+        return this.nom;
+    }
+    
+    public void setEtat(EtatTuile etat) {
+        this.etat = etat;
+    }
+    
+    public Collection<Aventurier> getAventuriers() {
+        return null;
+    }
 }

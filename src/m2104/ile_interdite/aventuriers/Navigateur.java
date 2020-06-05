@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package m2104.ile_interdite.modele;
+package m2104.ile_interdite.aventuriers;
+
+import m2104.ile_interdite.modele.IleInterdite;
+import m2104.ile_interdite.modele.Tuile;
 
 /**
  *

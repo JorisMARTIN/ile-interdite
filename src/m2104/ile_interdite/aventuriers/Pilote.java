@@ -3,24 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package m2104.ile_interdite.modele;
+package m2104.ile_interdite.aventuriers;
+
+import m2104.ile_interdite.modele.IleInterdite;
+import m2104.ile_interdite.modele.Tuile;
 
 /**
  *
  * @author tang
  */
-public class Explorateur extends Aventurier{
+public class Pilote extends Aventurier{
     /*construteur*/
-    public Explorateur(IleInterdite ileInterdite) {
+    public Pilote(IleInterdite ileInterdite) {
         super(ileInterdite);
     }
     
     /*méthodes*/
-    @Override
-    public boolean peutAssecher(Tuile tuile) {
-        return false;
-    }
-
     @Override
     public boolean peutSeDeplacer(Tuile tuile) {
         return false;

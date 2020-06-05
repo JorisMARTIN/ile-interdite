@@ -1,6 +1,10 @@
-package m2104.ile_interdite.modele;
+package m2104.ile_interdite.aventuriers;
 
 import java.util.ArrayList;
+
+import m2104.ile_interdite.modele.Carte;
+import m2104.ile_interdite.modele.IleInterdite;
+import m2104.ile_interdite.modele.Tuile;
 
 /**
  *
@@ -22,10 +26,6 @@ public abstract class Aventurier {
     
     /*méthodes*/
     public void seDeplacer(Tuile tuile){
-    }
-    
-    protected boolean peutSeDeplacer(Tuile tuile){
-        return false;
     }
     
     public void assecher(Tuile tuile){
@@ -51,4 +51,9 @@ public abstract class Aventurier {
     
     public void piocherCarte() {
     }
+
+	public boolean peutSeDeplacer(Tuile tuile) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

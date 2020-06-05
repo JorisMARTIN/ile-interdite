@@ -7,11 +7,13 @@ package m2104.ile_interdite.modele;
 
 import java.util.ArrayList;
 
+import m2104.ile_interdite.aventuriers.Aventurier;
+
 /**
  *
  * @author tang
  */
-class Tuile {
+public class Tuile {
     /*attribus*/
     private String nom;
     private EtatTuile etat;

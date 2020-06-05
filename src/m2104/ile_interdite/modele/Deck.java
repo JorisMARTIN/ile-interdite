@@ -31,4 +31,12 @@ public class Deck {
     public Carte getPremiereCarte() {
         return pioche.get(pioche.size() - 1);
     }
+
+    public ArrayList<Carte> remplirDeck() {
+        ArrayList<Carte> deck = new ArrayList<>();
+        //for()
+        //Carte c = new Carte();
+        //deck.add(c);
+        return null;
+    }
 }

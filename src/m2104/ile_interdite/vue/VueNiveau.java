@@ -185,5 +185,7 @@ public class VueNiveau {
         System.out.println("Pour passer au niveau 5, appuyer sur entrée");
         scanner.nextLine();
         vueNiveau.setNiveau(10);
+
+        scanner.close();
     }
 }

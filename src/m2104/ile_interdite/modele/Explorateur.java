@@ -10,18 +10,19 @@ package m2104.ile_interdite.modele;
  * @author tang
  */
 public class Explorateur extends Aventurier{
-
-    public Explorateur(String nom) {
-        super(nom);
+    /*construteur*/
+    public Explorateur(String nom, IleInterdite ileInterdite) {
+        super(nom, ileInterdite);
     }
-
+    
+    /*méthodes*/
     @Override
-    public boolean peutAssecher(Tuile ) {
+    public boolean peutAssecher(Tuile case) {
         return false;
     }
 
     @Override
-    public boolean peutSeDeplacer(Tuile ) {
+    public boolean peutSeDeplacer(Tuile case) {
         return false;
     }
     

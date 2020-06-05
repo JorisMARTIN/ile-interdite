@@ -11,8 +11,8 @@ package m2104.ile_interdite.modele;
  */
 public class Messager extends Aventurier{
     /*construteur*/
-    public Messager(String nom) {
-        super(nom);
+    public Messager(String nom, IleInterdite ileInterdite) {
+        super(nom, ileInterdite);
     }
     
     /*méthodes*/

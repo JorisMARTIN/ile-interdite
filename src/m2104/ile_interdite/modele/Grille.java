@@ -5,20 +5,27 @@
  */
 package m2104.ile_interdite.modele;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author tang
  */
-public class Ingenieur extends Aventurier{
+public class Grille {
+    /*attribus*/
+    private ArrayList<Tuile> tuiles;
+    
     /*construteur*/
-    public Ingenieur(String nom, IleInterdite ileInterdite) {
-        super(nom, ileInterdite);
+    public Grille() {
+        this.tuiles = new ArrayList<>();
     }
     
     /*méthodes*/
-    @Override
-    public boolean peutAssecher(Tuile ) {
-        return false;
+    public ArrayList<Tuile> getTuiles() {
+        return this.tuiles;
     }
     
+    public Tuile getTuile(String nom) {
+        return null;
+    }
 }

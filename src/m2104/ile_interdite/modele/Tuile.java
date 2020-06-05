@@ -5,7 +5,7 @@
  */
 package m2104.ile_interdite.modele;
 
-import java.util.Collection;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,12 +16,14 @@ class Tuile {
     private String nom;
     private EtatTuile etat;
     private Tresor tresor;
+    private ArrayList<Aventurier> aventuriers;
     
     /*construteur*/
     public Tuile(String nom, EtatTuile etat, Tresor tresor) {
         this.nom = nom;
         this.etat = etat;
         this.tresor = tresor;
+        this.aventuriers = new ArrayList<>();
     }
     
     /*méthodes*/
@@ -41,7 +43,7 @@ class Tuile {
         this.etat = etat;
     }
     
-    public Collection<Aventurier> getAventuriers() {
-        return null;
+    public ArrayList<Aventurier> getAventuriers() {
+        return this.aventuriers;
     }
 }

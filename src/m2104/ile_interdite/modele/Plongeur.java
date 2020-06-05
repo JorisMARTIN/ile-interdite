@@ -11,13 +11,13 @@ package m2104.ile_interdite.modele;
  */
 public class Plongeur extends Aventurier{
     /*construteur*/
-    public Plongeur(String nom) {
-        super(nom);
+    public Plongeur(String nom, IleInterdite ileInterdite) {
+        super(nom, ileInterdite);
     }
     
     /*méthodes*/
     @Override
-    public boolean peutSeDeplacer(Tuile ) {
+    public boolean peutSeDeplacer(Tuile case) {
         return false;
     }
 }

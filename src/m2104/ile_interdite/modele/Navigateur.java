@@ -11,11 +11,11 @@ package m2104.ile_interdite.modele;
  */
 public class Navigateur extends Aventurier{
     /*construteur*/
-    public Navigateur(String nom) {
-        super(nom);
+    public Navigateur(String nom, IleInterdite ileInterdite) {
+        super(nom, ileInterdite);
     }
     
-    /*méthodes*/    
+    /*méthodes*/  
     public void deplaceAventurier(Aventurier a, Tuile case) {
     }
 }

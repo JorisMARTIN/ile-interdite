@@ -10,13 +10,14 @@ package m2104.ile_interdite.modele;
  * @author tang
  */
 public class Pilote extends Aventurier{
-
-    public Pilote(String nom) {
-        super(nom);
+    /*construteur*/
+    public Pilote(String nom, IleInterdite ileInterdite) {
+        super(nom, ileInterdite);
     }
-
+    
+    /*méthodes*/
     @Override
-    public boolean peutSeDeplacer(Tuile ) {
+    public boolean peutSeDeplacer(Tuile case) {
         return false;
     }
     

@@ -19,6 +19,8 @@ public class IleInterdite extends Observable<Message> {
     
     public IleInterdite(Observateur<Message> observateur) {
         this.addObservateur(observateur);
+        this.grille = new Grille();
+        this.deckTresor = new Deck(this);
     }
 
     public String[] inscrireJoueurs(int nbJoueurs) {

@@ -1,6 +1,8 @@
 package m2104.ile_interdite.vue;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -22,7 +24,11 @@ public class VueJeu {
 
         fenetre = new JFrame();
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        fenetre.setSize(800, 600);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        
+        fenetre.setLocation((int) (dim.getWidth()/2)-500, (int) (dim.getHeight()/2)-300);
+        
+        fenetre.setSize(1000, 800);
 
         grillePanel = new JPanel(new GridLayout(6, 6));
 

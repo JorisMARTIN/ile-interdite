@@ -47,7 +47,6 @@ public class IleInterdite extends Observable<Message> {
             Random choix = new Random();
             String selection = selections.get(choix.nextInt(selections.size()));
             
-            
             Aventurier aventurier;
 
             switch(selection) {

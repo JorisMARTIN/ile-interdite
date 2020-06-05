@@ -33,6 +33,39 @@ public class Controleur implements Observateur<Message> {
                         this.ileInterdite.inscrireJoueurs(msg.getNbJoueurs());
                 this.ihm.creerVuesAventuriers(nomAventuriers);
                 break;
+                
+            case BOUGER:
+                this.ileInterdite.getAventuriers().get(msg.getIdAventurier()).seDeplacer(this.ileInterdite.getGrille().getTuile(msg.getIdTuile()));
+                break;
+                
+            case ASSECHER:
+                this.ileInterdite.getAventuriers().get(msg.getIdAventurier()).assecher(this.ileInterdite.getGrille().getTuile(msg.getIdTuile()));
+                break;
+            
+            case DONNER:
+                break;
+            
+            case RECUPERER_TRESOR:
+                break;
+            
+            case TERMINER:
+                break;
+            
+            case RECEVOIR:
+                break;
+            
+            case CHOISIR_CARTE:
+                break;
+            
+            case CHOISIR_TUILE:
+                break;
+            
+            case DEPLACER:
+                break;
+            
+            case VOIR_DEFAUSSE:
+                break;
+            
             default:
                 if (Parameters.LOGS) {
                     System.err.println("Action interdite : " + msg.getCommande().toString());

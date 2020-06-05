@@ -27,11 +27,12 @@ public class Controleur implements Observateur<Message> {
         }
 
         switch (msg.commande) {
+        
             case INITIALISER:
                 String[] nomAventuriers = this.ileInterdite.inscrireJoueurs(msg.nbJoueurs);
                 this.ileInterdite.setCurseur(msg.difficulte);
-                this.ileInterdite.initGrille();
                 this.ihm.creerVuesAventuriers(nomAventuriers);
+                this.ileInterdite.initGrille();
                 break;
                 
             case INITIALISER_GRILLE:

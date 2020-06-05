@@ -12,8 +12,14 @@ import m2104.ile_interdite.aventuriers.Navigateur;
 import m2104.ile_interdite.aventuriers.Pilote;
 import m2104.ile_interdite.aventuriers.Plongeur;
 import m2104.ile_interdite.cartes.Carte;
+import m2104.ile_interdite.cartes.CarteHelicoptere;
+import m2104.ile_interdite.cartes.CarteInnondation;
+import m2104.ile_interdite.cartes.CarteMonteeEaux;
+import m2104.ile_interdite.cartes.CarteSacDeSable;
+import m2104.ile_interdite.cartes.CarteTresor;
 import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Utils.Commandes;
+import m2104.ile_interdite.util.Utils.Tresor;
 import patterns.observateur.Observable;
 import patterns.observateur.Observateur;
 
@@ -30,8 +36,45 @@ public class IleInterdite extends Observable<Message> {
     
     public IleInterdite(Observateur<Message> observateur) {
         this.grille = new Grille();
+        
+        // Création des decks
         this.deckTresor = new Deck(this);
         this.deckInnondation = new Deck(this);
+        
+        // Remplissage des decks
+        
+        ArrayList<Carte> cartesAjoutees = new ArrayList<>();
+        
+        
+        // 5 cartes pour chaque trésor
+        Tresor[] tresors = {Tresor.CALICE, Tresor.CRISTAL, Tresor.PIERRE, Tresor.ZEPHYR};
+        
+        for(int i=0; i<4; i++){
+        	for(int j=0; j<5; i++) {
+        		cartesAjoutees.add(new CarteTresor(tresors[i]));
+        	}
+        }
+        
+        // 3 cartes montee des eaux / 3 cartes helicoptere
+        for(int i=0; i<3; i++) {
+        	cartesAjoutees.add(new CarteMonteeEaux());
+        	cartesAjoutees.add(new CarteHelicoptere());
+        }
+        
+        // 2 cartes sac de sable
+        cartesAjoutees.add(new CarteSacDeSable());
+        cartesAjoutees.add(new CarteSacDeSable());
+        
+		deckTresor.remplirPioche(cartesAjoutees);
+        
+		cartesAjoutees.clear();
+        
+        for(int i=0; i<24; i++) {
+        	cartesAjoutees.add(new CarteInnondation(grille.getTuiles(false).get(i)));
+        }
+        
+        this.deckInnondation.remplirPioche(cartesAjoutees);
+        
         this.aventuriers = new ArrayList<>();
         this.addObservateur(observateur);
     }
@@ -95,6 +138,27 @@ public class IleInterdite extends Observable<Message> {
         return nomAventuriers;
     }
 
+    public void initGrille() {
+    	
+    	
+    	Carte carte;
+    	
+    	for(int i=0; i<6; i++) {
+    		
+    		//le deck inondation  doit etre rempli
+    		
+    		carte = deckInnondation.getPremiereCarte();
+    		carte.action();
+    		deckInnondation.defausseCarte(carte);
+    		
+    	}
+    	
+    	Message m = new Message(Commandes.INITIALISER_GRILLE);
+    	m.grille = grille;
+    	notifierObservateurs(m);
+    	
+    }
+    
     public int getCurseur() {
         return curseur;
     }
@@ -119,24 +183,4 @@ public class IleInterdite extends Observable<Message> {
         return deckInnondation;
     }
 
-    public void initGrille() {
-    	
-    	
-    	Carte carte;
-    	
-    	for(int i=0; i<6; i++) {
-    		
-    		//le deck inondation  doit etre rempli
-
-    		carte = deckInnondation.getPremiereCarte();
-    		carte.action();
-    		deckInnondation.defausseCarte(carte);
-  
-    	}
-    	
-    	Message m = new Message(Commandes.INITIALISER_GRILLE);
-    	m.grille = grille;
-    	notifierObservateurs(m);
-    	
-    }
 }

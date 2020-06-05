@@ -6,8 +6,9 @@ public class CarteTresor extends Carte {
 	
     private Utils.Tresor tresor;
     
-    public CarteTresor() {
+    public CarteTresor(Utils.Tresor tresor) {
         super();
+        this.tresor = tresor;
     }
 
 	@Override

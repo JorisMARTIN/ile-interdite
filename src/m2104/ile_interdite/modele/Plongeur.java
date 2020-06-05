@@ -11,8 +11,8 @@ package m2104.ile_interdite.modele;
  */
 public class Plongeur extends Aventurier{
     /*construteur*/
-    public Plongeur(String nom, IleInterdite ileInterdite) {
-        super(nom, ileInterdite);
+    public Plongeur(IleInterdite ileInterdite) {
+        super(ileInterdite);
     }
     
     /*méthodes*/

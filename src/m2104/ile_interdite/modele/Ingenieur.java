@@ -11,8 +11,8 @@ package m2104.ile_interdite.modele;
  */
 public class Ingenieur extends Aventurier{
     /*construteur*/
-    public Ingenieur(String nom, IleInterdite ileInterdite) {
-        super(nom, ileInterdite);
+    public Ingenieur(IleInterdite ileInterdite) {
+        super(ileInterdite);
     }
     
     /*méthodes*/

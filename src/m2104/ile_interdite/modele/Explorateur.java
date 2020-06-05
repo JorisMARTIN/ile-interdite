@@ -11,8 +11,8 @@ package m2104.ile_interdite.modele;
  */
 public class Explorateur extends Aventurier{
     /*construteur*/
-    public Explorateur(String nom, IleInterdite ileInterdite) {
-        super(nom, ileInterdite);
+    public Explorateur(IleInterdite ileInterdite) {
+        super(ileInterdite);
     }
     
     /*méthodes*/

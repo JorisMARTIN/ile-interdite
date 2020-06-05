@@ -14,8 +14,7 @@ public abstract class Aventurier {
     private Tuile position;
     
     /*construteur*/
-    public Aventurier(String nom, IleInterdite ileInterdite){
-        this.nom = nom;
+    public Aventurier(IleInterdite ileInterdite){
         this.main = new ArrayList<>();
         this.ileInterdite = ileInterdite;
         this.position = null;

@@ -5,7 +5,7 @@
  */
 package m2104.ile_interdite.aventuriers;
 
-import m2104.ile_interdite.modele.Carte;
+import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.modele.IleInterdite;
 
 /**

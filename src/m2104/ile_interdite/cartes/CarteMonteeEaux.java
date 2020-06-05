@@ -1,4 +1,4 @@
-package m2104.ile_interdite.modele;
+package m2104.ile_interdite.cartes;
 
 public class CarteMonteeEaux extends Carte {
 	

@@ -2,6 +2,8 @@ package m2104.ile_interdite.modele;
 
 import java.util.ArrayList;
 
+import m2104.ile_interdite.cartes.Carte;
+
 public class Deck {
     private ArrayList<Carte> pioche;
     private ArrayList<Carte> defausse;

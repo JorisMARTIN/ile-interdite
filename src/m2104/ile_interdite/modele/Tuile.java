@@ -8,6 +8,7 @@ package m2104.ile_interdite.modele;
 import java.util.ArrayList;
 
 import m2104.ile_interdite.aventuriers.Aventurier;
+import m2104.ile_interdite.util.Utils;
 
 /**
  *
@@ -17,11 +18,11 @@ public class Tuile {
     /*attribus*/
     private String nom;
     private EtatTuile etat;
-    private Tresor tresor;
+    private Utils.Tresor tresor;
     private ArrayList<Aventurier> aventuriers;
     
     /*construteur*/
-    public Tuile(String nom, EtatTuile etat, Tresor tresor) {
+    public Tuile(String nom, EtatTuile etat, Utils.Tresor tresor) {
         this.nom = nom;
         this.etat = etat;
         this.tresor = tresor;

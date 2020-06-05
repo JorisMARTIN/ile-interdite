@@ -2,7 +2,7 @@ package m2104.ile_interdite.aventuriers;
 
 import java.util.ArrayList;
 
-import m2104.ile_interdite.modele.Carte;
+import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.modele.IleInterdite;
 import m2104.ile_interdite.modele.Tuile;
 

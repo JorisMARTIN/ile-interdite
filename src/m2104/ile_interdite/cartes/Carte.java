@@ -3,15 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package m2104.ile_interdite.modele;
+package m2104.ile_interdite.cartes;
 
 /**
  *
  * @author tang
  */
-public enum Tresor {
-    PIERRE_SACREE,
-    STATUE_DU_ZEPHYR,
-    CRISTAL_ARGENT,
-    CALICE_DE_LONDE;
+public abstract class Carte {
+	
+    public Carte() {
+        
+    }
+    
+    public abstract void action();
+    
 }

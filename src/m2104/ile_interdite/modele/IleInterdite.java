@@ -11,6 +11,7 @@ import m2104.ile_interdite.aventuriers.Messager;
 import m2104.ile_interdite.aventuriers.Navigateur;
 import m2104.ile_interdite.aventuriers.Pilote;
 import m2104.ile_interdite.aventuriers.Plongeur;
+import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Utils.Commandes;
 import patterns.observateur.Observable;

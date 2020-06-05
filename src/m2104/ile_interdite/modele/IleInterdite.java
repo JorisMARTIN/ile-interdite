@@ -3,6 +3,7 @@ package m2104.ile_interdite.modele;
 import java.util.ArrayList;
 import java.util.Arrays;
 import m2104.ile_interdite.util.Message;
+import m2104.ile_interdite.util.Utils.Commandes;
 import patterns.observateur.Observable;
 import patterns.observateur.Observateur;
 
@@ -67,7 +68,8 @@ public class IleInterdite extends Observable<Message> {
   
     	}
     	
-    	Message m = Message.initialiser_Grille(grille);
+    	Message m = new Message(Commandes.INITIALISER_GRILLE);
+    	m.grille = grille;
     	notifierObservateurs(m);
     	
     }

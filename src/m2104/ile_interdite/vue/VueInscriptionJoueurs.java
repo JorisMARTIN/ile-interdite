@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import m2104.ile_interdite.util.Message;
+import m2104.ile_interdite.util.Utils.Commandes;
 
 /**
  *
@@ -87,7 +88,9 @@ public class VueInscriptionJoueurs {
                     nomJoueurs[i] = saisieNomJoueurs[i].getText();
                 }
 
-                ihm.notifierObservateurs(Message.validerJoueurs(nbJoueurs));
+                Message m = new Message(Commandes.VALIDER_JOUEURS);
+                m.nbJoueurs = nbJoueurs;
+                ihm.notifierObservateurs(m);
                 fenetre.dispose();
             }
         });

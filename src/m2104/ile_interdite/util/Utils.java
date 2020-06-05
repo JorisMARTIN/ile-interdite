@@ -26,7 +26,8 @@ public class Utils {
         CHOISIR_TUILE("SÃ©lectionner une tuile"),
         DEPLACER("DÃ©placer un autre joueur"),
         VOIR_DEFAUSSE("Un joueur souhaite voir la dÃ©fausse de cartes Tirage"),
-        INITIALISER_GRILLE("Grille initialiser avec les tuiles innondées");
+        INITIALISER_GRILLE("Grille initialiser avec les tuiles innondées"),
+        INITIALISER("Initialisation joueur");
 
         private final String libelle ;
 

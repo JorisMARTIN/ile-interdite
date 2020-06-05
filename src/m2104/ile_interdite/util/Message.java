@@ -9,6 +9,7 @@ import m2104.ile_interdite.modele.Grille;
 public class Message {
 
 	public Utils.Commandes commande;
+	public Integer difficulte;
     public Integer idAventurier;
     public Integer idCarte;
     public Utils.Tresor tresor;

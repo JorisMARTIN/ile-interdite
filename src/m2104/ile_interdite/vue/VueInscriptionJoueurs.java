@@ -24,7 +24,7 @@ public class VueInscriptionJoueurs {
     private final IHM ihm;
     private final JFrame fenetre;
 
-    private JComboBox<Integer> choixNbJoueurs;
+    private JComboBox<Integer> choixNbJoueurs, curseur;
     private JLabel [] labelNomJoueurs = new JLabel[4];
     private JTextField [] saisieNomJoueurs = new JTextField[4];
     private final JButton inscrire = new JButton("Inscrire");
@@ -41,6 +41,7 @@ public class VueInscriptionJoueurs {
 
         JPanel mainPanel = new JPanel(new BorderLayout());
         JPanel panelChoix = new JPanel(new GridLayout(6,2));
+        JPanel panelDifficulte = new JPanel(new GridLayout(1,2));
 
         // nombre de joueurs
         choixNbJoueurs = new JComboBox<>(new Integer[] { 2, 3, 4 });
@@ -61,7 +62,6 @@ public class VueInscriptionJoueurs {
         panelChoix.add(inscrire);
 
         mainPanel.add(panelChoix, BorderLayout.CENTER);
-        fenetre.add(mainPanel);
 
         // Choix du nombre de joueurs
         choixNbJoueurs.addItemListener(new ItemListener() {
@@ -75,6 +75,16 @@ public class VueInscriptionJoueurs {
                 }
             }
         });
+        
+        
+        
+        curseur = new JComboBox<Integer>(new Integer[] {1, 2, 3, 4});
+        panelDifficulte.add(new JLabel("Difficulte :"));
+        panelDifficulte.add(curseur);
+        
+        mainPanel.add(panelDifficulte, BorderLayout.SOUTH);
+        fenetre.add(mainPanel);
+        
 
         // Inscription des joueurs
         inscrire.addActionListener(new ActionListener() {
@@ -88,8 +98,9 @@ public class VueInscriptionJoueurs {
                     nomJoueurs[i] = saisieNomJoueurs[i].getText();
                 }
 
-                Message m = new Message(Commandes.VALIDER_JOUEURS);
+                Message m = new Message(Commandes.INITIALISER);
                 m.nbJoueurs = nbJoueurs;
+                m.difficulte = (int) curseur.getSelectedItem();
                 ihm.notifierObservateurs(m);
                 fenetre.dispose();
             }

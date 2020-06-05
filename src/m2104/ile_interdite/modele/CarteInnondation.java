@@ -1,6 +1,7 @@
 package m2104.ile_interdite.modele;
 
 public class CarteInnondation extends Carte {
+	
     private Tuile tuile;
 
     public CarteInnondation(Tuile tuile) {
@@ -8,7 +9,10 @@ public class CarteInnondation extends Carte {
         this.tuile = tuile;
     }
 
-    public void action() {
-        
-    }
+	@Override
+	public void action() {
+		// TODO Auto-generated method stub
+	}
+
+    
 }

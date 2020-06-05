@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
 import m2104.ile_interdite.util.Parameters;
 import m2104.ile_interdite.util.Utils;
+import m2104.ile_interdite.util.Utils.Commandes;
 import m2104.ile_interdite.util.Message;
 
 
@@ -83,7 +84,7 @@ public class VueAventurier {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (titreCliquable) {
-                    Message message = Message.recevoir(idAventurier);
+                    Message message = new Message(Commandes.RECEVOIR);
                     System.out.println(message);
                     ihm.notifierObservateurs(message);
                 }
@@ -237,24 +238,50 @@ public class VueAventurier {
                 if (btnClique == btnAller || btnClique == btnAssecher || btnClique == btnDonner || btnClique == btnPrendre) {
                     btnClique.setForeground(couleurActive);
                 }
+                
+                Message m;
+                
                 switch (commande) {
                     case BOUGER:
-                        ihm.notifierObservateurs(Message.bouger(idAventurier));
+                    	
+                    	m = new Message(Commandes.BOUGER);
+                    	m.idAventurier = idAventurier;
+                    	
+                        ihm.notifierObservateurs(m);
                         break;
                     case ASSECHER:
-                        ihm.notifierObservateurs(Message.assecher(idAventurier));
+                    	m = new Message(Commandes.ASSECHER);
+                    	m.idAventurier = idAventurier;
+                    	
+                        ihm.notifierObservateurs(m);
                         break;
                     case DONNER:
-                        ihm.notifierObservateurs(Message.donner(idAventurier));
+                    	
+                    	m = new Message(Commandes.DONNER);
+                    	m.idAventurier = idAventurier;
+                    	
+                        ihm.notifierObservateurs(m);
                         break;
                     case RECUPERER_TRESOR:
-                        ihm.notifierObservateurs(Message.recupererTresor(idAventurier));
+                    	
+                    	m = new Message(Commandes.RECUPERER_TRESOR);
+                    	m.idAventurier = idAventurier;
+                    	
+                        ihm.notifierObservateurs(m);
                         break;
                     case DEPLACER:
-                        ihm.notifierObservateurs(Message.deplacer(idAventurier));
+                    	
+                    	m = new Message(Commandes.DEPLACER);
+                    	m.idAventurier = idAventurier;
+                    	
+                        ihm.notifierObservateurs(m);
                         break;
                     case TERMINER:
-                        ihm.notifierObservateurs(Message.terminer(idAventurier));
+                    	
+                    	m = new Message(Commandes.TERMINER);
+                    	m.idAventurier = idAventurier;
+                    	
+                        ihm.notifierObservateurs(m);
                         break;
                 }
             }

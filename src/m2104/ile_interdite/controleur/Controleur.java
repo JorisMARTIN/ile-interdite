@@ -26,16 +26,48 @@ public class Controleur implements Observateur<Message> {
             System.out.println("Controleur.traiterMessage" + msg);
         }
 
-        switch (msg.getCommande()) {
+        switch (msg.commande) {
             case VALIDER_JOUEURS:
-                assert msg.hasNbJoueurs();
                 String[] nomAventuriers =
-                        this.ileInterdite.inscrireJoueurs(msg.getNbJoueurs());
+                        this.ileInterdite.inscrireJoueurs(msg.nbJoueurs);
                 this.ihm.creerVuesAventuriers(nomAventuriers);
                 break;
+                
+            case BOUGER:
+                this.ileInterdite.getAventuriers().get(msg.idAventurier).seDeplacer(this.ileInterdite.getGrille().getTuile(msg.tuile));
+                break;
+                
+            case ASSECHER:
+                this.ileInterdite.getAventuriers().get(msg.idAventurier).assecher(this.ileInterdite.getGrille().getTuile(msg.tuile));
+                break;
+            
+            case DONNER:
+                break;
+            
+            case RECUPERER_TRESOR:
+                break;
+            
+            case TERMINER:
+                break;
+            
+            case RECEVOIR:
+                break;
+            
+            case CHOISIR_CARTE:
+                break;
+            
+            case CHOISIR_TUILE:
+                break;
+            
+            case DEPLACER:
+                break;
+            
+            case VOIR_DEFAUSSE:
+                break;
+            
             default:
                 if (Parameters.LOGS) {
-                    System.err.println("Action interdite : " + msg.getCommande().toString());
+                    System.err.println("Action interdite !");
                 }
         }
     }

@@ -11,20 +11,17 @@ import m2104.ile_interdite.modele.Tuile;
  * @author IUT2-Dept Info
  */
 public abstract class Aventurier {
-    /*attribus*/
-    private String nom;
     private ArrayList<Carte> main;
     private IleInterdite ileInterdite;
     private Tuile position;
+    private int actionsRestantes;
     
-    /*construteur*/
     public Aventurier(IleInterdite ileInterdite){
         this.main = new ArrayList<>();
         this.ileInterdite = ileInterdite;
         this.position = null;
     }
     
-    /*méthodes*/
     public void seDeplacer(Tuile tuile){
     }
     
@@ -38,7 +35,7 @@ public abstract class Aventurier {
     public void donnerCarteTresor(Aventurier a, Carte carte) {
     }
     
-    public void recupererTresort() {
+    public void recupererTresor() {
     }
     
     public Tuile getPosition(){
@@ -56,4 +53,16 @@ public abstract class Aventurier {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+    public int getActionsRestantes() {
+        return actionsRestantes;
+    }
+
+    public void moinsActions() {
+        this.actionsRestantes--;
+    }
+
+    public void initActionsRestantes() {
+        this.actionsRestantes = 3;
+    }
 }

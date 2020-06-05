@@ -1,6 +1,7 @@
 package m2104.ile_interdite.vue;
 
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -39,5 +40,13 @@ public class VueJeu {
 
         fenetre.add(grillePanel);
         fenetre.setVisible(true);
+    }
+
+    public void deplacerPion(Tuile tuileVoulue) {
+        //TODO : faire
+    }
+
+    public void surbrillerTuile(ArrayList<Boolean> possibilites) {
+        // TODO : faire
     }
 }

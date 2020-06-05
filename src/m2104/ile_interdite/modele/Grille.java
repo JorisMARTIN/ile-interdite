@@ -30,10 +30,6 @@ public class Grille {
         Tuile t;
         for (int i = 0 ; i < 24 ; i++) {
             switch (nomTuile[i]){
-                /*case "La Porte d'Or":
-                    Tuile t = new Tuile(nomTuile[i],EtatTuile.NORMAL, null);
-                    tuiles.add(t);
-                    break;*/
                 case "Le Jardin des Hurlements" :
                     t = new Tuile(nomTuile[i],EtatTuile.NORMAL, Tresor.ZEPHYR);
                     break;
@@ -43,7 +39,7 @@ public class Grille {
                 case "Le Temple de la Lune":
                     t = new Tuile(nomTuile[i],EtatTuile.NORMAL, Tresor.PIERRE);
                     break;
-                case "Le Temple du Solei" :
+                case "Le Temple du Soleil" :
                     t = new Tuile(nomTuile[i],EtatTuile.NORMAL, Tresor.PIERRE);
                     break;
                 case "La Caverne du Brasier":
@@ -63,7 +59,6 @@ public class Grille {
                     break;
             }
             tuiles.add(t);
-            System.out.println(nomTuile[i]);
         }
     }
     

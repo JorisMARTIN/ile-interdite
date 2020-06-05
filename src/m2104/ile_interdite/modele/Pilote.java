@@ -17,7 +17,7 @@ public class Pilote extends Aventurier{
     
     /*méthodes*/
     @Override
-    public boolean peutSeDeplacer(Tuile case) {
+    public boolean peutSeDeplacer(Tuile tuile) {
         return false;
     }
     

@@ -22,17 +22,17 @@ public abstract class Aventurier {
     }
     
     /*méthodes*/
-    public void seDeplacer(Tuile case){
+    public void seDeplacer(Tuile tuile){
     }
     
-    protected boolean peutSeDeplacer(Tuile case){
+    protected boolean peutSeDeplacer(Tuile tuile){
         return false;
     }
     
-    public void assecher(Tuile case){
+    public void assecher(Tuile tuile){
     }
     
-    protected boolean peutAssecher(Tuile case){
+    protected boolean peutAssecher(Tuile tuile){
         return false;
     }
     

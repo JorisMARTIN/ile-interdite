@@ -17,12 +17,12 @@ public class Explorateur extends Aventurier{
     
     /*méthodes*/
     @Override
-    public boolean peutAssecher(Tuile case) {
+    public boolean peutAssecher(Tuile tuile) {
         return false;
     }
 
     @Override
-    public boolean peutSeDeplacer(Tuile case) {
+    public boolean peutSeDeplacer(Tuile tuile) {
         return false;
     }
     

@@ -16,6 +16,6 @@ public class Navigateur extends Aventurier{
     }
     
     /*méthodes*/  
-    public void deplaceAventurier(Aventurier a, Tuile case) {
+    public void deplaceAventurier(Aventurier a, Tuile tuile) {
     }
 }

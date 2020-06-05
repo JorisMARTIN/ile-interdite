@@ -36,7 +36,8 @@ public class Controleur implements Observateur<Message> {
                 break;
                 
             case INITIALISER_GRILLE:
-            	//TODO : créer vue jeu
+            	
+            	this.ihm.creeVueJeu(msg.grille);
             	
             	break;
             	

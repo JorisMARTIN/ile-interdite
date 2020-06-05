@@ -78,6 +78,8 @@ public class IleInterdite extends Observable<Message> {
         this.aventuriers = new ArrayList<>();
         this.addObservateur(observateur);
     }
+    
+    
 
     public String[] inscrireJoueurs(int nbJoueurs) {
         String[] nomAventuriers = new String[nbJoueurs];
@@ -143,8 +145,6 @@ public class IleInterdite extends Observable<Message> {
     	Carte carte;
     	
     	for(int i=0; i<6; i++) {
-    		
-    		//le deck inondation  doit etre rempli
     		
     		carte = deckInnondation.getPremiereCarte();
     		carte.action();

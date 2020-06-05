@@ -46,6 +46,10 @@ public class Tuile {
         this.etat = etat;
     }
     
+    public EtatTuile getEtat() {
+    	return this.etat;
+    }
+    
     public ArrayList<Aventurier> getAventuriers() {
         return this.aventuriers;
     }

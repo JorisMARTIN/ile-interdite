@@ -1,5 +1,6 @@
 package m2104.ile_interdite.cartes;
 
+import m2104.ile_interdite.modele.EtatTuile;
 import m2104.ile_interdite.modele.Tuile;
 
 public class CarteInnondation extends Carte {
@@ -13,7 +14,11 @@ public class CarteInnondation extends Carte {
 
 	@Override
 	public void action() {
-		// TODO Auto-generated method stub
+		if(this.tuile.getEtat() == EtatTuile.INONDEE) {
+			this.tuile.setEtat(EtatTuile.RETIREE);
+		}else {
+			this.tuile.setEtat(EtatTuile.INONDEE);
+		}
 	}
 
     

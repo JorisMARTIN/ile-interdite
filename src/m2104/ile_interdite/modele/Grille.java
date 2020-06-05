@@ -55,53 +55,69 @@ public class Grille {
             String nomTuile;
 
             if(Arrays.asList(0, 1, 4, 5, 6, 11, 24, 29, 30, 31, 34, 35).contains(i)) {
-                nomTuile = "";
+                t = null;
             } else {
                 Random choix = new Random();
                 nomTuile = nomTuiles.get(choix.nextInt(nomTuiles.size()));
-            }
 
-            switch (nomTuile) {
-                case "Le Jardin des Hurlements" :
-                    t = new Tuile(nomTuile, EtatTuile.NORMAL, Tresor.ZEPHYR);
-                    break;
-                case "Le Jardin des Murmures":
-                    t = new Tuile(nomTuile, EtatTuile.NORMAL, Tresor.ZEPHYR);
-                    break;
-                case "Le Temple de la Lune":
-                    t = new Tuile(nomTuile, EtatTuile.NORMAL, Tresor.PIERRE);
-                    break;
-                case "Le Temple du Soleil" :
-                    t = new Tuile(nomTuile, EtatTuile.NORMAL, Tresor.PIERRE);
-                    break;
-                case "La Caverne du Brasier":
-                    t = new Tuile(nomTuile, EtatTuile.NORMAL, Tresor.CRISTAL);
-                    break;
-                case "La Caverne des Ombres":
-                    t = new Tuile(nomTuile, EtatTuile.NORMAL, Tresor.CRISTAL);
-                    break;
-                case "Le Palais des Marais":
-                    t = new Tuile(nomTuile, EtatTuile.NORMAL, Tresor.CALICE);
-                    break;
-                case "Le Palais de Corail":
-                    t = new Tuile(nomTuile, EtatTuile.NORMAL, Tresor.CALICE);
-                    break;
-                default:
-                    t = new Tuile(nomTuile,EtatTuile.NORMAL, null);
-                    break;
+                switch (nomTuile) {
+                    case "Le Jardin des Hurlements" :
+                        t = new Tuile(nomTuile, EtatTuile.NORMAL, Tresor.ZEPHYR);
+                        break;
+                    case "Le Jardin des Murmures":
+                        t = new Tuile(nomTuile, EtatTuile.NORMAL, Tresor.ZEPHYR);
+                        break;
+                    case "Le Temple de la Lune":
+                        t = new Tuile(nomTuile, EtatTuile.NORMAL, Tresor.PIERRE);
+                        break;
+                    case "Le Temple du Soleil" :
+                        t = new Tuile(nomTuile, EtatTuile.NORMAL, Tresor.PIERRE);
+                        break;
+                    case "La Caverne du Brasier":
+                        t = new Tuile(nomTuile, EtatTuile.NORMAL, Tresor.CRISTAL);
+                        break;
+                    case "La Caverne des Ombres":
+                        t = new Tuile(nomTuile, EtatTuile.NORMAL, Tresor.CRISTAL);
+                        break;
+                    case "Le Palais des Marais":
+                        t = new Tuile(nomTuile, EtatTuile.NORMAL, Tresor.CALICE);
+                        break;
+                    case "Le Palais de Corail":
+                        t = new Tuile(nomTuile, EtatTuile.NORMAL, Tresor.CALICE);
+                        break;
+                    default:
+                        t = new Tuile(nomTuile,EtatTuile.NORMAL, null);
+                        break;
+                }
+                nomTuiles.remove(nomTuile);
             }
-
-            nomTuiles.remove(nomTuile);
             tuiles.add(t);
         }
     }
     
     /*méthodes*/
-    public ArrayList<Tuile> getTuiles() {
-        return this.tuiles;
+    public ArrayList<Tuile> getTuiles(boolean getNull) {
+        if(getNull)
+            return this.tuiles;
+        else {
+            ArrayList<Tuile> tuilesClean = new ArrayList<>();
+
+            for(Tuile t : tuiles)
+                if(t != null)
+                    tuilesClean.add(t);
+
+            return tuilesClean;
+        }   
     }
     
-    public Tuile getTuile(final String nom) {
-        return null;
+    public Tuile getTuile(String nom) {
+        Tuile tuile = null;
+        for(Tuile t : tuiles) {
+            if(t.getNom() == nom) {
+                tuile = t;
+                break;
+            }
+        }
+        return tuile;
     }
 }

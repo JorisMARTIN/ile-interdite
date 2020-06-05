@@ -5,7 +5,9 @@ public class CarteHelicoptere extends Carte {
         super();
     }
 
-    public void action() {
-        
-    }
+	@Override
+	public void action() {
+		// TODO Auto-generated method stub
+	}
+    
 }

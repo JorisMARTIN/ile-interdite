@@ -56,6 +56,19 @@ public class IleInterdite extends Observable<Message> {
     }
 
     public void initGrille() {
-
+    	
+    	Carte carte;
+    	
+    	for(int i=0; i<6; i++) {
+    		
+    		carte = deckInnondation.getPremiereCarte();
+    		carte.action();
+    		deckInnondation.defausseCarte(carte);
+  
+    	}
+    	
+    	Message m = Message.initialiser_Grille(grille);
+    	notifierObservateurs(m);
+    	
     }
 }

@@ -16,10 +16,8 @@ import m2104.ile_interdite.util.Utils.Tresor;
  * @author tang
  */
 public class Grille {
-    /*attribus*/
     private final ArrayList<Tuile> tuiles;
     
-    /*construteur*/
     public Grille() {
         this.tuiles = new ArrayList<>();
 
@@ -95,7 +93,6 @@ public class Grille {
         }
     }
     
-    /*méthodes*/
     public ArrayList<Tuile> getTuiles(boolean getNull) {
         if(getNull)
             return this.tuiles;
@@ -114,10 +111,9 @@ public class Grille {
         Tuile tuile = null;
         for(Tuile t : tuiles) {
             if(t.getNom() == nom) {
-                tuile = t;
-                break;
+                return tuile;
             }
         }
-        return tuile;
+        return null;
     }
 }

@@ -16,6 +16,7 @@ public class IHM extends Observable<Message> {
 
     private final VueInscriptionJoueurs vueInscription;
     private final HashMap<Integer, VueAventurier> vueAventuriers;
+    private VueJeu vueJeu;
 
     public IHM(Observateur<Message> observateur) {
         this.vueInscription = new VueInscriptionJoueurs(this);
@@ -46,7 +47,7 @@ public class IHM extends Observable<Message> {
     }
     
     public void creeVueJeu(Grille grille) {
-    	VueJeu jeu = new VueJeu(this, grille);
+    	vueJeu = new VueJeu(this, grille);
     }
     
 }

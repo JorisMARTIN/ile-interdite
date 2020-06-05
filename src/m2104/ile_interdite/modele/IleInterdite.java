@@ -37,7 +37,7 @@ public class IleInterdite extends Observable<Message> {
     public IleInterdite(Observateur<Message> observateur) {
         this.grille = new Grille();
         
-        // Création des decks
+        // CrÃ©ation des decks
         this.deckTresor = new Deck(this);
         this.deckInnondation = new Deck(this);
         
@@ -46,11 +46,11 @@ public class IleInterdite extends Observable<Message> {
         ArrayList<Carte> cartesAjoutees = new ArrayList<>();
         
         
-        // 5 cartes pour chaque trésor
+        // 5 cartes pour chaque trÃ©sor
         Tresor[] tresors = {Tresor.CALICE, Tresor.CRISTAL, Tresor.PIERRE, Tresor.ZEPHYR};
         
         for(int i=0; i<4; i++){
-        	for(int j=0; j<5; i++) {
+        	for(int j=0; j<5; j++) {
         		cartesAjoutees.add(new CarteTresor(tresors[i]));
         	}
         }

@@ -15,8 +15,8 @@ import m2104.ile_interdite.util.Utils.Pion;
  */
 public class Plongeur extends Aventurier{
     /*construteur*/
-    public Plongeur(IleInterdite ileInterdite, Pion pion) {
-        super(ileInterdite, pion);
+    public Plongeur(IleInterdite ileInterdite) {
+        super(ileInterdite, Pion.VIOLET);
     }
     
     /*méthodes*/

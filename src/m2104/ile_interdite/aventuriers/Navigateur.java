@@ -15,8 +15,8 @@ import m2104.ile_interdite.util.Utils.Pion;
  */
 public class Navigateur extends Aventurier{
     /*construteur*/
-    public Navigateur(IleInterdite ileInterdite, Pion pion) {
-        super(ileInterdite, pion);
+    public Navigateur(IleInterdite ileInterdite) {
+        super(ileInterdite, Pion.JAUNE);
     }
     
     /*méthodes*/  

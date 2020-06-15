@@ -87,40 +87,34 @@ public class IleInterdite extends Observable<Message> {
             "Explorateur", "Pilote", "Navigateur", "Ingénieur", "Messager", "Plongeur"
         ));
 
-        ArrayList<Pion> pions = new ArrayList<>(Arrays.asList(
-            Pion.ROUGE, Pion.VERT, Pion.ORANGE, Pion.VIOLET, Pion.BLEU, Pion.JAUNE
-        ));
-
         for(int i = 0; i < nbJoueurs; i++) {
             Random choix = new Random();
             String selection = selections.get(choix.nextInt(selections.size()));
-            Pion pion = pions.get(choix.nextInt(pions.size()));
-
             Aventurier aventurier;
 
             switch(selection) {
                 case "Explorateur":
-                    aventurier = new Explorateur(this, pion);
+                    aventurier = new Explorateur(this);
                     break;
                 
                 case "Pilote":
-                    aventurier = new Pilote(this, pion);
+                    aventurier = new Pilote(this);
                     break;
 
                 case "Navigateur":
-                    aventurier = new Navigateur(this, pion);
+                    aventurier = new Navigateur(this);
                     break;
 
                 case "Ingénieur":
-                    aventurier = new Ingenieur(this, pion);
+                    aventurier = new Ingenieur(this);
                     break;
 
                 case "Messager":
-                    aventurier = new Messager(this, pion);
+                    aventurier = new Messager(this);
                     break;
 
                 case "Plongeur":
-                    aventurier = new Plongeur(this, pion);
+                    aventurier = new Plongeur(this);
                     break;
 
                 default:
@@ -133,7 +127,6 @@ public class IleInterdite extends Observable<Message> {
             aventurier.piocherCarte();
             aventurier.piocherCarte();
 
-            pions.remove(pion);
             selections.remove(selection);
             aventuriers.add(aventurier);
             

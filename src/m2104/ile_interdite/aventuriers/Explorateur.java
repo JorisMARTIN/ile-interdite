@@ -7,7 +7,7 @@ package m2104.ile_interdite.aventuriers;
 
 import m2104.ile_interdite.modele.IleInterdite;
 import m2104.ile_interdite.modele.Tuile;
-import m2104.ile_interdite.util.Utils;
+import m2104.ile_interdite.util.Utils.Pion;
 
 /**
  *
@@ -15,8 +15,8 @@ import m2104.ile_interdite.util.Utils;
  */
 public class Explorateur extends Aventurier{
     /*construteur*/
-    public Explorateur(IleInterdite ileInterdite, Utils.Pion couleur) {
-        super(ileInterdite, couleur);
+    public Explorateur(IleInterdite ileInterdite) {
+        super(ileInterdite, Pion.VERT);
     }
     
     /*méthodes*/

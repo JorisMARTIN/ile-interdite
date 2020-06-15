@@ -15,8 +15,8 @@ import m2104.ile_interdite.util.Utils.Pion;
  */
 public class Ingenieur extends Aventurier{
     /*construteur*/
-    public Ingenieur(IleInterdite ileInterdite, Pion pion) {
-        super(ileInterdite, pion);
+    public Ingenieur(IleInterdite ileInterdite) {
+        super(ileInterdite, Pion.ROUGE);
     }
     
     /*méthodes*/

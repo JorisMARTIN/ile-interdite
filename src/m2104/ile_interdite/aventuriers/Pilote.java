@@ -15,8 +15,8 @@ import m2104.ile_interdite.util.Utils.Pion;
  */
 public class Pilote extends Aventurier{
     /*construteur*/
-    public Pilote(IleInterdite ileInterdite, Pion pion) {
-        super(ileInterdite, pion);
+    public Pilote(IleInterdite ileInterdite) {
+        super(ileInterdite, Pion.BLEU);
     }
     
     /*méthodes*/

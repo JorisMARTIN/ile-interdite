@@ -15,8 +15,8 @@ import m2104.ile_interdite.util.Utils.Pion;
  */
 public class Messager extends Aventurier{
     /*construteur*/
-    public Messager(IleInterdite ileInterdite, Pion pion) {
-        super(ileInterdite, pion);
+    public Messager(IleInterdite ileInterdite) {
+        super(ileInterdite, Pion.ORANGE);
     }
     
     /*méthodes*/

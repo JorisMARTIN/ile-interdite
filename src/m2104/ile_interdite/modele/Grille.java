@@ -51,7 +51,8 @@ public class Grille {
         for (int i = 0 ; i < 36 ; i++) {
             Tuile t;
             String nomTuile;
-
+            
+            //Laisse la tuile à null si elle ne fait pas partie du terrain
             if(Arrays.asList(0, 1, 4, 5, 6, 11, 24, 29, 30, 31, 34, 35).contains(i)) {
                 t = null;
             } else {
@@ -99,18 +100,19 @@ public class Grille {
         else {
             ArrayList<Tuile> tuilesClean = new ArrayList<>();
 
-            for(Tuile t : tuiles)
-                if(t != null)
+            for(Tuile t : tuiles) {
+                if(t != null) {
                     tuilesClean.add(t);
+                }
+            }
 
             return tuilesClean;
         }   
     }
     
     public Tuile getTuile(String nom) {
-        Tuile tuile = null;
-        for(Tuile t : tuiles) {
-            if(t.getNom() == nom) {
+        for(Tuile tuile : tuiles) {
+            if(tuile.getNom() == nom) {
                 return tuile;
             }
         }

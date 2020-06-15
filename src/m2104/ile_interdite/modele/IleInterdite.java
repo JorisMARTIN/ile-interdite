@@ -172,6 +172,10 @@ public class IleInterdite extends Observable<Message> {
     public Deck getDeckTresor() {
         return deckTresor;
     }
+    
+    public void lancePartie() {
+    	//TODO
+    }
 
     public Deck getDeckInnondation() {
         return deckInnondation;

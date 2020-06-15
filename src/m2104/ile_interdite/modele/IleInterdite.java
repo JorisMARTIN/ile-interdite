@@ -98,23 +98,23 @@ public class IleInterdite extends Observable<Message> {
                     break;
                 
                 case "Pilote":
-                    aventurier = new Pilote(this);
+                    aventurier = new Pilote(this,null);
                     break;
 
                 case "Navigateur":
-                    aventurier = new Navigateur(this);
+                    aventurier = new Navigateur(this,null);
                     break;
 
                 case "Ingénieur":
-                    aventurier = new Ingenieur(this);
+                    aventurier = new Ingenieur(this,null);
                     break;
 
                 case "Messager":
-                    aventurier = new Messager(this);
+                    aventurier = new Messager(this,null);
                     break;
 
                 case "Plongeur":
-                    aventurier = new Plongeur(this);
+                    aventurier = new Plongeur(this,null);
                     break;
 
                 default:

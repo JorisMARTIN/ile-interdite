@@ -43,6 +43,16 @@ public class VueInscriptionJoueurs {
         JPanel panelChoix = new JPanel(new GridLayout(6,2));
         JPanel panelDifficulte = new JPanel(new GridLayout(1,2));
 
+        
+        // Choix difficulté
+        curseur = new JComboBox<Integer>(new Integer[] {1, 2, 3, 4});
+        panelDifficulte.add(new JLabel("Difficulte :"));
+        panelDifficulte.add(curseur);
+        
+        mainPanel.add(panelDifficulte, BorderLayout.NORTH);
+        fenetre.add(mainPanel);
+        
+        
         // nombre de joueurs
         choixNbJoueurs = new JComboBox<>(new Integer[] { 2, 3, 4 });
         panelChoix.add(new JLabel("Nombre de joueurs :"));
@@ -75,15 +85,6 @@ public class VueInscriptionJoueurs {
                 }
             }
         });
-        
-        
-        
-        curseur = new JComboBox<Integer>(new Integer[] {1, 2, 3, 4});
-        panelDifficulte.add(new JLabel("Difficulte :"));
-        panelDifficulte.add(curseur);
-        
-        mainPanel.add(panelDifficulte, BorderLayout.SOUTH);
-        fenetre.add(mainPanel);
         
 
         // Inscription des joueurs

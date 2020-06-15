@@ -94,6 +94,14 @@ public class Grille {
         }
     }
     
+    
+    /**
+     * 
+     * @param getNull
+     * 	true : en prenant les tuiles == null
+     * 	false : sans les tuiles == null
+     * @return Collection de tuiles contenant les null ou non
+     */
     public ArrayList<Tuile> getTuiles(boolean getNull) {
         if(getNull)
             return this.tuiles;

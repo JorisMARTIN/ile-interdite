@@ -23,12 +23,9 @@ public class VueJeu {
     private final JFrame fenetre;
     private final JPanel grillePanel;
     private final Grille grille;
-    private final String dossierImage;
 
     public VueJeu(IHM ihm, Grille grille) {
         
-        dossierImage = Parameters.IMAGES;
-        System.out.println(dossierImage);
         this.ihm = ihm;
         this.grille = grille;
         fenetre = new JFrame();
@@ -39,7 +36,7 @@ public class VueJeu {
         
         fenetre.setSize(1000, 1000);
         
-        grillePanel = new Panneau(new ImageIcon(dossierImage + "ocean.jpeg").getImage(), new GridLayout(6, 6));
+        grillePanel = new Panneau(new ImageIcon(Parameters.IMAGES + "ocean.jpeg").getImage(), new GridLayout(6, 6));
 
         //tuiles
         JButton button;
@@ -50,7 +47,7 @@ public class VueJeu {
             button.setSize(new Dimension(fenetre.getSize().width / 6, fenetre.getSize().height / 6));
             button.setBorder(BorderFactory.createEmptyBorder());
             if (t != null) {
-                ImageIcon icon = new ImageIcon(dossierImage + "tuiles/" + t.getNom() + ".png");
+                ImageIcon icon = new ImageIcon(Parameters.IMAGES + "tuiles/" + t.getNom() + ".png");
                 Image img = icon.getImage();
                 Image newImg = img.getScaledInstance(button.getWidth(), button.getHeight(), java.awt.Image.SCALE_SMOOTH);
                 icon = new ImageIcon(newImg);

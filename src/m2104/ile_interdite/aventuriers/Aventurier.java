@@ -1,6 +1,5 @@
 package m2104.ile_interdite.aventuriers;
 
-import java.awt.Color;
 import java.util.ArrayList;
 
 import m2104.ile_interdite.cartes.Carte;
@@ -18,12 +17,14 @@ public abstract class Aventurier {
     private IleInterdite ileInterdite;
     private Tuile position;
     private int actionsRestantes;
+    private Utils.Pion couleur;
     
     public Aventurier(IleInterdite ileInterdite, Utils.Pion couleur) {
         this.main = new ArrayList<>();
         this.ileInterdite = ileInterdite;
+        this.couleur = couleur;
         
-        switch (couleur) {
+        switch (this.couleur) {
             case ROUGE:
                 this.position = ileInterdite.getGrille().getTuile("LaPorteDeBronze");
                 break;

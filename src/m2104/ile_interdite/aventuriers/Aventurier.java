@@ -16,53 +16,59 @@ public abstract class Aventurier {
     private Tuile position;
     private int actionsRestantes;
     
-    public Aventurier(IleInterdite ileInterdite){
+    public Aventurier(IleInterdite ileInterdite) {
         this.main = new ArrayList<>();
         this.ileInterdite = ileInterdite;
         this.position = null;
     }
-    
-    public void seDeplacer(Tuile tuile){
-    }
-    
-    public void assecher(Tuile tuile){
-    }
-    
-    protected boolean peutAssecher(Tuile tuile){
+
+    public boolean peutSeDeplacer(Tuile tuile) {
+        // TODO Auto-generated method stub
         return false;
     }
     
-    public void donnerCarteTresor(Aventurier a, Carte carte) {
-    }
-    
-    public void recupererTresor() {
-    }
-    
-    public Tuile getPosition(){
+    public Tuile getPosition() {
         return this.position;
     }
     
-    public ArrayList<Carte> getMain(){
-        return null;
+    public void seDeplacer(Tuile tuile) {
+        this.position = tuile;
+    }
+    
+    protected boolean peutAssecher(Tuile tuile) {
+        //TODO
+        return false;
+    }
+    
+    public void assecher(Tuile tuile) {
+        //TODO
+    }
+    
+    public void donnerCarteTresor(Aventurier a, Carte carte) {
+        //TODO
+    }
+    
+    public void recupererTresor() {
+        //TODO
+    }
+    
+    public ArrayList<Carte> getMain() {
+        return this.main;
     }
     
     public void piocherCarte() {
+        //TODO
     }
-
-	public boolean peutSeDeplacer(Tuile tuile) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-    public int getActionsRestantes() {
-        return actionsRestantes;
+    
+    public void initActionsRestantes() {
+        this.actionsRestantes = 3;
     }
 
     public void moinsActions() {
         this.actionsRestantes--;
     }
 
-    public void initActionsRestantes() {
-        this.actionsRestantes = 3;
+    public int getActionsRestantes() {
+        return actionsRestantes;
     }
 }

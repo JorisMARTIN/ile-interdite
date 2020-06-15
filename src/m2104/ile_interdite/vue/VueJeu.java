@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.BorderFactory;
-import java.lang.System;
 
 import m2104.ile_interdite.modele.Grille;
 import m2104.ile_interdite.modele.Tuile;
@@ -48,10 +47,8 @@ public class VueJeu {
             button.setBorder(BorderFactory.createEmptyBorder());
             if (t != null) {
                 ImageIcon icon = new ImageIcon(Parameters.IMAGES + "tuiles/" + t.getNom() + ".png");
-                Image img = icon.getImage();
-                Image newImg = img.getScaledInstance(button.getWidth(), button.getHeight(), java.awt.Image.SCALE_SMOOTH);
-                icon = new ImageIcon(newImg);
-            button.setIcon(icon);
+                Image img = icon.getImage().getScaledInstance(button.getWidth(), button.getHeight(), Image.SCALE_SMOOTH);
+                button.setIcon(new ImageIcon(img));
             } else {
                 button.setVisible(false);
             }

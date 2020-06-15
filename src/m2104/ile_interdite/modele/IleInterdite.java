@@ -178,7 +178,7 @@ public class IleInterdite extends Observable<Message> {
     }
 
     public Deck getDeckInnondation() {
-        return deckInnondation;
+        return this.deckInnondation;
     }
     
     public void lanceInnondation() {

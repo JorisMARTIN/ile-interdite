@@ -1,6 +1,7 @@
 package m2104.ile_interdite.modele;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import m2104.ile_interdite.cartes.Carte;
 
@@ -16,7 +17,7 @@ public class Deck {
     }
 
     public void remplirPioche(ArrayList<Carte> cartes) {
-        pioche.addAll(cartes);
+        pioche.addAll(melanger(cartes));
     }
 
     public void defausseCarte(Carte carte) {
@@ -30,5 +31,13 @@ public class Deck {
 
     public Carte getPremiereCarte() {
         return pioche.get(pioche.size() - 1);
+    }
+    
+    // Melange la collection de carte placer en paramètre
+    private ArrayList<Carte> melanger(ArrayList<Carte> cartes){
+    	
+    	Collections.shuffle(cartes);
+    	
+    	return cartes;
     }
 }

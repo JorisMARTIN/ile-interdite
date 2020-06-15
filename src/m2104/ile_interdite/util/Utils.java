@@ -26,8 +26,15 @@ public class Utils {
         CHOISIR_TUILE("Sélectionner une tuile"),
         DEPLACER("Déplacer un autre joueur"),
         VOIR_DEFAUSSE("Un joueur souhaite voir la défausse de cartes Tirage"),
-        INITIALISER_GRILLE("Grille initialiser avec les tuiles innond�es"),
-        INITIALISER("Initialisation joueur");
+        INITIALISER_GRILLE("Grille initialiser avec les tuiles innondées"),
+        INITIALISER("Initialisation joueur"),
+        /*Ajout de nouveaux messages*/
+        RECUP_TRESOR("Recupération d'un trésort"),
+        MAJ_GRILLE("Mise à jour de la grille"),
+        DEPLACEMENT("Traite le début d'un déplacement du joueur courant"),
+        TUILES_POSSIBLES("Avec possibilité, met en valeur les tuiles sur lequel l'action est possible"),
+        AUGMENTER_CURSEUR("Augmenter le curseur de monté des eaux"),
+        LANCER_JEU("Lancement du Jeu");
 
         private final String libelle ;
 
@@ -59,10 +66,10 @@ public class Utils {
     }
 
     public static enum Tresor {
-        PIERRE("La Pierre Sacrée", new Color(141,79,9), new Color(255,242,0), Parameters.TRESORS + "pierre.png"),
-        ZEPHYR("La statue du Zéphyr", new Color(255,215,0), new Color(208,26,136), Parameters.TRESORS + "zephyr.png"),
-        CRISTAL("Le Cristal Ardent", new Color(219,56,154), new Color(99,187,242), Parameters.TRESORS + "cristal.png"),
-        CALICE("Le Calice de l'Onde", new Color(27,188,245), new Color(141,79,9), Parameters.TRESORS + "calice.png") ;
+        PIERRE("La Pierre Sacrée", new Color(141,79,9), new Color(255,242,0), Parameters.TRESORS + "images/tresors/pierre.png"),
+        ZEPHYR("La statue du Zéphyr", new Color(255,215,0), new Color(208,26,136), Parameters.TRESORS + "images/tresors/zephyr.png"),
+        CRISTAL("Le Cristal Ardent", new Color(219,56,154), new Color(99,187,242), Parameters.TRESORS + "images/tresors/cristal.png"),
+        CALICE("Le Calice de l'Onde", new Color(27,188,245), new Color(141,79,9), Parameters.TRESORS + "images/tresors/calice.png") ;
 
         private final String libelle;
         private final Color bgColor ;
@@ -104,12 +111,12 @@ public class Utils {
     }
 
     public static enum Pion {
-        ROUGE("Rouge", new Color(255, 0, 0), new Color(176, 79, 79), new Color(255, 145, 145), new Color(226,166,166), "pionRouge.png"),
-        VERT("Vert", new Color(0, 195, 0), new Color(79, 153, 79), new Color(145, 255, 145), new Color(166,226,166), "pionVert.png"),
-        BLEU("Bleu", new Color(55,194,198), new Color(100,153,154), new Color(175,221,221), new Color(202,219,219), "pionBleu.png"),
-        ORANGE("Orange", new Color(255, 148, 0), new Color(176, 135, 79), new Color(255, 199, 127), new Color(246,198,135), "pionBronze.png"),
-        VIOLET("Violet", new Color(204, 94, 255), new Color(146, 115, 176), new Color(211, 164, 234), new Color(202,176,214), "pionViolet.png"),
-        JAUNE("Jaune", new Color(255, 255, 0), new Color(176, 176, 79), new Color(255, 255, 140), new Color(245,245,148), "pionJaune.png") ;
+        ROUGE("Rouge", new Color(255, 0, 0), new Color(176, 79, 79), new Color(255, 145, 145), new Color(226,166,166), "images/pions/pionRouge.png"),
+        VERT("Vert", new Color(0, 195, 0), new Color(79, 153, 79), new Color(145, 255, 145), new Color(166,226,166), "images/pions/pionVert.png"),
+        BLEU("Bleu", new Color(55,194,198), new Color(100,153,154), new Color(175,221,221), new Color(202,219,219), "images/pions/pionBleu.png"),
+        ORANGE("Orange", new Color(255, 148, 0), new Color(176, 135, 79), new Color(255, 199, 127), new Color(246,198,135), "images/pions/pionBronze.png"),
+        VIOLET("Violet", new Color(204, 94, 255), new Color(146, 115, 176), new Color(211, 164, 234), new Color(202,176,214), "images/pions/pionViolet.png"),
+        JAUNE("Jaune", new Color(255, 255, 0), new Color(176, 176, 79), new Color(255, 255, 140), new Color(245,245,148), "images/pions/pionJaune.png") ;
 
         private final String libelle ;
         private final Color couleur ;

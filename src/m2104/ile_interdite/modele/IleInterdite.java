@@ -172,6 +172,10 @@ public class IleInterdite extends Observable<Message> {
     public Deck getDeckTresor() {
         return deckTresor;
     }
+    
+    public void lancePartie() {
+    	//TODO
+    }
 
     public Deck getDeckInnondation() {
         return deckInnondation;
@@ -188,5 +192,8 @@ public class IleInterdite extends Observable<Message> {
     public void lanceRecuperationTresor() {
         //TODO
     }
+
+	public void deplacerAventurier(String nomTuile) {
+	}
 
 }

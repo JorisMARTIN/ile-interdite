@@ -74,7 +74,7 @@ public abstract class Aventurier {
         return peutSeDeplacer;
     }
     
-    public ArrayList<Boolean> isDeplacementPossible() {
+    public ArrayList<Boolean> isDeplacementPossibles() {
         ArrayList<Boolean> deplacementsPossibles = new ArrayList<Boolean>();
         for (Tuile tuile : this.ileInterdite.getGrille().getTuiles(true)) {
             deplacementsPossibles.add(this.peutSeDeplacer(tuile));
@@ -128,4 +128,8 @@ public abstract class Aventurier {
     public int getActionsRestantes() {
         return actionsRestantes;
     }
+
+	public boolean peutRecupererTresort() {
+		return false;
+	}
 }

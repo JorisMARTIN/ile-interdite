@@ -18,6 +18,7 @@ import m2104.ile_interdite.cartes.CarteMonteeEaux;
 import m2104.ile_interdite.cartes.CarteSacDeSable;
 import m2104.ile_interdite.cartes.CarteTresor;
 import m2104.ile_interdite.util.Message;
+import m2104.ile_interdite.util.Utils;
 import m2104.ile_interdite.util.Utils.Commandes;
 import m2104.ile_interdite.util.Utils.Pion;
 import m2104.ile_interdite.util.Utils.Tresor;
@@ -34,6 +35,7 @@ public class IleInterdite extends Observable<Message> {
     private ArrayList<Aventurier> aventuriers;
     private Deck deckTresor;
     private Deck deckInnondation;
+    private int joueurCourant;
     
     public IleInterdite(Observateur<Message> observateur) {
         this.grille = new Grille();
@@ -186,14 +188,25 @@ public class IleInterdite extends Observable<Message> {
     }
     
     public void lanceDeplacement() {
-        //TODO
+        ArrayList<Boolean> possibilite = aventuriers.get(this.joueurCourant).isDeplacementPossibles();
+        Message msg = new Message(Utils.Commandes.TUILES_POSSIBLES);
+        msg.possibilites = possibilite;
+        notifierObservateurs(msg);
     }
     
     public void lanceRecuperationTresor() {
-        //TODO
+        boolean b = aventuriers.get(joueurCourant).peutRecupererTresort();
+        if (b) {
+            aventuriers.get(joueurCourant).recupererTresor();
+        }
+        Message msg = new Message(Utils.Commandes.MAJ_GRILLE);
+        msg.grille = grille;
+        notifierObservateurs(msg);
     }
 
 	public void deplacerAventurier(String nomTuile) {
+        Tuile tuile = this.grille.getTuile(nomTuile);
+        this.aventuriers.get(joueurCourant).seDeplacer(tuile);
 	}
 
 }

@@ -52,7 +52,7 @@ public class Grille {
             Tuile t;
             String nomTuile;
             
-            //Laisse la tuile à null si elle ne fait pas partie du terrain
+            //Laisse la tuile Ã  null si elle ne fait pas partie du terrain
             if(Arrays.asList(0, 1, 4, 5, 6, 11, 24, 29, 30, 31, 34, 35).contains(i)) {
                 t = null;
             } else {
@@ -60,28 +60,28 @@ public class Grille {
                 nomTuile = nomTuiles.get(choix.nextInt(nomTuiles.size()));
 
                 switch (nomTuile) {
-                    case "Le Jardin des Hurlements" :
+                    case "LeJardinDesHurlements" :
                         t = new Tuile(nomTuile, EtatTuile.NORMAL, Tresor.ZEPHYR);
                         break;
-                    case "Le Jardin des Murmures":
+                    case "LeJardinDesMurmures":
                         t = new Tuile(nomTuile, EtatTuile.NORMAL, Tresor.ZEPHYR);
                         break;
-                    case "Le Temple de la Lune":
+                    case "LeTempleDeLaLune":
                         t = new Tuile(nomTuile, EtatTuile.NORMAL, Tresor.PIERRE);
                         break;
-                    case "Le Temple du Soleil" :
+                    case "LeTempleDuSoleil" :
                         t = new Tuile(nomTuile, EtatTuile.NORMAL, Tresor.PIERRE);
                         break;
-                    case "La Caverne du Brasier":
+                    case "LaCarverneDuBrasier":
                         t = new Tuile(nomTuile, EtatTuile.NORMAL, Tresor.CRISTAL);
                         break;
-                    case "La Caverne des Ombres":
+                    case "LaCarverneDesOmbres":
                         t = new Tuile(nomTuile, EtatTuile.NORMAL, Tresor.CRISTAL);
                         break;
-                    case "Le Palais des Marais":
+                    case "LePalaisDesMarees":
                         t = new Tuile(nomTuile, EtatTuile.NORMAL, Tresor.CALICE);
                         break;
-                    case "Le Palais de Corail":
+                    case "LePalaisDeCorail":
                         t = new Tuile(nomTuile, EtatTuile.NORMAL, Tresor.CALICE);
                         break;
                     default:
@@ -111,7 +111,7 @@ public class Grille {
     }
     
     public Tuile getTuile(String nom) {
-        for(Tuile tuile : tuiles) {
+        for(Tuile tuile : getTuiles(false)) {
             if(tuile.getNom() == nom) {
                 return tuile;
             }

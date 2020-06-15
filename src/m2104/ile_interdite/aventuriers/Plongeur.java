@@ -7,6 +7,7 @@ package m2104.ile_interdite.aventuriers;
 
 import m2104.ile_interdite.modele.IleInterdite;
 import m2104.ile_interdite.modele.Tuile;
+import m2104.ile_interdite.util.Utils.Pion;
 
 /**
  *
@@ -14,8 +15,8 @@ import m2104.ile_interdite.modele.Tuile;
  */
 public class Plongeur extends Aventurier{
     /*construteur*/
-    public Plongeur(IleInterdite ileInterdite) {
-        super(ileInterdite);
+    public Plongeur(IleInterdite ileInterdite, Pion pion) {
+        super(ileInterdite, pion);
     }
     
     /*méthodes*/

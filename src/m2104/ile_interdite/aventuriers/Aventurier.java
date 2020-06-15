@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.modele.IleInterdite;
 import m2104.ile_interdite.modele.Tuile;
+import m2104.ile_interdite.util.Utils;
 import m2104.ile_interdite.modele.EtatTuile;
 
 /**
@@ -16,11 +17,42 @@ public abstract class Aventurier {
     private IleInterdite ileInterdite;
     private Tuile position;
     private int actionsRestantes;
+    private Utils.Pion couleur;
     
-    public Aventurier(IleInterdite ileInterdite) {
+    public Aventurier(IleInterdite ileInterdite, Utils.Pion couleur) {
         this.main = new ArrayList<>();
         this.ileInterdite = ileInterdite;
-        this.position = null;
+        this.couleur = couleur;
+        
+        switch (this.couleur) {
+            case ROUGE:
+                this.position = ileInterdite.getGrille().getTuile("LaPorteDeBronze");
+                break;
+
+            case VERT:
+                this.position = ileInterdite.getGrille().getTuile("LaPorteDeCuivre");
+                break;
+
+            case BLEU:
+                this.position = ileInterdite.getGrille().getTuile("Heliport");
+                break;
+
+            case ORANGE:
+                this.position = ileInterdite.getGrille().getTuile("LaPortedArgent");
+                break;
+
+            case VIOLET:
+                this.position = ileInterdite.getGrille().getTuile("LaPorteDeFer");
+                break;
+
+            case JAUNE:
+                this.position = ileInterdite.getGrille().getTuile("LaPorteDOr");
+                break;
+            
+            default:
+                this.position = null;
+                break;
+        }
     }
 
     public boolean peutSeDeplacer(Tuile tuile) {

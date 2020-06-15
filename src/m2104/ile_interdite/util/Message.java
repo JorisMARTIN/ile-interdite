@@ -10,8 +10,8 @@ import m2104.ile_interdite.modele.Grille;
  */
 public class Message {
 
-	public Utils.Commandes commande;
-	public Integer difficulte;
+    public Utils.Commandes commande;
+    public Integer difficulte;
     public Integer idAventurier;
     public Integer idCarte;
     public Utils.Tresor tresor;
@@ -19,7 +19,7 @@ public class Message {
     public Integer nbJoueurs;
     public Grille grille;
     /*Ajout de nouveaux attribus*/
-    public Arraylist<Boolean> possibilites;
+    public ArrayList<Boolean> possibilites;
     public String nomTuile;
     public int valeur;
     

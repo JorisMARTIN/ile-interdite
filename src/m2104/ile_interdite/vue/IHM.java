@@ -1,6 +1,7 @@
 package m2104.ile_interdite.vue;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import m2104.ile_interdite.modele.Grille;
@@ -50,7 +51,7 @@ public class IHM extends Observable<Message> {
     	vueJeu = new VueJeu(this, grille);
     }
 
-	public void surbrillerTuiles(boolean[] possibilites) {
+	public void surbrillerTuiles(ArrayList<Boolean> possibilites) {
 	}
 
 	public void placerCurseur(int valeur) {

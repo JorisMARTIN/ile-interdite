@@ -18,34 +18,33 @@ public abstract class Aventurier {
     private IleInterdite ileInterdite;
     private Tuile position;
     private int actionsRestantes;
-    private Color couleur;
     
     public Aventurier(IleInterdite ileInterdite, Utils.Pion couleur) {
         this.main = new ArrayList<>();
         this.ileInterdite = ileInterdite;
         
         switch (couleur) {
-            case Utils.Pion.ROUGE:
+            case ROUGE:
                 this.position = ileInterdite.getGrille().getTuile("LaPorteDeBronze");
                 break;
 
-            case Utils.Pion.VERT:
+            case VERT:
                 this.position = ileInterdite.getGrille().getTuile("LaPorteDeCuivre");
                 break;
 
-            case Utils.Pion.BLEU:
+            case BLEU:
                 this.position = ileInterdite.getGrille().getTuile("Heliport");
                 break;
 
-            case Utils.Pion.ORANGE:
+            case ORANGE:
                 this.position = ileInterdite.getGrille().getTuile("LaPortedArgent");
                 break;
 
-            case Utils.Pion.VIOLET:
+            case VIOLET:
                 this.position = ileInterdite.getGrille().getTuile("LaPorteDeFer");
                 break;
 
-            case Utils.Pion.JAUNE:
+            case JAUNE:
                 this.position = ileInterdite.getGrille().getTuile("LaPorteDOr");
                 break;
             

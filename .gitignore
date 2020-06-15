@@ -333,3 +333,6 @@ $RECYCLE.BIN/
 #VPP
 .Projet_ileInterdite.vpp.lck
 Projet_ileInterdite.vpp.bak_*
+
+#bluej
+*.bluej

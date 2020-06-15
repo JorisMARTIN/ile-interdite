@@ -6,8 +6,8 @@ public class CarteTresor extends Carte {
 	
     private Utils.Tresor tresor;
     
-    public CarteTresor(Utils.Tresor tresor) {
-        super();
+    public CarteTresor(Deck deck,Utils.Tresor tresor) {
+        super(deck);
         this.tresor = tresor;
     }
 

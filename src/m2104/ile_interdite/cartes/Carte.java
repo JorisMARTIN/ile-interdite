@@ -13,11 +13,6 @@ public abstract class Carte {
     private Deck deck;
     private Aventurier aventurier;
 	
-    public Carte(Aventurier aventurier) {
-        this.deck = null;
-        this.aventurier = aventurier;
-    }
-	
     public Carte(Deck deck) {
         this.deck = deck;
         this.aventurier = null;

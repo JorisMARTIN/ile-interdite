@@ -7,8 +7,8 @@ public class CarteInnondation extends Carte {
 	
     private Tuile tuile;
 
-    public CarteInnondation(Tuile tuile) {
-        super();
+    public CarteInnondation(Deck deck, Tuile tuile) {
+        super(deck);
         this.tuile = tuile;
     }
 

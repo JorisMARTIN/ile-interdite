@@ -16,23 +16,19 @@ import java.lang.System;
 import m2104.ile_interdite.modele.Grille;
 import m2104.ile_interdite.modele.Tuile;
 import m2104.ile_interdite.util.Panneau;
+import m2104.ile_interdite.util.Parameters;
 
 public class VueJeu {
     private final IHM ihm;
     private final JFrame fenetre;
-    //private final Panneau ecran;
     private final JPanel grillePanel;
     private final Grille grille;
     private final String dossierImage;
 
     public VueJeu(IHM ihm, Grille grille) {
-
-        if (System.getProperty("user.dir").endsWith("src")) {
-            dossierImage = "../images/";
-        } else {
-            dossierImage = "images/";
-        }
         
+        dossierImage = Parameters.IMAGES;
+        System.out.println(dossierImage);
         this.ihm = ihm;
         this.grille = grille;
         fenetre = new JFrame();
@@ -44,9 +40,6 @@ public class VueJeu {
         fenetre.setSize(1000, 1000);
         
         grillePanel = new Panneau(new ImageIcon(dossierImage + "ocean.jpeg").getImage(), new GridLayout(6, 6));
-        //fenetre.add(ecran);
-
-        //grillePanel = new JPanel(new GridLayout(6, 6));
 
         //tuiles
         JButton button;
@@ -61,7 +54,7 @@ public class VueJeu {
                 Image img = icon.getImage();
                 Image newImg = img.getScaledInstance(button.getWidth(), button.getHeight(), java.awt.Image.SCALE_SMOOTH);
                 icon = new ImageIcon(newImg);
-                button.setIcon(icon);
+            button.setIcon(icon);
             } else {
                 button.setVisible(false);
             }

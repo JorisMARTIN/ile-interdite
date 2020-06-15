@@ -79,8 +79,6 @@ public class IleInterdite extends Observable<Message> {
         this.addObservateur(observateur);
     }
     
-    
-
     public String[] inscrireJoueurs(int nbJoueurs) {
         String[] nomAventuriers = new String[nbJoueurs];
         
@@ -124,7 +122,6 @@ public class IleInterdite extends Observable<Message> {
                     break;
             }
 
-            
             nomAventuriers[i] = selection;
 
             aventurier.piocherCarte();
@@ -133,7 +130,6 @@ public class IleInterdite extends Observable<Message> {
             selections.remove(selection);
             aventuriers.add(aventurier);
             
-            
         }
         
         return nomAventuriers;
@@ -141,14 +137,13 @@ public class IleInterdite extends Observable<Message> {
 
     public void initGrille() {
     	
-    	
     	Carte carte;
     	
     	for(int i=0; i<6; i++) {
     		
-    		carte = deckInnondation.getPremiereCarte();
-    		carte.action();
-    		deckInnondation.defausseCarte(carte);
+    	    carte = deckInnondation.getPremiereCarte();
+    	    carte.action();
+    	    deckInnondation.defausseCarte(carte);
     		
     	}
     	
@@ -180,6 +175,18 @@ public class IleInterdite extends Observable<Message> {
 
     public Deck getDeckInnondation() {
         return deckInnondation;
+    }
+    
+    public void lanceInnondation() {
+        //TODO
+    }
+    
+    public void lanceDeplacement() {
+        //TODO
+    }
+    
+    public void lanceRecuperationTresor() {
+        //TODO
     }
 
 }

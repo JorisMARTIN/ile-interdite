@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package m2104.ile_interdite.cartes;
-package m2104.ile_interdite.aventuriers;
+import m2104.ile_interdite.aventuriers.Aventurier;
 
 /**
  *

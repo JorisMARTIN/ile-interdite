@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.BorderFactory;
 
 import m2104.ile_interdite.modele.Grille;
 import m2104.ile_interdite.modele.Tuile;
@@ -42,13 +43,15 @@ public class VueJeu {
             button = new JButton();
             //button.setEnabled(false);
             button.setSize(new Dimension(fenetre.getSize().width / 6, fenetre.getSize().height / 6));
-            if(t != null) {
-                //button.setText(t.getNom());
+            button.setBorder(BorderFactory.createEmptyBorder());
+            if (t != null) {
                 ImageIcon icon = new ImageIcon("..//images//tuiles//" + t.getNom() + ".png");
                 Image img = icon.getImage();
                 Image newImg = img.getScaledInstance(button.getWidth(), button.getHeight(), java.awt.Image.SCALE_SMOOTH);
                 icon = new ImageIcon(newImg);
                 button.setIcon(icon);
+            } else {
+                button.setVisible(false);
             }
             grillePanel.add(button);
         }

@@ -336,3 +336,6 @@ Projet_ileInterdite.vpp.bak_*
 
 #bluej
 *.bluej
+
+#VSCode
+.vscode

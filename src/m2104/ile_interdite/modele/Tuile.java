@@ -31,11 +31,11 @@ public class Tuile {
     
     /*méthodes*/
     public boolean isInnondee() {
-        return false;
+        return this.etat == EtatTuile.INONDEE;
     }
     
     public boolean isRetiree() {
-        return false;
+        return this.etat == EtatTuile.RETIREE;
     }
     
     public String getNom() {

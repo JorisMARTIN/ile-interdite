@@ -27,7 +27,7 @@ public class VueJeu {
         
         this.ihm = ihm;
         this.grille = grille;
-        fenetre = new JFrame();
+        fenetre = new JFrame("L'île interdite");
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         

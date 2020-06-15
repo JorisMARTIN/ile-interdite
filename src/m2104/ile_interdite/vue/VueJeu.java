@@ -15,18 +15,26 @@ import java.lang.System;
 
 import m2104.ile_interdite.modele.Grille;
 import m2104.ile_interdite.modele.Tuile;
+import m2104.ile_interdite.util.Panneau;
 
 public class VueJeu {
     private final IHM ihm;
     private final JFrame fenetre;
+    //private final Panneau ecran;
     private final JPanel grillePanel;
     private final Grille grille;
+    private final String dossierImage;
 
     public VueJeu(IHM ihm, Grille grille) {
+
+        if (System.getProperty("user.dir").endsWith("src")) {
+            dossierImage = "../images/";
+        } else {
+            dossierImage = "images/";
+        }
         
         this.ihm = ihm;
         this.grille = grille;
-
         fenetre = new JFrame();
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -34,8 +42,11 @@ public class VueJeu {
         fenetre.setLocation((int) (dim.getWidth()/2)-500, (int) (dim.getHeight()/2)-300);
         
         fenetre.setSize(1000, 1000);
+        
+        grillePanel = new Panneau(new ImageIcon(dossierImage + "ocean.jpeg").getImage(), new GridLayout(6, 6));
+        //fenetre.add(ecran);
 
-        grillePanel = new JPanel(new GridLayout(6, 6));
+        //grillePanel = new JPanel(new GridLayout(6, 6));
 
         //tuiles
         JButton button;
@@ -46,12 +57,7 @@ public class VueJeu {
             button.setSize(new Dimension(fenetre.getSize().width / 6, fenetre.getSize().height / 6));
             button.setBorder(BorderFactory.createEmptyBorder());
             if (t != null) {
-                ImageIcon icon = null;
-                if (System.getProperty("user.dir").endsWith("src")) {
-                    icon = new ImageIcon("../images/tuiles/" + t.getNom() + ".png");
-                } else {
-                    icon = new ImageIcon("images/tuiles/" + t.getNom() + ".png");
-                }
+                ImageIcon icon = new ImageIcon(dossierImage + "tuiles/" + t.getNom() + ".png");
                 Image img = icon.getImage();
                 Image newImg = img.getScaledInstance(button.getWidth(), button.getHeight(), java.awt.Image.SCALE_SMOOTH);
                 icon = new ImageIcon(newImg);

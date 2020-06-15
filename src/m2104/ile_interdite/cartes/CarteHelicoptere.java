@@ -8,9 +8,9 @@ public class CarteHelicoptere extends Carte {
         super(deck);
     }
 
-	@Override
-	public void action() {
-		// TODO Auto-generated method stub
-	}
+    @Override
+    public void action() {
+    	// TODO Auto-generated method stub
+    }
     
 }

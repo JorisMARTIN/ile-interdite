@@ -1,5 +1,6 @@
 package m2104.ile_interdite.cartes;
 
+import m2104.ile_interdite.modele.Deck;
 import m2104.ile_interdite.modele.EtatTuile;
 import m2104.ile_interdite.modele.Tuile;
 
@@ -7,8 +8,8 @@ public class CarteInnondation extends Carte {
 	
     private Tuile tuile;
 
-    public CarteInnondation(Tuile tuile) {
-        super();
+    public CarteInnondation(Deck deck, Tuile tuile) {
+        super(deck);
         this.tuile = tuile;
     }
 

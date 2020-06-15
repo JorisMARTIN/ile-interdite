@@ -51,26 +51,26 @@ public class IleInterdite extends Observable<Message> {
         
         for(int i=0; i<4; i++){
         	for(int j=0; j<5; j++) {
-        		cartesAjoutees.add(new CarteTresor(tresors[i]));
+        		cartesAjoutees.add(new CarteTresor(this.deckTresor, tresors[i]));
         	}
         }
         
         // 3 cartes montee des eaux / 3 cartes helicoptere
         for(int i=0; i<3; i++) {
-        	cartesAjoutees.add(new CarteMonteeEaux());
-        	cartesAjoutees.add(new CarteHelicoptere());
+        	cartesAjoutees.add(new CarteMonteeEaux(this.deckTresor));
+        	cartesAjoutees.add(new CarteHelicoptere(this.deckTresor));
         }
         
         // 2 cartes sac de sable
-        cartesAjoutees.add(new CarteSacDeSable());
-        cartesAjoutees.add(new CarteSacDeSable());
+        cartesAjoutees.add(new CarteSacDeSable(this.deckTresor));
+        cartesAjoutees.add(new CarteSacDeSable(this.deckTresor));
         
-		deckTresor.remplirPioche(cartesAjoutees);
+	deckTresor.remplirPioche(cartesAjoutees);
         
-		cartesAjoutees.clear();
+	cartesAjoutees.clear();
         
         for(int i=0; i<24; i++) {
-        	cartesAjoutees.add(new CarteInnondation(grille.getTuiles(false).get(i)));
+        	cartesAjoutees.add(new CarteInnondation(this.deckInnondation, grille.getTuiles(false).get(i)));
         }
         
         this.deckInnondation.remplirPioche(cartesAjoutees);

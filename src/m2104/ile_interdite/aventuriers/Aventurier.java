@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.modele.IleInterdite;
 import m2104.ile_interdite.modele.Tuile;
+import m2104.ile_interdite.modele.EtatTuile;
 
 /**
  *
@@ -23,8 +24,15 @@ public abstract class Aventurier {
     }
 
     public boolean peutSeDeplacer(Tuile tuile) {
-        // TODO Auto-generated method stub
-        return false;
+        return tuile != null && tuile.getEtat() != EtatTuile.RETIREE;
+    }
+    
+    public ArrayList<Boolean> isDeplacementPossible() {
+        ArrayList<Boolean> deplacementsPossibles = new ArrayList<Boolean>();
+        for (Tuile tuile : this.ileInterdite.getGrille().getTuiles(true)) {
+            deplacementsPossibles.add(this.peutSeDeplacer(tuile));
+        }
+        return deplacementsPossibles;
     }
     
     public Tuile getPosition() {

@@ -76,7 +76,7 @@ public class Controleur implements Observateur<Message> {
 
             /*Ajout des nouveaux cas pour les nouveaux messages*/
             case MAJ_GRILLE:
-                ihm.majVueJeu(grille);
+                ihm.majVueJeu(msg.grille);
                 break;
 
             case TUILES_POSSIBLES:
@@ -96,7 +96,7 @@ public class Controleur implements Observateur<Message> {
                 break;
 
             case AUGMENTER_CURSEUR:
-                ihm.placerCurseur(msg.valeur)
+                ihm.placerCurseur(msg.valeur);
                 break;
 
             default:

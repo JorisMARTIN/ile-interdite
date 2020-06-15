@@ -55,5 +55,8 @@ public class IHM extends Observable<Message> {
 
 	public void placerCurseur(int valeur) {
 	}
+
+	public void majVueJeu(Grille grille) {
+	}
     
 }

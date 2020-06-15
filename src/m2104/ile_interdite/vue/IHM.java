@@ -49,5 +49,11 @@ public class IHM extends Observable<Message> {
     public void creeVueJeu(Grille grille) {
     	vueJeu = new VueJeu(this, grille);
     }
+
+	public void surbrillerTuiles(boolean[] possibilites) {
+	}
+
+	public void placerCurseur(int valeur) {
+	}
     
 }

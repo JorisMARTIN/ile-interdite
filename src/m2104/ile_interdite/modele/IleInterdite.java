@@ -189,4 +189,7 @@ public class IleInterdite extends Observable<Message> {
         //TODO
     }
 
+	public void deplacerAventurier(String nomTuile) {
+	}
+
 }

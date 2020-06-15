@@ -18,6 +18,7 @@ public class Controleur implements Observateur<Message> {
     public Controleur() {
         this.ileInterdite = new IleInterdite(this);
         this.ihm = new IHM(this);
+        ihm.addObservateur(this);
     }
 
     @Override
@@ -67,12 +68,37 @@ public class Controleur implements Observateur<Message> {
             case CHOISIR_TUILE:
                 break;
             
-            case DEPLACER:
-                break;
+            /*case DEPLACER:
+                break;*/
             
             case VOIR_DEFAUSSE:
                 break;
-            
+
+            /*Ajout des nouveaux cas pour les nouveaux messages*/
+            case MAJ_GRILLE:
+                ihm.majVueJeu(grille);
+                break;
+
+            case TUILES_POSSIBLES:
+                ihm.surbrillerTuiles(msg.possibilites);
+                break;
+
+            case DEPLACEMENT:
+                ileInterdite.lanceDeplacement();
+                break;
+
+            case RECUP_TRESOR:
+                ileInterdite.lanceRecuperationTresor();
+                break;
+
+            case DEPLACER:
+                ileInterdite.deplacerAventurier(msg.nomTuile);
+                break;
+
+            case AUGMENTER_CURSEUR:
+                ihm.placerCurseur(msg.valeur)
+                break;
+
             default:
                 if (Parameters.LOGS) {
                     System.err.println("Action interdite !");

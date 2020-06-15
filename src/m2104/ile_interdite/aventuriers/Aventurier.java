@@ -24,7 +24,7 @@ public abstract class Aventurier {
         this.ileInterdite = ileInterdite;
         this.couleur = couleur;
         
-        switch (couleur) {
+        switch (this.couleur) {
             case ROUGE:
                 this.position = ileInterdite.getGrille().getTuile("LaPorteDeBronze");
                 break;

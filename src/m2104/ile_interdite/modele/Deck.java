@@ -1,7 +1,7 @@
 package m2104.ile_interdite.modele;
 
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.Collections;
 
 import m2104.ile_interdite.cartes.Carte;
 
@@ -36,20 +36,8 @@ public class Deck {
     // Melange la collection de carte placer en paramètre
     private ArrayList<Carte> melanger(ArrayList<Carte> cartes){
     	
-    	Random r = new Random();
-    	int tailleDeck = cartes.size();
-    	ArrayList<Carte> cartesMelangees = new ArrayList<Carte>();
+    	Collections.shuffle(cartes);
     	
-    	for(int i=0; i < tailleDeck; i++) {
-    		
-    		
-    		int indice = r.nextInt(cartes.size());
-    		
-    		cartesMelangees.add(cartes.get(indice));
-    		cartes.remove(indice);
-    	}
-    	
-    	
-    	return cartesMelangees;
+    	return cartes;
     }
 }

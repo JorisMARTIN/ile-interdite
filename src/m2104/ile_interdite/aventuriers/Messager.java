@@ -7,6 +7,7 @@ package m2104.ile_interdite.aventuriers;
 
 import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.modele.IleInterdite;
+import m2104.ile_interdite.util.Utils.Pion;
 
 /**
  *
@@ -14,8 +15,8 @@ import m2104.ile_interdite.modele.IleInterdite;
  */
 public class Messager extends Aventurier{
     /*construteur*/
-    public Messager(IleInterdite ileInterdite) {
-        super(ileInterdite, null);
+    public Messager(IleInterdite ileInterdite, Pion pion) {
+        super(ileInterdite, pion);
     }
     
     /*méthodes*/

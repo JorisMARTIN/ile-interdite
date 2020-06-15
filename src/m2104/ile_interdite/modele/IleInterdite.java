@@ -19,6 +19,7 @@ import m2104.ile_interdite.cartes.CarteSacDeSable;
 import m2104.ile_interdite.cartes.CarteTresor;
 import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Utils.Commandes;
+import m2104.ile_interdite.util.Utils.Pion;
 import m2104.ile_interdite.util.Utils.Tresor;
 import patterns.observateur.Observable;
 import patterns.observateur.Observateur;
@@ -86,35 +87,40 @@ public class IleInterdite extends Observable<Message> {
             "Explorateur", "Pilote", "Navigateur", "Ingénieur", "Messager", "Plongeur"
         ));
 
+        ArrayList<Pion> pions = new ArrayList<>(Arrays.asList(
+            Pion.ROUGE, Pion.VERT, Pion.ORANGE, Pion.VIOLET, Pion.BLEU, Pion.JAUNE
+        ));
+
         for(int i = 0; i < nbJoueurs; i++) {
             Random choix = new Random();
             String selection = selections.get(choix.nextInt(selections.size()));
-            
+            Pion pion = pions.get(choix.nextInt(pions.size()));
+
             Aventurier aventurier;
 
             switch(selection) {
                 case "Explorateur":
-                    aventurier = new Explorateur(this,null);
+                    aventurier = new Explorateur(this, pion);
                     break;
                 
                 case "Pilote":
-                    aventurier = new Pilote(this);
+                    aventurier = new Pilote(this, pion);
                     break;
 
                 case "Navigateur":
-                    aventurier = new Navigateur(this);
+                    aventurier = new Navigateur(this, pion);
                     break;
 
                 case "Ingénieur":
-                    aventurier = new Ingenieur(this);
+                    aventurier = new Ingenieur(this, pion);
                     break;
 
                 case "Messager":
-                    aventurier = new Messager(this);
+                    aventurier = new Messager(this, pion);
                     break;
 
                 case "Plongeur":
-                    aventurier = new Plongeur(this);
+                    aventurier = new Plongeur(this, pion);
                     break;
 
                 default:
@@ -127,6 +133,7 @@ public class IleInterdite extends Observable<Message> {
             aventurier.piocherCarte();
             aventurier.piocherCarte();
 
+            pions.remove(pion);
             selections.remove(selection);
             aventuriers.add(aventurier);
             

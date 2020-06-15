@@ -26,8 +26,15 @@ public class Utils {
         CHOISIR_TUILE("Sélectionner une tuile"),
         DEPLACER("Déplacer un autre joueur"),
         VOIR_DEFAUSSE("Un joueur souhaite voir la défausse de cartes Tirage"),
-        INITIALISER_GRILLE("Grille initialiser avec les tuiles innond�es"),
-        INITIALISER("Initialisation joueur");
+        INITIALISER_GRILLE("Grille initialiser avec les tuiles innondées"),
+        INITIALISER("Initialisation joueur"),
+        /*Ajout de nouveaux messages*/
+        RECUP_TRESOR("Recupération d'un trésort"),
+        MAJ_GRILLE("Mise à jour de la grille"),
+        DEPLACEMENT("Traite le début d'un déplacement du joueur courant"),
+        TUILES_POSSIBLES("Avec possibilité, met en valeur les tuiles sur lequel l'action est possible"),
+        AUGMENTER_CURSEUR("Augmenter le curseur de monté des eaux"),
+        LANCER_JEU("Lancement du Jeu");
 
         private final String libelle ;
 

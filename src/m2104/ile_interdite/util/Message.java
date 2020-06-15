@@ -16,6 +16,10 @@ public class Message {
     public String tuile;
     public Integer nbJoueurs;
     public Grille grille;
+    /*Ajout de nouveaux attribus*/
+    public boolean[] possibilites;
+    public String nomTuile;
+    public int valeur;
     
     
     public Message(Utils.Commandes cmd) {

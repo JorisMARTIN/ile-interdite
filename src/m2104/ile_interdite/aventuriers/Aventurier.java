@@ -1,5 +1,6 @@
 package m2104.ile_interdite.aventuriers;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import m2104.ile_interdite.cartes.Carte;
@@ -16,11 +17,37 @@ public abstract class Aventurier {
     private IleInterdite ileInterdite;
     private Tuile position;
     private int actionsRestantes;
+    private Color couleur;
     
-    public Aventurier(IleInterdite ileInterdite) {
+    public Aventurier(IleInterdite ileInterdite, Color couleur) {
         this.main = new ArrayList<>();
         this.ileInterdite = ileInterdite;
-        this.position = null;
+        
+        switch (coleur) {
+            case Color.BLACK:
+                this.position = ileInterdite.getGrille().getTuile("LaPorteDeFer");
+                break;
+
+            case Color.GREEN:
+                this.position = ileInterdite.getGrille().getTuile("LaPorteDeCuivre");
+                break;
+
+            case Color.BLUE:
+                this.position = ileInterdite.getGrille().getTuile("Heliport");
+                break;
+
+            case Color.WHITE:
+                this.position = ileInterdite.getGrille().getTuile("LaPortedArgent");
+                break;
+
+            case Color.YELLOW:
+                this.position = ileInterdite.getGrille().getTuile("LaPorteDOr");
+                break;
+            
+            default:
+                this.position = null;
+                break;
+        }
     }
 
     public boolean peutSeDeplacer(Tuile tuile) {

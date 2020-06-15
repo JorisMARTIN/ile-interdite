@@ -39,4 +39,4 @@ Tour de jeu:
                 - Si le déplacement est impossible, la partie est perdue.
 
 
-    **Scénario d'Initialisation et de tour de jeu (Sans prise en compte des pouvoir des aventuriers)**
+    **Scénario d'Initialisation et de tour de jeu (Sans prise en compte des pouvoirs des aventuriers)**

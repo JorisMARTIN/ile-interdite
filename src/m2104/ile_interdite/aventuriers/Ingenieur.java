@@ -15,7 +15,7 @@ import m2104.ile_interdite.modele.Tuile;
 public class Ingenieur extends Aventurier{
     /*construteur*/
     public Ingenieur(IleInterdite ileInterdite) {
-        super(ileInterdite);
+        super(ileInterdite, null);
     }
     
     /*méthodes*/

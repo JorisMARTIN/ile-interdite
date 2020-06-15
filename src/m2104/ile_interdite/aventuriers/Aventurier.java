@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.modele.IleInterdite;
 import m2104.ile_interdite.modele.Tuile;
+import m2104.ile_interdite.util.Utils;
 import m2104.ile_interdite.modele.EtatTuile;
 
 /**
@@ -19,28 +20,32 @@ public abstract class Aventurier {
     private int actionsRestantes;
     private Color couleur;
     
-    public Aventurier(IleInterdite ileInterdite, Color couleur) {
+    public Aventurier(IleInterdite ileInterdite, Utils.Pion couleur) {
         this.main = new ArrayList<>();
         this.ileInterdite = ileInterdite;
         
         switch (couleur) {
-            case Color.BLACK:
-                this.position = ileInterdite.getGrille().getTuile("LaPorteDeFer");
+            case Utils.Pion.ROUGE:
+                this.position = ileInterdite.getGrille().getTuile("LaPorteDeBronze");
                 break;
 
-            case Color.GREEN:
+            case Utils.Pion.VERT:
                 this.position = ileInterdite.getGrille().getTuile("LaPorteDeCuivre");
                 break;
 
-            case Color.BLUE:
+            case Utils.Pion.BLEU:
                 this.position = ileInterdite.getGrille().getTuile("Heliport");
                 break;
 
-            case Color.WHITE:
+            case Utils.Pion.ORANGE:
                 this.position = ileInterdite.getGrille().getTuile("LaPortedArgent");
                 break;
 
-            case Color.YELLOW:
+            case Utils.Pion.VIOLET:
+                this.position = ileInterdite.getGrille().getTuile("LaPorteDeFer");
+                break;
+
+            case Utils.Pion.JAUNE:
                 this.position = ileInterdite.getGrille().getTuile("LaPorteDOr");
                 break;
             

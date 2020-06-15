@@ -15,7 +15,7 @@ import m2104.ile_interdite.modele.IleInterdite;
 public class Messager extends Aventurier{
     /*construteur*/
     public Messager(IleInterdite ileInterdite) {
-        super(ileInterdite);
+        super(ileInterdite, null);
     }
     
     /*méthodes*/

@@ -94,7 +94,7 @@ public class IleInterdite extends Observable<Message> {
 
             switch(selection) {
                 case "Explorateur":
-                    aventurier = new Explorateur(this);
+                    aventurier = new Explorateur(this,null);
                     break;
                 
                 case "Pilote":

@@ -15,7 +15,7 @@ import m2104.ile_interdite.modele.Tuile;
 public class Plongeur extends Aventurier{
     /*construteur*/
     public Plongeur(IleInterdite ileInterdite) {
-        super(ileInterdite);
+        super(ileInterdite, null);
     }
     
     /*méthodes*/

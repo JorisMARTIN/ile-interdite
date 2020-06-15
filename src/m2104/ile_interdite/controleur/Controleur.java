@@ -18,10 +18,6 @@ public class Controleur implements Observateur<Message> {
     public Controleur() {
         this.ileInterdite = new IleInterdite(this);
         this.ihm = new IHM(this);
-<<<<<<< HEAD
-=======
-        
->>>>>>> f99275122bfa03986fbd3bda50fa5a64a06326b6
     }
 
     @Override

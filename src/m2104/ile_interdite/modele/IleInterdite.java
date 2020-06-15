@@ -195,7 +195,7 @@ public class IleInterdite extends Observable<Message> {
     }
     
     public void lanceDeplacement() {
-        ArrayList<Boolean> possibilite = aventuriers.get(this.joueurCourant).isDeplacementPossible();
+        ArrayList<Boolean> possibilite = aventuriers.get(this.joueurCourant).isDeplacementPossibles();
         Message msg = new Message(Utils.Commandes.TUILES_POSSIBLES);
         msg.possibilites = possibilite;
         notifierObservateurs(msg);
@@ -203,7 +203,9 @@ public class IleInterdite extends Observable<Message> {
     
     public void lanceRecuperationTresor() {
         boolean b = aventuriers.get(joueurCourant).peutRecupererTresort();
-        //TODO
+        if (b) {
+            aventuriers.get(joueurCourant).recupererTresor();
+        }
         Message msg = new Message(Utils.Commandes.MAJ_GRILLE);
         msg.grille = grille;
         notifierObservateurs(msg);

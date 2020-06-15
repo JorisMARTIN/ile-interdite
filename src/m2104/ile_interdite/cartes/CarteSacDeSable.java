@@ -10,12 +10,8 @@ public class CarteSacDeSable extends Carte {
     }
 
 	@Override
-	public void action(Tuile tuile) {
-		if(tuile.getEtat() == EtatTuile.INONDEE) {
-			tuile.setEtat(EtatTuile.ASSECHEE);
-		} else {
-			tuile.setEtat(EtatTuile.INONDEE);
-		}
+	public void action() {
+        //TODO
 		
 	}
 }

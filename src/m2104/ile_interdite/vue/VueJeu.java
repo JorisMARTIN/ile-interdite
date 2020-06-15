@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 import m2104.ile_interdite.modele.Grille;
 import m2104.ile_interdite.modele.Tuile;
@@ -19,6 +21,7 @@ public class VueJeu {
     private final Grille grille;
 
     public VueJeu(IHM ihm, Grille grille) {
+        
         this.ihm = ihm;
         this.grille = grille;
 
@@ -28,7 +31,7 @@ public class VueJeu {
         
         fenetre.setLocation((int) (dim.getWidth()/2)-500, (int) (dim.getHeight()/2)-300);
         
-        fenetre.setSize(1000, 800);
+        fenetre.setSize(1000, 1000);
 
         grillePanel = new JPanel(new GridLayout(6, 6));
 
@@ -37,10 +40,16 @@ public class VueJeu {
         for(int i = 0; i < grille.getTuiles(true).size(); i++) {
             Tuile t = grille.getTuiles(true).get(i);
             button = new JButton();
-            if(t == null)
-                button.setEnabled(false);
-            else
-                button.setText(t.getNom());
+            //button.setEnabled(false);
+            button.setSize(new Dimension(fenetre.getSize().width / 6, fenetre.getSize().height / 6));
+            if(t != null) {
+                //button.setText(t.getNom());
+                ImageIcon icon = new ImageIcon("..//images//tuiles//" + t.getNom() + ".png");
+                Image img = icon.getImage();
+                Image newImg = img.getScaledInstance(button.getWidth(), button.getHeight(), java.awt.Image.SCALE_SMOOTH);
+                icon = new ImageIcon(newImg);
+                button.setIcon(icon);
+            }
             grillePanel.add(button);
         }
 

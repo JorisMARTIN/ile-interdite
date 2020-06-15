@@ -1,5 +1,7 @@
 package m2104.ile_interdite.util;
 
+import java.util.ArrayList;
+
 import m2104.ile_interdite.modele.Grille;
 
 /**
@@ -17,13 +19,13 @@ public class Message {
     public Integer nbJoueurs;
     public Grille grille;
     /*Ajout de nouveaux attribus*/
-    public boolean[] possibilites;
+    public Arraylist<Boolean> possibilites;
     public String nomTuile;
     public int valeur;
     
     
     public Message(Utils.Commandes cmd) {
-    	this.commande = cmd;
-	}
-
+        this.commande = cmd;
+        this.possibilites = new ArrayList<>();
+    }
 }

@@ -114,4 +114,8 @@ public abstract class Aventurier {
     public int getActionsRestantes() {
         return actionsRestantes;
     }
+
+	public boolean peutRecupererTresort() {
+		return false;
+	}
 }

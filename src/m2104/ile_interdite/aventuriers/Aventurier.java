@@ -56,7 +56,8 @@ public abstract class Aventurier {
     }
 
     public boolean peutSeDeplacer(Tuile tuile) {
-        return tuile != null && tuile.getEtat() != EtatTuile.RETIREE;
+        //TODO
+        return false;
     }
     
     public ArrayList<Boolean> isDeplacementPossible() {
@@ -81,7 +82,9 @@ public abstract class Aventurier {
     }
     
     public void assecher(Tuile tuile) {
-        //TODO
+        if (peutAssecher(tuile)) {
+            tuile.setEtat(EtatTuile.NORMAL);
+        }
     }
     
     public void donnerCarteTresor(Aventurier a, Carte carte) {

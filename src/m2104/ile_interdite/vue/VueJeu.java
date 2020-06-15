@@ -45,7 +45,7 @@ public class VueJeu {
             button.setSize(new Dimension(fenetre.getSize().width / 6, fenetre.getSize().height / 6));
             button.setBorder(BorderFactory.createEmptyBorder());
             if (t != null) {
-                ImageIcon icon = new ImageIcon("..//images//tuiles//" + t.getNom() + ".png");
+                ImageIcon icon = new ImageIcon("images/tuiles/" + t.getNom() + ".png");
                 Image img = icon.getImage();
                 Image newImg = img.getScaledInstance(button.getWidth(), button.getHeight(), java.awt.Image.SCALE_SMOOTH);
                 icon = new ImageIcon(newImg);

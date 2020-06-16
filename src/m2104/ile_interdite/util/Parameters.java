@@ -44,13 +44,13 @@ public final class Parameters {
 
     // ====================================================================================
     // Chemins vers les images
-    public static final String ROOT = System.getProperty("user.dir").endsWith("src") ? (System.getProperty("user.dir") + "\\..\\") : System.getProperty("user.dir") + "\\";
-    public static final String IMAGES = ROOT + "images\\";
-    public static final String PIONS = IMAGES + "pions\\";
-    public static final String TRESORS = IMAGES + "tresors\\";
-    public static final String TUILES = IMAGES + "tuiles\\";
-    public static final String CARTES = IMAGES + "cartes\\";
-    public static final String ICONS = IMAGES + "icones\\";
+    public static final String ROOT = System.getProperty("user.dir").endsWith("src") ? (System.getProperty("user.dir") + "/../") : System.getProperty("user.dir") + "/";
+    public static final String IMAGES = ROOT + "images/";
+    public static final String PIONS = IMAGES + "pions/";
+    public static final String TRESORS = IMAGES + "tresors/";
+    public static final String TUILES = IMAGES + "tuiles/";
+    public static final String CARTES = IMAGES + "cartes/";
+    public static final String ICONS = IMAGES + "icones/";
 
     // ====================================================================================
     // Icones pour les boutons en mode images

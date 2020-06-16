@@ -51,6 +51,7 @@ public class VueJeu {
                 Image img = icon.getImage().getScaledInstance(fenetre.getSize().width / 6, fenetre.getSize().height / 6, Image.SCALE_SMOOTH);
                 button.setIcon(new ImageIcon(img));
                 JLabel labelPion;
+                
                 int nbPion = t.getAventuriers().size();
                 for (int pion = 0; pion < nbPion; pion++) {
                     System.out.println(pion);
@@ -58,7 +59,7 @@ public class VueJeu {
                     img = icon.getImage().getScaledInstance(fenetre.getSize().width / (8 + 2 * nbPion), fenetre.getSize().height / (8 + 2 * nbPion), Image.SCALE_SMOOTH);
                     labelPion = new JLabel(new ImageIcon(img));
                     button.add(labelPion, getPositionPion(t.getAventuriers().size(), pion));
-                } 
+                }
             } else {
                 button.setVisible(false);
             }

@@ -13,9 +13,9 @@ import m2104.ile_interdite.util.Utils.Pion;
 public class Message {
 
     public Utils.Commandes commande;
-    public Integer difficulte;
-    public Integer idAventurier;
-    public Integer idCarte;
+    public int difficulte;
+    public int idAventurier;
+    public int idCarte;
     public Utils.Tresor tresor;
     public String tuile;
     public Integer nbJoueurs;
@@ -23,8 +23,8 @@ public class Message {
     /*Ajout de nouveaux attribus*/
     public ArrayList<Boolean> possibilites;
     public String nomTuile;
-    public Integer valeur;
-    public Integer actionRestantes;
+    public int valeur;
+    public int actionRestantes;
 	public boolean tropCarte;
 	public ArrayList<Carte> main;
 	public Pion pion;

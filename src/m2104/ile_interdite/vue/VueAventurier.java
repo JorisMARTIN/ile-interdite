@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -19,11 +20,13 @@ import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.border.MatteBorder;
 import m2104.ile_interdite.util.Parameters;
 import m2104.ile_interdite.util.Utils;
 import m2104.ile_interdite.util.Utils.Commandes;
 import m2104.ile_interdite.cartes.Carte;
+import m2104.ile_interdite.cartes.CarteTresor;
 import m2104.ile_interdite.util.Message;
 
 
@@ -48,9 +51,10 @@ public class VueAventurier {
     private Boolean titreCliquable;
     private boolean cartesActivees;
     
-    private JPanel panelCentre;
+    private JPanel panelCentre, panelCartes, panelText;
     private JLabel actionRestantes;
-    
+    private ArrayList<JButton> mainJoueur;
+    private JTextArea defausseCarte;
 
     public VueAventurier(IHM ihm, Integer id, String nomJoueur, String nomAventurier, String power, Integer num, Integer nbAventuriers, Color couleurActive, Color couleurInactive){
         this.ihm = ihm;
@@ -64,6 +68,8 @@ public class VueAventurier {
         this.couleurInactive = couleurInactive ;
         this.titreCliquable = false ;
         this.cartesActivees = false;
+        
+        this.mainJoueur = new ArrayList<JButton>();
         
 
         this.window = new JFrame(nomAventurier);
@@ -123,11 +129,28 @@ public class VueAventurier {
         // Centre : 
         
         this.panelCentre = new JPanel();
+      	this.panelCentre.setLayout(new BorderLayout());
+      	
+      	this.panelCartes = new JPanel();
+      	this.panelText = new JPanel(new BorderLayout());
+      	
+      	
+      	this.panelCentre.add(panelCartes, BorderLayout.NORTH);
+      	
+      	this.defausseCarte = new JTextArea("");
+      	defausseCarte.setEditable(false);
+      	defausseCarte.setOpaque(false);
+      	
         this.actionRestantes = new JLabel("");
-        this.panelCentre.add(actionRestantes);
+        
+        this.panelText.add(defausseCarte, BorderLayout.CENTER);
+        this.panelText.add(actionRestantes, BorderLayout.SOUTH);
+        
+        this.panelCentre.add(panelText);
         
         this.mainPanel.add(panelCentre, BorderLayout.CENTER);
 
+        
         // =================================================================================
         // SUD : les boutons
         this.panelBoutons = new JPanel(new GridLayout(2,1));
@@ -287,6 +310,7 @@ public class VueAventurier {
                         
                         ihm.notifierObservateurs(m);
                         break;
+                        
                     case RECUPERER_TRESOR:
                         
                         m = new Message(Commandes.RECUPERER_TRESOR);
@@ -302,6 +326,7 @@ public class VueAventurier {
                         
                         ihm.notifierObservateurs(m);
                         break;
+                        
                     case TERMINER:
                         
                         m = new Message(Commandes.TERMINER);
@@ -384,6 +409,142 @@ public class VueAventurier {
 	 */
 	public void actualiserMain(ArrayList<Carte> main, boolean tropCarte) {
 		
+	
+		this.panelCartes.removeAll();
+		this.mainPanel.revalidate();
+		this.mainJoueur.clear();
+		
+		JButton button;
+		
+		for(Carte carte : main) {
+			
+				
+			button = new JButton(carte.toString());
+			if(carte instanceof CarteTresor) button.setEnabled(false);
+			
+			if(tropCarte) {
+				activerBoutons(false, false, false, false, false, false, false);
+				button.setEnabled(true);
+				button.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Message m = new Message(Commandes.DEFAUSSE_CARTE);
+						m.idAventurier = idAventurier;
+						m.idCarte = mainJoueur.indexOf(e.getSource());
+						
+						ihm.notifierObservateurs(m);
+					}
+				});
+				
+			} else {
+				activerBoutons(true, true, true, true, true, true, true);
+				button.addActionListener(new ActionListener() {
+					
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						Message m = new Message(Commandes.JOUE_CARTE);
+						m.idAventurier = idAventurier;
+						m.idCarte = mainJoueur.indexOf(e.getSource());
+						
+						ihm.notifierObservateurs(m);
+					}
+				});
+			}
+			
+			this.mainJoueur.add(button);
+		
+		}
+		
+		
+		
+		if(tropCarte) this.defausseCarte.setText("Vous avez trop de carte !\nCliquez sur laquel vous voulez\ndefausser :");
+		else this.defausseCarte.setText("");
+		
+	    switch(this.mainJoueur.size()) {
+	    
+	    	case 1:
+	    		this.panelCartes.setLayout(new GridLayout(1,1));
+	    		this.panelCartes.add(this.mainJoueur.get(0));
+	    		break;
+	    		
+	    	case 2:
+	    		
+	    		this.panelCartes.setLayout(new GridLayout(1,2));
+	    		
+	    		this.panelCartes.add(this.mainJoueur.get(0));
+	    		this.panelCartes.add(this.mainJoueur.get(1));
+	    		break;
+	    		
+	    	case 3:
+	    		
+	    		this.panelCartes.setLayout(new GridLayout(1,3));
+	    		
+	    		this.panelCartes.add(this.mainJoueur.get(0));
+	    		this.panelCartes.add(this.mainJoueur.get(1));
+	    		this.panelCartes.add(this.mainJoueur.get(2));
+	    		break;
+	    		
+	    	case 4:
+	    		this.panelCartes.setLayout(new GridLayout(2,2));
+	    		
+	    		this.panelCartes.add(this.mainJoueur.get(0));
+	    		this.panelCartes.add(this.mainJoueur.get(1));
+	    		this.panelCartes.add(this.mainJoueur.get(2));
+	    		this.panelCartes.add(this.mainJoueur.get(3));
+	    		
+	    		break;
+	    		
+	    	case 5:
+	    		this.panelCartes.setLayout(new GridLayout(3,3));
+	    		
+	    		this.panelCartes.add(new JLabel(""));
+	    		this.panelCartes.add(this.mainJoueur.get(0));
+	    		this.panelCartes.add(new JLabel(""));
+	    		this.panelCartes.add(this.mainJoueur.get(1));
+	    		this.panelCartes.add(this.mainJoueur.get(2));
+	    		this.panelCartes.add(this.mainJoueur.get(3));
+	    		this.panelCartes.add(new JLabel(""));
+	    		this.panelCartes.add(this.mainJoueur.get(4));
+	    		this.panelCartes.add(new JLabel(""));
+	    		
+	    		break;
+	    	
+	    	case 6:
+	    		this.panelCartes.setLayout(new GridLayout(2,3));
+	    		this.panelCartes.add(this.mainJoueur.get(0));
+	    		this.panelCartes.add(this.mainJoueur.get(1));
+	    		this.panelCartes.add(this.mainJoueur.get(2));
+	    		this.panelCartes.add(this.mainJoueur.get(3));
+	    		this.panelCartes.add(this.mainJoueur.get(4));
+	    		this.panelCartes.add(this.mainJoueur.get(5));
+	    		
+	    		break;
+	    		
+	    	default:
+	    		
+	    		break;
+	    }
+	    
+	    this.panelCartes.revalidate();
 		
 	}
+	
+	
+	/**
+	 * 
+	 * 
+	 * @param b : true pour activer, false pour desactiver
+	 */
+	public void setEtatBoutonsCartes(boolean b) {
+		for(JButton button : getMainJoueur()) {
+			button.setEnabled(b);
+		}
+	}
+
+	public ArrayList<JButton> getMainJoueur() {
+		return this.mainJoueur;
+	}
+
 }

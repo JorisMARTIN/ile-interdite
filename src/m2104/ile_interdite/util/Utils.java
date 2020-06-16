@@ -38,7 +38,10 @@ public class Utils {
         LANCER_JEU("Lancement du Jeu"),
         JOUEUR_SUIVANT("Passe au joueur suivant."),
         ACTION_RESTANTES("Nombre d'action restantes pour un joueur"),
-        PIOCHER_CARTE("Le joueur pioche une carte");
+        ACTUALISER_MAIN("Actualisation de la main du joueur"),
+        DEFAUSSE_CARTE("Le joueur défausse une carte"),
+        JOUE_CARTE("Le Joueur joue une carte"),
+        PIOCHE_CARTE("Le joueur pioche une carte");
 
         private final String libelle ;
 

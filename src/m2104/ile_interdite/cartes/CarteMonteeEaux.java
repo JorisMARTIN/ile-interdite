@@ -15,5 +15,10 @@ public class CarteMonteeEaux extends Carte {
 		this.getDeck().getIleInterdite().setCurseur(this.getDeck().getIleInterdite().getCurseur() + 1);
     	this.getDeck().defausseCarte(this);    	
 	}
+	
+	@Override
+	public String toString() {
+		return "ME";
+	}
 
 }

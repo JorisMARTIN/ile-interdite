@@ -13,4 +13,9 @@ public class CarteSacDeSable extends Carte {
         //TODO
 		
 	}
+	
+	@Override
+	public String toString() {
+		return "SS";
+	}
 }

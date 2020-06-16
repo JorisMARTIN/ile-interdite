@@ -125,11 +125,16 @@ public class IleInterdite extends Observable<Message> {
 
             nomAventuriers[i] = selection;
 
+<<<<<<< HEAD
+            
+=======
             //aventurier.piocherCarte();
             //aventurier.piocherCarte();
 
+>>>>>>> 9d87eb41d8c607d6e3cbd2da130ab4d5cdaf72ab
             selections.remove(selection);
             aventuriers.add(aventurier);
+            
         }
         
         return nomAventuriers;
@@ -188,6 +193,7 @@ public class IleInterdite extends Observable<Message> {
     
     /**
      *  <h1>Methode pour lancer le premier tour</h1>
+     *  1. Donne 2 cartes tresor a chaque joueur
      *  1. Defini le joueur courant <br>
      *  2. Attribut son nombre d'action <br>
      *  3. Notifie l'ihm du premier joueur a jouer <br>
@@ -195,14 +201,18 @@ public class IleInterdite extends Observable<Message> {
      */
     public void lancePartie() {
     	
+    	for(Aventurier a : this.aventuriers) {
+    		a.initCarte();
+    	}
+    	
     	this.joueurCourant = 0;    	
     	this.aventuriers.get(joueurCourant).initActionsRestantes();
+    	
     	Message msg = new Message(Utils.Commandes.JOUEUR_SUIVANT);
     	msg.idAventurier = joueurCourant;
     	msg.actionRestantes = this.aventuriers.get(joueurCourant).getActionsRestantes();
     	
     	notifierObservateurs(msg);
-    	
     }
     
     public int getJoueurCourant() {
@@ -287,8 +297,7 @@ public class IleInterdite extends Observable<Message> {
 	public void lanceFinTour() {
 		
 		// Le joueur pioche 2 cartes
-		this.aventuriers.get(joueurCourant).piocherCarte();
-		this.aventuriers.get(joueurCourant).piocherCarte();
+		this.aventuriers.get(joueurCourant).piocherCartes(2);
 		
 		// Lance la phase d'innondation
 		lanceInnondation();
@@ -296,6 +305,11 @@ public class IleInterdite extends Observable<Message> {
 		// Passe au joueur suivant
 		joueurSuivant();
 	}
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 9d87eb41d8c607d6e3cbd2da130ab4d5cdaf72ab
     
     public void gagnee(boolean b) {
 

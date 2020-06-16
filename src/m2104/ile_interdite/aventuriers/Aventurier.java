@@ -3,6 +3,7 @@ package m2104.ile_interdite.aventuriers;
 import java.util.ArrayList;
 
 import m2104.ile_interdite.cartes.Carte;
+import m2104.ile_interdite.cartes.CarteMonteeEaux;
 import m2104.ile_interdite.modele.IleInterdite;
 import m2104.ile_interdite.modele.Tuile;
 import m2104.ile_interdite.util.Message;
@@ -23,7 +24,7 @@ public abstract class Aventurier {
     private ArrayList<Tresor> tresors;
     
     public Aventurier(IleInterdite ileInterdite, Utils.Pion pion) {
-        this.main = new ArrayList<>();
+        this.main = new ArrayList<Carte>();
         this.ileInterdite = ileInterdite;
         this.pion = pion;
         
@@ -141,31 +142,65 @@ public abstract class Aventurier {
         return this.main;
     }
     
+    /**
+     * 
+     * Donne 2 cartes au début de la partie
+     */
+    public void initCarte() {
+    	
+    	for(int i=0; i<2; i++) {
+    		
+	    	Carte c = this.ileInterdite.getDeckTresor().getPremiereCarte();
+	    	
+	    	int size = this.ileInterdite.getDeckTresor().getPioche().size() - 2;
+	    	
+	    	while(c instanceof CarteMonteeEaux) {
+	    		c = this.ileInterdite.getDeckTresor().getPioche().get(size);
+	    		size --;
+	    	}
+	    	
+	    	this.main.add(c);
+	    	this.ileInterdite.getDeckTresor().getPioche().remove(c);
+    	}
+    	
+    	Message msg = new Message(Utils.Commandes.PIOCHE_CARTE);
+    	
+    	msg.tropCarte = false;
+    	msg.main = main;
+    	msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
+    	
+    	ileInterdite.notifierObservateurs(msg);
+    	
+    }
     
     /**
      * <h1>L'aventurier pioche une carte trésor</h1>
      * <ul>
      * 	<li>Si l'aventurier obtien plus de 5 cartes, il doit en deffausser une</li>
      * </ul>
+     * @param i : nombre de cartes a piocher 
      */
-    public void piocherCarte() {
-        
-    	this.main.add(this.ileInterdite.getDeckTresor().getPremiereCarte());
-    	this.ileInterdite.getDeckTresor().getPioche().remove(this.ileInterdite.getDeckTresor().getPremiereCarte());
+    public void piocherCartes(int nbCartes) {
     	
-    	Message msg = new Message(Utils.Commandes.PIOCHER_CARTE);
     	
-    	if(this.main.size() > 5) {
-    		msg.tropCarte = true;
-    	}else {
-    		msg.tropCarte = false;
+    	for(int i=0; i < nbCartes; i++) {
+    		
+	    	Carte carte = this.ileInterdite.getDeckTresor().getPremiereCarte();
+	        
+	    	this.main.add(carte);
+	    	this.ileInterdite.getDeckTresor().getPioche().remove(carte);
+    	
     	}
     	
-    	msg.main = this.main;
     	
+    	Message msg = new Message(Utils.Commandes.PIOCHE_CARTE);
+    	
+    	msg.tropCarte = this.main.size() > 5;
+    	msg.main = main;
     	msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
     	
     	ileInterdite.notifierObservateurs(msg);
+    	
     }
     
     public void initActionsRestantes() {
@@ -211,6 +246,23 @@ public abstract class Aventurier {
         } else {
             //TODO the case of jouerCarte(Carte carte)
         }
+    }
+    
+    
+    public void defausseCarte(int idCarte) {
+    
+    	Carte carte = getMain().get(idCarte);
+    	
+    	getMain().remove(carte);
+    	this.ileInterdite.getDeckTresor().getDefausse().add(carte);
+    	
+    	Message msg = new Message(Utils.Commandes.ACTUALISER_MAIN);
+  
+    	msg.main = this.main;
+    	msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
+    	
+    	ileInterdite.notifierObservateurs(msg);
+    	
     }
 
 	public ArrayList<Tresor> getTresors() {

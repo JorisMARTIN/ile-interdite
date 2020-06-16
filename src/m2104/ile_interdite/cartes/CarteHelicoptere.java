@@ -35,4 +35,13 @@ public class CarteHelicoptere extends Carte {
             a.deplacer(tuileArrivee);
         }
     }
+<<<<<<< HEAD
+    
+    @Override
+	public String toString() {
+		return "H";
+	}
+    
+=======
+>>>>>>> 9d87eb41d8c607d6e3cbd2da130ab4d5cdaf72ab
 }

@@ -40,7 +40,10 @@ public class Utils {
         FIN("Fin de la partie les aventurier ont décolés mais ont perdu."),
         GAGNEE("Fin de la partie les aventurier ont décolés et ils ont gagnées."),
         ACTION_RESTANTES("Nombre d'action restantes pour un joueur"),
-        PIOCHER_CARTE("Le joueur pioche une carte");
+        ACTUALISER_MAIN("Actualisation de la main du joueur"),
+        DEFAUSSE_CARTE("Le joueur défausse une carte"),
+        JOUE_CARTE("Le Joueur joue une carte"),
+        PIOCHE_CARTE("Le joueur pioche une carte");
 
         private final String libelle ;
 

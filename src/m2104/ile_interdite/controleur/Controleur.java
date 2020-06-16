@@ -114,9 +114,18 @@ public class Controleur implements Observateur<Message> {
                 ihm.setActionRestantes(msg.idAventurier, msg.actionRestantes);
                 break;
                 
-            case PIOCHER_CARTE:
+            case PIOCHE_CARTE:
             	ihm.actualiserMainJoueur(msg.main, msg.tropCarte, msg.idAventurier);
             	break;
+            	
+            case ACTUALISER_MAIN:
+            	ihm.actualiserMainJoueur(msg.main, false, msg.idAventurier);
+            	break;
+            	
+            case DEFAUSSE_CARTE:
+            	ileInterdite.getAventuriers().get(msg.idAventurier).defausseCarte(msg.idCarte);
+            	
+            	break;	
 
             case FIN:
                 ihm.finPasGagne();

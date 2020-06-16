@@ -21,6 +21,11 @@ public class CarteInnondation extends Carte {
 			this.tuile.setEtat(EtatTuile.INONDEE);
 		}
 	}
+	
+	@Override
+	public String toString() {
+		return "I";
+	}
 
     
 }

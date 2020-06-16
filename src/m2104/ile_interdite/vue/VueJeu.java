@@ -57,19 +57,15 @@ public class VueJeu {
 
         for (int i = 0; i < tuiles.size(); i++) {
             Tuile t = tuiles.get(i);
-            if(t != null) {
-                ImageIcon icon = new ImageIcon(Parameters.TUILES + t.getNom() + ".png");
-                Image img = icon.getImage().getScaledInstance((int) (fenetre.getSize().width / 6.3), (int) (fenetre.getSize().height / 6.55), Image.SCALE_SMOOTH);
-                imagesBtnNormales[i] = img;
+            if (t != null) {
+                imagesBtnNormales[i] = generateImageBtn(Parameters.TUILES + t.getNom() + ".png");
             }
         }
 
         for (int i = 0; i < tuiles.size(); i++) {
             Tuile t = tuiles.get(i);
             if (t != null) {
-                ImageIcon icon = new ImageIcon(Parameters.TUILES + t.getNom() + "_Inonde.png");
-                Image img = icon.getImage().getScaledInstance((int) (fenetre.getSize().width / 6.3), (int) (fenetre.getSize().height / 6.55), Image.SCALE_SMOOTH);
-                imagesBtnInondees[i] = img;
+                imagesBtnInondees[i] = generateImageBtn(Parameters.TUILES + t.getNom() + "_Inonde.png");
             }
         }
 
@@ -78,6 +74,12 @@ public class VueJeu {
         fenetre.add(grillePanel);
         
         fenetre.setVisible(true);
+    }
+
+    private Image generateImageBtn(String path) {
+        ImageIcon icon = new ImageIcon(path);
+        Image img = icon.getImage().getScaledInstance((int) (fenetre.getSize().width / 6.3), (int) (fenetre.getSize().height / 6.55), Image.SCALE_SMOOTH);
+        return img;
     }
     
     private String getPositionPion(int nbPion, int numeroPion) {

@@ -21,11 +21,13 @@ public class IHM extends Observable<Message> {
     private final HashMap<Integer, VueAventurier> vueAventuriers;
     private VueJeu vueJeu;
     private VueNiveau vueNiveau;
+    private VueFin vueFin;
 
     public IHM(Observateur<Message> observateur) {
         this.vueInscription = new VueInscriptionJoueurs(this);
         this.addObservateur(observateur);
         this.vueAventuriers = new HashMap<>();
+        vueFin = new VueFin(this);
     }
 
     public void creerVuesAventuriers(String[] nomAventuriers) {
@@ -137,9 +139,11 @@ public class IHM extends Observable<Message> {
 	}
 
 	public void finPasGagne() {
+        this.vueFin.activer(false);
 	}
 
 	public void finGagne() {
+        this.vueFin.activer(true);
 	}
 
     

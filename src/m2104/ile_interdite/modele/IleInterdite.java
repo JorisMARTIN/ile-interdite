@@ -243,6 +243,14 @@ public class IleInterdite extends Observable<Message> {
         notifierObservateurs(msg);
     }
     
+    public void lanceAssechement() {
+    	
+    	ArrayList<Boolean> possibilite = aventuriers.get(this.joueurCourant).isAssechementPossibles();
+        Message msg = new Message(Utils.Commandes.TUILES_POSSIBLES);
+        msg.possibilites = possibilite;
+        notifierObservateurs(msg);
+    }
+    
     public void lanceRecuperationTresor() {
         boolean b = aventuriers.get(joueurCourant).peutRecupererTresort();
         if (b) {
@@ -255,8 +263,9 @@ public class IleInterdite extends Observable<Message> {
 
 	public void deplacerAventurier(String nomTuile) {
         Tuile tuile = this.grille.getTuile(nomTuile);
-        this.aventuriers.get(joueurCourant).seDeplacer(tuile);
+        this.aventuriers.get(joueurCourant).deplacer(tuile);
     }
+
     
 
 }

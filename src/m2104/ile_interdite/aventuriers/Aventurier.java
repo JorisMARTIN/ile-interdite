@@ -59,7 +59,7 @@ public abstract class Aventurier {
         boolean peutSeDeplacer = true;
         int indexTuileCible = this.ileInterdite.getGrille().getTuiles(true).indexOf(tuile);
         int indexTuileActuelle = this.ileInterdite.getGrille().getTuiles(true).indexOf(this.position);
-        if (indexTuileCible == indexTuileActuelle) {
+        if (indexTuileCible == indexTuileActuelle || tuile == null) {
             peutSeDeplacer = false;
         } else if ((indexTuileActuelle < 29 && indexTuileActuelle + 6 == indexTuileCible)
              || (indexTuileActuelle < 35 && indexTuileActuelle + 1 == indexTuileCible)

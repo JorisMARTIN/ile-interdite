@@ -48,16 +48,19 @@ public class IHM extends Observable<Message> {
     }
     
     public void creeVueJeu(Grille grille) {
-    	vueJeu = new VueJeu(this, grille);
+        vueJeu = new VueJeu(this, grille);
     }
 
-	public void surbrillerTuiles(ArrayList<Boolean> possibilites) {
-	}
+    public void surbrillerTuiles(ArrayList<Boolean> possibilites) {
+        //TODO
+    }
 
-	public void placerCurseur(int valeur) {
-	}
+    public void placerCurseur(int valeur) {
+        //TODO
+    }
 
-	public void majVueJeu(Grille grille) {
-	}
+    public void majVueJeu(Grille grille) {
+        //TODO
+    }
     
 }

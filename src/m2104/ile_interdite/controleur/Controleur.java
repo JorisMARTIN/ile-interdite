@@ -108,10 +108,6 @@ public class Controleur implements Observateur<Message> {
                 ileInterdite.lancePartie();
                 break;
 
-            case LANCE_CURSEUR:
-                ileInterdite.lanceAugmenterCurseur();
-                break;
-
             case AUGMENTER_CURSEUR:
                 ihm.placerCurseur(msg.valeur);
                 break;

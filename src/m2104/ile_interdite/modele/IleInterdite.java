@@ -258,9 +258,5 @@ public class IleInterdite extends Observable<Message> {
         this.aventuriers.get(joueurCourant).seDeplacer(tuile);
     }
     
-    public void lanceAugmenterCurseur() {
-        this.aventuriers.get(joueurCourant).joueCarte(this.deckInnondation.getPremiereCarte());
-    }
-
 
 }

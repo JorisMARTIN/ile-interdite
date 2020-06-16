@@ -16,6 +16,8 @@ import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import java.awt.BorderLayout;
 import java.awt.Image;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 import m2104.ile_interdite.modele.Grille;
 import m2104.ile_interdite.modele.Tuile;
@@ -23,6 +25,7 @@ import m2104.ile_interdite.aventuriers.Aventurier;
 import m2104.ile_interdite.util.Panneau;
 import m2104.ile_interdite.util.Parameters;
 import m2104.ile_interdite.util.Utils;
+import m2104.ile_interdite.util.Message;
 
 public class VueJeu {
     private final IHM ihm;
@@ -64,6 +67,15 @@ public class VueJeu {
                 button.setIcon(new ImageIcon(img));
                 button.setDisabledIcon(new ImageIcon(img));
                 button.setEnabled(false);
+                button.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        
+                        Message m = new Message(Utils.Commandes.DEPLACER);
+                        m.nomTuile = t.getNom();
+                        ihm.notifierObservateurs(m);
+                    }
+                });
                 
                 JLabel labelPion;
                 int nbPion = t.getAventuriers().size();
@@ -106,6 +118,8 @@ public class VueJeu {
 
     public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion) {
         for (int tuile = 0; tuile < grille.getTuiles(true).size(); tuile++) {
+            this.boutons.get(tuile).setEnabled(false);
+            this.boutons.get(tuile).setBorder(BorderFactory.createEmptyBorder());
             if (possibilites.get(tuile)) {
                 this.boutons.get(tuile).setEnabled(true);
                 Border borderUp = BorderFactory.createEtchedBorder(EtchedBorder.RAISED, Color.BLACK, Color.BLACK);

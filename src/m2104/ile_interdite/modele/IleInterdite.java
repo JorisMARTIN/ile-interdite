@@ -124,14 +124,6 @@ public class IleInterdite extends Observable<Message> {
             }
 
             nomAventuriers[i] = selection;
-
-<<<<<<< HEAD
-            
-=======
-            //aventurier.piocherCarte();
-            //aventurier.piocherCarte();
-
->>>>>>> 9d87eb41d8c607d6e3cbd2da130ab4d5cdaf72ab
             selections.remove(selection);
             aventuriers.add(aventurier);
             
@@ -305,12 +297,7 @@ public class IleInterdite extends Observable<Message> {
 		// Passe au joueur suivant
 		joueurSuivant();
 	}
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 9d87eb41d8c607d6e3cbd2da130ab4d5cdaf72ab
-    
+	
     public void gagnee(boolean b) {
 
         Message msg = new Message((b ? Commandes.FIN : Commandes.GAGNEE));

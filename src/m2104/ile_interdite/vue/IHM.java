@@ -108,7 +108,7 @@ public class IHM extends Observable<Message> {
         this.vueNiveau.setNiveau(valeur);
     }
 
-    public void majVueJeu(Grille grille) {
+    public void majVueJeu() {
         //TODO
     }
 

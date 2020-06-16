@@ -22,34 +22,36 @@ public class Explorateur extends Aventurier{
     /*méthodes*/
     @Override
     public boolean peutAssecher(Tuile tuile) {
-        if (tuile == null || !tuile.isInnondee() || tuile.isRetiree() || getPosition() == tuile)
+        if (tuile == null || !tuile.isInnondee() || tuile.isRetiree() || getPosition() == tuile) {
             return false;
+        }
 
         boolean peutNormal = super.peutAssecher(tuile);
 
         int indexTuileCible = this.getIleInterdite().getGrille().getTuiles(true).indexOf(tuile);
         int indexTuileActuelle = this.getIleInterdite().getGrille().getTuiles(true).indexOf(getPosition());
-
-        return peutNormal || ((indexTuileActuelle < 28 && indexTuileActuelle + 7 == indexTuileCible)
-                || (indexTuileActuelle < 30 && indexTuileActuelle + 5 == indexTuileCible)
-                || (indexTuileActuelle > 6 && indexTuileActuelle - 7 == indexTuileCible)
-                || (indexTuileActuelle > 4 && indexTuileActuelle - 5 == indexTuileCible));
+        
+        return peutNormal || ((indexTuileActuelle < 28 && indexTuileActuelle + 7 == indexTuileCible && (indexTuileActuelle % 6) != 5)
+                || (indexTuileActuelle < 30 && indexTuileActuelle + 5 == indexTuileCible && (indexTuileActuelle % 6) != 0)
+                || (indexTuileActuelle > 6 && indexTuileActuelle - 7 == indexTuileCible && (indexTuileActuelle % 6) != 0)
+                || (indexTuileActuelle > 4 && indexTuileActuelle - 5 == indexTuileCible && (indexTuileActuelle % 6) != 5));
     }
 
     @Override
     public boolean peutSeDeplacer(Tuile tuile) {
-        if (tuile == null || tuile.isRetiree() || getPosition() == tuile)
+        if (tuile == null || tuile.isRetiree() || getPosition() == tuile) {
             return false;
+        }
 
         boolean peutNormal = super.peutSeDeplacer(tuile);
 
         int indexTuileCible = this.getIleInterdite().getGrille().getTuiles(true).indexOf(tuile);
         int indexTuileActuelle = this.getIleInterdite().getGrille().getTuiles(true).indexOf(getPosition());
 
-        return peutNormal || ((indexTuileActuelle < 28 && indexTuileActuelle + 7 == indexTuileCible)
-                || (indexTuileActuelle < 30 && indexTuileActuelle + 5 == indexTuileCible)
-                || (indexTuileActuelle > 6 && indexTuileActuelle - 7 == indexTuileCible)
-                || (indexTuileActuelle > 4 && indexTuileActuelle - 5 == indexTuileCible));
+        return peutNormal || ((indexTuileActuelle < 28 && indexTuileActuelle + 7 == indexTuileCible && (indexTuileActuelle % 6) != 5)
+                || (indexTuileActuelle < 30 && indexTuileActuelle + 5 == indexTuileCible && (indexTuileActuelle % 6) != 0)
+                || (indexTuileActuelle > 6 && indexTuileActuelle - 7 == indexTuileCible && (indexTuileActuelle % 6) != 0)
+                || (indexTuileActuelle > 4 && indexTuileActuelle - 5 == indexTuileCible && (indexTuileActuelle % 6) != 5));
     }
     
 }

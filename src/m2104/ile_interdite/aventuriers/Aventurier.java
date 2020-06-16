@@ -53,6 +53,7 @@ public abstract class Aventurier {
                 this.position = null;
                 break;
         }
+        this.position.addAventurier(this);
     }
 
     public boolean peutSeDeplacer(Tuile tuile) {

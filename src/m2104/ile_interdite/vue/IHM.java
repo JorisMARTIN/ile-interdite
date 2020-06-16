@@ -77,6 +77,7 @@ public class IHM extends Observable<Message> {
     public void changerJoueurCourant(Integer idAventurier) {
 
         for(VueAventurier vue : this.vueAventuriers.values()) {
+        	vue.resetActionRestantes();
             vue.desactiver();
             vue.activerBoutons(false, false, false, false, false, false, false);
         }
@@ -84,6 +85,14 @@ public class IHM extends Observable<Message> {
         this.vueAventuriers.get(idAventurier).activer();
         this.vueAventuriers.get(idAventurier).activerBoutons(true, true, true, true, true, true, true);
     }
+
+	public void setActionRestantes(Integer idAventurier, Integer actionRestantes) {
+		
+		VueAventurier vue = this.vueAventuriers.get(idAventurier);
+		
+		vue.setActionRestantes(actionRestantes);
+		
+	}
 
     
 }

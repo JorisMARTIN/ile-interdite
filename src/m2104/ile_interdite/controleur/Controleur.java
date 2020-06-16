@@ -54,6 +54,7 @@ public class Controleur implements Observateur<Message> {
                 break;
             
             case RECUPERER_TRESOR:
+            	this.ileInterdite.getAventuriers().get(msg.idAventurier).recupererTresor();
                 break;
             
             case TERMINER:
@@ -98,6 +99,7 @@ public class Controleur implements Observateur<Message> {
                 
             case JOUEUR_SUIVANT:
                 ihm.changerJoueurCourant(msg.idAventurier);
+                ihm.setActionRestantes(msg.idAventurier, msg.actionRestantes);
                 break;
                 
             case LANCER_JEU:
@@ -106,6 +108,10 @@ public class Controleur implements Observateur<Message> {
 
             case AUGMENTER_CURSEUR:
                 ihm.placerCurseur(msg.valeur);
+                break;
+                
+            case ACTION_RESTANTES:
+                ihm.setActionRestantes(msg.idAventurier, msg.actionRestantes);
                 break;
 
             default:

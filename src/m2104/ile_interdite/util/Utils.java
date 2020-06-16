@@ -36,7 +36,8 @@ public class Utils {
         AUGMENTER_CURSEUR("Augmenter le curseur de montée des eaux"),
         LANCE_CURSEUR("Lance le traitement afin d'augmenter le curseur de montée des eaux"),
         LANCER_JEU("Lancement du Jeu"),
-        JOUEUR_SUIVANT("Passe au joueur suivant.");
+        JOUEUR_SUIVANT("Passe au joueur suivant."),
+        ACTION_RESTANTES("Nombre d'action restantes pour un joueur");
 
         private final String libelle ;
 

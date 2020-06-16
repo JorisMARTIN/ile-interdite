@@ -143,15 +143,19 @@ public abstract class Aventurier {
     
     public void initActionsRestantes() {
         this.actionsRestantes = 3;
+        ileInterdite.notifyActionRestantes(actionsRestantes, this);
     }
 
     public void moinsActions() {
     	
         this.actionsRestantes--;
         
+        ileInterdite.notifyActionRestantes(actionsRestantes, this);
+        
         if(this.actionsRestantes == 0) {
         	this.ileInterdite.joueurSuivant();
         }
+        
     }
 
     public int getActionsRestantes() {

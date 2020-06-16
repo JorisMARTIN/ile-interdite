@@ -21,8 +21,8 @@ public class Message {
     /*Ajout de nouveaux attribus*/
     public ArrayList<Boolean> possibilites;
     public String nomTuile;
-    public int valeur;
-    
+    public Integer valeur;
+    public Integer actionRestantes;
     
     public Message(Utils.Commandes cmd) {
         this.commande = cmd;

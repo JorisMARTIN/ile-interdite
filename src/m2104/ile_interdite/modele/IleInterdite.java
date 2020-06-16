@@ -29,7 +29,7 @@ import patterns.observateur.Observateur;
  * @author Raphaël Bleuse <raphael.bleuse@iut2.univ-grenoble-alpes.fr>
  */
 public class IleInterdite extends Observable<Message> {
-    private int curseur;
+	private int curseur;
     private Grille grille;
     private ArrayList<Aventurier> aventuriers;
     private Deck deckTresor;
@@ -162,8 +162,7 @@ public class IleInterdite extends Observable<Message> {
 
         this.deckInnondation.remplirPioche(this.deckInnondation.getDefausse());
 
-        boolean b = this.deckTresor.isVide();
-        if(b) {
+        if(this.deckTresor.isVide()) {
             this.deckTresor.remplirPioche(this.deckTresor.getDefausse());
         }
 
@@ -200,6 +199,7 @@ public class IleInterdite extends Observable<Message> {
     	this.aventuriers.get(joueurCourant).initActionsRestantes();
     	Message msg = new Message(Utils.Commandes.JOUEUR_SUIVANT);
     	msg.idAventurier = joueurCourant;
+    	msg.actionRestantes = this.aventuriers.get(joueurCourant).getActionsRestantes();
     	
     	notifierObservateurs(msg);
     	
@@ -216,6 +216,7 @@ public class IleInterdite extends Observable<Message> {
     	
     	Message msg = new Message(Utils.Commandes.JOUEUR_SUIVANT);
     	msg.idAventurier = joueurCourant;
+    	msg.actionRestantes = this.aventuriers.get(joueurCourant).getActionsRestantes();
     	
     	notifierObservateurs(msg);
     	
@@ -265,6 +266,19 @@ public class IleInterdite extends Observable<Message> {
         Tuile tuile = this.grille.getTuile(nomTuile);
         this.aventuriers.get(joueurCourant).deplacer(tuile);
     }
+
+	
+	public void notifyActionRestantes(int actionsRestantes, Aventurier aventurier) {
+		
+		int idAventurier = this.aventuriers.indexOf(aventurier);
+		
+		Message msg = new Message(Utils.Commandes.ACTION_RESTANTES);
+		msg.idAventurier = idAventurier;
+		msg.actionRestantes = actionsRestantes;
+		
+		notifierObservateurs(msg);
+		
+	}
 
     
 

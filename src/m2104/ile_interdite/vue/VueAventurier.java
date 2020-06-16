@@ -15,6 +15,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
 import m2104.ile_interdite.util.Parameters;
@@ -43,6 +44,10 @@ public class VueAventurier {
     private final JButton btnTerminer;
     private Boolean titreCliquable ;
     private boolean cartesActivees;
+    
+    private JPanel panelCentre;
+    private JLabel actionRestantes;
+    
 
     public VueAventurier(IHM ihm, Integer id, String nomJoueur, String nomAventurier, String power, Integer num, Integer nbAventuriers, Color couleurActive, Color couleurInactive){
         this.ihm = ihm;
@@ -56,6 +61,7 @@ public class VueAventurier {
         this.couleurInactive = couleurInactive ;
         this.titreCliquable = false ;
         this.cartesActivees = false;
+        
 
         this.window = new JFrame(nomAventurier);
         window.setSize(180, Parameters.HAUTEUR_VUE_AVENTURIER);
@@ -108,6 +114,16 @@ public class VueAventurier {
             public void mouseExited(MouseEvent e) {
             }
         });
+        
+        
+        // =================================================================================
+        // Centre : 
+        
+        this.panelCentre = new JPanel();
+        this.actionRestantes = new JLabel("");
+        this.panelCentre.add(actionRestantes);
+        
+        this.mainPanel.add(panelCentre, BorderLayout.CENTER);
 
         // =================================================================================
         // SUD : les boutons
@@ -348,4 +364,12 @@ public class VueAventurier {
     public Integer getIdAventurier() {
         return this.idAventurier ;
     }
+
+    public void resetActionRestantes() {
+		this.actionRestantes.setText("");
+}
+    
+	public void setActionRestantes(Integer actionRestantes) {
+			this.actionRestantes.setText("Action restantes : " + actionRestantes);
+	}
 }

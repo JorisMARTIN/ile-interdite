@@ -5,12 +5,13 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.BorderFactory;
+import java.awt.BorderLayout;
 
 import m2104.ile_interdite.modele.Grille;
 import m2104.ile_interdite.modele.Tuile;
@@ -20,7 +21,7 @@ import m2104.ile_interdite.util.Parameters;
 public class VueJeu {
     private final IHM ihm;
     private final JFrame fenetre;
-    private final JPanel grillePanel;
+    private final Panneau grillePanel;
     private final Grille grille;
 
     public VueJeu(IHM ihm, Grille grille) {
@@ -42,19 +43,21 @@ public class VueJeu {
         for(int i = 0; i < grille.getTuiles(true).size(); i++) {
             Tuile t = grille.getTuiles(true).get(i);
             button = new JButton();
-            //button.setEnabled(false);
-            button.setSize(new Dimension(fenetre.getSize().width / 6, fenetre.getSize().height / 6));
+            button.setLayout(new BorderLayout());
             button.setBorder(BorderFactory.createEmptyBorder());
             if (t != null) {
                 ImageIcon icon;
+                icon = new ImageIcon(Parameters.TUILES + t.getNom() + ".png");
+                Image img = icon.getImage().getScaledInstance(fenetre.getSize().width / 6, fenetre.getSize().height / 6, Image.SCALE_SMOOTH);
+                //JLabel labelTuile = new JLabel(new ImageIcon(img));
+                //button.add(labelTuile);
+                button.setIcon(new ImageIcon(img));
                 if (!t.getAventuriers().isEmpty()) {
                     icon = new ImageIcon(Parameters.PIONS + "pion" + t.getAventuriers().get(0).getPion() + ".png");
-                } else {
-                    icon = new ImageIcon(Parameters.TUILES + t.getNom() + ".png");
-                    System.out.println(icon);
+                    img = icon.getImage().getScaledInstance(fenetre.getSize().width / 10, fenetre.getSize().height / 10, Image.SCALE_SMOOTH);
+                    JLabel labelPion = new JLabel(new ImageIcon(img));
+                    button.add(labelPion, BorderLayout.CENTER);
                 }
-                Image img = icon.getImage().getScaledInstance(button.getWidth(), button.getHeight(), Image.SCALE_SMOOTH);
-                button.setIcon(new ImageIcon(img));
             } else {
                 button.setVisible(false);
             }

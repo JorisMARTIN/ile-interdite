@@ -47,13 +47,16 @@ public class VueJeu {
             button.setBorder(BorderFactory.createEmptyBorder());
             button.setOpaque(false);
             button.setContentAreaFilled(false);
+            
             if (t != null) {
                 ImageIcon icon;
                 icon = new ImageIcon(Parameters.TUILES + t.getNom() + ".png");
-                Image img = icon.getImage().getScaledInstance(fenetre.getSize().width / 6 - 5, fenetre.getSize().height / 6 - 5, Image.SCALE_SMOOTH);
+                Image img = icon.getImage().getScaledInstance((int) (fenetre.getSize().width / 6.3), (int) (fenetre.getSize().height / 6.55), Image.SCALE_SMOOTH);
                 button.setIcon(new ImageIcon(img));
-                JLabel labelPion;
+                button.setDisabledIcon(new ImageIcon(img));
+                button.setEnabled(false);
                 
+                JLabel labelPion;
                 int nbPion = t.getAventuriers().size();
                 for (int pion = 0; pion < nbPion; pion++) {
                     icon = new ImageIcon(Parameters.PIONS + "pion" + t.getAventuriers().get(pion).getPion() + ".png");

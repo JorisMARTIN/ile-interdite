@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.modele.Grille;
 import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Utils;
@@ -97,8 +98,8 @@ public class IHM extends Observable<Message> {
         this.vueNiveau = new VueNiveau(difficulte);
     }
     
-    public void surbrillerTuiles(ArrayList<Boolean> possibilites) {
-        this.vueJeu.surbrillerTuiles(possibilites);
+    public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion) {
+        this.vueJeu.surbrillerTuiles(possibilites, pion);
     }
 
     public void placerCurseur(int valeur) {
@@ -126,6 +127,12 @@ public class IHM extends Observable<Message> {
 		VueAventurier vue = this.vueAventuriers.get(idAventurier);
 		
 		vue.setActionRestantes(actionRestantes);
+		
+	}
+
+	public void actualiserMainJoueur(ArrayList<Carte> main, boolean tropCarte, Integer idAventurier) {
+		
+		this.vueAventuriers.get(idAventurier).actualiserMain(main, tropCarte);
 		
 	}
 

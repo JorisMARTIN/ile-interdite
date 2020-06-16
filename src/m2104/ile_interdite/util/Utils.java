@@ -37,7 +37,8 @@ public class Utils {
         LANCE_CURSEUR("Lance le traitement afin d'augmenter le curseur de montée des eaux"),
         LANCER_JEU("Lancement du Jeu"),
         JOUEUR_SUIVANT("Passe au joueur suivant."),
-        ACTION_RESTANTES("Nombre d'action restantes pour un joueur");
+        ACTION_RESTANTES("Nombre d'action restantes pour un joueur"),
+        PIOCHER_CARTE("Le joueur pioche une carte");
 
         private final String libelle ;
 

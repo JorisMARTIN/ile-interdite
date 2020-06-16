@@ -1,5 +1,7 @@
 package m2104.ile_interdite.cartes;
 
+import java.util.Collection;
+
 import m2104.ile_interdite.modele.Deck;
 import m2104.ile_interdite.modele.IleInterdite;
 
@@ -12,7 +14,8 @@ public class CarteMonteeEaux extends Carte {
 	@Override
 	public void action() {
 		this.getDeck().getIleInterdite().setCurseur(this.getDeck().getIleInterdite().getCurseur() + 1);
-		this.getDeck().defausseCarte(this);
+		this.getDeck().defausseCarte(this);    	
+    	this.setDeck(Collection.shuffle(this.getDeck()));
 	}
 
 }

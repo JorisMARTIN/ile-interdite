@@ -125,8 +125,8 @@ public class IleInterdite extends Observable<Message> {
 
             nomAventuriers[i] = selection;
 
-            aventurier.piocherCarte();
-            aventurier.piocherCarte();
+            //aventurier.piocherCarte();
+            //aventurier.piocherCarte();
 
             selections.remove(selection);
             aventuriers.add(aventurier);

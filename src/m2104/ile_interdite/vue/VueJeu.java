@@ -9,10 +9,13 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.border.CompoundBorder;
 import javax.swing.BorderFactory;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
 import java.awt.BorderLayout;
+import java.awt.Image;
 
 import m2104.ile_interdite.modele.Grille;
 import m2104.ile_interdite.modele.Tuile;
@@ -103,10 +106,16 @@ public class VueJeu {
 
     public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion) {
         for (int tuile = 0; tuile < grille.getTuiles(true).size(); tuile++) {
-            System.out.println(possibilites.get(tuile));
             if (possibilites.get(tuile)) {
                 this.boutons.get(tuile).setEnabled(true);
-                this.boutons.get(tuile).setBorder(BorderFactory.createLineBorder(pion.getCouleurSelectionAssechee(), 6));
+                Border borderUp = BorderFactory.createEtchedBorder(EtchedBorder.RAISED, Color.BLACK, Color.WHITE);
+                Border borderDown = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED, Color.BLACK, Color.WHITE);
+                Border coloredBorder = BorderFactory.createLineBorder(pion.getCouleur(), 2);
+                Border compound1 = BorderFactory.createCompoundBorder(borderUp, coloredBorder);
+                Border compound2 = BorderFactory.createCompoundBorder(coloredBorder, borderDown);
+                Border bigCompound = BorderFactory.createCompoundBorder(compound1, compound2);
+                this.boutons.get(tuile).setBorder(bigCompound);
+                //, pion.getCouleur()
             }
         }
     }

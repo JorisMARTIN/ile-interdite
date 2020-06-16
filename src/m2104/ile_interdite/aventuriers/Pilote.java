@@ -23,7 +23,8 @@ public class Pilote extends Aventurier{
     /*méthodes*/
     @Override
     public boolean peutSeDeplacer(Tuile tuile) {
-        return tuile.getEtat() == EtatTuile.RETIREE ? false :  true;
+        //return tuile.getEtat() == EtatTuile.RETIREE ? false :  true;
+        return super.peutSeDeplacer(tuile);
     }
     
 }

@@ -21,6 +21,7 @@ public abstract class Aventurier {
     private Tuile position;
     private int actionsRestantes;
     private Utils.Pion pion;
+    private ArrayList<Tresor> tresors;
     
     public Aventurier(IleInterdite ileInterdite, Utils.Pion pion) {
         this.main = new ArrayList<>();
@@ -213,6 +214,10 @@ public abstract class Aventurier {
     
     public Utils.Pion getPion() {
         return this.pion;
+    }
+
+    public ArrayList<Tresor> getTresors() {
+        return this.tresors;
     }
 
     protected IleInterdite getIleInterdite() {

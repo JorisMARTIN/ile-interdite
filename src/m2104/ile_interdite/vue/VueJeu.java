@@ -90,7 +90,7 @@ public class VueJeu {
             position = BorderLayout.WEST;
         } else if (numeroPion == 2) {
             position = BorderLayout.NORTH;
-        } else if (numeroPion == 3) {
+        } else if (nbPion == 4) {
             position = BorderLayout.SOUTH;
         }
         return position;
@@ -122,13 +122,12 @@ public class VueJeu {
         for(int i = 0; i < grille.getTuiles(true).size(); i++) {
             Tuile t = grille.getTuiles(true).get(i);
             button = new JButton();
-            button.setLayout(new BorderLayout());
             button.setBorder(BorderFactory.createEmptyBorder());
             button.setOpaque(false);
             button.setContentAreaFilled(false);
             button.setFocusPainted(false);
             
-            if (t != null && t.getEtat() == EtatTuile.RETIREE) {
+            if (t != null && t.getEtat() != EtatTuile.RETIREE) {
                 Image img = null;
                 if (t.getEtat() == EtatTuile.NORMAL) {
                     img = imagesBtnNormales[i];
@@ -153,11 +152,20 @@ public class VueJeu {
                 
                 JLabel labelPion;
                 int nbPion = t.getAventuriers().size();
+                if (nbPion == 4) {
+                    button.setLayout(new GridLayout(2, 2));
+                } else {
+                    button.setLayout(new BorderLayout());
+                }
                 for (int pion = 0; pion < nbPion; pion++) {
                     ImageIcon icon = new ImageIcon(Parameters.PIONS + "pion" + t.getAventuriers().get(pion).getPion() + ".png");
                     Image imgPion = icon.getImage().getScaledInstance(fenetre.getSize().width / (8 + 2 * nbPion), fenetre.getSize().height / (8 + 2 * nbPion), Image.SCALE_SMOOTH);
                     labelPion = new JLabel(new ImageIcon(imgPion));
-                    button.add(labelPion, getPositionPion(t.getAventuriers().size(), pion));
+                    if (nbPion == 4) {
+                        button.add(labelPion);
+                    } else {
+                        button.add(labelPion, getPositionPion(t.getAventuriers().size(), pion));
+                    }
                 }
             } else {
                 button.setVisible(false);

@@ -92,7 +92,7 @@ public class IleInterdite extends Observable<Message> {
             Random choix = new Random();
             String selection = selections.get(choix.nextInt(selections.size()));
             Aventurier aventurier;
-            
+
             switch(selection) {
                 case "Explorateur":
                     aventurier = new Explorateur(this);
@@ -132,7 +132,6 @@ public class IleInterdite extends Observable<Message> {
             aventuriers.add(aventurier);
         }
         
-        System.out.println("wsh2");
         return nomAventuriers;
     }
 

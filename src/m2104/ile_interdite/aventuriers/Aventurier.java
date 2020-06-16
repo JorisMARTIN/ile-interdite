@@ -210,4 +210,8 @@ public abstract class Aventurier {
             //TODO the case of jouerCarte(Carte carte)
         }
     }
+
+	public ArrayList<Tresor> getTresors() {
+		return this.tresors;
+	}
 }

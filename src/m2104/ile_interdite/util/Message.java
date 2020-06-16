@@ -2,7 +2,9 @@ package m2104.ile_interdite.util;
 
 import java.util.ArrayList;
 
+import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.modele.Grille;
+import m2104.ile_interdite.util.Utils.Pion;
 
 /**
  *
@@ -23,6 +25,9 @@ public class Message {
     public String nomTuile;
     public Integer valeur;
     public Integer actionRestantes;
+	public boolean tropCarte;
+	public ArrayList<Carte> main;
+	public Pion pion;
     
     public Message(Utils.Commandes cmd) {
         this.commande = cmd;

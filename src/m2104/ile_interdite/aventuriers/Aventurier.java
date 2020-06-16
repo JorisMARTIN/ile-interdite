@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.modele.IleInterdite;
 import m2104.ile_interdite.modele.Tuile;
+import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Utils;
 import m2104.ile_interdite.modele.EtatTuile;
 
@@ -137,8 +138,31 @@ public abstract class Aventurier {
         return this.main;
     }
     
+    
+    /**
+     * <h1>L'aventurier pioche une carte trésor</h1>
+     * <ul>
+     * 	<li>Si l'aventurier obtien plus de 5 cartes, il doit en deffausser une</li>
+     * </ul>
+     */
     public void piocherCarte() {
-        //TODO
+        
+    	this.main.add(this.ileInterdite.getDeckTresor().getPremiereCarte());
+    	this.ileInterdite.getDeckTresor().getPioche().remove(this.ileInterdite.getDeckTresor().getPremiereCarte());
+    	
+    	Message msg = new Message(Utils.Commandes.PIOCHER_CARTE);
+    	
+    	if(this.main.size() > 5) {
+    		msg.tropCarte = true;
+    	}else {
+    		msg.tropCarte = false;
+    	}
+    	
+    	msg.main = this.main;
+    	
+    	msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
+    	
+    	ileInterdite.notifierObservateurs(msg);
     }
     
     public void initActionsRestantes() {
@@ -153,7 +177,7 @@ public abstract class Aventurier {
         ileInterdite.notifyActionRestantes(actionsRestantes, this);
         
         if(this.actionsRestantes == 0) {
-        	this.ileInterdite.joueurSuivant();
+        	this.ileInterdite.lanceFinTour();
         }
         
     }

@@ -119,11 +119,11 @@ public class Controleur implements Observateur<Message> {
             	break;
 
             case FIN:
-                ihm.finPasGagne;
+                ihm.finPasGagne();
                 break;
 
             case GAGNEE:
-                ihm.finGagne;
+                ihm.finGagne();
                 break;
 
             default:

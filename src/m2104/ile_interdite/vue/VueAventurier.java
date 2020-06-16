@@ -226,6 +226,7 @@ public class VueAventurier {
         bouton.setEnabled(false);
         bouton.setToolTipText(tooltip);
         bouton.setText(libelle);
+        bouton.setFont(bouton.getFont().deriveFont(Font.PLAIN));
         bouton.setBorder(new MatteBorder( 0, 0, (numBouton <= 3 ? 1 : 0), (numBouton%3!=0 ? 1 : 0), Color.GRAY));
 
         bouton.addActionListener(new ActionListener() {

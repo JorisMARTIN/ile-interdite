@@ -62,8 +62,8 @@ public class IHM extends Observable<Message> {
         this.vueNiveau = new VueNiveau(difficulte);
     }
     
-    public void surbrillerTuiles(ArrayList<Boolean> possibilites) {
-        this.vueJeu.surbrillerTuiles(possibilites);
+    public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion) {
+        this.vueJeu.surbrillerTuiles(possibilites, pion);
     }
 
     public void placerCurseur(int valeur) {

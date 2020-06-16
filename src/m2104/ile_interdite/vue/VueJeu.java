@@ -16,8 +16,10 @@ import java.awt.BorderLayout;
 
 import m2104.ile_interdite.modele.Grille;
 import m2104.ile_interdite.modele.Tuile;
+import m2104.ile_interdite.aventuriers.Aventurier;
 import m2104.ile_interdite.util.Panneau;
 import m2104.ile_interdite.util.Parameters;
+import m2104.ile_interdite.util.Utils;
 
 public class VueJeu {
     private final IHM ihm;
@@ -50,6 +52,7 @@ public class VueJeu {
             button.setBorder(BorderFactory.createEmptyBorder());
             button.setOpaque(false);
             button.setContentAreaFilled(false);
+            button.setFocusPainted(false);
             
             if (t != null) {
                 ImageIcon icon;
@@ -98,13 +101,12 @@ public class VueJeu {
         //TODO : faire
     }
 
-    public void surbrillerTuiles(ArrayList<Boolean> possibilites) {
+    public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion) {
         for (int tuile = 0; tuile < grille.getTuiles(true).size(); tuile++) {
             System.out.println(possibilites.get(tuile));
             if (possibilites.get(tuile)) {
                 this.boutons.get(tuile).setEnabled(true);
-                this.boutons.get(tuile).setContentAreaFilled(false);
-                this.boutons.get(tuile).setBackground(Color.RED);
+                this.boutons.get(tuile).setBorder(BorderFactory.createLineBorder(pion.getCouleurSelectionAssechee(), 6));
             }
         }
     }

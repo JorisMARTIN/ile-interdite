@@ -100,7 +100,7 @@ public class VueJeu {
         return position;
     }
 
-    public void deplacerPion(Tuile tuileVoulue) {
+    public void deplacerPion(int indexTuile) {
         //TODO : faire
     }
 
@@ -108,8 +108,8 @@ public class VueJeu {
         for (int tuile = 0; tuile < grille.getTuiles(true).size(); tuile++) {
             if (possibilites.get(tuile)) {
                 this.boutons.get(tuile).setEnabled(true);
-                Border borderUp = BorderFactory.createEtchedBorder(EtchedBorder.RAISED, Color.BLACK, Color.WHITE);
-                Border borderDown = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED, Color.BLACK, Color.WHITE);
+                Border borderUp = BorderFactory.createEtchedBorder(EtchedBorder.RAISED, Color.BLACK, Color.BLACK);
+                Border borderDown = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED, Color.BLACK, Color.BLACK);
                 Border coloredBorder = BorderFactory.createLineBorder(pion.getCouleur(), 2);
                 Border compound1 = BorderFactory.createCompoundBorder(borderUp, coloredBorder);
                 Border compound2 = BorderFactory.createCompoundBorder(coloredBorder, borderDown);

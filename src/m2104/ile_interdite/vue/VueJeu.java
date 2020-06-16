@@ -33,8 +33,7 @@ public class VueJeu {
     private  Panneau grillePanel;
     private  Grille grille;
     private ArrayList<JButton> boutons;
-    private Utils.Pion currentPion;
-    private JButton currentBouton;
+    private Image[] imagesBtn;
 
     public VueJeu(IHM ihm, Grille grille) {
         
@@ -49,7 +48,19 @@ public class VueJeu {
         fenetre.setSize(800, 800);
         
         grillePanel = new Panneau(new ImageIcon(Parameters.IMAGES + "ocean.jpeg").getImage(), new GridLayout(6, 6));
-        
+
+        ArrayList<Tuile> tuiles = this.grille.getTuiles(true);
+        this.imagesBtn = new Image[tuiles.size()];
+
+        for(int i = 0; i < tuiles.size(); i++) {
+            Tuile t = tuiles.get(i);
+            if(t != null) {
+                ImageIcon icon = new ImageIcon(Parameters.TUILES + t.getNom() + ".png");
+                Image img = icon.getImage().getScaledInstance((int) (fenetre.getSize().width / 6.3), (int) (fenetre.getSize().height / 6.55), Image.SCALE_SMOOTH);
+                imagesBtn[i] = img;
+            }
+        }
+
         this.affGrille();
 
         fenetre.add(grillePanel);
@@ -89,7 +100,6 @@ public class VueJeu {
                 
             }
         }
-        this.currentPion = pion;
     }
     
     public void affGrille() {
@@ -107,9 +117,7 @@ public class VueJeu {
             button.setFocusPainted(false);
             
             if (t != null) {
-                ImageIcon icon;
-                icon = new ImageIcon(Parameters.TUILES + t.getNom() + ".png");
-                Image img = icon.getImage().getScaledInstance((int) (fenetre.getSize().width / 6.3), (int) (fenetre.getSize().height / 6.55), Image.SCALE_SMOOTH);
+                Image img = imagesBtn[i];
                 button.setIcon(new ImageIcon(img));
                 button.setDisabledIcon(new ImageIcon(img));
                 button.setEnabled(false);
@@ -129,9 +137,9 @@ public class VueJeu {
                 JLabel labelPion;
                 int nbPion = t.getAventuriers().size();
                 for (int pion = 0; pion < nbPion; pion++) {
-                    icon = new ImageIcon(Parameters.PIONS + "pion" + t.getAventuriers().get(pion).getPion() + ".png");
-                    img = icon.getImage().getScaledInstance(fenetre.getSize().width / (8 + 2 * nbPion), fenetre.getSize().height / (8 + 2 * nbPion), Image.SCALE_SMOOTH);
-                    labelPion = new JLabel(new ImageIcon(img));
+                    ImageIcon icon = new ImageIcon(Parameters.PIONS + "pion" + t.getAventuriers().get(pion).getPion() + ".png");
+                    Image imgPion = icon.getImage().getScaledInstance(fenetre.getSize().width / (8 + 2 * nbPion), fenetre.getSize().height / (8 + 2 * nbPion), Image.SCALE_SMOOTH);
+                    labelPion = new JLabel(new ImageIcon(imgPion));
                     button.add(labelPion, getPositionPion(t.getAventuriers().size(), pion));
                 }
             } else {

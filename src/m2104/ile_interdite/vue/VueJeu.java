@@ -33,7 +33,8 @@ public class VueJeu {
     private  Panneau grillePanel;
     private  Grille grille;
     private ArrayList<JButton> boutons;
-    private Image[] imagesBtn;
+    private Image[] imagesBtnNormales;
+    private Image[] imagesBtnInondees;
 
     public VueJeu(IHM ihm, Grille grille) {
         
@@ -50,14 +51,24 @@ public class VueJeu {
         grillePanel = new Panneau(new ImageIcon(Parameters.IMAGES + "ocean.jpeg").getImage(), new GridLayout(6, 6));
 
         ArrayList<Tuile> tuiles = this.grille.getTuiles(true);
-        this.imagesBtn = new Image[tuiles.size()];
+        this.imagesBtnNormales = new Image[tuiles.size()];
+        this.imagesBtnInondees = new Image[tuiles.size()];
 
-        for(int i = 0; i < tuiles.size(); i++) {
+        for (int i = 0; i < tuiles.size(); i++) {
             Tuile t = tuiles.get(i);
             if(t != null) {
                 ImageIcon icon = new ImageIcon(Parameters.TUILES + t.getNom() + ".png");
                 Image img = icon.getImage().getScaledInstance((int) (fenetre.getSize().width / 6.3), (int) (fenetre.getSize().height / 6.55), Image.SCALE_SMOOTH);
-                imagesBtn[i] = img;
+                imagesBtnNormales[i] = img;
+            }
+        }
+
+        for (int i = 0; i < tuiles.size(); i++) {
+            Tuile t = tuiles.get(i);
+            if (t != null) {
+                ImageIcon icon = new ImageIcon(Parameters.TUILES + t.getNom() + "_Inonde.png");
+                Image img = icon.getImage().getScaledInstance((int) (fenetre.getSize().width / 6.3), (int) (fenetre.getSize().height / 6.55), Image.SCALE_SMOOTH);
+                imagesBtnInondees[i] = img;
             }
         }
 

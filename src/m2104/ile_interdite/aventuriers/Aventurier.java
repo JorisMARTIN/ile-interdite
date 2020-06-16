@@ -70,26 +70,6 @@ public abstract class Aventurier {
                 || (indexTuileActuelle < 35 && indexTuileActuelle + 1 == indexTuileCible)
                 || (indexTuileActuelle > 5 && indexTuileActuelle - 6 == indexTuileCible)
                 || (indexTuileActuelle > 0 && indexTuileActuelle - 1 == indexTuileCible);
-
-    	
-        // boolean peutSeDeplacer = true;
-        
-        // int indexTuileCible = this.ileInterdite.getGrille().getTuiles(true).indexOf(tuile);
-        // int indexTuileActuelle = this.ileInterdite.getGrille().getTuiles(true).indexOf(this.position);
-        
-        // if (indexTuileCible == indexTuileActuelle || tuile == null) {
-        //     peutSeDeplacer = false;
-        // } else if ((indexTuileActuelle < 29 && indexTuileActuelle + 6 == indexTuileCible)
-        //      || (indexTuileActuelle < 35 && indexTuileActuelle + 1 == indexTuileCible)
-        //      || (indexTuileActuelle > 5  && indexTuileActuelle - 6 == indexTuileCible)
-        //      || (indexTuileActuelle > 0  && indexTuileActuelle - 1 == indexTuileCible)) {
-        //         if (tuile.getEtat() == EtatTuile.RETIREE) {
-        //             peutSeDeplacer = false;
-        //         }
-        // } else {
-        //     peutSeDeplacer = false;
-        // }
-        // return peutSeDeplacer;
     }
     
     public ArrayList<Boolean> isDeplacementPossibles() {
@@ -230,9 +210,4 @@ public abstract class Aventurier {
             //TODO the case of jouerCarte(Carte carte)
         }
     }
-
-	public ArrayList<Tresor> getTresors() {
-		return this.tresors;
-	}
-
 }

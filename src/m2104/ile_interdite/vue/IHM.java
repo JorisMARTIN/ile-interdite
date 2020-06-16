@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import m2104.ile_interdite.modele.Grille;
 import m2104.ile_interdite.util.Message;
+import m2104.ile_interdite.util.Utils;
 import patterns.observateur.Observable;
 import patterns.observateur.Observateur;
 
@@ -41,7 +42,7 @@ public class IHM extends Observable<Message> {
                             id,
                             nomAventuriers.length,
                             Color.orange,
-                            Color.orange
+                            Color.gray
                     )
             );
         }
@@ -49,6 +50,9 @@ public class IHM extends Observable<Message> {
     
     public void creeVueJeu(Grille grille) {
         vueJeu = new VueJeu(this, grille);
+        Message msg = new Message(Utils.Commandes.LANCER_JEU);
+        
+        notifierObservateurs(msg);
     }
 
     public void surbrillerTuiles(ArrayList<Boolean> possibilites) {
@@ -62,5 +66,16 @@ public class IHM extends Observable<Message> {
     public void majVueJeu(Grille grille) {
         //TODO
     }
+
+	public void changerJoueurCourant(Integer idAventurier) {
+
+		for(VueAventurier vue : this.vueAventuriers.values()) {
+			vue.desactiver();
+			vue.activerBoutons(false, false, false, false, false, false, false);
+		}
+		
+		this.vueAventuriers.get(idAventurier).activer();
+		this.vueAventuriers.get(idAventurier).activerBoutons(true, true, true, true, true, true, true);
+	}
     
 }

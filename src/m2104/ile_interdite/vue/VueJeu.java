@@ -54,9 +54,14 @@ public class VueJeu {
                 button.setIcon(new ImageIcon(img));
                 if (!t.getAventuriers().isEmpty()) {
                     icon = new ImageIcon(Parameters.PIONS + "pion" + t.getAventuriers().get(0).getPion() + ".png");
+<<<<<<< HEAD
                     img = icon.getImage().getScaledInstance(fenetre.getSize().width / 10, fenetre.getSize().height / 10, Image.SCALE_SMOOTH);
                     JLabel labelPion = new JLabel(new ImageIcon(img));
                     button.add(labelPion, BorderLayout.CENTER);
+=======
+                } else {
+                    icon = new ImageIcon(Parameters.TUILES + t.getNom() + ".png");
+>>>>>>> 0ad99ba56ce4c4b720c94015004c95302d4be835
                 }
             } else {
                 button.setVisible(false);

@@ -34,7 +34,8 @@ public class Utils {
         DEPLACEMENT("Traite le début d'un déplacement du joueur courant"),
         TUILES_POSSIBLES("Avec possibilité, met en valeur les tuiles sur lequel l'action est possible"),
         AUGMENTER_CURSEUR("Augmenter le curseur de monté des eaux"),
-        LANCER_JEU("Lancement du Jeu");
+        LANCER_JEU("Lancement du Jeu"),
+        JOUEUR_SUIVANT("Passe au joueur suivant.");
 
         private final String libelle ;
 

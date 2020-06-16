@@ -175,8 +175,25 @@ public class IleInterdite extends Observable<Message> {
         return deckTresor;
     }
     
+    
+    
+    
+    /**
+     *  <h1>Methode pour lancer le premier tour</h1>
+     *  1. Defini le joueur courant <br>
+     *  2. Attribut son nombre d'action <br>
+     *  3. Notifie l'ihm du premier joueur a jouer <br>
+     * 
+     */
     public void lancePartie() {
-    	//TODO
+    	
+    	this.joueurCourant = 0;    	
+    	this.aventuriers.get(joueurCourant).initActionsRestantes();
+    	Message msg = new Message(Utils.Commandes.JOUEUR_SUIVANT);
+    	msg.idAventurier = joueurCourant;
+    	
+    	notifierObservateurs(msg);
+    	
     }
 
     public Deck getDeckInnondation() {
@@ -184,7 +201,14 @@ public class IleInterdite extends Observable<Message> {
     }
     
     public void lanceInnondation() {
-        //TODO
+        int nb = getCurseur();
+        for (int i = 0; i < nb; i++) {
+            Carte carte = this.deckInnondation.getPremiereCarte();
+            carte.action();
+        }
+        Message msg = new Message(Utils.Commandes.MAJ_GRILLE);
+        msg.grille = grille;
+        notifierObservateurs(msg);
     }
     
     public void lanceDeplacement() {

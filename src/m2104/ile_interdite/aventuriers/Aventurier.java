@@ -15,7 +15,6 @@ import m2104.ile_interdite.modele.EtatTuile;
  * @author IUT2-Dept Info
  */
 public abstract class Aventurier {
-    private ArrayList<Tresor> tresors;
     private ArrayList<Carte> main;
     private IleInterdite ileInterdite;
     private Tuile position;
@@ -214,10 +213,6 @@ public abstract class Aventurier {
     
     public Utils.Pion getPion() {
         return this.pion;
-    }
-
-    public ArrayList<Tresor> getTresors() {
-        return this.tresors;
     }
 
     protected IleInterdite getIleInterdite() {

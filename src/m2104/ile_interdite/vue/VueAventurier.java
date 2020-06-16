@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
@@ -21,6 +23,7 @@ import javax.swing.border.MatteBorder;
 import m2104.ile_interdite.util.Parameters;
 import m2104.ile_interdite.util.Utils;
 import m2104.ile_interdite.util.Utils.Commandes;
+import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.util.Message;
 
 
@@ -42,7 +45,7 @@ public class VueAventurier {
     private final JButton btnPrendre;
     private final JButton btnDeplacer;
     private final JButton btnTerminer;
-    private Boolean titreCliquable ;
+    private Boolean titreCliquable;
     private boolean cartesActivees;
     
     private JPanel panelCentre;
@@ -371,5 +374,16 @@ public class VueAventurier {
     
 	public void setActionRestantes(Integer actionRestantes) {
 			this.actionRestantes.setText("Action restantes : " + actionRestantes);
+	}
+
+	/**
+	 * 
+	 * @param main : les cartes en main du joueur
+	 * @param tropCarte : si le joueur dois deffauser une carte
+	 * 
+	 */
+	public void actualiserMain(ArrayList<Carte> main, boolean tropCarte) {
+		
+		
 	}
 }

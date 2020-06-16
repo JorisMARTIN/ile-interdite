@@ -204,6 +204,10 @@ public class IleInterdite extends Observable<Message> {
     	notifierObservateurs(msg);
     	
     }
+    
+    public int getJoueurCourant() {
+    	return this.joueurCourant;
+    }
 
     /**
      * 
@@ -241,6 +245,7 @@ public class IleInterdite extends Observable<Message> {
         ArrayList<Boolean> possibilite = aventuriers.get(this.joueurCourant).isDeplacementPossibles();
         Message msg = new Message(Utils.Commandes.TUILES_POSSIBLES);
         msg.possibilites = possibilite;
+        msg.pion = this.aventuriers.get(joueurCourant).getPion();
         notifierObservateurs(msg);
     }
     
@@ -279,6 +284,19 @@ public class IleInterdite extends Observable<Message> {
 		notifierObservateurs(msg);
 		
     }
+
+	public void lanceFinTour() {
+		
+		// Le joueur pioche 2 cartes
+		this.aventuriers.get(joueurCourant).piocherCarte();
+		this.aventuriers.get(joueurCourant).piocherCarte();
+		
+		// Lance la phase d'innondation
+		lanceInnondation();
+		
+		// Passe au joueur suivant
+		joueurSuivant();
+	}
     
     public void gagnee(boolean b) {
 

@@ -39,7 +39,8 @@ public class Utils {
         JOUEUR_SUIVANT("Passe au joueur suivant."),
         FIN("Fin de la partie les aventurier ont décolés mais ont perdu."),
         GAGNEE("Fin de la partie les aventurier ont décolés et ils ont gagnées."),
-        ACTION_RESTANTES("Nombre d'action restantes pour un joueur");
+        ACTION_RESTANTES("Nombre d'action restantes pour un joueur"),
+        PIOCHER_CARTE("Le joueur pioche une carte");
 
         private final String libelle ;
 

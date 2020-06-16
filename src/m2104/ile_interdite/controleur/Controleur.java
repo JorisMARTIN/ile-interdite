@@ -82,7 +82,7 @@ public class Controleur implements Observateur<Message> {
                 break;
 
             case TUILES_POSSIBLES:
-                ihm.surbrillerTuiles(msg.possibilites);
+                ihm.surbrillerTuiles(msg.possibilites, msg.pion);
                 break;
 
             case DEPLACER:
@@ -113,6 +113,10 @@ public class Controleur implements Observateur<Message> {
             case ACTION_RESTANTES:
                 ihm.setActionRestantes(msg.idAventurier, msg.actionRestantes);
                 break;
+                
+            case PIOCHER_CARTE:
+            	ihm.actualiserMainJoueur(msg.main, msg.tropCarte, msg.idAventurier);
+            	break;
 
             default:
                 if (Parameters.LOGS) {

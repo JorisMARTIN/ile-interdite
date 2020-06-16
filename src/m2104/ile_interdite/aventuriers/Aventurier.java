@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.modele.IleInterdite;
 import m2104.ile_interdite.modele.Tuile;
+import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Utils;
 import m2104.ile_interdite.util.Utils.Tresor;
 import m2104.ile_interdite.modele.EtatTuile;
@@ -59,25 +60,36 @@ public abstract class Aventurier {
     }
 
     public boolean peutSeDeplacer(Tuile tuile) {
-    	
-        boolean peutSeDeplacer = true;
-        
+        if (tuile == null || tuile.isRetiree() || getPosition() == tuile)
+            return false;
+
         int indexTuileCible = this.ileInterdite.getGrille().getTuiles(true).indexOf(tuile);
-        int indexTuileActuelle = this.ileInterdite.getGrille().getTuiles(true).indexOf(this.position);
+        int indexTuileActuelle = this.ileInterdite.getGrille().getTuiles(true).indexOf(getPosition());
+
+        return (indexTuileActuelle < 29 && indexTuileActuelle + 6 == indexTuileCible)
+                || (indexTuileActuelle < 35 && indexTuileActuelle + 1 == indexTuileCible)
+                || (indexTuileActuelle > 5 && indexTuileActuelle - 6 == indexTuileCible)
+                || (indexTuileActuelle > 0 && indexTuileActuelle - 1 == indexTuileCible);
+
+    	
+        // boolean peutSeDeplacer = true;
         
-        if (indexTuileCible == indexTuileActuelle || tuile == null) {
-            peutSeDeplacer = false;
-        } else if ((indexTuileActuelle < 29 && indexTuileActuelle + 6 == indexTuileCible)
-             || (indexTuileActuelle < 35 && indexTuileActuelle + 1 == indexTuileCible)
-             || (indexTuileActuelle > 5  && indexTuileActuelle - 6 == indexTuileCible)
-             || (indexTuileActuelle > 0  && indexTuileActuelle - 1 == indexTuileCible)) {
-                if (tuile.getEtat() == EtatTuile.RETIREE) {
-                    peutSeDeplacer = false;
-                }
-        } else {
-            peutSeDeplacer = false;
-        }
-        return peutSeDeplacer;
+        // int indexTuileCible = this.ileInterdite.getGrille().getTuiles(true).indexOf(tuile);
+        // int indexTuileActuelle = this.ileInterdite.getGrille().getTuiles(true).indexOf(this.position);
+        
+        // if (indexTuileCible == indexTuileActuelle || tuile == null) {
+        //     peutSeDeplacer = false;
+        // } else if ((indexTuileActuelle < 29 && indexTuileActuelle + 6 == indexTuileCible)
+        //      || (indexTuileActuelle < 35 && indexTuileActuelle + 1 == indexTuileCible)
+        //      || (indexTuileActuelle > 5  && indexTuileActuelle - 6 == indexTuileCible)
+        //      || (indexTuileActuelle > 0  && indexTuileActuelle - 1 == indexTuileCible)) {
+        //         if (tuile.getEtat() == EtatTuile.RETIREE) {
+        //             peutSeDeplacer = false;
+        //         }
+        // } else {
+        //     peutSeDeplacer = false;
+        // }
+        // return peutSeDeplacer;
     }
     
     public ArrayList<Boolean> isDeplacementPossibles() {
@@ -98,21 +110,29 @@ public abstract class Aventurier {
     }
     
     protected boolean peutAssecher(Tuile tuile) {
-        return false;
+        if(tuile == null || !tuile.isInnondee() || tuile.isRetiree() || getPosition() == tuile)
+            return false;
+        
+        int indexTuileCible = this.ileInterdite.getGrille().getTuiles(true).indexOf(tuile);
+        int indexTuileActuelle = this.ileInterdite.getGrille().getTuiles(true).indexOf(getPosition());
+
+        return (indexTuileActuelle < 29 && indexTuileActuelle + 6 == indexTuileCible)
+            || (indexTuileActuelle < 35 && indexTuileActuelle + 1 == indexTuileCible)
+            || (indexTuileActuelle > 5 && indexTuileActuelle - 6 == indexTuileCible)
+            || (indexTuileActuelle > 0 && indexTuileActuelle - 1 == indexTuileCible);
     }
     
-    
     public ArrayList<Boolean> isAssechementPossibles() {
-    	// TODO Auto-generated method stub
-    	return null;
+    	ArrayList<Boolean> assechementsPossibles = new ArrayList<Boolean>();
+        for (Tuile tuile : this.ileInterdite.getGrille().getTuiles(true)) {
+            assechementsPossibles.add(this.peutAssecher(tuile));
+        }
+        return assechementsPossibles;
     }
     
     public void assecher(Tuile tuile) {
-    	if (peutAssecher(tuile)) {
-    		tuile.setEtat(EtatTuile.NORMAL);
-    	}
-    	
-    	moinsActions();
+        tuile.setEtat(EtatTuile.NORMAL);
+        moinsActions();
     }
     
     public Tuile getPosition() {
@@ -139,8 +159,31 @@ public abstract class Aventurier {
         return this.main;
     }
     
+    
+    /**
+     * <h1>L'aventurier pioche une carte trésor</h1>
+     * <ul>
+     * 	<li>Si l'aventurier obtien plus de 5 cartes, il doit en deffausser une</li>
+     * </ul>
+     */
     public void piocherCarte() {
-        //TODO
+        
+    	this.main.add(this.ileInterdite.getDeckTresor().getPremiereCarte());
+    	this.ileInterdite.getDeckTresor().getPioche().remove(this.ileInterdite.getDeckTresor().getPremiereCarte());
+    	
+    	Message msg = new Message(Utils.Commandes.PIOCHER_CARTE);
+    	
+    	if(this.main.size() > 5) {
+    		msg.tropCarte = true;
+    	}else {
+    		msg.tropCarte = false;
+    	}
+    	
+    	msg.main = this.main;
+    	
+    	msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
+    	
+    	ileInterdite.notifierObservateurs(msg);
     }
     
     public void initActionsRestantes() {
@@ -155,7 +198,7 @@ public abstract class Aventurier {
         ileInterdite.notifyActionRestantes(actionsRestantes, this);
         
         if(this.actionsRestantes == 0) {
-        	this.ileInterdite.joueurSuivant();
+        	this.ileInterdite.lanceFinTour();
         }
         
     }
@@ -170,6 +213,10 @@ public abstract class Aventurier {
     
     public Utils.Pion getPion() {
         return this.pion;
+    }
+
+    protected IleInterdite getIleInterdite() {
+        return this.ileInterdite;
     }
 
     public void joueCarte(Carte carte) {

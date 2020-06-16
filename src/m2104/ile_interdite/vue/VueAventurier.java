@@ -230,11 +230,10 @@ public class VueAventurier {
         bouton.setBorder(new MatteBorder( 0, 0, (numBouton <= 3 ? 1 : 0), (numBouton%3!=0 ? 1 : 0), Color.GRAY));
 
         bouton.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-				JButton btnClique = (JButton) e.getSource();
+                JButton btnClique = (JButton) e.getSource();
                 btnAller.setForeground(Color.BLACK);
                 btnAssecher.setForeground(Color.BLACK);
                 btnDonner.setForeground(Color.BLACK);
@@ -248,53 +247,53 @@ public class VueAventurier {
                 
                 switch (commande) {
                     case BOUGER:
-                    	
-                    	m = new Message(Commandes.BOUGER);
-                    	m.idAventurier = idAventurier;
-                    	
+                        
+                        m = new Message(Commandes.BOUGER);
+                        m.idAventurier = idAventurier;
+                        
                         ihm.notifierObservateurs(m);
                         break;
                         
                     case ASSECHER:
-                    	m = new Message(Commandes.ASSECHER);
-                    	m.idAventurier = idAventurier;
-                    	
+                        m = new Message(Commandes.ASSECHER);
+                        m.idAventurier = idAventurier;
+                        
                         ihm.notifierObservateurs(m);
                         break;
                         
                     case DONNER:
-                    	
-                    	m = new Message(Commandes.DONNER);
-                    	m.idAventurier = idAventurier;
-                    	
+                        
+                        m = new Message(Commandes.DONNER);
+                        m.idAventurier = idAventurier;
+                        
                         ihm.notifierObservateurs(m);
                         break;
                     case RECUPERER_TRESOR:
-                    	
-                    	m = new Message(Commandes.RECUPERER_TRESOR);
-                    	m.idAventurier = idAventurier;
-                    	
+                        
+                        m = new Message(Commandes.RECUPERER_TRESOR);
+                        m.idAventurier = idAventurier;
+                        
                         ihm.notifierObservateurs(m);
                         break;
                         
                     case DEPLACER:
-                    	
-                    	m = new Message(Commandes.DEPLACER);
-                    	m.idAventurier = idAventurier;
-                    	
+                        
+                        m = new Message(Commandes.DEPLACER);
+                        m.idAventurier = idAventurier;
+                        
                         ihm.notifierObservateurs(m);
                         break;
                     case TERMINER:
-                    	
-                    	m = new Message(Commandes.TERMINER);
-                    	m.idAventurier = idAventurier;
-                    	
+                        
+                        m = new Message(Commandes.TERMINER);
+                        m.idAventurier = idAventurier;
+                        
                         ihm.notifierObservateurs(m);
                         break;
                 }
-				
-			}
-		});
+                
+            }
+        });
         
         bouton.addMouseListener(new MouseListener() {
             @Override

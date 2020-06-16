@@ -27,7 +27,7 @@ public class Explorateur extends Aventurier{
 
     @Override
     public boolean peutSeDeplacer(Tuile tuile) {
-        return false;
+        return super.peutSeDeplacer(tuile);
     }
     
 }

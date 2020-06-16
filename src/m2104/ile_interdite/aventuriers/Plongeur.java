@@ -22,6 +22,6 @@ public class Plongeur extends Aventurier{
     /*méthodes*/
     @Override
     public boolean peutSeDeplacer(Tuile tuile) {
-        return false;
+        return super.peutSeDeplacer(tuile);
     }
 }

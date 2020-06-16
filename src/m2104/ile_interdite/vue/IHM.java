@@ -50,7 +50,7 @@ public class IHM extends Observable<Message> {
     }
     
     public void creeVueJeu(Grille grille) {
-    	
+        
         vueJeu = new VueJeu(this, grille);
         Message msg = new Message(Utils.Commandes.LANCER_JEU);
         
@@ -59,11 +59,11 @@ public class IHM extends Observable<Message> {
     }
 
     public void creeVueNiveau(Integer difficulte) {
-    	this.vueNiveau = new VueNiveau(difficulte);
+        this.vueNiveau = new VueNiveau(difficulte);
     }
     
     public void surbrillerTuiles(ArrayList<Boolean> possibilites) {
-        //TODO
+        this.vueJeu.surbrillerTuiles(possibilites);
     }
 
     public void placerCurseur(int valeur) {
@@ -74,16 +74,16 @@ public class IHM extends Observable<Message> {
         //TODO
     }
 
-	public void changerJoueurCourant(Integer idAventurier) {
+    public void changerJoueurCourant(Integer idAventurier) {
 
-		for(VueAventurier vue : this.vueAventuriers.values()) {
-			vue.desactiver();
-			vue.activerBoutons(false, false, false, false, false, false, false);
-		}
-		
-		this.vueAventuriers.get(idAventurier).activer();
-		this.vueAventuriers.get(idAventurier).activerBoutons(true, true, true, true, true, true, true);
-	}
+        for(VueAventurier vue : this.vueAventuriers.values()) {
+            vue.desactiver();
+            vue.activerBoutons(false, false, false, false, false, false, false);
+        }
+        
+        this.vueAventuriers.get(idAventurier).activer();
+        this.vueAventuriers.get(idAventurier).activerBoutons(true, true, true, true, true, true, true);
+    }
 
     
 }

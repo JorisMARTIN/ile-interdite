@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.awt.Color;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -23,6 +24,7 @@ public class VueJeu {
     private final JFrame fenetre;
     private final Panneau grillePanel;
     private final Grille grille;
+    private ArrayList<JButton> boutons;
 
     public VueJeu(IHM ihm, Grille grille) {
         
@@ -40,6 +42,7 @@ public class VueJeu {
 
         //tuiles
         JButton button;
+        boutons = new ArrayList<JButton>();
         for(int i = 0; i < grille.getTuiles(true).size(); i++) {
             Tuile t = grille.getTuiles(true).get(i);
             button = new JButton();
@@ -68,6 +71,7 @@ public class VueJeu {
                 button.setVisible(false);
             }
             grillePanel.add(button);
+            boutons.add(button);
         }
 
         fenetre.add(grillePanel);
@@ -94,7 +98,14 @@ public class VueJeu {
         //TODO : faire
     }
 
-    public void surbrillerTuile(ArrayList<Boolean> possibilites) {
-        // TODO : faire
+    public void surbrillerTuiles(ArrayList<Boolean> possibilites) {
+        for (int tuile = 0; tuile < grille.getTuiles(true).size(); tuile++) {
+            System.out.println(possibilites.get(tuile));
+            if (possibilites.get(tuile)) {
+                this.boutons.get(tuile).setEnabled(true);
+                this.boutons.get(tuile).setContentAreaFilled(false);
+                this.boutons.get(tuile).setBackground(Color.RED);
+            }
+        }
     }
 }

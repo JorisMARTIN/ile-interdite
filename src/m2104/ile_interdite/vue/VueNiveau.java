@@ -30,7 +30,7 @@ public class VueNiveau {
         this.niveau = niveauInitial;
         panelsGauches = new HashMap<>();
 
-        window = new JFrame() ;
+        window = new JFrame("Niveau") ;
         window.setSize(cellWidth*2+Parameters.SWING_BORDERS_HEIGHT, Parameters.HAUTEUR_AUTRES_VUES);
         window.setLocation(30, Parameters.TOP_AUTRES_VUES);
         window.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
@@ -124,7 +124,7 @@ public class VueNiveau {
     }
 
     public void setNiveau(Integer niveau) {
-        System.out.println("VueNiveau_nopic.setNiveau(" + niveau + ")");
+        //System.out.println("VueNiveau_nopic.setNiveau(" + niveau + ")");
         panelsGauches.get(this.niveau).setBackground(getBgColor(this.niveau - 1));
         this.niveau = niveau ;
         panelsGauches.get(this.niveau).setBackground(this.niveau == 10 ? Color.RED : Color.YELLOW);

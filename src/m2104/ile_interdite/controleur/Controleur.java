@@ -43,7 +43,7 @@ public class Controleur implements Observateur<Message> {
             	break;
             	
             case BOUGER:
-                this.ileInterdite.getAventuriers().get(msg.idAventurier).seDeplacer(this.ileInterdite.getGrille().getTuile(msg.tuile));
+                this.ileInterdite.lanceDeplacement();
                 break;
                 
             case ASSECHER:
@@ -82,10 +82,6 @@ public class Controleur implements Observateur<Message> {
 
             case TUILES_POSSIBLES:
                 ihm.surbrillerTuiles(msg.possibilites);
-                break;
-
-            case DEPLACEMENT:
-                ileInterdite.lanceDeplacement();
                 break;
 
             case DEPLACER:

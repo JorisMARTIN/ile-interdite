@@ -254,12 +254,14 @@ public class VueAventurier {
                     	
                         ihm.notifierObservateurs(m);
                         break;
+                        
                     case ASSECHER:
                     	m = new Message(Commandes.ASSECHER);
                     	m.idAventurier = idAventurier;
                     	
                         ihm.notifierObservateurs(m);
                         break;
+                        
                     case DONNER:
                     	
                     	m = new Message(Commandes.DONNER);
@@ -274,6 +276,7 @@ public class VueAventurier {
                     	
                         ihm.notifierObservateurs(m);
                         break;
+                        
                     case DEPLACER:
                     	
                     	m = new Message(Commandes.DEPLACER);

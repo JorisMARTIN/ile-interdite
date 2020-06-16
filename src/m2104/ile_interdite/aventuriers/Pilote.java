@@ -5,6 +5,7 @@
  */
 package m2104.ile_interdite.aventuriers;
 
+import m2104.ile_interdite.modele.EtatTuile;
 import m2104.ile_interdite.modele.IleInterdite;
 import m2104.ile_interdite.modele.Tuile;
 import m2104.ile_interdite.util.Utils.Pion;
@@ -22,7 +23,11 @@ public class Pilote extends Aventurier{
     /*méthodes*/
     @Override
     public boolean peutSeDeplacer(Tuile tuile) {
-        return false;
+        if(tuile.getEtat() != null && tuile.getEtat() != EtatTuile.RETIREE) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
 }

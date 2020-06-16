@@ -20,7 +20,6 @@ import m2104.ile_interdite.cartes.CarteTresor;
 import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Utils;
 import m2104.ile_interdite.util.Utils.Commandes;
-import m2104.ile_interdite.util.Utils.Pion;
 import m2104.ile_interdite.util.Utils.Tresor;
 import patterns.observateur.Observable;
 import patterns.observateur.Observateur;

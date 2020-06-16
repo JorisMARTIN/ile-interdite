@@ -19,6 +19,7 @@ public class IHM extends Observable<Message> {
     private final VueInscriptionJoueurs vueInscription;
     private final HashMap<Integer, VueAventurier> vueAventuriers;
     private VueJeu vueJeu;
+    private VueNiveau vueNiveau;
 
     public IHM(Observateur<Message> observateur) {
         this.vueInscription = new VueInscriptionJoueurs(this);
@@ -49,12 +50,19 @@ public class IHM extends Observable<Message> {
     }
     
     public void creeVueJeu(Grille grille) {
+    	
         vueJeu = new VueJeu(this, grille);
         Message msg = new Message(Utils.Commandes.LANCER_JEU);
         
         notifierObservateurs(msg);
+        
     }
 
+    public void creeVueNiveau(Integer difficulte) {
+    	this.vueNiveau = new VueNiveau(difficulte);
+    	
+    }
+    
     public void surbrillerTuiles(ArrayList<Boolean> possibilites) {
         //TODO
     }
@@ -77,5 +85,6 @@ public class IHM extends Observable<Message> {
 		this.vueAventuriers.get(idAventurier).activer();
 		this.vueAventuriers.get(idAventurier).activerBoutons(true, true, true, true, true, true, true);
 	}
+
     
 }

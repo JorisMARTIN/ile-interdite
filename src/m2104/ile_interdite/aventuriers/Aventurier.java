@@ -99,7 +99,6 @@ public abstract class Aventurier {
     }
     
     protected boolean peutAssecher(Tuile tuile) {
-        //TODO
         return false;
     }
     
@@ -112,7 +111,11 @@ public abstract class Aventurier {
     }
     
     public void donnerCarteTresor(Aventurier a, Carte carte) {
-        //TODO
+        if (a.getPosition() == this.getPosition()
+            && carte.getClass().toString() != "CarteSacDeSable"
+            && carte.getClass().toString() != "CarteHelicoptere" ) {
+            a.getMain().add(carte);
+        }
     	
     	moinsActions();
     }

@@ -17,14 +17,14 @@ public abstract class Aventurier {
     private IleInterdite ileInterdite;
     private Tuile position;
     private int actionsRestantes;
-    private Utils.Pion couleur;
+    private Utils.Pion pion;
     
-    public Aventurier(IleInterdite ileInterdite, Utils.Pion couleur) {
+    public Aventurier(IleInterdite ileInterdite, Utils.Pion pion) {
         this.main = new ArrayList<>();
         this.ileInterdite = ileInterdite;
-        this.couleur = couleur;
+        this.pion = pion;
         
-        switch (this.couleur) {
+        switch (this.pion) {
             case ROUGE:
                 this.position = ileInterdite.getGrille().getTuile("LaPorteDeBronze");
                 break;
@@ -87,7 +87,9 @@ public abstract class Aventurier {
     }
     
     public void seDeplacer(Tuile tuile) {
+        this.position.removeAventurier(this);
         this.position = tuile;
+        this.position.addAventurier(this);
     }
     
     protected boolean peutAssecher(Tuile tuile) {
@@ -129,7 +131,11 @@ public abstract class Aventurier {
         return actionsRestantes;
     }
 
-	public boolean peutRecupererTresort() {
-		return false;
-	}
+    public boolean peutRecupererTresort() {
+        return false;
+    }
+    
+    public Utils.Pion getPion() {
+        return this.pion;
+    }
 }

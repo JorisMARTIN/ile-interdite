@@ -94,6 +94,8 @@ public abstract class Aventurier {
         this.position.removeAventurier(this);
         this.position = tuile;
         this.position.addAventurier(this);
+        
+        moinsActions();
     }
     
     protected boolean peutAssecher(Tuile tuile) {
@@ -105,14 +107,20 @@ public abstract class Aventurier {
         if (peutAssecher(tuile)) {
             tuile.setEtat(EtatTuile.NORMAL);
         }
+        
+        moinsActions();
     }
     
     public void donnerCarteTresor(Aventurier a, Carte carte) {
         //TODO
+    	
+    	moinsActions();
     }
     
     public void recupererTresor() {
         //TODO
+    	
+    	moinsActions();
     }
     
     public ArrayList<Carte> getMain() {
@@ -128,7 +136,12 @@ public abstract class Aventurier {
     }
 
     public void moinsActions() {
+    	
         this.actionsRestantes--;
+        
+        if(this.actionsRestantes == 0) {
+        	this.ileInterdite.joueurSuivant();
+        }
     }
 
     public int getActionsRestantes() {

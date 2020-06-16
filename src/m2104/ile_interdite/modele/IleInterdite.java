@@ -196,6 +196,22 @@ public class IleInterdite extends Observable<Message> {
     	
     }
 
+    /**
+     * 
+     * Change de joueurCourant
+     */
+    public void joueurSuivant() {
+    	
+    	this.joueurCourant = ((this.joueurCourant + 1) % this.aventuriers.size());
+    	this.aventuriers.get(joueurCourant).initActionsRestantes();
+    	
+    	Message msg = new Message(Utils.Commandes.JOUEUR_SUIVANT);
+    	msg.idAventurier = joueurCourant;
+    	
+    	notifierObservateurs(msg);
+    	
+    }
+    
     public Deck getDeckInnondation() {
         return this.deckInnondation;
     }
@@ -232,5 +248,6 @@ public class IleInterdite extends Observable<Message> {
         Tuile tuile = this.grille.getTuile(nomTuile);
         this.aventuriers.get(joueurCourant).seDeplacer(tuile);
 	}
+
 
 }

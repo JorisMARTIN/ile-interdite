@@ -56,6 +56,7 @@ public class Controleur implements Observateur<Message> {
                 break;
             
             case TERMINER:
+            	this.ileInterdite.joueurSuivant();
                 break;
             
             case RECEVOIR:

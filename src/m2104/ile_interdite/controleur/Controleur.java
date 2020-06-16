@@ -23,7 +23,7 @@ public class Controleur implements Observateur<Message> {
     @Override
     public void traiterMessage(Message msg) {
         if (Parameters.LOGS) {
-            System.out.println("Controleur.traiterMessage" + msg);
+            System.out.println("Controleur.traiterMessage" + msg.commande);
         }
 
         switch (msg.commande) {
@@ -96,6 +96,14 @@ public class Controleur implements Observateur<Message> {
 
             case AUGMENTER_CURSEUR:
                 ihm.placerCurseur(msg.valeur);
+                break;
+                
+            case JOUEUR_SUIVANT:
+                ihm.changerJoueurCourant(msg.idAventurier);
+                break;
+                
+            case LANCER_JEU:
+                ileInterdite.lancePartie();
                 break;
 
             default:

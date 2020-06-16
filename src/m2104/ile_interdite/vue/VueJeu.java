@@ -51,7 +51,6 @@ public class VueJeu {
                     icon = new ImageIcon(Parameters.PIONS + "pion" + t.getAventuriers().get(0).getPion() + ".png");
                 } else {
                     icon = new ImageIcon(Parameters.TUILES + t.getNom() + ".png");
-                    System.out.println(icon);
                 }
                 Image img = icon.getImage().getScaledInstance(button.getWidth(), button.getHeight(), Image.SCALE_SMOOTH);
                 button.setIcon(new ImageIcon(img));

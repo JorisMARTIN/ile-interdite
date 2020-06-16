@@ -106,7 +106,7 @@ public class IHM extends Observable<Message> {
         this.vueNiveau.setNiveau(valeur);
     }
 
-    public void majVueJeu(Grille grille) {
+    public void majVueJeu() {
         //TODO
     }
 
@@ -151,6 +151,12 @@ public class IHM extends Observable<Message> {
 		
 		
 		
+	}
+
+	public void finPasGagne() {
+	}
+
+	public void finGagne() {
 	}
 
     

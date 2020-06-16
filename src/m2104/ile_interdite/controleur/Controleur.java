@@ -78,7 +78,7 @@ public class Controleur implements Observateur<Message> {
 
             /*Ajout des nouveaux cas pour les nouveaux messages*/
             case MAJ_GRILLE:
-                ihm.majVueJeu(msg.grille);
+                ihm.majVueJeu();
                 break;
 
             case TUILES_POSSIBLES:
@@ -126,6 +126,14 @@ public class Controleur implements Observateur<Message> {
             	ileInterdite.getAventuriers().get(msg.idAventurier).defausseCarte(msg.idCarte);
             	
             	break;	
+
+            case FIN:
+                ihm.finPasGagne();
+                break;
+
+            case GAGNEE:
+                ihm.finGagne();
+                break;
 
             default:
                 if (Parameters.LOGS) {

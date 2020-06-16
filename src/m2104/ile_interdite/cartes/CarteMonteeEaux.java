@@ -1,6 +1,7 @@
 package m2104.ile_interdite.cartes;
 
 import m2104.ile_interdite.modele.Deck;
+import m2104.ile_interdite.modele.IleInterdite;
 
 public class CarteMonteeEaux extends Carte {
 
@@ -10,8 +11,8 @@ public class CarteMonteeEaux extends Carte {
 
 	@Override
 	public void action() {
-		// TODO Auto-generated method stub
-		
+		this.getDeck().getIleInterdite().setCurseur(this.getDeck().getIleInterdite().getCurseur() + 1);
+		this.getDeck().defausseCarte(this);
 	}
 
 }

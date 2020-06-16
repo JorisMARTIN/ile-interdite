@@ -33,7 +33,8 @@ public class Utils {
         MAJ_GRILLE("Mise à jour de la grille"),
         DEPLACEMENT("Traite le début d'un déplacement du joueur courant"),
         TUILES_POSSIBLES("Avec possibilité, met en valeur les tuiles sur lequel l'action est possible"),
-        AUGMENTER_CURSEUR("Augmenter le curseur de monté des eaux"),
+        AUGMENTER_CURSEUR("Augmenter le curseur de montée des eaux"),
+        LANCE_CURSEUR("Lance le traitement afin d'augmenter le curseur de montée des eaux"),
         LANCER_JEU("Lancement du Jeu"),
         JOUEUR_SUIVANT("Passe au joueur suivant.");
 

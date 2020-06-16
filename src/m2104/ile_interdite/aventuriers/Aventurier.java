@@ -155,4 +155,16 @@ public abstract class Aventurier {
     public Utils.Pion getPion() {
         return this.pion;
     }
+
+    public void joueCarte(Carte carte) {
+        if(carte.getClass().toString() == "CarteMonteeEaux") {
+            for (Carte c : this.getMain()) {
+                if (c.getClass().toString() == "CarteMonteeEaux") {
+                    c.action();
+                }
+            }
+        } else {
+            //TODO the case of jouerCarte(Carte carte)
+        }
+    }
 }

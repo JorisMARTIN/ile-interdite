@@ -161,6 +161,17 @@ public class IleInterdite extends Observable<Message> {
 
     public void setCurseur(int curseur) {
         this.curseur = curseur;
+
+        this.deckInnondation.remplirPioche(this.deckInnondation.getDefausse());
+
+        boolean b = this.deckTresor.isVide();
+        if(b) {
+            this.deckTresor.remplirPioche(this.deckTresor.getDefausse());
+        }
+
+        Message msg = new Message(Commandes.AUGMENTER_CURSEUR);
+        msg.valeur = this.getCurseur();
+        notifierObservateurs(msg);
     }
 
     public Grille getGrille() {
@@ -247,7 +258,11 @@ public class IleInterdite extends Observable<Message> {
 	public void deplacerAventurier(String nomTuile) {
         Tuile tuile = this.grille.getTuile(nomTuile);
         this.aventuriers.get(joueurCourant).seDeplacer(tuile);
-	}
+    }
+    
+    public void lanceAugmenterCurseur() {
+        this.aventuriers.get(joueurCourant).joueCarte(this.deckInnondation.getPremiereCarte());
+    }
 
 
 }

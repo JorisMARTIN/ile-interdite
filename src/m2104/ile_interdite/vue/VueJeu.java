@@ -57,8 +57,11 @@ public class VueJeu {
                     img = icon.getImage().getScaledInstance(fenetre.getSize().width / 10, fenetre.getSize().height / 10, Image.SCALE_SMOOTH);
                     JLabel labelPion = new JLabel(new ImageIcon(img));
                     button.add(labelPion, BorderLayout.CENTER);
+<<<<<<< HEAD
                 } else {
                     icon = new ImageIcon(Parameters.TUILES + t.getNom() + ".png");
+=======
+>>>>>>> f506329b2ed5792b5cc4e1fc3a9dc7ff4035a793
                 }
             } else {
                 button.setVisible(false);

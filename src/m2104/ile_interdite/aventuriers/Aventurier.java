@@ -7,6 +7,7 @@ import m2104.ile_interdite.modele.IleInterdite;
 import m2104.ile_interdite.modele.Tuile;
 import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Utils;
+import m2104.ile_interdite.util.Utils.Tresor;
 import m2104.ile_interdite.modele.EtatTuile;
 
 /**
@@ -19,6 +20,7 @@ public abstract class Aventurier {
     private Tuile position;
     private int actionsRestantes;
     private Utils.Pion pion;
+    private ArrayList<Tresor> tresors;
     
     public Aventurier(IleInterdite ileInterdite, Utils.Pion pion) {
         this.main = new ArrayList<>();
@@ -58,25 +60,16 @@ public abstract class Aventurier {
     }
 
     public boolean peutSeDeplacer(Tuile tuile) {
-    	
-        boolean peutSeDeplacer = true;
-        
+        if (tuile == null || tuile.isRetiree() || getPosition() == tuile)
+            return false;
+
         int indexTuileCible = this.ileInterdite.getGrille().getTuiles(true).indexOf(tuile);
-        int indexTuileActuelle = this.ileInterdite.getGrille().getTuiles(true).indexOf(this.position);
-        
-        if (indexTuileCible == indexTuileActuelle || tuile == null) {
-            peutSeDeplacer = false;
-        } else if ((indexTuileActuelle < 29 && indexTuileActuelle + 6 == indexTuileCible)
-             || (indexTuileActuelle < 35 && indexTuileActuelle + 1 == indexTuileCible)
-             || (indexTuileActuelle > 5  && indexTuileActuelle - 6 == indexTuileCible)
-             || (indexTuileActuelle > 0  && indexTuileActuelle - 1 == indexTuileCible)) {
-                if (tuile.getEtat() == EtatTuile.RETIREE) {
-                    peutSeDeplacer = false;
-                }
-        } else {
-            peutSeDeplacer = false;
-        }
-        return peutSeDeplacer;
+        int indexTuileActuelle = this.ileInterdite.getGrille().getTuiles(true).indexOf(getPosition());
+
+        return (indexTuileActuelle < 29 && indexTuileActuelle + 6 == indexTuileCible)
+                || (indexTuileActuelle < 35 && indexTuileActuelle + 1 == indexTuileCible)
+                || (indexTuileActuelle > 5 && indexTuileActuelle - 6 == indexTuileCible)
+                || (indexTuileActuelle > 0 && indexTuileActuelle - 1 == indexTuileCible);
     }
     
     public ArrayList<Boolean> isDeplacementPossibles() {
@@ -97,21 +90,29 @@ public abstract class Aventurier {
     }
     
     protected boolean peutAssecher(Tuile tuile) {
-        return false;
+        if(tuile == null || !tuile.isInnondee() || tuile.isRetiree() || getPosition() == tuile)
+            return false;
+        
+        int indexTuileCible = this.ileInterdite.getGrille().getTuiles(true).indexOf(tuile);
+        int indexTuileActuelle = this.ileInterdite.getGrille().getTuiles(true).indexOf(getPosition());
+
+        return (indexTuileActuelle < 29 && indexTuileActuelle + 6 == indexTuileCible)
+            || (indexTuileActuelle < 35 && indexTuileActuelle + 1 == indexTuileCible)
+            || (indexTuileActuelle > 5 && indexTuileActuelle - 6 == indexTuileCible)
+            || (indexTuileActuelle > 0 && indexTuileActuelle - 1 == indexTuileCible);
     }
     
-    
     public ArrayList<Boolean> isAssechementPossibles() {
-    	// TODO Auto-generated method stub
-    	return null;
+    	ArrayList<Boolean> assechementsPossibles = new ArrayList<Boolean>();
+        for (Tuile tuile : this.ileInterdite.getGrille().getTuiles(true)) {
+            assechementsPossibles.add(this.peutAssecher(tuile));
+        }
+        return assechementsPossibles;
     }
     
     public void assecher(Tuile tuile) {
-    	if (peutAssecher(tuile)) {
-    		tuile.setEtat(EtatTuile.NORMAL);
-    	}
-    	
-    	moinsActions();
+        tuile.setEtat(EtatTuile.NORMAL);
+        moinsActions();
     }
     
     public Tuile getPosition() {
@@ -194,6 +195,10 @@ public abstract class Aventurier {
         return this.pion;
     }
 
+    protected IleInterdite getIleInterdite() {
+        return this.ileInterdite;
+    }
+
     public void joueCarte(Carte carte) {
         if(carte.getClass().toString() == "CarteMonteeEaux") {
             for (Carte c : this.getMain()) {
@@ -205,5 +210,4 @@ public abstract class Aventurier {
             //TODO the case of jouerCarte(Carte carte)
         }
     }
-
 }

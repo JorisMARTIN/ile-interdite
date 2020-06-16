@@ -118,6 +118,14 @@ public class Controleur implements Observateur<Message> {
             	ihm.actualiserMainJoueur(msg.main, msg.tropCarte, msg.idAventurier);
             	break;
 
+            case FIN:
+                ihm.finPasGagne();
+                break;
+
+            case GAGNEE:
+                ihm.finGagne();
+                break;
+
             default:
                 if (Parameters.LOGS) {
                     System.err.println("Action interdite !");

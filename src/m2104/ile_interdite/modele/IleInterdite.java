@@ -283,7 +283,7 @@ public class IleInterdite extends Observable<Message> {
 		
 		notifierObservateurs(msg);
 		
-	}
+    }
 
 	public void lanceFinTour() {
 		
@@ -297,7 +297,11 @@ public class IleInterdite extends Observable<Message> {
 		// Passe au joueur suivant
 		joueurSuivant();
 	}
-
     
+    public void gagnee(boolean b) {
 
+        Message msg = new Message((b ? Commandes.FIN : Commandes.GAGNEE));
+        notifierObservateurs(msg);
+
+    }
 }

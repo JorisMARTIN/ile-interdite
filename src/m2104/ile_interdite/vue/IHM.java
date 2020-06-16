@@ -136,5 +136,11 @@ public class IHM extends Observable<Message> {
 		
 	}
 
+	public void finPasGagne() {
+	}
+
+	public void finGagne() {
+	}
+
     
 }

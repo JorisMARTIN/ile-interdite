@@ -86,12 +86,12 @@ public class Controleur implements Observateur<Message> {
                 ileInterdite.lanceDeplacement();
                 break;
 
-            case RECUP_TRESOR:
-                ileInterdite.lanceRecuperationTresor();
-                break;
-
             case DEPLACER:
                 ileInterdite.deplacerAventurier(msg.nomTuile);
+                break;
+
+            case RECUP_TRESOR:
+                ileInterdite.lanceRecuperationTresor();
                 break;
 
             case AUGMENTER_CURSEUR:

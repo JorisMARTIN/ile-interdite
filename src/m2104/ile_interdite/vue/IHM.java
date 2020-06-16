@@ -60,7 +60,6 @@ public class IHM extends Observable<Message> {
 
     public void creeVueNiveau(Integer difficulte) {
     	this.vueNiveau = new VueNiveau(difficulte);
-    	
     }
     
     public void surbrillerTuiles(ArrayList<Boolean> possibilites) {
@@ -68,7 +67,7 @@ public class IHM extends Observable<Message> {
     }
 
     public void placerCurseur(int valeur) {
-        //TODO
+        this.vueNiveau.setNiveau(valeur);
     }
 
     public void majVueJeu(Grille grille) {

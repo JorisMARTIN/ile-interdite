@@ -109,7 +109,7 @@ public class Controleur implements Observateur<Message> {
                 break;
 
             case AUGMENTER_CURSEUR:
-                ileInterdite.lanceAugmenterCurseur();
+                ihm.placerCurseur(msg.valeur);
                 break;
 
             default:

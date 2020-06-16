@@ -128,7 +128,7 @@ public class VueJeu {
             button.setContentAreaFilled(false);
             button.setFocusPainted(false);
             
-            if (t != null && t.getEtat() == EtatTuile.RETIREE) {
+            if (t != null && t.getEtat() != EtatTuile.RETIREE) {
                 Image img = null;
                 if (t.getEtat() == EtatTuile.NORMAL) {
                     img = imagesBtnNormales[i];

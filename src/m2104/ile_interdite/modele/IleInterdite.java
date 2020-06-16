@@ -130,7 +130,6 @@ public class IleInterdite extends Observable<Message> {
 
             selections.remove(selection);
             aventuriers.add(aventurier);
-            
         }
         
         return nomAventuriers;

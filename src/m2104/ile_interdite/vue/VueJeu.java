@@ -46,7 +46,13 @@ public class VueJeu {
             button.setSize(new Dimension(fenetre.getSize().width / 6, fenetre.getSize().height / 6));
             button.setBorder(BorderFactory.createEmptyBorder());
             if (t != null) {
-                ImageIcon icon = new ImageIcon(Parameters.IMAGES + "tuiles/" + t.getNom() + ".png");
+                ImageIcon icon;
+                if (!t.getAventuriers().isEmpty()) {
+                    icon = new ImageIcon(Parameters.PIONS + "pion" + t.getAventuriers().get(0).getPion() + ".png");
+                } else {
+                    icon = new ImageIcon(Parameters.TUILES + t.getNom() + ".png");
+                    System.out.println(icon);
+                }
                 Image img = icon.getImage().getScaledInstance(button.getWidth(), button.getHeight(), Image.SCALE_SMOOTH);
                 button.setIcon(new ImageIcon(img));
             } else {

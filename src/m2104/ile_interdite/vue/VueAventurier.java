@@ -57,7 +57,7 @@ public class VueAventurier {
         this.titreCliquable = false ;
         this.cartesActivees = false;
 
-        this.window = new JFrame();
+        this.window = new JFrame(nomAventurier);
         window.setSize(180, Parameters.HAUTEUR_VUE_AVENTURIER);
         this.window.setUndecorated(Parameters.UNDECORATED);
         this.window.setResizable(Parameters.RESIZABLE);

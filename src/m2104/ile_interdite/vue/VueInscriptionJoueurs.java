@@ -34,7 +34,7 @@ public class VueInscriptionJoueurs {
     public VueInscriptionJoueurs(IHM ihm) {
         this.ihm = ihm;
 
-        fenetre = new JFrame();
+        fenetre = new JFrame("L'île interdite - Inscription");
         fenetre.setLayout(new BorderLayout());
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fenetre.setSize(400, 200);

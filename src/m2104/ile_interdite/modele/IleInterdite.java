@@ -263,7 +263,6 @@ public class IleInterdite extends Observable<Message> {
             aventuriers.get(joueurCourant).recupererTresor();
         }
         Message msg = new Message(Utils.Commandes.MAJ_GRILLE);
-        msg.grille = grille;
         notifierObservateurs(msg);
     }
 

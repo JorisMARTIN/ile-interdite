@@ -30,9 +30,11 @@ import m2104.ile_interdite.util.Message;
 public class VueJeu {
     private final IHM ihm;
     private final JFrame fenetre;
-    private final Panneau grillePanel;
-    private final Grille grille;
+    private  Panneau grillePanel;
+    private  Grille grille;
     private ArrayList<JButton> boutons;
+    private Utils.Pion currentPion;
+    private JButton currentBouton;
 
     public VueJeu(IHM ihm, Grille grille) {
         
@@ -47,7 +49,51 @@ public class VueJeu {
         fenetre.setSize(800, 800);
         
         grillePanel = new Panneau(new ImageIcon(Parameters.IMAGES + "ocean.jpeg").getImage(), new GridLayout(6, 6));
+        
+        this.affGrille();
 
+        fenetre.add(grillePanel);
+        
+        fenetre.setVisible(true);
+    }
+    
+    private String getPositionPion(int nbPion, int numeroPion) {
+        String position = "";
+        if (nbPion == 1) {
+            position = BorderLayout.CENTER;
+        } else if (numeroPion == 0) {
+            position = BorderLayout.EAST;
+        } else if (numeroPion == 1) {
+            position = BorderLayout.WEST;
+        } else if (numeroPion == 2) {
+            position = BorderLayout.NORTH;
+        } else if (numeroPion == 3) {
+            position = BorderLayout.SOUTH;
+        }
+        return position;
+    }
+
+    public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion) {
+        for (int tuile = 0; tuile < grille.getTuiles(true).size(); tuile++) {
+            this.boutons.get(tuile).setEnabled(false);
+            this.boutons.get(tuile).setBorder(BorderFactory.createEmptyBorder());
+            if (possibilites.get(tuile)) {
+                this.boutons.get(tuile).setEnabled(true);
+                Border borderUp = BorderFactory.createEtchedBorder(EtchedBorder.RAISED, Color.BLACK, Color.BLACK);
+                Border borderDown = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED, Color.BLACK, Color.BLACK);
+                Border coloredBorder = BorderFactory.createLineBorder(pion.getCouleur(), 2);
+                Border compound1 = BorderFactory.createCompoundBorder(borderUp, coloredBorder);
+                Border compound2 = BorderFactory.createCompoundBorder(coloredBorder, borderDown);
+                Border bigCompound = BorderFactory.createCompoundBorder(compound1, compound2);
+                this.boutons.get(tuile).setBorder(bigCompound);
+                
+            }
+        }
+        this.currentPion = pion;
+    }
+    
+    public void affGrille() {
+        grillePanel.removeAll();
         //tuiles
         JButton button;
         boutons = new ArrayList<JButton>();
@@ -70,10 +116,13 @@ public class VueJeu {
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        
                         Message m = new Message(Utils.Commandes.DEPLACER);
                         m.nomTuile = t.getNom();
                         ihm.notifierObservateurs(m);
+                        
+                        affGrille();
+                        grillePanel.revalidate();
+                        grillePanel.repaint();
                     }
                 });
                 
@@ -90,47 +139,6 @@ public class VueJeu {
             }
             grillePanel.add(button);
             boutons.add(button);
-        }
-
-        fenetre.add(grillePanel);
-        fenetre.setVisible(true);
-    }
-    
-    private String getPositionPion(int nbPion, int numeroPion) {
-        String position = "";
-        if (nbPion == 1) {
-            position = BorderLayout.CENTER;
-        } else if (numeroPion == 0) {
-            position = BorderLayout.EAST;
-        } else if (numeroPion == 1) {
-            position = BorderLayout.WEST;
-        } else if (numeroPion == 2) {
-            position = BorderLayout.NORTH;
-        } else if (numeroPion == 3) {
-            position = BorderLayout.SOUTH;
-        }
-        return position;
-    }
-
-    public void deplacerPion(int indexTuile) {
-        //TODO : faire
-    }
-
-    public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion) {
-        for (int tuile = 0; tuile < grille.getTuiles(true).size(); tuile++) {
-            this.boutons.get(tuile).setEnabled(false);
-            this.boutons.get(tuile).setBorder(BorderFactory.createEmptyBorder());
-            if (possibilites.get(tuile)) {
-                this.boutons.get(tuile).setEnabled(true);
-                Border borderUp = BorderFactory.createEtchedBorder(EtchedBorder.RAISED, Color.BLACK, Color.BLACK);
-                Border borderDown = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED, Color.BLACK, Color.BLACK);
-                Border coloredBorder = BorderFactory.createLineBorder(pion.getCouleur(), 2);
-                Border compound1 = BorderFactory.createCompoundBorder(borderUp, coloredBorder);
-                Border compound2 = BorderFactory.createCompoundBorder(coloredBorder, borderDown);
-                Border bigCompound = BorderFactory.createCompoundBorder(compound1, compound2);
-                this.boutons.get(tuile).setBorder(bigCompound);
-                //, pion.getCouleur()
-            }
         }
     }
 }

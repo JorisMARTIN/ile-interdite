@@ -78,7 +78,7 @@ public class Controleur implements Observateur<Message> {
 
             /*Ajout des nouveaux cas pour les nouveaux messages*/
             case MAJ_GRILLE:
-                ihm.majVueJeu(msg.grille);
+                ihm.majVueJeu();
                 break;
 
             case TUILES_POSSIBLES:

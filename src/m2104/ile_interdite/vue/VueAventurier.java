@@ -83,7 +83,7 @@ public class VueAventurier {
 
         this.labelTitre = new JEditorPane();
         this.labelTitre.setContentType("text/html");
-        this.labelTitre.setText(getTitle(Color.WHITE, this.couleurInactive));
+        this.labelTitre.setText(getTitle(Color.BLACK, this.couleurInactive));
         this.labelTitre.setOpaque(false);
         this.labelTitre.setEditable(false);
         this.labelTitre.setBorder(new MatteBorder(0, 0, 2, 0, this.couleurActive));
@@ -222,7 +222,7 @@ public class VueAventurier {
         if (Parameters.LOGS) {
             System.out.println("VueAventurier.activer() de " + this.nomAventurier);
         }
-        this.labelTitre.setText(getTitle(Color.WHITE, this.couleurActive));
+        this.labelTitre.setText(getTitle(Color.BLACK, this.couleurActive));
         this.mainPanel.repaint();
     }
 

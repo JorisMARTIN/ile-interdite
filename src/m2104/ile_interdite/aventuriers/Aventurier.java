@@ -6,6 +6,7 @@ import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.modele.IleInterdite;
 import m2104.ile_interdite.modele.Tuile;
 import m2104.ile_interdite.util.Utils;
+import m2104.ile_interdite.util.Utils.Tresor;
 import m2104.ile_interdite.modele.EtatTuile;
 
 /**
@@ -13,6 +14,7 @@ import m2104.ile_interdite.modele.EtatTuile;
  * @author IUT2-Dept Info
  */
 public abstract class Aventurier {
+    private ArrayList<Tresor> tresors;
     private ArrayList<Carte> main;
     private IleInterdite ileInterdite;
     private Tuile position;
@@ -181,5 +183,9 @@ public abstract class Aventurier {
             //TODO the case of jouerCarte(Carte carte)
         }
     }
+
+	public ArrayList<Tresor> getTresors() {
+		return this.tresors;
+	}
 
 }

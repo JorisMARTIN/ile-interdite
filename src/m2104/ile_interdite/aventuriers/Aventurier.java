@@ -86,11 +86,8 @@ public abstract class Aventurier {
         return deplacementsPossibles;
     }
     
-    public Tuile getPosition() {
-        return this.position;
-    }
     
-    public void seDeplacer(Tuile tuile) {
+    public void deplacer(Tuile tuile) {
         this.position.removeAventurier(this);
         this.position = tuile;
         this.position.addAventurier(this);
@@ -102,12 +99,22 @@ public abstract class Aventurier {
         return false;
     }
     
+    
+    public ArrayList<Boolean> isAssechementPossibles() {
+    	// TODO Auto-generated method stub
+    	return null;
+    }
+    
     public void assecher(Tuile tuile) {
-        if (peutAssecher(tuile)) {
-            tuile.setEtat(EtatTuile.NORMAL);
-        }
-        
-        moinsActions();
+    	if (peutAssecher(tuile)) {
+    		tuile.setEtat(EtatTuile.NORMAL);
+    	}
+    	
+    	moinsActions();
+    }
+    
+    public Tuile getPosition() {
+    	return this.position;
     }
     
     public void donnerCarteTresor(Aventurier a, Carte carte) {
@@ -170,4 +177,5 @@ public abstract class Aventurier {
             //TODO the case of jouerCarte(Carte carte)
         }
     }
+
 }

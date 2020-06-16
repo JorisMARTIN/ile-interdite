@@ -34,7 +34,7 @@ public class VueJeu {
         
         fenetre.setLocation((int) (dim.getWidth()/2)-500, (int) (dim.getHeight()/2)-300);
         
-        fenetre.setSize(1000, 1000);
+        fenetre.setSize(800, 800);
         
         grillePanel = new Panneau(new ImageIcon(Parameters.IMAGES + "ocean.jpeg").getImage(), new GridLayout(6, 6));
 
@@ -45,16 +45,17 @@ public class VueJeu {
             button = new JButton();
             button.setLayout(new BorderLayout());
             button.setBorder(BorderFactory.createEmptyBorder());
+            button.setOpaque(false);
+            button.setContentAreaFilled(false);
             if (t != null) {
                 ImageIcon icon;
                 icon = new ImageIcon(Parameters.TUILES + t.getNom() + ".png");
-                Image img = icon.getImage().getScaledInstance(fenetre.getSize().width / 6, fenetre.getSize().height / 6, Image.SCALE_SMOOTH);
+                Image img = icon.getImage().getScaledInstance(fenetre.getSize().width / 6 - 5, fenetre.getSize().height / 6 - 5, Image.SCALE_SMOOTH);
                 button.setIcon(new ImageIcon(img));
                 JLabel labelPion;
                 
                 int nbPion = t.getAventuriers().size();
                 for (int pion = 0; pion < nbPion; pion++) {
-                    System.out.println(pion);
                     icon = new ImageIcon(Parameters.PIONS + "pion" + t.getAventuriers().get(pion).getPion() + ".png");
                     img = icon.getImage().getScaledInstance(fenetre.getSize().width / (8 + 2 * nbPion), fenetre.getSize().height / (8 + 2 * nbPion), Image.SCALE_SMOOTH);
                     labelPion = new JLabel(new ImageIcon(img));

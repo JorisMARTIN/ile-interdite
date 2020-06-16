@@ -30,6 +30,7 @@ public class Controleur implements Observateur<Message> {
         
             case INITIALISER:
                 String[] nomAventuriers = this.ileInterdite.inscrireJoueurs(msg.nbJoueurs);
+                this.ihm.creeVueNiveau(msg.difficulte);
                 this.ileInterdite.setCurseur(msg.difficulte);
                 this.ihm.creerVuesAventuriers(nomAventuriers);
                 this.ileInterdite.initGrille();

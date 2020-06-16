@@ -58,6 +58,11 @@ public class IHM extends Observable<Message> {
         
     }
 
+    public void creeVueNiveau(Integer difficulte) {
+    	this.vueNiveau = new VueNiveau(difficulte);
+    	
+    }
+    
     public void surbrillerTuiles(ArrayList<Boolean> possibilites) {
         //TODO
     }
@@ -80,5 +85,6 @@ public class IHM extends Observable<Message> {
 		this.vueAventuriers.get(idAventurier).activer();
 		this.vueAventuriers.get(idAventurier).activerBoutons(true, true, true, true, true, true, true);
 	}
+
     
 }

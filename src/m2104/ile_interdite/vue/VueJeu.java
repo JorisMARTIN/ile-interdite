@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 
 import m2104.ile_interdite.modele.Grille;
 import m2104.ile_interdite.modele.Tuile;
+import m2104.ile_interdite.modele.EtatTuile;
 import m2104.ile_interdite.aventuriers.Aventurier;
 import m2104.ile_interdite.util.Panneau;
 import m2104.ile_interdite.util.Parameters;
@@ -116,8 +117,13 @@ public class VueJeu {
             button.setContentAreaFilled(false);
             button.setFocusPainted(false);
             
-            if (t != null) {
-                Image img = imagesBtn[i];
+            if (t != null && t.getEtat() == EtatTuile.RETIREE) {
+                Image img = null;
+                if (t.getEtat() == EtatTuile.NORMAL) {
+                    img = imagesBtnNormales[i];
+                } else {
+                    img = imagesBtnInondees[i];
+                }
                 button.setIcon(new ImageIcon(img));
                 button.setDisabledIcon(new ImageIcon(img));
                 button.setEnabled(false);

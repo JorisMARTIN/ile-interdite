@@ -7,6 +7,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
@@ -226,10 +228,12 @@ public class VueAventurier {
         bouton.setText(libelle);
         bouton.setBorder(new MatteBorder( 0, 0, (numBouton <= 3 ? 1 : 0), (numBouton%3!=0 ? 1 : 0), Color.GRAY));
 
-        bouton.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                JButton btnClique = (JButton) e.getSource();
+        bouton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				JButton btnClique = (JButton) e.getSource();
                 btnAller.setForeground(Color.BLACK);
                 btnAssecher.setForeground(Color.BLACK);
                 btnDonner.setForeground(Color.BLACK);
@@ -284,6 +288,14 @@ public class VueAventurier {
                         ihm.notifierObservateurs(m);
                         break;
                 }
+				
+			}
+		});
+        
+        bouton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                
             }
 
             @Override
@@ -306,6 +318,9 @@ public class VueAventurier {
                 btn.setFont(btn.getFont().deriveFont(Font.PLAIN));
             }
         });
+        
+        
+        
         return bouton;
     }
 

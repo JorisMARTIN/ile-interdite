@@ -33,11 +33,23 @@ public class Deck {
         return pioche.get(pioche.size() - 1);
     }
     
-    // Melange la collection de carte placer en paramètre
+    // Melange la collection de carte placer en paramï¿½tre
     private ArrayList<Carte> melanger(ArrayList<Carte> cartes){
     	
     	Collections.shuffle(cartes);
     	
     	return cartes;
+    }
+
+    public IleInterdite getIleInterdite() {
+        return this.ileInterdite;
+    }
+
+    public ArrayList<Carte> getPioche() {
+        return this.pioche;
+    }
+
+    public ArrayList<Carte> getDefausse() {
+        return this.defausse;
     }
 }

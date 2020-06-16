@@ -94,8 +94,12 @@ public class Controleur implements Observateur<Message> {
                 ileInterdite.lanceRecuperationTresor();
                 break;
 
-            case AUGMENTER_CURSEUR:
+            case LANCE_CURSEUR:
                 ihm.placerCurseur(msg.valeur);
+                break;
+
+            case AUGMENTER_CURSEUR:
+                ileInterdite.lanceAugmenterCurseur();
                 break;
 
             default:

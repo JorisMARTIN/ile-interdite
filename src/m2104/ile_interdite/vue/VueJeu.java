@@ -49,15 +49,16 @@ public class VueJeu {
                 ImageIcon icon;
                 icon = new ImageIcon(Parameters.TUILES + t.getNom() + ".png");
                 Image img = icon.getImage().getScaledInstance(fenetre.getSize().width / 6, fenetre.getSize().height / 6, Image.SCALE_SMOOTH);
-                //JLabel labelTuile = new JLabel(new ImageIcon(img));
-                //button.add(labelTuile);
                 button.setIcon(new ImageIcon(img));
-                if (!t.getAventuriers().isEmpty()) {
-                    icon = new ImageIcon(Parameters.PIONS + "pion" + t.getAventuriers().get(0).getPion() + ".png");
-                    img = icon.getImage().getScaledInstance(fenetre.getSize().width / 10, fenetre.getSize().height / 10, Image.SCALE_SMOOTH);
-                    JLabel labelPion = new JLabel(new ImageIcon(img));
-                    button.add(labelPion, BorderLayout.CENTER);
-                }
+                JLabel labelPion;
+                int nbPion = t.getAventuriers().size();
+                for (int pion = 0; pion < nbPion; pion++) {
+                    System.out.println(pion);
+                    icon = new ImageIcon(Parameters.PIONS + "pion" + t.getAventuriers().get(pion).getPion() + ".png");
+                    img = icon.getImage().getScaledInstance(fenetre.getSize().width / (8 + 2 * nbPion), fenetre.getSize().height / (8 + 2 * nbPion), Image.SCALE_SMOOTH);
+                    labelPion = new JLabel(new ImageIcon(img));
+                    button.add(labelPion, getPositionPion(t.getAventuriers().size(), pion));
+                } 
             } else {
                 button.setVisible(false);
             }
@@ -66,6 +67,22 @@ public class VueJeu {
 
         fenetre.add(grillePanel);
         fenetre.setVisible(true);
+    }
+    
+    private String getPositionPion(int nbPion, int numeroPion) {
+        String position = "";
+        if (nbPion == 1) {
+            position = BorderLayout.CENTER;
+        } else if (numeroPion == 0) {
+            position = BorderLayout.EAST;
+        } else if (numeroPion == 1) {
+            position = BorderLayout.WEST;
+        } else if (numeroPion == 2) {
+            position = BorderLayout.NORTH;
+        } else if (numeroPion == 3) {
+            position = BorderLayout.SOUTH;
+        }
+        return position;
     }
 
     public void deplacerPion(Tuile tuileVoulue) {

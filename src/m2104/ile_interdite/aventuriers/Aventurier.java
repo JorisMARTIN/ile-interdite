@@ -60,16 +60,17 @@ public abstract class Aventurier {
     }
 
     public boolean peutSeDeplacer(Tuile tuile) {
-        if (tuile == null || tuile.isRetiree() || getPosition() == tuile)
+        if (tuile == null || tuile.isRetiree() || getPosition() == tuile) {
             return false;
+        }
 
         int indexTuileCible = this.ileInterdite.getGrille().getTuiles(true).indexOf(tuile);
         int indexTuileActuelle = this.ileInterdite.getGrille().getTuiles(true).indexOf(getPosition());
 
         return (indexTuileActuelle < 29 && indexTuileActuelle + 6 == indexTuileCible)
-                || (indexTuileActuelle < 35 && indexTuileActuelle + 1 == indexTuileCible)
-                || (indexTuileActuelle > 5 && indexTuileActuelle - 6 == indexTuileCible)
-                || (indexTuileActuelle > 0 && indexTuileActuelle - 1 == indexTuileCible);
+            || (indexTuileActuelle < 35 && indexTuileActuelle + 1 == indexTuileCible && (indexTuileActuelle) % 6 != 5)
+            || (indexTuileActuelle > 5 && indexTuileActuelle - 6 == indexTuileCible)
+            || (indexTuileActuelle > 0 && indexTuileActuelle - 1 == indexTuileCible && (indexTuileActuelle) % 6 != 0);
     }
     
     public ArrayList<Boolean> isDeplacementPossibles() {
@@ -90,15 +91,16 @@ public abstract class Aventurier {
     }
     
     protected boolean peutAssecher(Tuile tuile) {
-        if(tuile == null || !tuile.isInnondee() || tuile.isRetiree() || getPosition() == tuile)
+        if(tuile == null || !tuile.isInnondee() || tuile.isRetiree() || getPosition() == tuile) {
             return false;
+        }
         
         int indexTuileCible = this.ileInterdite.getGrille().getTuiles(true).indexOf(tuile);
         int indexTuileActuelle = this.ileInterdite.getGrille().getTuiles(true).indexOf(getPosition());
 
         return (indexTuileActuelle < 29 && indexTuileActuelle + 6 == indexTuileCible)
-            || (indexTuileActuelle < 35 && indexTuileActuelle + 1 == indexTuileCible)
-            || (indexTuileActuelle > 5 && indexTuileActuelle - 6 == indexTuileCible)
+            || (indexTuileActuelle < 35 && indexTuileActuelle + 1 == indexTuileCible && (indexTuileActuelle) % 6 != 5)
+            || (indexTuileActuelle > 5 && indexTuileActuelle - 6 == indexTuileCible && (indexTuileActuelle) % 6 != 0)
             || (indexTuileActuelle > 0 && indexTuileActuelle - 1 == indexTuileCible);
     }
     

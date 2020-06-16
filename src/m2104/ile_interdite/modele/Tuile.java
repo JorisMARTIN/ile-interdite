@@ -53,4 +53,12 @@ public class Tuile {
     public ArrayList<Aventurier> getAventuriers() {
         return this.aventuriers;
     }
+    
+    public void addAventurier(Aventurier a) {
+    	this.aventuriers.add(a);
+    }
+    
+    public void removeAventurier(Aventurier a) {
+    	this.aventuriers.remove(a);
+    }
 }

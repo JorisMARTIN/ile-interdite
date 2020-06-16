@@ -29,7 +29,7 @@ import patterns.observateur.Observateur;
  * @author Raphaël Bleuse <raphael.bleuse@iut2.univ-grenoble-alpes.fr>
  */
 public class IleInterdite extends Observable<Message> {
-	private int curseur;
+    private int curseur;
     private Grille grille;
     private ArrayList<Aventurier> aventuriers;
     private Deck deckTresor;
@@ -52,27 +52,27 @@ public class IleInterdite extends Observable<Message> {
         Tresor[] tresors = {Tresor.CALICE, Tresor.CRISTAL, Tresor.PIERRE, Tresor.ZEPHYR};
         
         for(int i=0; i<4; i++){
-        	for(int j=0; j<5; j++) {
-        		cartesAjoutees.add(new CarteTresor(this.deckTresor, tresors[i]));
-        	}
+            for(int j=0; j<5; j++) {
+                cartesAjoutees.add(new CarteTresor(this.deckTresor, tresors[i]));
+            }
         }
         
         // 3 cartes montee des eaux / 3 cartes helicoptere
         for(int i=0; i<3; i++) {
-        	cartesAjoutees.add(new CarteMonteeEaux(this.deckTresor));
-        	cartesAjoutees.add(new CarteHelicoptere(this.deckTresor));
+            cartesAjoutees.add(new CarteMonteeEaux(this.deckTresor));
+            cartesAjoutees.add(new CarteHelicoptere(this.deckTresor));
         }
         
         // 2 cartes sac de sable
         cartesAjoutees.add(new CarteSacDeSable(this.deckTresor));
         cartesAjoutees.add(new CarteSacDeSable(this.deckTresor));
         
-	deckTresor.remplirPioche(cartesAjoutees);
+        deckTresor.remplirPioche(cartesAjoutees);
         
-	cartesAjoutees.clear();
+        cartesAjoutees.clear();
         
         for(int i=0; i<24; i++) {
-        	cartesAjoutees.add(new CarteInnondation(this.deckInnondation, grille.getTuiles(false).get(i)));
+            cartesAjoutees.add(new CarteInnondation(this.deckInnondation, grille.getTuiles(false).get(i)));
         }
         
         this.deckInnondation.remplirPioche(cartesAjoutees);
@@ -133,21 +133,21 @@ public class IleInterdite extends Observable<Message> {
     }
 
     public void initGrille() {
-    	
-    	Carte carte;
-    	
-    	for(int i=0; i<6; i++) {
-    		
-    	    carte = deckInnondation.getPremiereCarte();
-    	    carte.action();
-    	    deckInnondation.defausseCarte(carte);
-    		
-    	}
-    	
-    	Message m = new Message(Commandes.INITIALISER_GRILLE);
-    	m.grille = grille;
-    	notifierObservateurs(m);
-    	
+        
+        Carte carte;
+        
+        for(int i=0; i<6; i++) {
+            
+            carte = deckInnondation.getPremiereCarte();
+            carte.action();
+            deckInnondation.defausseCarte(carte);
+            
+        }
+        
+        Message m = new Message(Commandes.INITIALISER_GRILLE);
+        m.grille = grille;
+        notifierObservateurs(m);
+        
     }
     
     public int getCurseur() {
@@ -192,23 +192,23 @@ public class IleInterdite extends Observable<Message> {
      * 
      */
     public void lancePartie() {
-    	
-    	for(Aventurier a : this.aventuriers) {
-    		a.initCarte();
-    	}
-    	
-    	this.joueurCourant = 0;    	
-    	this.aventuriers.get(joueurCourant).initActionsRestantes();
-    	
-    	Message msg = new Message(Utils.Commandes.JOUEUR_SUIVANT);
-    	msg.idAventurier = joueurCourant;
-    	msg.actionRestantes = this.aventuriers.get(joueurCourant).getActionsRestantes();
-    	
-    	notifierObservateurs(msg);
+        
+        for(Aventurier a : this.aventuriers) {
+            a.initCarte();
+        }
+        
+        this.joueurCourant = 0;     
+        this.aventuriers.get(joueurCourant).initActionsRestantes();
+        
+        Message msg = new Message(Utils.Commandes.JOUEUR_SUIVANT);
+        msg.idAventurier = joueurCourant;
+        msg.actionRestantes = this.aventuriers.get(joueurCourant).getActionsRestantes();
+        
+        notifierObservateurs(msg);
     }
     
     public int getJoueurCourant() {
-    	return this.joueurCourant;
+        return this.joueurCourant;
     }
 
     /**
@@ -216,16 +216,16 @@ public class IleInterdite extends Observable<Message> {
      * Change de joueurCourant
      */
     public void joueurSuivant() {
-    	
-    	this.joueurCourant = ((this.joueurCourant + 1) % this.aventuriers.size());
-    	this.aventuriers.get(joueurCourant).initActionsRestantes();
-    	
-    	Message msg = new Message(Utils.Commandes.JOUEUR_SUIVANT);
-    	msg.idAventurier = joueurCourant;
-    	msg.actionRestantes = this.aventuriers.get(joueurCourant).getActionsRestantes();
-    	
-    	notifierObservateurs(msg);
-    	
+        
+        this.joueurCourant = ((this.joueurCourant + 1) % this.aventuriers.size());
+        this.aventuriers.get(joueurCourant).initActionsRestantes();
+        
+        Message msg = new Message(Utils.Commandes.JOUEUR_SUIVANT);
+        msg.idAventurier = joueurCourant;
+        msg.actionRestantes = this.aventuriers.get(joueurCourant).getActionsRestantes();
+        
+        notifierObservateurs(msg);
+        
     }
     
     public Deck getDeckInnondation() {
@@ -233,7 +233,16 @@ public class IleInterdite extends Observable<Message> {
     }
     
     public void lanceInnondation() {
-        int nb = getCurseur();
+        int nb = 0;
+        if (this.curseur < 3) {
+            nb = 1;
+        } else if (this.curseur < 6) {
+            nb = 2;
+        } else if (this.curseur < 8) {
+            nb = 3;
+        } else {
+            nb = 4;
+        }
         for (int i = 0; i < nb; i++) {
             Carte carte = this.deckInnondation.getPremiereCarte();
             carte.action();
@@ -253,8 +262,8 @@ public class IleInterdite extends Observable<Message> {
     }
     
     public void lanceAssechement() {
-    	
-    	ArrayList<Boolean> possibilite = aventuriers.get(this.joueurCourant).isAssechementPossibles();
+        
+        ArrayList<Boolean> possibilite = aventuriers.get(this.joueurCourant).isAssechementPossibles();
         Message msg = new Message(Utils.Commandes.TUILES_POSSIBLES);
         msg.possibilites = possibilite;
         notifierObservateurs(msg);
@@ -269,36 +278,36 @@ public class IleInterdite extends Observable<Message> {
         notifierObservateurs(msg);
     }
 
-	public void deplacerAventurier(String nomTuile) {
+    public void deplacerAventurier(String nomTuile) {
         Tuile tuile = this.grille.getTuile(nomTuile);
         this.aventuriers.get(joueurCourant).deplacer(tuile);
     }
 
-	
-	public void notifyActionRestantes(int actionsRestantes, Aventurier aventurier) {
-		
-		int idAventurier = this.aventuriers.indexOf(aventurier);
-		
-		Message msg = new Message(Utils.Commandes.ACTION_RESTANTES);
-		msg.idAventurier = idAventurier;
-		msg.actionRestantes = actionsRestantes;
-		
-		notifierObservateurs(msg);
-		
+    
+    public void notifyActionRestantes(int actionsRestantes, Aventurier aventurier) {
+        
+        int idAventurier = this.aventuriers.indexOf(aventurier);
+        
+        Message msg = new Message(Utils.Commandes.ACTION_RESTANTES);
+        msg.idAventurier = idAventurier;
+        msg.actionRestantes = actionsRestantes;
+        
+        notifierObservateurs(msg);
+        
     }
 
-	public void lanceFinTour() {
-		
-		// Le joueur pioche 2 cartes
-		this.aventuriers.get(joueurCourant).piocherCartes(2);
-		
-		// Lance la phase d'innondation
-		lanceInnondation();
-		
-		// Passe au joueur suivant
-		joueurSuivant();
-	}
-	
+    public void lanceFinTour() {
+        
+        // Le joueur pioche 2 cartes
+        this.aventuriers.get(joueurCourant).piocherCartes(2);
+        
+        // Lance la phase d'innondation
+        lanceInnondation();
+        
+        // Passe au joueur suivant
+        joueurSuivant();
+    }
+    
     public void gagnee(boolean b) {
 
         Message msg = new Message((b ? Commandes.FIN : Commandes.GAGNEE));

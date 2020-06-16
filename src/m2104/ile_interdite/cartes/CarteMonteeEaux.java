@@ -9,16 +9,16 @@ public class CarteMonteeEaux extends Carte {
         super(deck);
     }
 
-	@Override
-	public void action() {
-		
-		this.getDeck().getIleInterdite().setCurseur(this.getDeck().getIleInterdite().getCurseur() + 1);
-    	this.getDeck().defausseCarte(this);    	
-	}
-	
-	@Override
-	public String toString() {
-		return "ME";
-	}
+    @Override
+    public void action() {
+        
+        this.getDeck().getIleInterdite().setCurseur(this.getDeck().getIleInterdite().getCurseur() + 1);
+        this.getDeck().defausseCarte(this);     
+    }
+    
+    @Override
+    public String toString() {
+        return "ME";
+    }
 
 }

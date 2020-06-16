@@ -15,10 +15,10 @@ public class CarteInnondation extends Carte {
 
 	@Override
 	public void action() {
-		if(this.tuile.getEtat() == EtatTuile.INONDEE) {
-			this.tuile.setEtat(EtatTuile.RETIREE);
-		}else {
+		if(this.tuile.getEtat() == EtatTuile.NORMAL) {
 			this.tuile.setEtat(EtatTuile.INONDEE);
+		} else if (this.tuile.getEtat() == EtatTuile.INONDEE) {
+			this.tuile.setEtat(EtatTuile.RETIREE);
 		}
 	}
 	

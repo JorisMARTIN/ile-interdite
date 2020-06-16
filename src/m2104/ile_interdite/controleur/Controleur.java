@@ -37,9 +37,7 @@ public class Controleur implements Observateur<Message> {
                 break;
                 
             case INITIALISER_GRILLE:
-            	
             	this.ihm.creeVueJeu(msg.grille);
-            	
             	break;
             	
             case BOUGER:
@@ -58,7 +56,7 @@ public class Controleur implements Observateur<Message> {
                 break;
             
             case TERMINER:
-            	this.ileInterdite.joueurSuivant();
+            	this.ileInterdite.lanceFinTour();
                 break;
             
             case RECEVOIR:
@@ -73,66 +71,67 @@ public class Controleur implements Observateur<Message> {
             /*case DEPLACER:
                 break;*/
             
-            case VOIR_DEFAUSSE:
+            case ZERO_ACTIONS:
+        	this.ihm.zeroActions(msg.idAventurier);
                 break;
 
             /*Ajout des nouveaux cas pour les nouveaux messages*/
             case MAJ_GRILLE:
-                ihm.majVueJeu();
+                this.ihm.majVueJeu();
                 break;
 
             case TUILES_POSSIBLES:
-                ihm.surbrillerTuiles(msg.possibilites, msg.pion);
+                this.ihm.surbrillerTuiles(msg.possibilites, msg.pion);
                 break;
 
             case DEPLACER:
-                ileInterdite.deplacerAventurier(msg.nomTuile);
+                this.ileInterdite.deplacerAventurier(msg.nomTuile);
                 break;
 
             case RECUP_TRESOR:
-                ileInterdite.lanceRecuperationTresor();
+                this.ileInterdite.lanceRecuperationTresor();
                 break;
 
             case LANCE_CURSEUR:
-                ihm.placerCurseur(msg.valeur);
+                this.ihm.placerCurseur(msg.valeur);
                 break;
                 
             case JOUEUR_SUIVANT:
-                ihm.changerJoueurCourant(msg.idAventurier);
-                ihm.setActionRestantes(msg.idAventurier, msg.actionRestantes);
+                this.ihm.changerJoueurCourant(msg.idAventurier);
+                this.ihm.setActionRestantes(msg.idAventurier, msg.actionRestantes);
+            	this.ihm.majVueJeu();
                 break;
                 
             case LANCER_JEU:
-                ileInterdite.lancePartie();
+                this.ileInterdite.lancePartie();
                 break;
 
             case AUGMENTER_CURSEUR:
-                ihm.placerCurseur(msg.valeur);
+                this.ihm.placerCurseur(msg.valeur);
                 break;
                 
             case ACTION_RESTANTES:
-                ihm.setActionRestantes(msg.idAventurier, msg.actionRestantes);
+                this.ihm.setActionRestantes(msg.idAventurier, msg.actionRestantes);
                 break;
                 
             case PIOCHE_CARTE:
-            	ihm.actualiserMainJoueur(msg.main, msg.tropCarte, msg.idAventurier);
+            	this.ihm.actualiserMainJoueur(msg.main, msg.tropCarte, msg.idAventurier);
             	break;
             	
             case ACTUALISER_MAIN:
-            	ihm.actualiserMainJoueur(msg.main, false, msg.idAventurier);
+            	this.ihm.actualiserMainJoueur(msg.main, false, msg.idAventurier);
             	break;
             	
             case DEFAUSSE_CARTE:
-            	ileInterdite.getAventuriers().get(msg.idAventurier).defausseCarte(msg.idCarte);
-            	
+            	this.ileInterdite.getAventuriers().get(msg.idAventurier).defausseCarte(msg.idCarte);
             	break;	
 
             case FIN:
-                ihm.finPasGagne();
+                this.ihm.finPasGagne();
                 break;
 
             case GAGNEE:
-                ihm.finGagne();
+                this.ihm.finGagne();
                 break;
 
             default:

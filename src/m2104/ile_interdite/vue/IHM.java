@@ -31,8 +31,43 @@ public class IHM extends Observable<Message> {
         // - le pouvoir est disponible dans le modèle
         String[] nomsJoueurs = this.vueInscription.getNomJoueurs();
         assert nomsJoueurs.length == nomAventuriers.length;
+        
+        Color active;
+        
         for (int id = 0; id < nomAventuriers.length; ++id) {
-            this.vueAventuriers.put(
+            
+        	switch (nomAventuriers[id]) {
+        	
+			case "Explorateur":
+					active = Utils.Pion.VERT.getCouleur();
+				break;
+				
+			case "Pilote" :
+					active = Utils.Pion.BLEU.getCouleur();
+				break;
+				
+			case "Navigateur" :
+					active = Utils.Pion.JAUNE.getCouleur();
+				break;
+				
+			case "Ingénieur" :
+					active = Utils.Pion.ROUGE.getCouleur();
+				break;
+			
+			case "Messager" :
+					active = Utils.Pion.ORANGE.getCouleur();
+				break;
+				
+			case "Plongeur" :
+					active = Utils.Pion.VIOLET.getCouleur();
+				break;
+				
+			default:
+				active = null;
+				break;
+			}
+        	
+        	this.vueAventuriers.put(
                     id,
                     new VueAventurier(
                             this,
@@ -42,7 +77,7 @@ public class IHM extends Observable<Message> {
                             "YYY",  // TODO: à remplacer par le bon pouvoir
                             id,
                             nomAventuriers.length,
-                            Color.orange,
+                            active,
                             Color.gray
                     )
             );

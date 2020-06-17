@@ -12,7 +12,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -333,6 +332,9 @@ public class VueAventurier {
                         m.idAventurier = idAventurier;
                         
                         ihm.notifierObservateurs(m);
+                        break;
+                        
+                    default:
                         break;
                 }
                 

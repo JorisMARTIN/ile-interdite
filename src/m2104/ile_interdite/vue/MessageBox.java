@@ -187,5 +187,7 @@ public class MessageBox {
         System.out.println("Afficher le Cristal, appuyer sur Entrée");
         suite = scanner.nextLine();
         messageBox.setCristalVisible();
+
+        scanner.close();
     }
 }

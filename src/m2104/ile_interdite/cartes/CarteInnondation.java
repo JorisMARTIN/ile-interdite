@@ -3,9 +3,6 @@ package m2104.ile_interdite.cartes;
 import m2104.ile_interdite.modele.Deck;
 import m2104.ile_interdite.modele.EtatTuile;
 import m2104.ile_interdite.modele.Tuile;
-
-import java.util.ArrayList;
-
 public class CarteInnondation extends Carte {
     
     private Tuile tuile;

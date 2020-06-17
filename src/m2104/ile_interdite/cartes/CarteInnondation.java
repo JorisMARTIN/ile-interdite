@@ -4,8 +4,10 @@ import m2104.ile_interdite.modele.Deck;
 import m2104.ile_interdite.modele.EtatTuile;
 import m2104.ile_interdite.modele.Tuile;
 
+import java.util.ArrayList;
+
 public class CarteInnondation extends Carte {
-	
+    
     private Tuile tuile;
 
     public CarteInnondation(Deck deck, Tuile tuile) {
@@ -13,19 +15,21 @@ public class CarteInnondation extends Carte {
         this.tuile = tuile;
     }
 
-	@Override
-	public void action() {
-		if(this.tuile.getEtat() == EtatTuile.NORMAL) {
-			this.tuile.setEtat(EtatTuile.INONDEE);
-		} else if (this.tuile.getEtat() == EtatTuile.INONDEE) {
-			this.tuile.setEtat(EtatTuile.RETIREE);
-		}
-	}
-	
-	@Override
-	public String toString() {
-		return "I";
-	}
+    @Override
+    public void action() {
+        if(this.tuile.getEtat() == EtatTuile.NORMAL) {
+            this.tuile.setEtat(EtatTuile.INONDEE);
+            this.getDeck().defausseCarte(this);
+        } else if (this.tuile.getEtat() == EtatTuile.INONDEE) {
+            this.tuile.setEtat(EtatTuile.RETIREE);
+            this.getDeck().getPioche().remove(this);
+        }
+    }
+    
+    @Override
+    public String toString() {
+        return "I";
+    }
 
     
 }

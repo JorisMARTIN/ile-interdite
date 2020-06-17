@@ -140,7 +140,6 @@ public class IleInterdite extends Observable<Message> {
             
             carte = deckInnondation.getPremiereCarte();
             carte.action();
-            deckInnondation.defausseCarte(carte);
             
         }
         
@@ -156,8 +155,6 @@ public class IleInterdite extends Observable<Message> {
 
     public void setCurseur(int curseur) {
         this.curseur = curseur;
-
-        this.deckInnondation.remplirPioche(this.deckInnondation.getDefausse());
 
         if(this.deckTresor.isVide()) {
             this.deckTresor.remplirPioche(this.deckTresor.getDefausse());
@@ -247,7 +244,6 @@ public class IleInterdite extends Observable<Message> {
         for (int i = 0; i < nb; i++) {
             Carte carte = this.deckInnondation.getPremiereCarte();
             carte.action();
-            deckInnondation.defausseCarte(carte);
         }
 
         Message msg = new Message(Utils.Commandes.MAJ_GRILLE);
@@ -299,15 +295,31 @@ public class IleInterdite extends Observable<Message> {
     }
 
     public void lanceFinTour() {
+    	
+    	Aventurier aventurier = this.aventuriers.get(joueurCourant);
         
+    	if(!aventurier.isaPioche()) {
         // Le joueur pioche 2 cartes
-        this.aventuriers.get(joueurCourant).piocherCartes(2);
+    		aventurier.piocherCartes(2);
+    		aventurier.setaPioche(true);
+    	}
+        
+        if(aventurier.getMain().size() > 5) {
+        	Message m = new Message(Commandes.DEMANDE_DEFFAUSE);
+        	m.idAventurier = joueurCourant;
+        	notifierObservateurs(m);
+        	
+        } else {
+        	
         
         // Lance la phase d'innondation
         lanceInnondation();
         
         // Passe au joueur suivant
         joueurSuivant();
+        
+        }
+
     }
     
     public void gagnee(boolean b) {

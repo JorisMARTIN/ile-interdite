@@ -43,7 +43,8 @@ public class Utils {
         ACTUALISER_MAIN("Actualisation de la main du joueur"),
         DEFAUSSE_CARTE("Le joueur défausse une carte"),
         JOUE_CARTE("Le Joueur joue une carte"),
-        PIOCHE_CARTE("Le joueur pioche une carte");
+        PIOCHE_CARTE("Le joueur pioche une carte"),
+        DEMANDE_DEFFAUSE("Réclame au joueur de deffausser une carte");
 
         private final String libelle ;
 

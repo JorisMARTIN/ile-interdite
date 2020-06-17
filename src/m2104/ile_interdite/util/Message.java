@@ -31,6 +31,7 @@ public class Message {
 	public int tropCarte;
 	public ArrayList<Carte> main;
 	public Pion pion;
+	public int action;
     
     public Message(Utils.Commandes cmd) {
         this.commande = cmd;

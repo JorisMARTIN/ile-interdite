@@ -155,6 +155,13 @@ public class VueJeu {
                 }
                 button.setIcon(new ImageIcon(img));
                 button.setDisabledIcon(new ImageIcon(img));
+                
+                /*
+                 * 
+                 * Changer le listener quand on demande un assechement ou une autre action
+                 * 
+                 */
+                
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {

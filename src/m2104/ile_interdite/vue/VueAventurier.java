@@ -431,8 +431,9 @@ public class VueAventurier {
             if(carte instanceof CarteTresor) {
                 button.setEnabled(false);
              }
-            	
+            
                 activerBoutons(true, true, true, true, true, true, true);
+                
                 button.addActionListener(new ActionListener() {
                     
                     
@@ -531,6 +532,12 @@ public class VueAventurier {
     		
     		 activerBoutons(false, false, false, false, false, false, false);
              b.setEnabled(true);
+             
+             for(ActionListener action : b.getActionListeners()) {
+            	 
+            	 b.removeActionListener(action);
+             }
+             
              b.addActionListener(new ActionListener() {
                  
                  @Override

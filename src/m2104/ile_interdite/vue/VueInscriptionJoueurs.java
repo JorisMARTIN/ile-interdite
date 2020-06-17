@@ -40,6 +40,7 @@ public class VueInscriptionJoueurs {
 
         fenetre = new JFrame("L'île interdite - Inscription");
         fenetre.setLayout(new BorderLayout());
+        fenetre.setResizable(false);
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fenetre.setSize(400, 200);
 

@@ -100,8 +100,16 @@ public class IHM extends Observable<Message> {
         this.vueNiveau = new VueNiveau(difficulte);
     }
     
-    public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion) {
+    /**
+     * 
+     * @param possibilites : Liste de boolean selon les possibilitées.
+     * @param pion : Le pions voulant effectuer l'action
+     * @param action : 0 = Assechement, 1 = Deplacement
+     */
+    public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion, int action) {
         this.vueJeu.surbrillerTuiles(possibilites, pion);
+        
+        //TODO Prendre en compte le paramètre action
     }
 
     public void placerCurseur(int valeur) {
@@ -119,7 +127,7 @@ public class IHM extends Observable<Message> {
             
             vue.resetActionRestantes();
             vue.desactiver();
-            this.bloquerActions(idAventurier);
+            bloquerActions(vue.getIdAventurier());
             
             if(vue.getMainJoueur().size() > 5) {
                 vue.setEtatBoutonsCartes(false);

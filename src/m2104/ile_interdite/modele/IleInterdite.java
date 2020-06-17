@@ -25,9 +25,12 @@ import patterns.observateur.Observable;
 import patterns.observateur.Observateur;
 
 /**
- *
- * @author Raphaël Bleuse <raphael.bleuse@iut2.univ-grenoble-alpes.fr>
- */
+*
+* @author Thomas JHISTARRY
+* @author Joris MARTIN
+* @author Tanguy SIGNORET
+* @author Mattéo PAPPALARDO
+*/
 public class IleInterdite extends Observable<Message> {
     private int curseur;
     private Grille grille;

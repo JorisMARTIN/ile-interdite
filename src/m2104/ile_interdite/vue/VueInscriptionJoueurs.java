@@ -18,7 +18,11 @@ import m2104.ile_interdite.util.Utils.Commandes;
 
 /**
  *
- * @author Yann Laurillau <yann.laurillau@iut2.univ-grenoble-alpes.fr>
+ * @author Yann Laurillau <yann.laurillau@iut2.univ-grenoble-alpes.fr>* 
+ * @author Thomas JHISTARRY
+ * @author Joris MARTIN
+ * @author Tanguy SIGNORET
+ * @author Mattéo PAPPALARDO
  */
 public class VueInscriptionJoueurs {
     private final IHM ihm;

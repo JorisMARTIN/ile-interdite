@@ -8,9 +8,13 @@ import m2104.ile_interdite.aventuriers.Aventurier;
 import m2104.ile_interdite.modele.Deck;
 
 /**
- *
- * @author tang
- */
+*
+* @author Thomas JHISTARRY
+* @author Joris MARTIN
+* @author Tanguy SIGNORET
+* @author Mattéo PAPPALARDO
+* 
+*/
 public abstract class Carte {
     private Deck deck;
     private Aventurier aventurier;

@@ -7,6 +7,14 @@ import m2104.ile_interdite.modele.Tuile;
 import m2104.ile_interdite.modele.Deck;
 import m2104.ile_interdite.util.Utils.Tresor;
 
+/**
+*
+* @author Thomas JHISTARRY
+* @author Joris MARTIN
+* @author Tanguy SIGNORET
+* @author Mattéo PAPPALARDO
+* 
+*/
 public class CarteHelicoptere extends Carte {
 
     public CarteHelicoptere(Deck deck) {

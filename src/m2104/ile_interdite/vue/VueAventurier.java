@@ -28,7 +28,13 @@ import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.cartes.CarteTresor;
 import m2104.ile_interdite.util.Message;
 
-
+/**
+*
+* @author Thomas JHISTARRY
+* @author Joris MARTIN
+* @author Tanguy SIGNORET
+* @author Mattéo PAPPALARDO
+*/
 public class VueAventurier {
     private final IHM ihm;
     protected final Integer idAventurier ;

@@ -10,10 +10,14 @@ import m2104.ile_interdite.util.Utils;
 import m2104.ile_interdite.util.Utils.Tresor;
 import m2104.ile_interdite.modele.EtatTuile;
     
-    /**
-     *
-     * @author IUT2-Dept Info
-     */
+/**
+ *
+ * @author Thomas JHISTARRY
+ * @author Joris MARTIN
+ * @author Tanguy SIGNORET
+ * @author Mattéo PAPPALARDO
+ * 
+ */
 public abstract class Aventurier {
 	
 	private ArrayList<Carte> main;

@@ -25,7 +25,13 @@ import m2104.ile_interdite.util.Panneau;
 import m2104.ile_interdite.util.Parameters;
 import m2104.ile_interdite.util.Utils;
 import m2104.ile_interdite.util.Message;
-
+/**
+*
+* @author Thomas JHISTARRY
+* @author Joris MARTIN
+* @author Tanguy SIGNORET
+* @author Mattéo PAPPALARDO
+*/
 public class VueJeu {
     private final IHM ihm;
     private final JFrame fenetre;

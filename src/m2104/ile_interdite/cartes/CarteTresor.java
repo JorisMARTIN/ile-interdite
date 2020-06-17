@@ -2,7 +2,14 @@ package m2104.ile_interdite.cartes;
 
 import m2104.ile_interdite.modele.Deck;
 import m2104.ile_interdite.util.Utils;
-
+/**
+*
+* @author Thomas JHISTARRY
+* @author Joris MARTIN
+* @author Tanguy SIGNORET
+* @author Mattéo PAPPALARDO
+* 
+*/
 public class CarteTresor extends Carte {
 	
     private Utils.Tresor tresor;

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.modele.Grille;
+import m2104.ile_interdite.modele.Tuile;
+import m2104.ile_interdite.util.Utils;
 import m2104.ile_interdite.util.Utils.Pion;
 
 /**
@@ -31,6 +33,9 @@ public class Message {
     public int tropCarte;
     public ArrayList<Carte> main;
     public Pion pion;
+    public Tuile tuileDepart;
+    public Tuile tuileAction;
+    public int action;
     
     public Message(Utils.Commandes cmd) {
         this.commande = cmd;

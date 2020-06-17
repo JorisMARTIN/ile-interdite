@@ -284,6 +284,7 @@ public class IleInterdite extends Observable<Message> {
         msg.possibilites = possibilite;
         msg.idAventurier = this.joueurCourant;
         msg.pion = this.aventuriers.get(joueurCourant).getPion();
+        msg.action = 1;
         notifierObservateurs(msg);
     }
     
@@ -292,6 +293,7 @@ public class IleInterdite extends Observable<Message> {
         ArrayList<Boolean> possibilite = aventuriers.get(this.joueurCourant).isAssechementPossibles();
         Message msg = new Message(Utils.Commandes.TUILES_POSSIBLES);
         msg.possibilites = possibilite;
+        msg.action = 0;
         notifierObservateurs(msg);
     }
     

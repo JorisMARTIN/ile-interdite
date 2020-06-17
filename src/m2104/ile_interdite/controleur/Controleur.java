@@ -85,7 +85,7 @@ public class Controleur implements Observateur<Message> {
                 break;
 
             case TUILES_POSSIBLES:
-                this.ihm.surbrillerTuiles(msg.possibilites, msg.pion, msg.idAventurier);
+                this.ihm.surbrillerTuiles(msg.possibilites, msg.pion, msg.action, msg.idAventurier);
                 break;
 
             case DEPLACER:
@@ -131,6 +131,17 @@ public class Controleur implements Observateur<Message> {
                 this.ileInterdite.lanceFinTour();
                 break;  
 
+            case JOUE_CARTE:
+            	this.ileInterdite.getAventuriers().get(msg.idAventurier).joueCarte(msg.idCarte);
+            	break;
+            
+            case CARTE_JOUE:
+            	this.ihm.actualiserMainJoueur(msg.main, msg.idAventurier);
+            	if(msg.idAventurier != this.ileInterdite.getJoueurCourant()) {
+            		this.ihm.bloquerActions(msg.idAventurier);
+            	}
+            	break;
+            	
             case FIN:
                 this.ihm.finGagne(false);
                 break;
@@ -140,8 +151,12 @@ public class Controleur implements Observateur<Message> {
                 break;
                 
             case DEPLACEMENT_DURGENCE:
-                this.ihm.surbrillerTuiles(msg.possibilites, msg.pion, msg.idAventurier);
+                this.ihm.surbrillerTuiles(msg.possibilites, msg.pion, msg.action, msg.idAventurier);
                 this.ihm.bloquerActions(msg.idAventurier);
+                break;
+                
+            case ETAPE_JOUE_CARTE:
+                this.ihm.surbrillerTuiles(msg.possibilites, msg.pion, msg.action, msg.idAventurier);
                 break;
 
             default:

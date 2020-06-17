@@ -30,7 +30,7 @@ public class Utils {
         CHOISIR_CARTE("Utiliser une carte trésor"),
         CHOISIR_TUILE("Sélectionner une tuile"),
         DEPLACER("Déplacer un autre joueur"),
-        ZERO_ACTIONS("Le joueur ne peut que utiliser une carte action sp�ciale ou finir son tour"),
+        ZERO_ACTIONS("Le joueur ne peut que utiliser une carte action sp�ciale ou finir son tour"),
         INITIALISER_GRILLE("Grille initialiser avec les tuiles innondées"),
         INITIALISER("Initialisation joueur"),
         /*Ajout de nouveaux messages*/
@@ -50,7 +50,9 @@ public class Utils {
         JOUE_CARTE("Le Joueur joue une carte"),
         PIOCHE_CARTE("Le joueur pioche une carte"),
         DEMANDE_DEFFAUSE("Réclame au joueur de deffausser une carte"),
-        DEPLACEMENT_DURGENCE("Demande au joueur de se d�placer si cela est possible, toute autre action est impossible en dehors des cartes action sp�ciale");
+        CARTE_JOUE("Le Joueur vien de jouer une carte"),
+        ETAPE_JOUE_CARTE("Demande quel déplacement est voulu pour la carte jouée."),
+        DEPLACEMENT_DURGENCE("Demande au joueur de se d�placer si cela est possible, toute autre action est impossible en dehors des cartes action sp�ciale");
 
         private final String libelle ;
 

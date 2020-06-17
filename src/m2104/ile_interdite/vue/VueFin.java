@@ -101,7 +101,7 @@ public class VueFin {
 
     // ====================================================== Activation de la VueJeu à son tour
     public void activer(boolean b) {
-        textGagne.setText((b ? "Bravo vous avez gagné !" : "Dommage, rééssayer pour gagner."));
+        textGagne.setText((b ? "Bravo vous avez gagné !" : "Dommage, vous êtes parti sans avoir tou les trésorts.\nRééssayer pour gagner."));
         this.mainPanel.repaint();
         this.window.setVisible(true);
     }

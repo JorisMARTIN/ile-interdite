@@ -2,6 +2,7 @@ package m2104.ile_interdite.aventuriers;
     
 import java.util.ArrayList;
 import m2104.ile_interdite.cartes.Carte;
+import m2104.ile_interdite.cartes.CarteHelicoptere;
 import m2104.ile_interdite.cartes.CarteMonteeEaux; 
 import m2104.ile_interdite.modele.IleInterdite;  
 import m2104.ile_interdite.modele.Tuile; 
@@ -100,14 +101,15 @@ public abstract class Aventurier {
     }
     
     protected boolean peutAssecher(Tuile tuile) {
-        if(tuile == null || !tuile.isInnondee() || tuile.isRetiree() || getPosition() == tuile) {
+        if(tuile == null || !tuile.isInnondee() || tuile.isRetiree()) {
             return false;
         }
         
         int indexTuileCible = this.ileInterdite.getGrille().getTuiles(true).indexOf(tuile);
         int indexTuileActuelle = this.ileInterdite.getGrille().getTuiles(true).indexOf(getPosition());
 
-        return (indexTuileActuelle < 29 && indexTuileActuelle + 6 == indexTuileCible)
+        return (indexTuileCible == indexTuileActuelle)
+        	||	(indexTuileActuelle < 29 && indexTuileActuelle + 6 == indexTuileCible)
             || (indexTuileActuelle < 35 && indexTuileActuelle + 1 == indexTuileCible && (indexTuileActuelle) % 6 != 5)
             || (indexTuileActuelle > 5 && indexTuileActuelle - 6 == indexTuileCible && (indexTuileActuelle) % 6 != 0)
             || (indexTuileActuelle > 0 && indexTuileActuelle - 1 == indexTuileCible);
@@ -117,6 +119,7 @@ public abstract class Aventurier {
         ArrayList<Boolean> assechementsPossibles = new ArrayList<Boolean>();
         for (Tuile tuile : this.ileInterdite.getGrille().getTuiles(true)) {
             assechementsPossibles.add(this.peutAssecher(tuile));
+            
         }
         return assechementsPossibles;
     }
@@ -168,6 +171,7 @@ public abstract class Aventurier {
             }
             
             this.main.add(c);
+            c.setAventurier(this);
             this.ileInterdite.getDeckTresor().getPioche().remove(c);
         }
         
@@ -187,8 +191,7 @@ public abstract class Aventurier {
      * </ul>
      * @param i : nombre de cartes a piocher 
      */
-    public void piocherCartes(int nbCartes) {
-        
+    public void piocherCartes(int nbCartes) { 
         
         for(int i=0; i < nbCartes; i++) {
             
@@ -197,10 +200,18 @@ public abstract class Aventurier {
                 carte.action();
             } else {
                 this.main.add(carte);
+                carte.setAventurier(this);
                 this.ileInterdite.getDeckTresor().getPioche().remove(carte);                
             }
+            
+            if(this.ileInterdite.getDeckTresor().isVide()) {
+            	this.ileInterdite.getDeckTresor().remplirPioche(this.ileInterdite.getDeckTresor().getDefausse());
+            	this.ileInterdite.getDeckTresor().getDefausse().clear();
+            }
+            
         
         }
+        
         
             Message msg = new Message(Utils.Commandes.PIOCHE_CARTE);
             
@@ -249,8 +260,24 @@ public abstract class Aventurier {
         return this.ileInterdite;
     }
 
-    public void joueCarte(Carte carte) {
+    /**
+     * 
+     * @param idCarte : L'id de la carte qui va etre jouée
+     */
+    public void joueCarte(int idCarte) {
         
+    	Carte carte = this.main.get(idCarte);
+    	
+    	carte.action();
+    	
+    	this.main.remove(carte);
+		this.ileInterdite.getDeckTresor().getDefausse().add(carte);
+    	
+    	Message msg = new Message(Utils.Commandes.CARTE_JOUE);
+        msg.main = this.main;
+        msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
+
+        ileInterdite.notifierObservateurs(msg);
     }
     
     public void defausseCarte(int idCarte) {
@@ -277,7 +304,6 @@ public abstract class Aventurier {
         return aPioche;
     }
 
-    public void setaPioche(boolean aPioche) {
-        this.aPioche = aPioche;
+    public void setaPioche(boolean aPioche) { this.aPioche = aPioche;
     }
 }

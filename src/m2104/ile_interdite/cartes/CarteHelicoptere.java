@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import m2104.ile_interdite.aventuriers.Aventurier;
 import m2104.ile_interdite.modele.Tuile;
 import m2104.ile_interdite.modele.Deck;
+import m2104.ile_interdite.modele.EtatTuile;
+import m2104.ile_interdite.util.Message;
+import m2104.ile_interdite.util.Utils;
+import m2104.ile_interdite.util.Utils.Commandes;
 import m2104.ile_interdite.util.Utils.Tresor;
 
 /**
@@ -31,16 +35,25 @@ public class CarteHelicoptere extends Carte {
                     tresors.add(t);
                 }
             }
-            this.getDeck().getIleInterdite().gagnee(((tresors.size() == 4) ?  true : false));
+            this.getDeck().getIleInterdite().gagnee(tresors.size() == 4);
         } else {
-            this.getDeck().getIleInterdite().gagnee(false);
-        }
+            Message msg = new Message(Commandes.ETAPE_JOUE_CARTE);
 
-    }
+            ArrayList<Boolean> possibilites = new ArrayList<>();
 
-    public void action(Tuile tuileDepart, Tuile tuileArrivee) {
-        for (Aventurier a : tuileDepart.getAventuriers()) {
-            a.deplacer(tuileArrivee);
+            for (Tuile t : this.getDeck().getIleInterdite().getGrille().getTuiles(true)){
+                if (t != null && t.getEtat() != EtatTuile.RETIREE && t != this.getAventurier().getPosition()) {
+                    possibilites.add(true);
+                } else {
+                    possibilites.add(false);
+                }
+            }
+
+            msg.pion = this.getAventurier().getPion();
+            msg.possibilites = possibilites;
+            msg.action = 2;
+
+            this.getDeck().getIleInterdite().notifierObservateurs(msg);
         }
     }
 

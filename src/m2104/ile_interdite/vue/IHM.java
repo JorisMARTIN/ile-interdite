@@ -100,8 +100,14 @@ public class IHM extends Observable<Message> {
         this.vueNiveau = new VueNiveau(difficulte);
     }
     
-    public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion, int idAventurier) {
-        this.vueJeu.surbrillerTuiles(possibilites, pion, idAventurier);
+    public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion, int action, int idAventurier) {
+        /**
+         * 
+         * @param possibilites : Liste de boolean selon les possibilitées.
+         * @param pion : Le pions voulant effectuer l'action
+         * @param action : 0 = Assechement, 1 = Deplacement, 2 = Deplacement par helicoptère
+         */
+        this.vueJeu.surbrillerTuiles(possibilites, pion, action, idAventurier);
     }
 
     public void placerCurseur(int valeur) {

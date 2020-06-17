@@ -25,6 +25,7 @@ import m2104.ile_interdite.util.Panneau;
 import m2104.ile_interdite.util.Parameters;
 import m2104.ile_interdite.util.Utils;
 import m2104.ile_interdite.util.Message;
+
 /**
 *
 * @author Thomas JHISTARRY
@@ -116,7 +117,7 @@ public class VueJeu {
         return position;
     }
 
-    public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion, int idAventurier) {
+    public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion, int action, int idAventurier) {
         aventurierADeplacer = idAventurier;
         for (int tuile = 0; tuile < grille.getTuiles(true).size(); tuile++) {
             JButton bouton = this.boutons.get(tuile);

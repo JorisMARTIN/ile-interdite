@@ -36,7 +36,7 @@ public class IHM extends Observable<Message> {
         assert nomsJoueurs.length == nomAventuriers.length;
         
         Color active;
-        
+         
         for (int id = 0; id < nomAventuriers.length; ++id) {
             
             switch (nomAventuriers[id]) {
@@ -106,8 +106,8 @@ public class IHM extends Observable<Message> {
      * @param pion : Le pions voulant effectuer l'action
      * @param action : 0 = Assechement, 1 = Deplacement, 2 = Deplacement par helicoptère
      */
-    public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion, int action) {
-        this.vueJeu.surbrillerTuiles(possibilites, pion);
+    public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion, int action, int idAventurier) {
+        this.vueJeu.surbrillerTuiles(possibilites, pion, action, idAventurier);
         
         //TODO Prendre en compte le paramètre action
     }

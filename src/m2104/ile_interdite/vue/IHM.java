@@ -41,33 +41,33 @@ public class IHM extends Observable<Message> {
             
             switch (nomAventuriers[id]) {
             
-            case "Explorateur":
-                    active = Utils.Pion.VERT.getCouleur();
-                break;
+                case "Explorateur":
+                        active = Utils.Pion.VERT.getCouleur();
+                    break;
+                    
+                case "Pilote" :
+                        active = Utils.Pion.BLEU.getCouleur();
+                    break;
+                    
+                case "Navigateur" :
+                        active = Utils.Pion.JAUNE.getCouleur();
+                    break;
+                    
+                case "Ingénieur" :
+                        active = Utils.Pion.ROUGE.getCouleur();
+                    break;
                 
-            case "Pilote" :
-                    active = Utils.Pion.BLEU.getCouleur();
-                break;
-                
-            case "Navigateur" :
-                    active = Utils.Pion.JAUNE.getCouleur();
-                break;
-                
-            case "Ingénieur" :
-                    active = Utils.Pion.ROUGE.getCouleur();
-                break;
-            
-            case "Messager" :
-                    active = Utils.Pion.ORANGE.getCouleur();
-                break;
-                
-            case "Plongeur" :
-                    active = Utils.Pion.VIOLET.getCouleur();
-                break;
-                
-            default:
-                active = null;
-                break;
+                case "Messager" :
+                        active = Utils.Pion.ORANGE.getCouleur();
+                    break;
+                    
+                case "Plongeur" :
+                        active = Utils.Pion.VIOLET.getCouleur();
+                    break;
+                    
+                default:
+                    active = null;
+                    break;
             }
             
             this.vueAventuriers.put(
@@ -119,7 +119,7 @@ public class IHM extends Observable<Message> {
             
             vue.resetActionRestantes();
             vue.desactiver();
-            vue.activerBoutons(false, false, false, false, false, false, false);
+            this.bloquerActions(idAventurier);
             
             if(vue.getMainJoueur().size() > 5) {
                 vue.setEtatBoutonsCartes(false);
@@ -131,7 +131,7 @@ public class IHM extends Observable<Message> {
         
         if(this.vueAventuriers.get(idAventurier).getMainJoueur().size() > 5) {
             
-            this.vueAventuriers.get(idAventurier).activerBoutons(false, false, false, false, false, false, false);
+            this.bloquerActions(idAventurier);
             this.vueAventuriers.get(idAventurier).setEtatBoutonsCartes(true);
             
         } else {
@@ -139,6 +139,10 @@ public class IHM extends Observable<Message> {
             this.vueAventuriers.get(idAventurier).activerBoutons(true, true, true, true, true, true, true);
             
         }
+    }
+    
+    public void bloquerActions(int idAventurier) {
+        this.vueAventuriers.get(idAventurier).activerBoutons(false, false, false, false, false, false, false);
     }
     
     public void zeroActions(int idAventurier) {
@@ -158,8 +162,8 @@ public class IHM extends Observable<Message> {
     }
 
     public void demandeDeffausse(int idAventurier) {
-    	this.vueAventuriers.get(idAventurier).deffausseCarte();
-    	
+        this.vueAventuriers.get(idAventurier).deffausseCarte();
+        
     }
     
     public void finPasGagne() {

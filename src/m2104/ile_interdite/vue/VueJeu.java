@@ -119,11 +119,11 @@ public class VueJeu {
 
     public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion, int action, int idAventurier) {
         aventurierADeplacer = idAventurier;
-        for (int tuile = 0; tuile < grille.getTuiles(true).size(); tuile++) {
-            JButton bouton = this.boutons.get(tuile);
+        for (int i = 0; i < grille.getTuiles(true).size(); i++) {
+            JButton bouton = this.boutons.get(i);
             bouton.setEnabled(false);
             bouton.setBorder(BorderFactory.createEmptyBorder());
-            if (possibilites.get(tuile)) {
+            if (possibilites.get(i)) {
                 bouton.setEnabled(true);
                 Border borderUp = BorderFactory.createEtchedBorder(EtchedBorder.RAISED, Color.BLACK, Color.BLACK);
                 Border borderDown = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED, Color.BLACK, Color.BLACK);
@@ -132,15 +132,41 @@ public class VueJeu {
                 Border compound2 = BorderFactory.createCompoundBorder(coloredBorder, borderDown);
                 Border bigCompound = BorderFactory.createCompoundBorder(compound1, compound2);
                 bouton.setBorder(bigCompound);
-                bouton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        Message m = new Message(Utils.Commandes.DEPLACER);
-                        m.nomTuile = bouton.getText();
-                        m.idAventurier = aventurierADeplacer;
-                        ihm.notifierObservateurs(m);
-                    }
-                });
+                
+                for(ActionListener al : bouton.getActionListeners())
+                    bouton.removeActionListener(al);
+
+                switch(action) {
+                    case 0:
+                        bouton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                Message m = new Message(Utils.Commandes.DEPLACER);
+                                m.nomTuile = bouton.getText();
+                                m.idAventurier = aventurierADeplacer;
+                                ihm.notifierObservateurs(m);
+                            }
+                        });
+                        break;
+                    
+                    case 1:
+                        bouton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                System.out.println("helloo");
+                                Message m = new Message(Utils.Commandes.DEPLACER);
+                                m.nomTuile = bouton.getText();
+                                m.idAventurier = aventurierADeplacer;
+                                ihm.notifierObservateurs(m);
+                            }
+                        });
+                        break;
+
+                    default:
+                        System.err.println("VueJeu.surbrillerTuiles : action invalide");
+                        break;
+                }
+                
                 
             }
         }

@@ -1,6 +1,7 @@
 package m2104.ile_interdite.controleur;
 
 import m2104.ile_interdite.modele.IleInterdite;
+import m2104.ile_interdite.modele.Tuile;
 import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Parameters;
 import m2104.ile_interdite.vue.IHM;
@@ -44,12 +45,13 @@ public class Controleur implements Observateur<Message> {
                 this.ihm.creeVueJeu(msg.grille);
                 break;
                 
-            case BOUGER:
+            case LANCER_DEPLACEMENT:
                 this.ileInterdite.lanceDeplacement();
                 break;
                 
-            case ASSECHER:
-                this.ileInterdite.getAventuriers().get(msg.idAventurier).assecher(this.ileInterdite.getGrille().getTuile(msg.tuile));
+            case LANCER_ASSECHEMENT:
+                this.ileInterdite.lanceAssechement();
+                //this.ileInterdite.getAventuriers().get(msg.idAventurier).assecher(this.ileInterdite.getGrille().getTuile(msg.tuile));
                 break;
             
             case DONNER:
@@ -90,6 +92,11 @@ public class Controleur implements Observateur<Message> {
 
             case DEPLACER:
                 this.ileInterdite.deplacerAventurier(msg.nomTuile, msg.idAventurier);
+                break;
+
+            case ASSECHER:
+                Tuile tuile = this.ileInterdite.getGrille().getTuile(msg.nomTuile);
+                this.ileInterdite.getAventuriers().get(msg.idAventurier).assecher(tuile);
                 break;
 
             case RECUP_TRESOR:

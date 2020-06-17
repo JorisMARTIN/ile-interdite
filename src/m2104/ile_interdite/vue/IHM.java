@@ -162,12 +162,8 @@ public class IHM extends Observable<Message> {
     	
     }
     
-    public void finPasGagne() {
+    public void finGagne(boolean isGagnee) {
         this.vueFin.activer(false);
-    }
-
-    public void finGagne() {
-        this.vueFin.activer(true);
     }
 
 }

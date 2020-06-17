@@ -20,7 +20,8 @@ import m2104.ile_interdite.util.Utils.Pion;
 */
 public class Pilote extends Aventurier{
     /*attribut utilisation du pouvoir*/
-    private boolean utiliseePouvoir = true;
+    private boolean utiliseePouvoir;
+    
     /*construteur*/
     public Pilote(IleInterdite ileInterdite) {
         super(ileInterdite, Pion.BLEU);
@@ -29,25 +30,29 @@ public class Pilote extends Aventurier{
     /*méthodes*/
     @Override
     public boolean peutSeDeplacer(Tuile tuile) {
-        boolean peutNormal = super.peutAssecher(tuile);
+        boolean peutNormal = super.peutSeDeplacer(tuile);
 
-        System.out.println("Etat : " + tuile.getEtat() + " tuile==null ? " + tuile==null);
-
-        if(tuile.getEtat() != EtatTuile.RETIREE){
-
-            if (!utiliseePouvoir && tuile != null) {
-                utiliseePouvoir = true;
-                return true;
-            } else if (utiliseePouvoir && tuile != null) {
-                utiliseePouvoir = false;
-                return peutNormal;
-            } else {
-                utiliseePouvoir = false;
-                return peutNormal;
-            }
+        if(!utiliseePouvoir && tuile != null && tuile.getEtat() != EtatTuile.RETIREE && tuile != this.getPosition()) {
+            return true;
         } else {
-            utiliseePouvoir = false;
             return peutNormal;
         }
     }   
+    
+    @Override
+    public void deplacer(Tuile tuile) {
+        if (!utiliseePouvoir) {
+            utiliseePouvoir = true;
+            if (peutSeDeplacer(tuile)) {
+                utiliseePouvoir = false;
+            }
+        }
+        super.deplacer(tuile);
+    }
+    
+    @Override
+    public void initActionsRestantes() {
+        super.initActionsRestantes();
+        utiliseePouvoir = false;
+    }
 }

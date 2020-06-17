@@ -148,7 +148,7 @@ public class IHM extends Observable<Message> {
         VueAventurier vue = this.vueAventuriers.get(idAventurier);
         
         vue.setActionRestantes(actionRestantes);
-        
+        vue.activerBoutons(true, true, true, true, true, true, true);
     }
 
     public void actualiserMainJoueur(ArrayList<Carte> main, boolean tropCarte, Integer idAventurier) {

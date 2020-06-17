@@ -22,11 +22,13 @@
         private int actionsRestantes;
         private Utils.Pion pion;
         private ArrayList<Tresor> tresors;
+        private boolean aPioche;
         
         public Aventurier(IleInterdite ileInterdite, Utils.Pion pion) {
             this.main = new ArrayList<Carte>();
             this.ileInterdite = ileInterdite;
             this.pion = pion;
+            this.aPioche = false;
             
             switch (this.pion) {
                 case ROUGE:
@@ -165,7 +167,6 @@
         
         Message msg = new Message(Utils.Commandes.PIOCHE_CARTE);
         
-        msg.tropCarte = false;
         msg.main = main;
         msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
         
@@ -181,7 +182,7 @@
      * @param i : nombre de cartes a piocher 
      */
     public void piocherCartes(int nbCartes) {
-        
+    	
         
         for(int i=0; i < nbCartes; i++) {
             
@@ -196,18 +197,17 @@
         
         }
         
-        
-        Message msg = new Message(Utils.Commandes.PIOCHE_CARTE);
-        
-        msg.tropCarte = this.main.size() > 5;
-        msg.main = main;
-        msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
-        
-        ileInterdite.notifierObservateurs(msg);
-        
+	        Message msg = new Message(Utils.Commandes.PIOCHE_CARTE);
+	        
+	        msg.main = main;
+	        msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
+	        
+	        ileInterdite.notifierObservateurs(msg);
     }
+        
     
     public void initActionsRestantes() {
+    	this.aPioche = false;
         this.actionsRestantes = 3;
         ileInterdite.notifyActionRestantes(actionsRestantes, this);
     }
@@ -257,13 +257,13 @@
     }
     
     public void defausseCarte(int idCarte) {
-                                        
+        
         Carte carte = getMain().get(idCarte);
         getMain().remove(carte);
 
         this.ileInterdite.getDeckTresor().getDefausse().add(carte);
 
-        Message msg = new Message(Utils.Commandes.ACTUALISER_MAIN);
+        Message msg = new Message(Utils.Commandes.PIOCHE_CARTE);
 
         msg.main = this.main;
         msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
@@ -275,4 +275,12 @@
     public ArrayList<Tresor> getTresors() {
         return this.tresors;
     }
+
+	public boolean isaPioche() {
+		return aPioche;
+	}
+
+	public void setaPioche(boolean aPioche) {
+		this.aPioche = aPioche;
+	}
 }

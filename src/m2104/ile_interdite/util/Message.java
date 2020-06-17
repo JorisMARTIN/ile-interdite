@@ -25,7 +25,7 @@ public class Message {
     public String nomTuile;
     public int valeur;
     public int actionRestantes;
-	public boolean tropCarte;
+	public int tropCarte;
 	public ArrayList<Carte> main;
 	public Pion pion;
     

@@ -299,15 +299,31 @@ public class IleInterdite extends Observable<Message> {
     }
 
     public void lanceFinTour() {
+    	
+    	Aventurier aventurier = this.aventuriers.get(joueurCourant);
         
+    	if(!aventurier.isaPioche()) {
         // Le joueur pioche 2 cartes
-        this.aventuriers.get(joueurCourant).piocherCartes(2);
+    		aventurier.piocherCartes(2);
+    		aventurier.setaPioche(true);
+    	}
+        
+        if(aventurier.getMain().size() > 5) {
+        	Message m = new Message(Commandes.DEMANDE_DEFFAUSE);
+        	m.idAventurier = joueurCourant;
+        	notifierObservateurs(m);
+        	
+        } else {
+        	
         
         // Lance la phase d'innondation
         lanceInnondation();
         
         // Passe au joueur suivant
         joueurSuivant();
+        
+        }
+
     }
     
     public void gagnee(boolean b) {

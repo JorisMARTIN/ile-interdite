@@ -115,15 +115,16 @@ public class Controleur implements Observateur<Message> {
                 break;
                 
             case PIOCHE_CARTE:
-            	this.ihm.actualiserMainJoueur(msg.main, msg.tropCarte, msg.idAventurier);
+            	this.ihm.actualiserMainJoueur(msg.main, msg.idAventurier);
             	break;
             	
-            case ACTUALISER_MAIN:
-            	this.ihm.actualiserMainJoueur(msg.main, false, msg.idAventurier);
+            case DEMANDE_DEFFAUSE:
+            	this.ihm.demandeDeffausse(msg.idAventurier);
             	break;
             	
             case DEFAUSSE_CARTE:
             	this.ileInterdite.getAventuriers().get(msg.idAventurier).defausseCarte(msg.idCarte);
+            	this.ileInterdite.lanceFinTour();
             	break;	
 
             case FIN:

@@ -153,10 +153,15 @@ public class IHM extends Observable<Message> {
         vue.activerBoutons(true, true, true, true, true, true, true);
     }
 
-    public void actualiserMainJoueur(ArrayList<Carte> main, boolean tropCarte, Integer idAventurier) {
-        this.vueAventuriers.get(idAventurier).actualiserMain(main, tropCarte);
+    public void actualiserMainJoueur(ArrayList<Carte> main, Integer idAventurier) {
+        this.vueAventuriers.get(idAventurier).actualiserMain(main);
     }
 
+    public void demandeDeffausse(int idAventurier) {
+    	this.vueAventuriers.get(idAventurier).deffausseCarte();
+    	
+    }
+    
     public void finPasGagne() {
         this.vueFin.activer(false);
     }
@@ -164,4 +169,5 @@ public class IHM extends Observable<Message> {
     public void finGagne() {
         this.vueFin.activer(true);
     }
+
 }

@@ -38,6 +38,7 @@ public class IleInterdite extends Observable<Message> {
     private Deck deckTresor;
     private Deck deckInnondation;
     private int joueurCourant;
+    private boolean deplacementDUrgence;
     
     public IleInterdite(Observateur<Message> observateur) {
         this.grille = new Grille();
@@ -216,7 +217,7 @@ public class IleInterdite extends Observable<Message> {
      * Change de joueurCourant
      */
     public void joueurSuivant() {
-        
+        this.deplacementDUrgence = false;
         this.joueurCourant = ((this.joueurCourant + 1) % this.aventuriers.size());
         this.aventuriers.get(joueurCourant).initActionsRestantes();
         
@@ -232,36 +233,56 @@ public class IleInterdite extends Observable<Message> {
         return this.deckInnondation;
     }
     
-    public void lanceInnondation() {
+    public boolean lanceInnondation() {
         int nb = 0;
         if (this.curseur < 3) {
-            nb = 1;
-        } else if (this.curseur < 6) {
             nb = 2;
-        } else if (this.curseur < 8) {
+        } else if (this.curseur < 6) {
             nb = 3;
-        } else {
+        } else if (this.curseur < 8) {
             nb = 4;
+        } else {
+            nb = 5;
         }
+        
         
         for (int i = 0; i < nb; i++) {
             CarteInnondation carte = (CarteInnondation) this.deckInnondation.getPremiereCarte();
             carte.action();
             
             if (carte.getTuile().getEtat() == EtatTuile.RETIREE) {
-                String todo = "patate";
+                for (Aventurier aventurier : carte.getTuile().getAventuriers()) {
+                    ArrayList<Boolean> possibilite = aventurier.isDeplacementPossibles();
+                    
+                    Message msg = new Message(Utils.Commandes.DEPLACEMENT_DURGENCE);
+                    
+                    msg.possibilites = possibilite;
+                    msg.pion = aventurier.getPion();
+                    msg.idAventurier = aventuriers.indexOf(aventurier);
+                    
+                    notifierObservateurs(msg);
+                    deplacementDUrgence = true;
+                }
             }
         }
-
-        Message msg = new Message(Utils.Commandes.MAJ_GRILLE);
-        msg.grille = grille;
-        notifierObservateurs(msg);
+        
+        if (!deplacementDUrgence) {
+            System.out.println("Fin de tour normale");
+            Message msg = new Message(Utils.Commandes.MAJ_GRILLE);
+            msg.grille = grille;
+            notifierObservateurs(msg);
+        } else {
+            System.out.println("Déplacement d'urgence !");
+        }
+        
+        return deplacementDUrgence;
     }
     
     public void lanceDeplacement() {
         ArrayList<Boolean> possibilite = aventuriers.get(this.joueurCourant).isDeplacementPossibles();
         Message msg = new Message(Utils.Commandes.TUILES_POSSIBLES);
         msg.possibilites = possibilite;
+        msg.idAventurier = this.joueurCourant;
         msg.pion = this.aventuriers.get(joueurCourant).getPion();
         notifierObservateurs(msg);
     }
@@ -279,13 +300,20 @@ public class IleInterdite extends Observable<Message> {
         if (b) {
             aventuriers.get(joueurCourant).recupererTresor();
         }
+        
         Message msg = new Message(Utils.Commandes.MAJ_GRILLE);
         notifierObservateurs(msg);
     }
 
-    public void deplacerAventurier(String nomTuile) {
+    public void deplacerAventurier(String nomTuile, int idAventurier) {
         Tuile tuile = this.grille.getTuile(nomTuile);
-        this.aventuriers.get(joueurCourant).deplacer(tuile);
+        this.aventuriers.get(idAventurier).deplacer(tuile);
+        if (deplacementDUrgence) {
+            joueurSuivant();
+        } else {
+            Message msg = new Message(Utils.Commandes.MAJ_GRILLE);
+            notifierObservateurs(msg);
+        }
     }
 
     
@@ -302,28 +330,29 @@ public class IleInterdite extends Observable<Message> {
     }
 
     public void lanceFinTour() {
-    	
-    	Aventurier aventurier = this.aventuriers.get(joueurCourant);
         
-    	if(!aventurier.isaPioche()) {
-        // Le joueur pioche 2 cartes
-    		aventurier.piocherCartes(2);
-    		aventurier.setaPioche(true);
-    	}
+        Aventurier aventurier = this.aventuriers.get(joueurCourant);
+        
+        if(!aventurier.isaPioche()) {
+            // Le joueur pioche 2 cartes
+            aventurier.piocherCartes(2);
+            aventurier.setaPioche(true);
+        }
         
         if(aventurier.getMain().size() > 5) {
-        	Message m = new Message(Commandes.DEMANDE_DEFFAUSE);
-        	m.idAventurier = joueurCourant;
-        	notifierObservateurs(m);
-        	
+            Message m = new Message(Commandes.DEMANDE_DEFFAUSE);
+            m.idAventurier = joueurCourant;
+            notifierObservateurs(m);
+            
         } else {
-        	
+            
         
             // Lance la phase d'innondation
-            lanceInnondation();
-            
-            // Passe au joueur suivant
-            joueurSuivant();
+            boolean deplacementDUrgence = lanceInnondation();
+            if (!deplacementDUrgence) {
+                // Passe au joueur suivant
+                joueurSuivant();
+            }
             
         }
 

@@ -100,8 +100,8 @@ public class IHM extends Observable<Message> {
         this.vueNiveau = new VueNiveau(difficulte);
     }
     
-    public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion) {
-        this.vueJeu.surbrillerTuiles(possibilites, pion);
+    public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion, int idAventurier) {
+        this.vueJeu.surbrillerTuiles(possibilites, pion, idAventurier);
     }
 
     public void placerCurseur(int valeur) {
@@ -111,6 +111,7 @@ public class IHM extends Observable<Message> {
     public void majVueJeu() {
         this.vueJeu.affGrille();
         this.vueJeu.resetSelections();
+        this.vueJeu.refresh();
     }
 
     public void changerJoueurCourant(int idAventurier) {
@@ -119,7 +120,7 @@ public class IHM extends Observable<Message> {
             
             vue.resetActionRestantes();
             vue.desactiver();
-            this.bloquerActions(idAventurier);
+            this.bloquerActions(vue.getIdAventurier());
             
             if(vue.getMainJoueur().size() > 5) {
                 vue.setEtatBoutonsCartes(false);

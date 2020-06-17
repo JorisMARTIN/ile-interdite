@@ -40,6 +40,7 @@ public class VueJeu {
     private ArrayList<JButton> boutons;
     private Image[] imagesBtnNormales;
     private Image[] imagesBtnInondees;
+    private int aventurierADeplacer;
 
     public VueJeu(IHM ihm, Grille grille) {
         
@@ -72,7 +73,6 @@ public class VueJeu {
                 imagesBtnInondees[i] = generateImageBtn(Parameters.TUILES + t.getNom() + "_Inonde.png");
             }
         }
-
         this.affGrille();
 
         fenetre.add(grillePanel);
@@ -93,7 +93,9 @@ public class VueJeu {
                 this.boutons.get(tuile).setBorder(BorderFactory.createEmptyBorder());
             }
         }
-        
+    }
+    
+    public void refresh() {
         grillePanel.revalidate();
         grillePanel.repaint();
     }
@@ -114,19 +116,30 @@ public class VueJeu {
         return position;
     }
 
-    public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion) {
+    public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion, int idAventurier) {
+        aventurierADeplacer = idAventurier;
         for (int tuile = 0; tuile < grille.getTuiles(true).size(); tuile++) {
-            this.boutons.get(tuile).setEnabled(false);
-            this.boutons.get(tuile).setBorder(BorderFactory.createEmptyBorder());
+            JButton bouton = this.boutons.get(tuile);
+            bouton.setEnabled(false);
+            bouton.setBorder(BorderFactory.createEmptyBorder());
             if (possibilites.get(tuile)) {
-                this.boutons.get(tuile).setEnabled(true);
+                bouton.setEnabled(true);
                 Border borderUp = BorderFactory.createEtchedBorder(EtchedBorder.RAISED, Color.BLACK, Color.BLACK);
                 Border borderDown = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED, Color.BLACK, Color.BLACK);
                 Border coloredBorder = BorderFactory.createLineBorder(pion.getCouleur(), 2);
                 Border compound1 = BorderFactory.createCompoundBorder(borderUp, coloredBorder);
                 Border compound2 = BorderFactory.createCompoundBorder(coloredBorder, borderDown);
                 Border bigCompound = BorderFactory.createCompoundBorder(compound1, compound2);
-                this.boutons.get(tuile).setBorder(bigCompound);
+                bouton.setBorder(bigCompound);
+                bouton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        Message m = new Message(Utils.Commandes.DEPLACER);
+                        m.nomTuile = bouton.getText();
+                        m.idAventurier = aventurierADeplacer;
+                        ihm.notifierObservateurs(m);
+                    }
+                });
                 
             }
         }
@@ -145,7 +158,6 @@ public class VueJeu {
             button.setContentAreaFilled(false);
             button.setFocusPainted(false);
             button.setEnabled(false);
-            
             if (t != null && t.getEtat() != EtatTuile.RETIREE) {
                 Image img = null;
                 if (t.getEtat() == EtatTuile.NORMAL) {
@@ -155,18 +167,7 @@ public class VueJeu {
                 }
                 button.setIcon(new ImageIcon(img));
                 button.setDisabledIcon(new ImageIcon(img));
-                button.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        Message m = new Message(Utils.Commandes.DEPLACER);
-                        m.nomTuile = t.getNom();
-                        ihm.notifierObservateurs(m);
-                        
-                        affGrille();
-                        grillePanel.revalidate();
-                        grillePanel.repaint();
-                    }
-                });
+                button.setText(t.getNom());
                 
                 JLabel labelPion;
                 int nbPion = t.getAventuriers().size();

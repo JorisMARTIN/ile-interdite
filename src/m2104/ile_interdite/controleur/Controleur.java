@@ -85,11 +85,11 @@ public class Controleur implements Observateur<Message> {
                 break;
 
             case TUILES_POSSIBLES:
-                this.ihm.surbrillerTuiles(msg.possibilites, msg.pion);
+                this.ihm.surbrillerTuiles(msg.possibilites, msg.pion, msg.idAventurier);
                 break;
 
             case DEPLACER:
-                this.ileInterdite.deplacerAventurier(msg.nomTuile);
+                this.ileInterdite.deplacerAventurier(msg.nomTuile, msg.idAventurier);
                 break;
 
             case RECUP_TRESOR:
@@ -140,7 +140,7 @@ public class Controleur implements Observateur<Message> {
                 break;
                 
             case DEPLACEMENT_DURGENCE:
-                this.ihm.surbrillerTuiles(msg.possibilites, msg.pion);
+                this.ihm.surbrillerTuiles(msg.possibilites, msg.pion, msg.idAventurier);
                 this.ihm.bloquerActions(msg.idAventurier);
                 break;
 

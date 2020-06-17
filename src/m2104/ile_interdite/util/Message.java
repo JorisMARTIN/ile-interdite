@@ -28,9 +28,9 @@ public class Message {
     public String nomTuile;
     public int valeur;
     public int actionRestantes;
-	public int tropCarte;
-	public ArrayList<Carte> main;
-	public Pion pion;
+    public int tropCarte;
+    public ArrayList<Carte> main;
+    public Pion pion;
     
     public Message(Utils.Commandes cmd) {
         this.commande = cmd;

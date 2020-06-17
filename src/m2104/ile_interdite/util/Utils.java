@@ -51,6 +51,7 @@ public class Utils {
         PIOCHE_CARTE("Le joueur pioche une carte"),
         DEMANDE_DEFFAUSE("Réclame au joueur de deffausser une carte"),
         CARTE_JOUE("Le Joueur vien de jouer une carte"),
+        ETAPE_JOUE_CARTE("Demande quel déplacement est voulu pour la carte jouée."),
         DEPLACEMENT_DURGENCE("Demande au joueur de se d�placer si cela est possible, toute autre action est impossible en dehors des cartes action sp�ciale");
 
         private final String libelle ;

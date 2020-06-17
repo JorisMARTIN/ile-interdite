@@ -1,6 +1,8 @@
 package m2104.ile_interdite.cartes;
 
 import m2104.ile_interdite.modele.Deck;
+import m2104.ile_interdite.modele.EtatTuile;
+import m2104.ile_interdite.modele.Tuile;
 
 /**
 *
@@ -19,8 +21,6 @@ public class CarteSacDeSable extends Carte {
 
 	@Override
 	public void action() {
-        //TODO
-		
 	}
 	
 	@Override

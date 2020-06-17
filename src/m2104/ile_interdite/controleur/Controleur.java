@@ -152,6 +152,10 @@ public class Controleur implements Observateur<Message> {
                 this.ihm.surbrillerTuiles(msg.possibilites, msg.pion);
                 this.ihm.bloquerActions(msg.idAventurier);
                 break;
+                
+            case ETAPE_JOUE_CARTE:
+                this.ihm.surbrillerTuiles(msg.possibilites, msg.pion);
+                break;
 
             default:
                 if (Parameters.LOGS) {

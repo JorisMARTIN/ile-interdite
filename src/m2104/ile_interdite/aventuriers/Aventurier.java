@@ -259,7 +259,7 @@ public abstract class Aventurier {
         
     	Carte carte = this.main.get(idCarte);
     	
-    	//carte.action();
+    	carte.action();
     	
     	defausseCarte(idCarte);
     	
@@ -289,7 +289,6 @@ public abstract class Aventurier {
         return aPioche;
     }
 
-    public void setaPioche(boolean aPioche) {
-        this.aPioche = aPioche;
+    public void setaPioche(boolean aPioche) { this.aPioche = aPioche;
     }
 }

@@ -32,12 +32,23 @@ public class Pilote extends Aventurier{
     public boolean peutSeDeplacer(Tuile tuile) {
         boolean peutNormal = super.peutSeDeplacer(tuile);
 
-        if(!utiliseePouvoir && tuile != null && tuile.getEtat() != EtatTuile.RETIREE) {
+        if(!utiliseePouvoir && tuile != null && tuile.getEtat() != EtatTuile.RETIREE && tuile != this.getPosition()) {
             return true;
         } else {
             return peutNormal;
         }
     }   
+    
+    @Override
+    public void deplacer(Tuile tuile) {
+        if (!utiliseePouvoir) {
+            utiliseePouvoir = true;
+            if (peutSeDeplacer(tuile)) {
+                utiliseePouvoir = false;
+            }
+        }
+        super.deplacer(tuile);
+    }
     
     @Override
     public void initActionsRestantes() {

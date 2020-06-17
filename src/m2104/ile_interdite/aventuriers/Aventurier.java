@@ -69,7 +69,6 @@ public abstract class Aventurier {
     }
 
     public boolean peutSeDeplacer(Tuile tuile) {
-        System.out.println("-");
         if (tuile == null || tuile.isRetiree() || getPosition() == tuile) {
             return false;
         }

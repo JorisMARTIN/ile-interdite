@@ -1,52 +1,36 @@
-    package m2104.ile_interdite.aventuriers;
+package m2104.ile_interdite.aventuriers;
     
-    import java.util.ArrayList;
+import java.util.ArrayList;
+import m2104.ile_interdite.cartes.Carte;
+import m2104.ile_interdite.cartes.CarteMonteeEaux; 
+import m2104.ile_interdite.modele.IleInterdite;  
+import m2104.ile_interdite.modele.Tuile; 
+import m2104.ile_interdite.util.Message; 
+import m2104.ile_interdite.util.Utils;
+import m2104.ile_interdite.util.Utils.Tresor;
+import m2104.ile_interdite.modele.EtatTuile;
     
-    import m2104.ile_interdite.cartes.Carte;
-    import m2104.ile_interdite.cartes.CarteMonteeEaux;
-    import m2104.ile_interdite.modele.IleInterdite;
-    import m2104.ile_interdite.modele.Tuile;
-    import m2104.ile_interdite.util.Message;
-    import m2104.ile_interdite.util.Utils;
-    import m2104.ile_interdite.util.Utils.Tresor;
-    import m2104.ile_interdite.modele.EtatTuile;
-    
-<<<<<<< HEAD
     /**
      *
      * @author IUT2-Dept Info
      */
-    public abstract class Aventurier {
-        private ArrayList<Carte> main;
-        private IleInterdite ileInterdite;
-        private Tuile position;
-        private int actionsRestantes;
-        private Utils.Pion pion;
-        private ArrayList<Tresor> tresors;
-        private boolean aPioche;
-        
-        public Aventurier(IleInterdite ileInterdite, Utils.Pion pion) {
-            this.main = new ArrayList<Carte>();
-            this.ileInterdite = ileInterdite;
-            this.pion = pion;
-            this.aPioche = false;
-=======
-/**
- *
- * @author IUT2-Dept Info
- */
 public abstract class Aventurier {
-    private ArrayList<Carte> main;
+	
+	private ArrayList<Carte> main;
     private IleInterdite ileInterdite;
-    private Tuile position;
-    private int actionsRestantes;
-    private Utils.Pion pion;
-    private ArrayList<Tresor> tresors;
-    
+	private Tuile position;
+	private int actionsRestantes;
+	private Utils.Pion pion;
+	private ArrayList<Tresor> tresors;
+    private boolean aPioche;
+        
+        
     public Aventurier(IleInterdite ileInterdite, Utils.Pion pion) {
+    	
         this.main = new ArrayList<Carte>();
         this.ileInterdite = ileInterdite;
         this.pion = pion;
+        this.aPioche = false;
         
         switch (this.pion) {
             case ROUGE:
@@ -72,7 +56,6 @@ public abstract class Aventurier {
             case JAUNE:
                 this.position = ileInterdite.getGrille().getTuile("LaPortedOr");
                 break;
->>>>>>> 67b95b7eb6019db27683e67feb876a0f04f46d47
             
             default:
                 this.position = null;

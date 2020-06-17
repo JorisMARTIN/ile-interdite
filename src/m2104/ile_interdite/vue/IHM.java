@@ -161,17 +161,12 @@ public class IHM extends Observable<Message> {
         this.vueAventuriers.get(idAventurier).actualiserMain(main);
     }
 
-    public void demandeDeffausse(int idAventurier) {
-        this.vueAventuriers.get(idAventurier).deffausseCarte();
-        
+    public void demandeDefausse(int idAventurier) {
+    	this.vueAventuriers.get(idAventurier).deffausseCarte();
     }
     
-    public void finPasGagne() {
+    public void finGagne(boolean isGagnee) {
         this.vueFin.activer(false);
-    }
-
-    public void finGagne() {
-        this.vueFin.activer(true);
     }
 
 }

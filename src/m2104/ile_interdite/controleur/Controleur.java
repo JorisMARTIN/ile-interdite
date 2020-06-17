@@ -123,20 +123,20 @@ public class Controleur implements Observateur<Message> {
                 break;
                 
             case DEMANDE_DEFFAUSE:
-                this.ihm.demandeDeffausse(msg.idAventurier);
-                break;
-                
+            	this.ihm.demandeDefausse(msg.idAventurier);
+            	break;
+            	
             case DEFAUSSE_CARTE:
                 this.ileInterdite.getAventuriers().get(msg.idAventurier).defausseCarte(msg.idCarte);
                 this.ileInterdite.lanceFinTour();
                 break;  
 
             case FIN:
-                this.ihm.finPasGagne();
+                this.ihm.finGagne(false);
                 break;
 
             case GAGNEE:
-                this.ihm.finGagne();
+                this.ihm.finGagne(true);
                 break;
                 
             case DEPLACEMENT_DURGENCE:

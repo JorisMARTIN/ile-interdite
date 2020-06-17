@@ -32,6 +32,7 @@ public abstract class Aventurier {
     public Aventurier(IleInterdite ileInterdite, Utils.Pion pion) {
         
         this.main = new ArrayList<Carte>();
+        this.tresors = new ArrayList<Tresor>();
         this.ileInterdite = ileInterdite;
         this.pion = pion;
         this.aPioche = false;

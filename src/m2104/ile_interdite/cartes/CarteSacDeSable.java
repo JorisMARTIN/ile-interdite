@@ -20,7 +20,6 @@ public class CarteSacDeSable extends Carte {
     public CarteSacDeSable(Deck deck) {
         super(deck);
     }
-
     
     /**
      * <h1>Déroulement</h1>

@@ -49,7 +49,8 @@ public class Utils {
         DEFAUSSE_CARTE("Le joueur défausse une carte"),
         JOUE_CARTE("Le Joueur joue une carte"),
         PIOCHE_CARTE("Le joueur pioche une carte"),
-        DEMANDE_DEFFAUSE("Réclame au joueur de deffausser une carte");
+        DEMANDE_DEFFAUSE("Réclame au joueur de deffausser une carte"),
+        CARTE_JOUE("Le Joueur vien de jouer une carte");
 
         private final String libelle ;
 

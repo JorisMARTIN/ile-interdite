@@ -131,6 +131,15 @@ public class Controleur implements Observateur<Message> {
             	this.ileInterdite.lanceFinTour();
             	break;	
 
+            case JOUE_CARTE:
+            	this.ileInterdite.getAventuriers().get(msg.idAventurier).joueCarte(msg.idCarte);
+            	break;
+            
+            case CARTE_JOUE:
+            	this.ihm.actualiserMainJoueur(msg.main, msg.idAventurier);
+            	this.ihm.bloquerActions(msg.idAventurier);
+            	break;
+            	
             case FIN:
                 this.ihm.finGagne(false);
                 break;

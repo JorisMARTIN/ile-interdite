@@ -22,6 +22,12 @@ public class Deck {
         this.ileInterdite = ileInterdite;
     }
 
+    /**
+
+     * @param cartes les cartes ajoutées
+     * 
+     * Rempli la pioche avec les cartes en les melangeant
+     */
     public void remplirPioche(ArrayList<Carte> cartes) {
         pioche.addAll(melanger(cartes));
     }

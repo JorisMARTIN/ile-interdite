@@ -2,6 +2,7 @@ package m2104.ile_interdite.aventuriers;
     
 import java.util.ArrayList;
 import m2104.ile_interdite.cartes.Carte;
+import m2104.ile_interdite.cartes.CarteHelicoptere;
 import m2104.ile_interdite.cartes.CarteMonteeEaux; 
 import m2104.ile_interdite.modele.IleInterdite;  
 import m2104.ile_interdite.modele.Tuile; 
@@ -187,8 +188,7 @@ public abstract class Aventurier {
      * </ul>
      * @param i : nombre de cartes a piocher 
      */
-    public void piocherCartes(int nbCartes) {
-        
+    public void piocherCartes(int nbCartes) { 
         
         for(int i=0; i < nbCartes; i++) {
             
@@ -199,8 +199,14 @@ public abstract class Aventurier {
                 this.main.add(carte);
                 this.ileInterdite.getDeckTresor().getPioche().remove(carte);                
             }
+            
+            if(this.ileInterdite.getDeckTresor().isVide()) {
+            	this.ileInterdite.getDeckTresor().remplirPioche(this.ileInterdite.getDeckTresor().getDefausse());
+            	this.ileInterdite.getDeckTresor().getDefausse().clear();
+            }
         
         }
+        
         
             Message msg = new Message(Utils.Commandes.PIOCHE_CARTE);
             
@@ -249,8 +255,14 @@ public abstract class Aventurier {
         return this.ileInterdite;
     }
 
-    public void joueCarte(Carte carte) {
+    public void joueCarte(int idCarte) {
         
+    	Carte carte = this.main.get(idCarte);
+    	
+    	//carte.action();
+    	
+    	defausseCarte(idCarte);
+    	
     }
     
     public void defausseCarte(int idCarte) {

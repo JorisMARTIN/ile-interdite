@@ -63,23 +63,6 @@ public class Utils {
         }
     }
 
-    public static enum EtatTuile {
-        ASSECHEE("Asséchée"),
-        INONDEE("Inondée"),
-        COULEE("Coulée");
-
-        private final String libelle ;
-
-        EtatTuile(String libelle) {
-            this.libelle = libelle ;
-        }
-
-        @Override
-        public String toString() {
-            return this.libelle ;
-        }
-    }
-
     public static enum Tresor {
         PIERRE("La Pierre Sacrée", new Color(141,79,9), new Color(255,242,0), Parameters.TRESORS + "images/tresors/pierre.png"),
         ZEPHYR("La statue du Zéphyr", new Color(255,215,0), new Color(208,26,136), Parameters.TRESORS + "images/tresors/zephyr.png"),

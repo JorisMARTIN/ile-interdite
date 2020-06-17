@@ -157,7 +157,7 @@ public class IHM extends Observable<Message> {
         this.vueAventuriers.get(idAventurier).actualiserMain(main);
     }
 
-    public void demandeDeffausse(int idAventurier) {
+    public void demandeDefausse(int idAventurier) {
     	this.vueAventuriers.get(idAventurier).deffausseCarte();
     	
     }

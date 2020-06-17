@@ -123,7 +123,7 @@ public class Controleur implements Observateur<Message> {
             	break;
             	
             case DEMANDE_DEFFAUSE:
-            	this.ihm.demandeDeffausse(msg.idAventurier);
+            	this.ihm.demandeDefausse(msg.idAventurier);
             	break;
             	
             case DEFAUSSE_CARTE:

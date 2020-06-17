@@ -15,18 +15,18 @@ import m2104.ile_interdite.modele.EtatTuile;
      * @author IUT2-Dept Info
      */
 public abstract class Aventurier {
-	
-	private ArrayList<Carte> main;
+    
+    private ArrayList<Carte> main;
     private IleInterdite ileInterdite;
-	private Tuile position;
-	private int actionsRestantes;
-	private Utils.Pion pion;
-	private ArrayList<Tresor> tresors;
+    private Tuile position;
+    private int actionsRestantes;
+    private Utils.Pion pion;
+    private ArrayList<Tresor> tresors;
     private boolean aPioche;
         
         
     public Aventurier(IleInterdite ileInterdite, Utils.Pion pion) {
-    	
+        
         this.main = new ArrayList<Carte>();
         this.ileInterdite = ileInterdite;
         this.pion = pion;
@@ -65,13 +65,13 @@ public abstract class Aventurier {
     }
 
     public boolean peutSeDeplacer(Tuile tuile) {
+        System.out.println("-");
         if (tuile == null || tuile.isRetiree() || getPosition() == tuile) {
             return false;
         }
 
         int indexTuileCible = this.ileInterdite.getGrille().getTuiles(true).indexOf(tuile);
         int indexTuileActuelle = this.ileInterdite.getGrille().getTuiles(true).indexOf(getPosition());
-
         return (indexTuileActuelle < 29 && indexTuileActuelle + 6 == indexTuileCible)
             || (indexTuileActuelle < 35 && indexTuileActuelle + 1 == indexTuileCible && (indexTuileActuelle) % 6 != 5)
             || (indexTuileActuelle > 5 && indexTuileActuelle - 6 == indexTuileCible)
@@ -184,7 +184,7 @@ public abstract class Aventurier {
      * @param i : nombre de cartes a piocher 
      */
     public void piocherCartes(int nbCartes) {
-    	
+        
         
         for(int i=0; i < nbCartes; i++) {
             
@@ -198,17 +198,17 @@ public abstract class Aventurier {
         
         }
         
-	        Message msg = new Message(Utils.Commandes.PIOCHE_CARTE);
-	        
-	        msg.main = main;
-	        msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
-	        
-	        ileInterdite.notifierObservateurs(msg);
+            Message msg = new Message(Utils.Commandes.PIOCHE_CARTE);
+            
+            msg.main = main;
+            msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
+            
+            ileInterdite.notifierObservateurs(msg);
     }
         
     
     public void initActionsRestantes() {
-    	this.aPioche = false;
+        this.aPioche = false;
         this.actionsRestantes = 3;
         ileInterdite.notifyActionRestantes(actionsRestantes, this);
     }
@@ -269,11 +269,11 @@ public abstract class Aventurier {
         return this.tresors;
     }
 
-	public boolean isaPioche() {
-		return aPioche;
-	}
+    public boolean isaPioche() {
+        return aPioche;
+    }
 
-	public void setaPioche(boolean aPioche) {
-		this.aPioche = aPioche;
-	}
+    public void setaPioche(boolean aPioche) {
+        this.aPioche = aPioche;
+    }
 }

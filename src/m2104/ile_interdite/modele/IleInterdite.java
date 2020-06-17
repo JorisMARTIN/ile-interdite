@@ -140,7 +140,6 @@ public class IleInterdite extends Observable<Message> {
             
             carte = deckInnondation.getPremiereCarte();
             carte.action();
-            deckInnondation.defausseCarte(carte);
             
         }
         
@@ -156,8 +155,6 @@ public class IleInterdite extends Observable<Message> {
 
     public void setCurseur(int curseur) {
         this.curseur = curseur;
-
-        this.deckInnondation.remplirPioche(this.deckInnondation.getDefausse());
 
         if(this.deckTresor.isVide()) {
             this.deckTresor.remplirPioche(this.deckTresor.getDefausse());
@@ -247,7 +244,6 @@ public class IleInterdite extends Observable<Message> {
         for (int i = 0; i < nb; i++) {
             Carte carte = this.deckInnondation.getPremiereCarte();
             carte.action();
-            deckInnondation.defausseCarte(carte);
         }
 
         Message msg = new Message(Utils.Commandes.MAJ_GRILLE);

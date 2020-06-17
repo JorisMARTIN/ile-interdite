@@ -42,7 +42,7 @@ public class CarteHelicoptere extends Carte {
             ArrayList<Boolean> possibilites = new ArrayList<>();
 
             for (Tuile t : this.getDeck().getIleInterdite().getGrille().getTuiles(true)){
-                if (t != null && t.getEtat() != EtatTuile.RETIREE){
+                if (t != null && t.getEtat() != EtatTuile.RETIREE && t != this.getAventurier().getPosition()) {
                     possibilites.add(true);
                 } else {
                     possibilites.add(false);
@@ -51,6 +51,7 @@ public class CarteHelicoptere extends Carte {
 
             msg.pion = this.getAventurier().getPion();
             msg.possibilites = possibilites;
+            msg.action = 2;
 
             this.getDeck().getIleInterdite().notifierObservateurs(msg);
         }

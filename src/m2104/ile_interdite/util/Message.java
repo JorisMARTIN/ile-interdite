@@ -35,7 +35,8 @@ public class Message {
     public Pion pion;
     public Tuile tuileDepart;
     public Tuile tuileAction;
-
+    public int action;
+    
     public Message(Utils.Commandes cmd) {
         this.commande = cmd;
         this.possibilites = new ArrayList<>();

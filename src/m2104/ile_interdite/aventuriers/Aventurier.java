@@ -186,9 +186,13 @@
         for(int i=0; i < nbCartes; i++) {
             
             Carte carte = this.ileInterdite.getDeckTresor().getPremiereCarte();
-            
-            this.main.add(carte);
-            this.ileInterdite.getDeckTresor().getPioche().remove(carte);
+
+            if (carte instanceof CarteMonteeEaux) {
+                carte.action();
+            } else {
+                this.main.add(carte);
+                this.ileInterdite.getDeckTresor().getPioche().remove(carte);                
+            }
         
         }
         
@@ -252,21 +256,20 @@
         }
     }
     
-    
     public void defausseCarte(int idCarte) {
-    
+                                        
         Carte carte = getMain().get(idCarte);
-        
         getMain().remove(carte);
+
         this.ileInterdite.getDeckTresor().getDefausse().add(carte);
-        
+
         Message msg = new Message(Utils.Commandes.ACTUALISER_MAIN);
-  
+
         msg.main = this.main;
         msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
-        
+
         ileInterdite.notifierObservateurs(msg);
-        
+
     }
 
     public ArrayList<Tresor> getTresors() {

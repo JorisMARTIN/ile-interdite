@@ -243,11 +243,13 @@ public class IleInterdite extends Observable<Message> {
         } else {
             nb = 4;
         }
+        
         for (int i = 0; i < nb; i++) {
             Carte carte = this.deckInnondation.getPremiereCarte();
             carte.action();
             deckInnondation.defausseCarte(carte);
         }
+
         Message msg = new Message(Utils.Commandes.MAJ_GRILLE);
         msg.grille = grille;
         notifierObservateurs(msg);

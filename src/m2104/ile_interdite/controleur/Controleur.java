@@ -94,6 +94,7 @@ public class Controleur implements Observateur<Message> {
 
             case LANCE_CURSEUR:
                 this.ihm.placerCurseur(msg.valeur);
+                System.out.println(msg.valeur);
                 break;
                 
             case JOUEUR_SUIVANT:

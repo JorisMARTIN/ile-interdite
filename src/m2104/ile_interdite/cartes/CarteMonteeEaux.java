@@ -11,9 +11,8 @@ public class CarteMonteeEaux extends Carte {
 
     @Override
     public void action() {
-        
         this.getDeck().getIleInterdite().setCurseur(this.getDeck().getIleInterdite().getCurseur() + 1);
-        this.getDeck().defausseCarte(this);     
+        this.getDeck().defausseCarte(this);
     }
     
     @Override

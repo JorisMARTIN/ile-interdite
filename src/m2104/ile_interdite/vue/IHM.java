@@ -39,38 +39,38 @@ public class IHM extends Observable<Message> {
         
         for (int id = 0; id < nomAventuriers.length; ++id) {
             
-        	switch (nomAventuriers[id]) {
-        	
-			case "Explorateur":
-					active = Utils.Pion.VERT.getCouleur();
-				break;
-				
-			case "Pilote" :
-					active = Utils.Pion.BLEU.getCouleur();
-				break;
-				
-			case "Navigateur" :
-					active = Utils.Pion.JAUNE.getCouleur();
-				break;
-				
-			case "Ingénieur" :
-					active = Utils.Pion.ROUGE.getCouleur();
-				break;
-			
-			case "Messager" :
-					active = Utils.Pion.ORANGE.getCouleur();
-				break;
-				
-			case "Plongeur" :
-					active = Utils.Pion.VIOLET.getCouleur();
-				break;
-				
-			default:
-				active = null;
-				break;
-			}
-        	
-        	this.vueAventuriers.put(
+            switch (nomAventuriers[id]) {
+            
+            case "Explorateur":
+                    active = Utils.Pion.VERT.getCouleur();
+                break;
+                
+            case "Pilote" :
+                    active = Utils.Pion.BLEU.getCouleur();
+                break;
+                
+            case "Navigateur" :
+                    active = Utils.Pion.JAUNE.getCouleur();
+                break;
+                
+            case "Ingénieur" :
+                    active = Utils.Pion.ROUGE.getCouleur();
+                break;
+            
+            case "Messager" :
+                    active = Utils.Pion.ORANGE.getCouleur();
+                break;
+                
+            case "Plongeur" :
+                    active = Utils.Pion.VIOLET.getCouleur();
+                break;
+                
+            default:
+                active = null;
+                break;
+            }
+            
+            this.vueAventuriers.put(
                     id,
                     new VueAventurier(
                             this,
@@ -109,33 +109,40 @@ public class IHM extends Observable<Message> {
     }
 
     public void majVueJeu() {
-        //TODO
+        this.vueJeu.affGrille();
+        this.vueJeu.resetSelections();
     }
 
-    public void changerJoueurCourant(Integer idAventurier) {
+    public void changerJoueurCourant(int idAventurier) {
 
         for(VueAventurier vue : this.vueAventuriers.values()) {
-        	
-        	vue.resetActionRestantes();
+            
+            vue.resetActionRestantes();
             vue.desactiver();
             vue.activerBoutons(false, false, false, false, false, false, false);
             
-            if(vue.getMainJoueur().size() > 5) vue.setEtatBoutonsCartes(false);
+            if(vue.getMainJoueur().size() > 5) {
+                vue.setEtatBoutonsCartes(false);
+            }
             
         }
         
         this.vueAventuriers.get(idAventurier).activer();
         
         if(this.vueAventuriers.get(idAventurier).getMainJoueur().size() > 5) {
-        	
-        	this.vueAventuriers.get(idAventurier).activerBoutons(false, false, false, false, false, false, false);
-        	this.vueAventuriers.get(idAventurier).setEtatBoutonsCartes(true);
-        	
-        }else {
-        	
-        	this.vueAventuriers.get(idAventurier).activerBoutons(true, true, true, true, true, true, true);
-        	
+            
+            this.vueAventuriers.get(idAventurier).activerBoutons(false, false, false, false, false, false, false);
+            this.vueAventuriers.get(idAventurier).setEtatBoutonsCartes(true);
+            
+        } else {
+            
+            this.vueAventuriers.get(idAventurier).activerBoutons(true, true, true, true, true, true, true);
+            
         }
+    }
+    
+    public void zeroActions(int idAventurier) {
+        this.vueAventuriers.get(idAventurier).activerBoutons(false, false, false, false, false, false, true);
     }
 
 	public void setActionRestantes(Integer idAventurier, Integer actionRestantes) {
@@ -149,9 +156,6 @@ public class IHM extends Observable<Message> {
 	public void actualiserMainJoueur(ArrayList<Carte> main, boolean tropCarte, Integer idAventurier) {
 		
 		this.vueAventuriers.get(idAventurier).actualiserMain(main, tropCarte);
-		
-		
-		
 		
 	}
 

@@ -82,6 +82,18 @@ public class VueJeu {
         return img;
     }
     
+    public void resetSelections() {
+        for (int tuile = 0; tuile < grille.getTuiles(true).size(); tuile++) {
+            if (this.boutons.get(tuile) != null && this.boutons.get(tuile).isVisible()) {
+                this.boutons.get(tuile).setEnabled(false);
+                this.boutons.get(tuile).setBorder(BorderFactory.createEmptyBorder());
+            }
+        }
+        
+        grillePanel.revalidate();
+        grillePanel.repaint();
+    }
+    
     private String getPositionPion(int nbPion, int numeroPion) {
         String position = "";
         if (nbPion == 1) {
@@ -128,6 +140,7 @@ public class VueJeu {
             button.setOpaque(false);
             button.setContentAreaFilled(false);
             button.setFocusPainted(false);
+            button.setEnabled(false);
             
             if (t != null && t.getEtat() != EtatTuile.RETIREE) {
                 Image img = null;
@@ -138,7 +151,6 @@ public class VueJeu {
                 }
                 button.setIcon(new ImageIcon(img));
                 button.setDisabledIcon(new ImageIcon(img));
-                button.setEnabled(false);
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {

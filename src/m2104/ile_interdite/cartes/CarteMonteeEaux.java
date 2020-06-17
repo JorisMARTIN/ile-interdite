@@ -5,6 +5,15 @@ import m2104.ile_interdite.modele.Deck;
 
 import java.util.ArrayList;
 
+/**
+*
+* @author Thomas JHISTARRY
+* @author Joris MARTIN
+* @author Tanguy SIGNORET
+* @author Mattéo PAPPALARDO
+* 
+*/
+
 public class CarteMonteeEaux extends Carte {
 
     public CarteMonteeEaux(Deck deck) {

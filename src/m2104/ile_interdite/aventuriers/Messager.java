@@ -10,9 +10,13 @@ import m2104.ile_interdite.modele.IleInterdite;
 import m2104.ile_interdite.util.Utils.Pion;
 
 /**
- *
- * @author tang
- */
+*
+* @author Thomas JHISTARRY
+* @author Joris MARTIN
+* @author Tanguy SIGNORET
+* @author Mattéo PAPPALARDO
+* 
+*/
 public class Messager extends Aventurier{
     /*construteur*/
     public Messager(IleInterdite ileInterdite) {

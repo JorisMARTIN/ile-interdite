@@ -4,7 +4,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import m2104.ile_interdite.cartes.Carte;
-
+/**
+*
+* @author Thomas JHISTARRY
+* @author Joris MARTIN
+* @author Tanguy SIGNORET
+* @author Mattéo PAPPALARDO
+*/
 public class Deck {
     private ArrayList<Carte> pioche;
     private ArrayList<Carte> defausse;

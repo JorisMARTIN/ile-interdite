@@ -5,15 +5,18 @@
  */
 package m2104.ile_interdite.aventuriers;
 
-import m2104.ile_interdite.modele.EtatTuile;
 import m2104.ile_interdite.modele.IleInterdite;
 import m2104.ile_interdite.modele.Tuile;
 import m2104.ile_interdite.util.Utils.Pion;
 
 /**
- *
- * @author tang
- */
+*
+* @author Thomas JHISTARRY
+* @author Joris MARTIN
+* @author Tanguy SIGNORET
+* @author Mattéo PAPPALARDO
+* 
+*/
 public class Pilote extends Aventurier{
     /*construteur*/
     public Pilote(IleInterdite ileInterdite) {

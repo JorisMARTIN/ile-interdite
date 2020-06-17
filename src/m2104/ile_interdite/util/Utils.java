@@ -11,6 +11,11 @@ import m2104.ile_interdite.aventuriers.Aventurier;
 /**
  *
  * @author IUT2-Dept Info
+ *
+ * @author Thomas JHISTARRY
+ * @author Joris MARTIN
+ * @author Tanguy SIGNORET
+ * @author Mattéo PAPPALARDO
  */
 public class Utils {
 

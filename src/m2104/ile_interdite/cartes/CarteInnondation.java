@@ -38,5 +38,7 @@ public class CarteInnondation extends Carte {
         return "I";
     }
 
-    
+    public Tuile getTuile() {
+        return this.tuile;
+    }
 }

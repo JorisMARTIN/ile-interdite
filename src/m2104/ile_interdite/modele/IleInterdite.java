@@ -245,8 +245,12 @@ public class IleInterdite extends Observable<Message> {
         }
         
         for (int i = 0; i < nb; i++) {
-            Carte carte = this.deckInnondation.getPremiereCarte();
+            CarteInnondation carte = (CarteInnondation) this.deckInnondation.getPremiereCarte();
             carte.action();
+            
+            if (carte.getTuile().getEtat() == EtatTuile.RETIREE) {
+                String todo = "patate";
+            }
         }
 
         Message msg = new Message(Utils.Commandes.MAJ_GRILLE);
@@ -315,12 +319,12 @@ public class IleInterdite extends Observable<Message> {
         } else {
         	
         
-        // Lance la phase d'innondation
-        lanceInnondation();
-        
-        // Passe au joueur suivant
-        joueurSuivant();
-        
+            // Lance la phase d'innondation
+            lanceInnondation();
+            
+            // Passe au joueur suivant
+            joueurSuivant();
+            
         }
 
     }

@@ -41,9 +41,9 @@ public class Controleur implements Observateur<Message> {
                 break;
                 
             case INITIALISER_GRILLE:
-            	this.ihm.creeVueJeu(msg.grille);
-            	break;
-            	
+                this.ihm.creeVueJeu(msg.grille);
+                break;
+                
             case BOUGER:
                 this.ileInterdite.lanceDeplacement();
                 break;
@@ -56,11 +56,11 @@ public class Controleur implements Observateur<Message> {
                 break;
             
             case RECUPERER_TRESOR:
-            	this.ileInterdite.getAventuriers().get(msg.idAventurier).recupererTresor();
+                this.ileInterdite.getAventuriers().get(msg.idAventurier).recupererTresor();
                 break;
             
             case TERMINER:
-            	this.ileInterdite.lanceFinTour();
+                this.ileInterdite.lanceFinTour();
                 break;
             
             case RECEVOIR:
@@ -76,7 +76,7 @@ public class Controleur implements Observateur<Message> {
                 break;*/
             
             case ZERO_ACTIONS:
-        	this.ihm.zeroActions(msg.idAventurier);
+            this.ihm.zeroActions(msg.idAventurier);
                 break;
 
             /*Ajout des nouveaux cas pour les nouveaux messages*/
@@ -103,7 +103,7 @@ public class Controleur implements Observateur<Message> {
             case JOUEUR_SUIVANT:
                 this.ihm.changerJoueurCourant(msg.idAventurier);
                 this.ihm.setActionRestantes(msg.idAventurier, msg.actionRestantes);
-            	this.ihm.majVueJeu();
+                this.ihm.majVueJeu();
                 break;
                 
             case LANCER_JEU:
@@ -119,17 +119,17 @@ public class Controleur implements Observateur<Message> {
                 break;
                 
             case PIOCHE_CARTE:
-            	this.ihm.actualiserMainJoueur(msg.main, msg.idAventurier);
-            	break;
-            	
+                this.ihm.actualiserMainJoueur(msg.main, msg.idAventurier);
+                break;
+                
             case DEMANDE_DEFFAUSE:
             	this.ihm.demandeDefausse(msg.idAventurier);
             	break;
             	
             case DEFAUSSE_CARTE:
-            	this.ileInterdite.getAventuriers().get(msg.idAventurier).defausseCarte(msg.idCarte);
-            	this.ileInterdite.lanceFinTour();
-            	break;	
+                this.ileInterdite.getAventuriers().get(msg.idAventurier).defausseCarte(msg.idCarte);
+                this.ileInterdite.lanceFinTour();
+                break;  
 
             case JOUE_CARTE:
             	this.ileInterdite.getAventuriers().get(msg.idAventurier).joueCarte(msg.idCarte);
@@ -146,6 +146,11 @@ public class Controleur implements Observateur<Message> {
 
             case GAGNEE:
                 this.ihm.finGagne(true);
+                break;
+                
+            case DEPLACEMENT_DURGENCE:
+                this.ihm.surbrillerTuiles(msg.possibilites, msg.pion);
+                this.ihm.bloquerActions(msg.idAventurier);
                 break;
 
             default:

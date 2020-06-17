@@ -20,6 +20,7 @@ import m2104.ile_interdite.util.Utils.Tresor;
 */
 public class Grille {
     private final ArrayList<Tuile> tuiles;
+    //private IleInterdite ileInterdite;
     
     public Grille() {
         this.tuiles = new ArrayList<>();

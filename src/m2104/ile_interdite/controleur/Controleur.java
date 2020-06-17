@@ -132,11 +132,11 @@ public class Controleur implements Observateur<Message> {
             	break;	
 
             case FIN:
-                this.ihm.finPasGagne();
+                this.ihm.finGagne(false);
                 break;
 
             case GAGNEE:
-                this.ihm.finGagne();
+                this.ihm.finGagne(true);
                 break;
 
             default:

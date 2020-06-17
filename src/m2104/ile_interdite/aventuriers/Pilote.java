@@ -15,6 +15,8 @@ import m2104.ile_interdite.util.Utils.Pion;
  * @author tang
  */
 public class Pilote extends Aventurier{
+    /*attribut utilisation du pouvoir*/
+    private boolean utiliseePouvoir = true;
     /*construteur*/
     public Pilote(IleInterdite ileInterdite) {
         super(ileInterdite, Pion.BLEU);
@@ -23,8 +25,25 @@ public class Pilote extends Aventurier{
     /*méthodes*/
     @Override
     public boolean peutSeDeplacer(Tuile tuile) {
-        //return tuile.getEtat() == EtatTuile.RETIREE ? false :  true;
-        return super.peutSeDeplacer(tuile);
-    }
-    
+        boolean peutNormal = super.peutAssecher(tuile);
+
+        System.out.println("Etat : " + tuile.getEtat() + " tuile==null ? " + tuile==null);
+
+        if(tuile.getEtat() != EtatTuile.RETIREE){
+
+            if (!utiliseePouvoir && tuile != null) {
+                utiliseePouvoir = true;
+                return true;
+            } else if (utiliseePouvoir && tuile != null) {
+                utiliseePouvoir = false;
+                return peutNormal;
+            } else {
+                utiliseePouvoir = false;
+                return peutNormal;
+            }
+        } else {
+            utiliseePouvoir = false;
+            return peutNormal;
+        }
+    }   
 }

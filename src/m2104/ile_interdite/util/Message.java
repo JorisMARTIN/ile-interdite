@@ -7,9 +7,12 @@ import m2104.ile_interdite.modele.Grille;
 import m2104.ile_interdite.util.Utils.Pion;
 
 /**
- *
- * @author IUT2-Dept Info
- */
+*
+* @author Thomas JHISTARRY
+* @author Joris MARTIN
+* @author Tanguy SIGNORET
+* @author Mattéo PAPPALARDO
+*/
 public class Message {
 
     public Utils.Commandes commande;

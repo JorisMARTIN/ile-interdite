@@ -12,9 +12,12 @@ import java.util.Random;
 import m2104.ile_interdite.util.Utils.Tresor;
 
 /**
- *
- * @author tang
- */
+*
+* @author Thomas JHISTARRY
+* @author Joris MARTIN
+* @author Tanguy SIGNORET
+* @author Mattéo PAPPALARDO
+*/
 public class Grille {
     private final ArrayList<Tuile> tuiles;
     

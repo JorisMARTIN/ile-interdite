@@ -4,7 +4,14 @@ import m2104.ile_interdite.modele.Deck;
 import m2104.ile_interdite.modele.EtatTuile;
 import m2104.ile_interdite.modele.Tuile;
 
-import java.util.ArrayList;
+/**
+*
+* @author Thomas JHISTARRY
+* @author Joris MARTIN
+* @author Tanguy SIGNORET
+* @author Mattéo PAPPALARDO
+* 
+*/
 
 public class CarteInnondation extends Carte {
     

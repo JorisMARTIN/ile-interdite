@@ -11,9 +11,12 @@ import m2104.ile_interdite.aventuriers.Aventurier;
 import m2104.ile_interdite.util.Utils;
 
 /**
- *
- * @author tang
- */
+*
+* @author Thomas JHISTARRY
+* @author Joris MARTIN
+* @author Tanguy SIGNORET
+* @author Mattéo PAPPALARDO
+*/
 public class Tuile {
     /*attribus*/
     private String nom;

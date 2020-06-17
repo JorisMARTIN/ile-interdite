@@ -12,7 +12,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -29,7 +28,13 @@ import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.cartes.CarteTresor;
 import m2104.ile_interdite.util.Message;
 
-
+/**
+*
+* @author Thomas JHISTARRY
+* @author Joris MARTIN
+* @author Tanguy SIGNORET
+* @author Mattéo PAPPALARDO
+*/
 public class VueAventurier {
     private final IHM ihm;
     protected final Integer idAventurier ;
@@ -333,6 +338,9 @@ public class VueAventurier {
                         m.idAventurier = idAventurier;
                         
                         ihm.notifierObservateurs(m);
+                        break;
+                        
+                    default:
                         break;
                 }
                 

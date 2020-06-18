@@ -374,4 +374,5 @@ public class IleInterdite extends Observable<Message> {
 	public ArrayList<Utils.Tresor> getTresorsEnJeu() {
 		return tresorsEnJeu;
 	}
+
 }

@@ -59,6 +59,8 @@ public class Controleur implements Observateur<Message> {
                 break;
             
             case DONNER:
+            	
+            	this.ihm.setIdCarteADonner(msg.idCarte);
                 break;
             
             case RECUPERER_TRESOR:
@@ -146,7 +148,7 @@ public class Controleur implements Observateur<Message> {
                 this.ihm.setActionRestantes(msg.idAventurier, msg.actionRestantes);
                 break;
                 
-            case PIOCHE_CARTE:
+            case ACTUALISER_MAIN:
                 this.ihm.actualiserMainJoueur(msg.main, msg.idAventurier);
                 break;
                 

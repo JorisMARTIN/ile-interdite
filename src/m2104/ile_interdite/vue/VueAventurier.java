@@ -59,7 +59,7 @@ public class VueAventurier {
     private JPanel panelCentre, panelCartes, panelText;
     private JLabel actionRestantes;
     private ArrayList<JButton> mainJoueur;
-    private JTextArea defausseCarte;
+    private JTextArea description;
 
     public VueAventurier(IHM ihm, Integer id, String nomJoueur, String nomAventurier, String power, Integer num, Integer nbAventuriers, Color couleurActive, Color couleurInactive){
         this.ihm = ihm;
@@ -142,13 +142,13 @@ public class VueAventurier {
         
         this.panelCentre.add(panelCartes, BorderLayout.NORTH);
         
-        this.defausseCarte = new JTextArea("");
-        defausseCarte.setEditable(false);
-        defausseCarte.setOpaque(false);
+        this.description = new JTextArea("");
+        description.setEditable(false);
+        description.setOpaque(false);
         
         this.actionRestantes = new JLabel("");
         
-        this.panelText.add(defausseCarte, BorderLayout.CENTER);
+        this.panelText.add(description, BorderLayout.CENTER);
         this.panelText.add(actionRestantes, BorderLayout.SOUTH);
         
         this.panelCentre.add(panelText);
@@ -311,10 +311,7 @@ public class VueAventurier {
                         
                     case DONNER:
                         
-                        m = new Message(Commandes.DONNER);
-                        m.idAventurier = idAventurier;
-                        
-                        ihm.notifierObservateurs(m);
+                       donnerCarte();
                         break;
                         
                     case RECUPERER_TRESOR:
@@ -549,7 +546,7 @@ public class VueAventurier {
                 m.idAventurier = idAventurier;
                 m.idCarte = mainJoueur.indexOf(e.getSource());
                  
-                defausseCarte.setText("");
+                description.setText("");
                  
                 ihm.notifierObservateurs(m);
             }
@@ -557,9 +554,43 @@ public class VueAventurier {
              
         }
         
-        this.defausseCarte.setText("Vous avez trop de carte !\nCliquez sur laquel vous voulez\ndefausser :");
+        this.description.setText("Vous avez trop de carte !\nCliquez sur laquel vous voulez\ndefausser :");
     }
     
+    
+    public void donnerCarte() {
+    	
+    	for(JButton b : this.mainJoueur) {
+            
+            b.setEnabled(true);
+             
+            for(ActionListener action : b.getActionListeners()) {
+                b.removeActionListener(action);
+            }
+            
+            b.addActionListener(new ActionListener() {
+             
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            		
+            	ihm.activerActionsTous(false, false, false, false, true, false, false);
+            	activerBoutons(false, false, false, false, false, false, false);
+            	
+                Message m = new Message(Commandes.DONNER);
+                m.idAventurier = idAventurier;
+                m.idCarte = mainJoueur.indexOf(e.getSource());
+                 
+                description.setText("Cliquez maintenant sur\nle joueur à qui vous\nvoulez donner la carte :");
+                 
+                ihm.notifierObservateurs(m);
+            }
+            });
+             
+        }
+        
+        this.description.setText("Cliquez sur la carte carte\nque vous voulez\ndonner :");
+    	
+    }
     
     /**
      * 
@@ -574,5 +605,6 @@ public class VueAventurier {
     public ArrayList<JButton> getMainJoueur() {
         return this.mainJoueur;
     }
+
 
 }

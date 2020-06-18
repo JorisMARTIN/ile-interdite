@@ -22,6 +22,8 @@ public class IHM extends Observable<Message> {
     private VueJeu vueJeu;
     private VueNiveau vueNiveau;
     private VueFin vueFin;
+    
+    private int idCarteADonner; 
 
     public IHM(Observateur<Message> observateur) {
         this.vueInscription = new VueInscriptionJoueurs(this);
@@ -176,5 +178,15 @@ public class IHM extends Observable<Message> {
     public void finGagne(boolean isGagnee) {
         this.vueFin.activer(false);
     }
+
+	public void demandeDonCarte(int idAventurier) {
+		this.vueAventuriers.get(idAventurier).donnerCarte();
+	}
+
+	public void setIdCarteADonner(int idCarteADonner) {
+		this.idCarteADonner = idCarteADonner;
+		
+	}
+	
 
 }

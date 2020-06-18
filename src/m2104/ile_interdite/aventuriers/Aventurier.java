@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.cartes.CarteHelicoptere;
 import m2104.ile_interdite.cartes.CarteMonteeEaux;
+import m2104.ile_interdite.cartes.CarteSacDeSable;
 import m2104.ile_interdite.cartes.CarteTresor;
 import m2104.ile_interdite.modele.IleInterdite;  
 import m2104.ile_interdite.modele.Tuile; 
@@ -134,14 +135,14 @@ public abstract class Aventurier {
         return this.position;
     }
         
+    public boolean peutDonnerCarteTresor(Aventurier receveur, Carte carte) {
+    	
+    	return receveur.getPosition() == this.position && receveur.getMain().size() < 5 && !(carte instanceof CarteHelicoptere) && !(carte instanceof CarteSacDeSable);
+    	
+    }
+    
     public void donnerCarteTresor(Aventurier a, Carte carte) {
-        if (a.getPosition() == this.getPosition()
-            && carte.getClass().toString() != "CarteSacDeSable"
-            && carte.getClass().toString() != "CarteHelicoptere" ) {
-            a.getMain().add(carte);
-        }
-        
-        moinsActions();
+    	//TODO
     }
     
     /**
@@ -149,7 +150,8 @@ public abstract class Aventurier {
      * 	<li>Retrait de 4 carte trésor correspondante de la main du joueur</li>
      * 	<li>Ajout du tresor a la liste "tresors" de l'aventurier</li>
      * 	<li>Retrait du tresor de la liste "tresorsEnJeu" de IleInterdite</li>
-     * 	<li>Notifie l'ihm du retrait du tresor</li>
+     * 	<li>Enlever une action</li>
+     * 	<li>Met a jour la vueAventurier</li>
      * </ol>
      */
     public void recupererTresor() {
@@ -169,8 +171,16 @@ public abstract class Aventurier {
     	this.tresors.add(tresor);
     	this.ileInterdite.getTresorsEnJeu().remove(tresor);
     	
+    	moinsActions();
     	
-        moinsActions();
+    	Message msg = new Message(Utils.Commandes.ACTUALISER_MAIN);
+    	
+    	msg.main = main;
+        msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
+        
+        this.ileInterdite.notifierObservateurs(msg);
+      
+    	
     }
     
     public ArrayList<Carte> getMain() {
@@ -199,7 +209,7 @@ public abstract class Aventurier {
             this.ileInterdite.getDeckTresor().getPioche().remove(c);
         }
         
-        Message msg = new Message(Utils.Commandes.PIOCHE_CARTE);
+        Message msg = new Message(Utils.Commandes.ACTUALISER_MAIN);
         
         msg.main = main;
         msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
@@ -237,7 +247,7 @@ public abstract class Aventurier {
         }
         
         
-            Message msg = new Message(Utils.Commandes.PIOCHE_CARTE);
+            Message msg = new Message(Utils.Commandes.ACTUALISER_MAIN);
             
             msg.main = main;
             msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
@@ -385,7 +395,7 @@ public abstract class Aventurier {
 
         this.ileInterdite.getDeckTresor().getDefausse().add(carte);
 
-        Message msg = new Message(Utils.Commandes.PIOCHE_CARTE);
+        Message msg = new Message(Utils.Commandes.ACTUALISER_MAIN);
 
         msg.main = this.main;
         msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
@@ -402,7 +412,8 @@ public abstract class Aventurier {
         return aPioche;
     }
 
-    public void setaPioche(boolean aPioche) { this.aPioche = aPioche;
+    public void setaPioche(boolean aPioche) {
+    	this.aPioche = aPioche;
     }
 
 	public void setPosition(Tuile position) {

@@ -59,9 +59,9 @@ public class CarteHelicoptere extends Carte {
 
             for (Tuile t : this.getDeck().getIleInterdite().getGrille().getTuiles(true)){
                 if (t != null && t != this.getAventurier().getPosition() && t.getEtat() != EtatTuile.RETIREE) {
-                    possibilites.add(true);
+                    msg.possibilites.add(true);
                 } else {
-                    possibilites.add(false);
+                    msg.possibilites.add(false);
                 }
             }
 

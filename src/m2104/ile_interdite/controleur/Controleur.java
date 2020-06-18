@@ -30,7 +30,7 @@ public class Controleur implements Observateur<Message> {
         if (Parameters.LOGS) {
             System.out.println("Controleur.traiterMessage : " + msg.commande);
         }
-
+        
         switch (msg.commande) {
         
             case INITIALISER:
@@ -130,25 +130,25 @@ public class Controleur implements Observateur<Message> {
                 break;
                 
             case DEMANDE_DEFFAUSE:
-            	this.ihm.demandeDefausse(msg.idAventurier);
-            	break;
-            	
+                this.ihm.demandeDefausse(msg.idAventurier);
+                break;
+                
             case DEFAUSSE_CARTE:
                 this.ileInterdite.getAventuriers().get(msg.idAventurier).defausseCarte(msg.idCarte);
                 this.ileInterdite.lanceFinTour();
                 break;  
 
             case JOUE_CARTE:
-            	this.ileInterdite.getAventuriers().get(msg.idAventurier).joueCarte(msg.idCarte);
-            	break;
+                this.ileInterdite.getAventuriers().get(msg.idAventurier).joueCarte(msg.idCarte);
+                break;
             
             case CARTE_JOUE:
-            	this.ihm.actualiserMainJoueur(msg.main, msg.idAventurier);
-            	if(msg.idAventurier != this.ileInterdite.getJoueurCourant()) {
-            		this.ihm.bloquerActions(msg.idAventurier);
-            	}
-            	break;
-            	
+                this.ihm.actualiserMainJoueur(msg.main, msg.idAventurier);
+                if(msg.idAventurier != this.ileInterdite.getJoueurCourant()) {
+                    this.ihm.bloquerActions(msg.idAventurier);
+                }
+                break;
+                
             case FIN:
                 this.ihm.finGagne(false);
                 break;

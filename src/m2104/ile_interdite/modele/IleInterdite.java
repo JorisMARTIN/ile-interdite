@@ -302,7 +302,7 @@ public class IleInterdite extends Observable<Message> {
     
     public void lanceRecuperationTresor() {
     	
-        if (aventuriers.get(joueurCourant).peutRecupererTresort()) {
+        if (aventuriers.get(joueurCourant).peutRecupererTresor()) {
             aventuriers.get(joueurCourant).recupererTresor();
         }
         

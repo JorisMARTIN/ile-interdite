@@ -160,22 +160,24 @@ public abstract class Aventurier {
 
     	Carte carte = this.main.get(idCarte);
     	
-    	this.main.remove(idCarte);
-    	receveur.getMain().add(this.main.get(idCarte));
+        this.main.remove(carte);
+    	receveur.getMain().add(carte);
     	
     	moinsActions();
     	
     	Message msg = new Message(Commandes.ACTUALISER_MAIN);
-    	msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
+        msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
+        System.out.println(msg.idAventurier);
     	msg.main = this.main;
     	
     	this.ileInterdite.notifierObservateurs(msg);
     	
-    	Message msg2 = new Message(Commandes.ACTUALISER_MAIN);
+        Message msg2 = new Message(Commandes.ACTUALISER_MAIN);
     	msg2.idAventurier = this.ileInterdite.getAventuriers().indexOf(receveur);
+        System.out.println(msg2.idAventurier);
     	msg2.main = receveur.getMain();
     	
-    	this.ileInterdite.notifierObservateurs(msg);
+    	this.ileInterdite.notifierObservateurs(msg2);
     	
     }
     
@@ -325,7 +327,7 @@ public abstract class Aventurier {
      * 		</ul>
      * </ol>
      */
-    public boolean peutRecupererTresort() {
+    public boolean peutRecupererTresor() {
     	
     	
     	if(this.position.getTresor() != null) {

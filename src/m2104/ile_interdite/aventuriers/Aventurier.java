@@ -167,14 +167,12 @@ public abstract class Aventurier {
     	
     	Message msg = new Message(Commandes.ACTUALISER_MAIN);
         msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
-        System.out.println(msg.idAventurier);
     	msg.main = this.main;
     	
     	this.ileInterdite.notifierObservateurs(msg);
     	
         Message msg2 = new Message(Commandes.ACTUALISER_MAIN);
     	msg2.idAventurier = this.ileInterdite.getAventuriers().indexOf(receveur);
-        System.out.println(msg2.idAventurier);
     	msg2.main = receveur.getMain();
     	
     	this.ileInterdite.notifierObservateurs(msg2);

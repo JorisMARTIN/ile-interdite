@@ -27,7 +27,9 @@ public class Messager extends Aventurier{
     
     /*méthodes*/
     @Override
-    public boolean peutDonnerCarteTresor(Aventurier receveur, Carte carte) {
+    public boolean peutDonnerCarteTresor(Aventurier receveur, int idCarte) {
+    	
+    	Carte carte = super.getMain().get(idCarte);
     	
     	return receveur.getMain().size() < 5 && !(carte instanceof CarteHelicoptere) && !(carte instanceof CarteSacDeSable);
     }

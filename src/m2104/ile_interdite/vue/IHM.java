@@ -9,6 +9,7 @@ import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.modele.Grille;
 import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Utils;
+import m2104.ile_interdite.util.Utils.Commandes;
 import patterns.observateur.Observable;
 import patterns.observateur.Observateur;
 
@@ -189,13 +190,25 @@ public class IHM extends Observable<Message> {
 		this.vueAventuriers.get(idAventurier).donnerCarte();
 	}
 
-	public void setIdCarteADonner(int idCarteADonner) {
-		this.idCarteADonner = idCarteADonner;
-		
-	}
-	
     public HashMap<Integer, VueAventurier> getVueAventuriers() {
         return vueAventuriers;
     }
+    
+    public void setIdCarteADonner(int idCarteADonner) {
+    	this.idCarteADonner = idCarteADonner;
+    }
+
+	public void donneCarte(int idReceveur) {
+		
+		Message m = new Message(Commandes.DONNER);
+		m.idCarte = idCarteADonner;
+		m.idAventurier = idReceveur;
+		
+		this.idCarteADonner = -1;
+		
+		notifierObservateurs(m);
+	}
+    
+    
 
 }

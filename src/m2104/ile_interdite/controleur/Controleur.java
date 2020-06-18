@@ -59,8 +59,7 @@ public class Controleur implements Observateur<Message> {
                 break;
             
             case DONNER:
-            	
-            	this.ihm.setIdCarteADonner(msg.idCarte);
+            	this.ileInterdite.lanceDonCarte(msg.idAventurier, msg.idCarte);
                 break;
             
             case RECUPERER_TRESOR:
@@ -72,6 +71,7 @@ public class Controleur implements Observateur<Message> {
                 break;
             
             case RECEVOIR:
+            	this.ihm.donneCarte(msg.idAventurier);
                 break;
             
             case CHOISIR_CARTE:
@@ -191,6 +191,11 @@ public class Controleur implements Observateur<Message> {
             case ETAPE_JOUE_CARTE:
                 this.ihm.surbrillerTuiles(msg.possibilites, msg.pion, msg.action, msg.idAventurier);
                 break;
+                
+            case FIN_DON:
+            	this.ihm.activerActions(msg.idAventurier, true, true, true, true, false, true, true);
+            	this.ihm.getVueAventuriers().get(msg.idAventurier).setDescription(msg.isReussi == true ? "Don effectué !" : "Erreur, le don n'a\npas pu être effectué !");
+            	break;
 
             default:
                 if (Parameters.LOGS) {

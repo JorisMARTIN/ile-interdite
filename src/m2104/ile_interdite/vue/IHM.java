@@ -128,7 +128,7 @@ public class IHM extends Observable<Message> {
             
             vue.resetActionRestantes();
             vue.desactiver();
-            bloquerActions(vue.getIdAventurier());
+            activerActions(vue.getIdAventurier(), false, false, false, false, false, false, false);
             
             if(vue.getMainJoueur().size() > 5) {
                 vue.setEtatBoutonsCartes(false);
@@ -149,12 +149,8 @@ public class IHM extends Observable<Message> {
         }
     }
     
-    public void bloquerActions(int idAventurier) {
-        this.vueAventuriers.get(idAventurier).activerBoutons(false, false, false, false, false, false, false);
-    }
-    
-    public void zeroActions(int idAventurier) {
-        this.vueAventuriers.get(idAventurier).activerBoutons(false, false, false, false, false, false, true);
+    public void activerActions(int idAventurier, boolean bouger, boolean assecher, boolean donner, boolean recuperer, boolean recevoir, boolean deplacer, boolean terminer) {
+        this.vueAventuriers.get(idAventurier).activerBoutons(bouger, assecher, donner, recuperer, recevoir, deplacer, terminer);
     }
 
     public void setActionRestantes(Integer idAventurier, Integer actionRestantes) {

@@ -44,7 +44,7 @@ public class CarteSacDeSable extends Carte {
             msg.possibilites.add(tuile != null && tuile.isInnondee());
         }
         
-        msg.action = 1;
+        msg.action = 2;
         msg.idAventurier = this.getDeck().getIleInterdite().getJoueurCourant();
         
         this.getDeck().getIleInterdite().notifierObservateurs(msg);

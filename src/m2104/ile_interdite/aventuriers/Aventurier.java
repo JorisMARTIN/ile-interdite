@@ -229,7 +229,6 @@ public abstract class Aventurier {
     }
 
     public void moinsActions() {
-        
         this.actionsRestantes--;
         
         ileInterdite.notifyActionRestantes(actionsRestantes, this);

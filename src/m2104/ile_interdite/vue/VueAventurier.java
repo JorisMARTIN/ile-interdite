@@ -419,6 +419,7 @@ public class VueAventurier {
         
     
         this.panelCartes.removeAll();
+        this.panelCartes.setLayout(new GridLayout(1,1));
         this.mainJoueur.clear();
         
         JButton button;
@@ -520,7 +521,7 @@ public class VueAventurier {
         }
         
         this.panelCartes.revalidate();
-            
+        this.panelCartes.repaint(); 
     }
     
     public void deffausseCarte() {
@@ -535,15 +536,15 @@ public class VueAventurier {
             
             b.addActionListener(new ActionListener() {
              
-             @Override
-             public void actionPerformed(ActionEvent e) {
-                 Message m = new Message(Commandes.DEFAUSSE_CARTE);
-                 m.idAventurier = idAventurier;
-                 m.idCarte = mainJoueur.indexOf(e.getSource());
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Message m = new Message(Commandes.DEFAUSSE_CARTE);
+                m.idAventurier = idAventurier;
+                m.idCarte = mainJoueur.indexOf(e.getSource());
                  
-                 defausseCarte.setText("");
+                defausseCarte.setText("");
                  
-                 ihm.notifierObservateurs(m);
+                ihm.notifierObservateurs(m);
             }
             });
              

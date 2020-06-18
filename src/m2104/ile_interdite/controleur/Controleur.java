@@ -160,7 +160,6 @@ public class Controleur implements Observateur<Message> {
                 
             case DEPLACEMENT_DURGENCE:
                 this.ihm.surbrillerTuiles(msg.possibilites, msg.pion, msg.action, msg.idAventurier);
-                this.ihm.activerActions(msg.idAventurier, false, false, false, false, false, false, true);
                 break;
                 
             case ETAPE_JOUE_CARTE:

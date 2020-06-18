@@ -35,7 +35,6 @@ public class Utils {
         INITIALISER_GRILLE("Grille initialiser avec les tuiles innondées"),
         INITIALISER("Initialisation joueur"),
         /*Ajout de nouveaux messages*/
-        RECUP_TRESOR("Recupération d'un trésort"),
         MAJ_GRILLE("Mise à jour de la grille"),
         BOUGER("Pouvoir du Navigateur"),
         LANCER_PVNAVIGATEUR("Lance le déplacement d'un pion en tant que pouvoir du Navigateur"),

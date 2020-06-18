@@ -29,5 +29,9 @@ public class CarteTresor extends Carte {
 	public String toString() {
 		return "T";
 	}
+	
+	public Utils.Tresor getTresor(){
+		return this.tresor;
+	}
 
 }

@@ -291,10 +291,11 @@ public class VueAventurier {
                 }
                 
                 Message m;
-                
+
                 switch (commande) {
                     case LANCER_DEPLACEMENT:
-                        activerBoutons(false, true, true, true, true, true, true);
+                        ihm.activerActionsTous(false, false, false, false, false, false, false);
+                        activerBoutons(false, true, true, true, true, nomAventurier == "Navigateur", true);
                         m = new Message(Commandes.LANCER_DEPLACEMENT);
                         m.idAventurier = idAventurier;
                         
@@ -302,20 +303,25 @@ public class VueAventurier {
                         break;
                         
                     case LANCER_ASSECHEMENT:
-                        activerBoutons(true, false, true, true, true, true, true);
+                        ihm.activerActionsTous(false, false, false, false, false, false, false);
+                        activerBoutons(true, false, true, true, true, nomAventurier == "Navigateur", true);
                         m = new Message(Commandes.LANCER_ASSECHEMENT);
                         m.idAventurier = idAventurier;
                         
                         ihm.notifierObservateurs(m);
                         break;
                         
-                    case DONNER:
-                        
-                       donnerCarte();
+                    case DONNER: 
+                    	
+                    	ihm.activerActionsTous(false, false, false, false, false, false, false);
+                       	activerBoutons(true, true, false, true, true, nomAventurier == "Navigateur", true);
+                       	
+                       	donnerCarte();
                         break;
                         
                     case RECUPERER_TRESOR:
-                        
+                        ihm.activerActionsTous(false, false, false, false, false, false, false);
+                        activerBoutons(true, true, true, false, true, nomAventurier == "Navigateur", true);
                         m = new Message(Commandes.RECUPERER_TRESOR);
                         m.idAventurier = idAventurier;
                         
@@ -324,6 +330,7 @@ public class VueAventurier {
                         
                     case BOUGER:
                         if(nomAventurier == "Navigateur") {
+                            activerBoutons(true, true, true, true, true, false, true);
                             m = new Message(Commandes.BOUGER);
                             m.idAventurier = idAventurier;
 
@@ -337,6 +344,7 @@ public class VueAventurier {
                         break;
                         
                     case TERMINER:
+                        ihm.activerActionsTous(false, false, false, false, false, false, false);
                         activerBoutons(false, false, false, false, false, false, false);
                         m = new Message(Commandes.TERMINER);
                         m.idAventurier = idAventurier;

@@ -57,19 +57,12 @@ public class CarteHelicoptere extends Carte {
         } else {
             Message msg = new Message(Commandes.ETAPE_JOUE_CARTE);
 
-            ArrayList<Boolean> possibilites = new ArrayList<>();
-
             for (Tuile t : this.getDeck().getIleInterdite().getGrille().getTuiles(true)){
-                if (t != null && t.getEtat() != EtatTuile.RETIREE && t != this.getAventurier().getPosition()) {
-                    possibilites.add(true);
-                } else {
-                    possibilites.add(false);
-                }
+                msg.possibilites.add(t != null && t.getEtat() != EtatTuile.RETIREE && t != this.getAventurier().getPosition());
             }
 
             msg.pion = this.getAventurier().getPion();
-            msg.possibilites = possibilites;
-            msg.action = 2;
+            msg.action = 3;
 
             this.getDeck().getIleInterdite().notifierObservateurs(msg);
         }

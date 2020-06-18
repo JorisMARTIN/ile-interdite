@@ -55,6 +55,7 @@ public class Utils {
         DEPLACEMENT_DURGENCE("Demande au joueur de se d�placer si cela est possible, toute autre action est impossible en dehors des cartes action sp�ciale"),
         DON_CARTE("Le joueur fait dont d'une carte");
 
+
         private final String libelle ;
 
         Commandes(String libelle) {

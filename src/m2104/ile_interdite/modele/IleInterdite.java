@@ -39,6 +39,8 @@ public class IleInterdite extends Observable<Message> {
     private Deck deckInnondation;
     private int joueurCourant;
     private boolean deplacementDUrgence;
+    private ArrayList<Utils.Tresor> tresorsEnJeu;
+    
     
     public IleInterdite(Observateur<Message> observateur) {
         this.grille = new Grille();
@@ -47,14 +49,17 @@ public class IleInterdite extends Observable<Message> {
         this.deckTresor = new Deck(this);
         this.deckInnondation = new Deck(this);
         
+        
+        //Initialisation des trésor en jeu
+        Tresor[] tresors = {Tresor.CALICE, Tresor.CRISTAL, Tresor.PIERRE, Tresor.ZEPHYR};
+        tresorsEnJeu = new ArrayList<Utils.Tresor>(Arrays.asList(tresors));
+        
         // Remplissage des decks
         
         ArrayList<Carte> cartesAjoutees = new ArrayList<>();
         
         
         // 5 cartes pour chaque trésor
-        Tresor[] tresors = {Tresor.CALICE, Tresor.CRISTAL, Tresor.PIERRE, Tresor.ZEPHYR};
-        
         for(int i=0; i<4; i++){
             for(int j=0; j<5; j++) {
                 cartesAjoutees.add(new CarteTresor(this.deckTresor, tresors[i]));
@@ -272,34 +277,32 @@ public class IleInterdite extends Observable<Message> {
             msg.grille = grille;
             notifierObservateurs(msg);
         } else {
-            System.out.println("D�placement d'urgence !");
+            System.out.println("Déplacement d'urgence !");
         }
         
         return deplacementDUrgence;
     }
-    
-    public void lanceDeplacement() {
-        ArrayList<Boolean> possibilite = aventuriers.get(this.joueurCourant).isDeplacementPossibles();
+
+    public void lanceSurbriller(int idAventurier, ArrayList<Boolean> possibilites, int action) {
         Message msg = new Message(Utils.Commandes.TUILES_POSSIBLES);
-        msg.possibilites = possibilite;
-        msg.idAventurier = this.joueurCourant;
-        msg.pion = this.aventuriers.get(joueurCourant).getPion();
-        msg.action = 0;
+        msg.idAventurier = idAventurier;
+        msg.possibilites = possibilites;
+        msg.pion = this.aventuriers.get(msg.idAventurier).getPion();
+        msg.action = action;
         notifierObservateurs(msg);
+    }
+    
+    public void lanceDeplacement(int idAventurier) {
+        lanceSurbriller(idAventurier, aventuriers.get(idAventurier).isDeplacementPossibles(), 0);
     }
     
     public void lanceAssechement() {
-        ArrayList<Boolean> possibilite = aventuriers.get(this.joueurCourant).isAssechementPossibles();
-        System.out.println(possibilite);
-        Message msg = new Message(Utils.Commandes.TUILES_POSSIBLES);
-        msg.possibilites = possibilite;
-        msg.action = 1;
-        notifierObservateurs(msg);
+        lanceSurbriller(this.joueurCourant, aventuriers.get(this.joueurCourant).isAssechementPossibles(), 1);
     }
     
     public void lanceRecuperationTresor() {
-        boolean b = aventuriers.get(joueurCourant).peutRecupererTresort();
-        if (b) {
+    	
+        if (aventuriers.get(joueurCourant).peutRecupererTresor()) {
             aventuriers.get(joueurCourant).recupererTresor();
         }
         
@@ -310,7 +313,6 @@ public class IleInterdite extends Observable<Message> {
     public void deplacerAventurier(String nomTuile, int idAventurier) {
         Tuile tuile = this.grille.getTuile(nomTuile);
         this.aventuriers.get(idAventurier).deplacer(tuile);
-        
         if (deplacementDUrgence) {
             joueurSuivant();
         } else {
@@ -367,4 +369,29 @@ public class IleInterdite extends Observable<Message> {
         notifierObservateurs(msg);
 
     }
+
+	public ArrayList<Utils.Tresor> getTresorsEnJeu() {
+		return tresorsEnJeu;
+	}
+
+	public void lanceDonCarte(int idAventurier, int idCarte) {
+		
+		
+		boolean b;
+		
+		if(this.getAventuriers().get(joueurCourant).peutDonnerCarteTresor(this.getAventuriers().get(idAventurier), idCarte)) {
+			this.getAventuriers().get(joueurCourant).donnerCarteTresor(this.getAventuriers().get(idAventurier), idCarte);
+			b = true;
+		}else {
+			b = false;
+		}
+		
+		Message msg = new Message(Commandes.FIN_DON);
+		msg.isReussi = b;
+		msg.idAventurier = joueurCourant;
+		
+		notifierObservateurs(msg);
+		
+	}
+
 }

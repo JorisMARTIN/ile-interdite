@@ -59,9 +59,9 @@ public class VueAventurier {
     private JPanel panelCentre, panelCartes, panelText;
     private JLabel actionRestantes;
     private ArrayList<JButton> mainJoueur;
-    private JTextArea defausseCarte;
+    private JTextArea description;
 
-    public VueAventurier(IHM ihm, Integer id, String nomJoueur, String nomAventurier, String power, Integer num, Integer nbAventuriers, Color couleurActive, Color couleurInactive){
+	public VueAventurier(IHM ihm, Integer id, String nomJoueur, String nomAventurier, String power, Integer num, Integer nbAventuriers, Color couleurActive, Color couleurInactive){
         this.ihm = ihm;
         this.idAventurier = id ;
         this.nomJoueur = nomJoueur ;
@@ -107,7 +107,9 @@ public class VueAventurier {
             public void mouseClicked(MouseEvent e) {
                 if (titreCliquable) {
                     Message message = new Message(Commandes.RECEVOIR);
-                    System.out.println(message);
+                    
+                    message.idAventurier = idAventurier;
+                    
                     ihm.notifierObservateurs(message);
                 }
             }
@@ -142,13 +144,13 @@ public class VueAventurier {
         
         this.panelCentre.add(panelCartes, BorderLayout.NORTH);
         
-        this.defausseCarte = new JTextArea("");
-        defausseCarte.setEditable(false);
-        defausseCarte.setOpaque(false);
+        this.description = new JTextArea("");
+        description.setEditable(false);
+        description.setOpaque(false);
         
         this.actionRestantes = new JLabel("");
         
-        this.panelText.add(defausseCarte, BorderLayout.CENTER);
+        this.panelText.add(description, BorderLayout.CENTER);
         this.panelText.add(actionRestantes, BorderLayout.SOUTH);
         
         this.panelCentre.add(panelText);
@@ -182,7 +184,7 @@ public class VueAventurier {
         this.btnPrendre = creerBouton(4, "Prendre", Utils.Commandes.RECUPERER_TRESOR, "Récupérer le trésor de la tuile courante") ;
         panelBoutons_ligne2.add(btnPrendre);
 
-        this.btnDeplacer = creerBouton(5, "Bouger", Utils.Commandes.DEPLACER, "Déplacer un autre joueur vers une tuile adjacente") ;
+        this.btnDeplacer = creerBouton(5, "Bouger", Utils.Commandes.BOUGER, "Déplacer un autre joueur vers une tuile adjacente") ;
         panelBoutons_ligne2.add(btnDeplacer);
 
         this.btnTerminer = creerBouton(6, "Finir", Utils.Commandes.TERMINER, "Terminer son tour") ;
@@ -291,10 +293,11 @@ public class VueAventurier {
                 }
                 
                 Message m;
-                
+
                 switch (commande) {
                     case LANCER_DEPLACEMENT:
-                        activerBoutons(false, true, true, true, true, true, true);
+                        ihm.activerActionsTous(false, false, false, false, false, false, false);
+                        activerBoutons(false, true, true, true, false, nomAventurier == "Navigateur", true);
                         m = new Message(Commandes.LANCER_DEPLACEMENT);
                         m.idAventurier = idAventurier;
                         
@@ -302,37 +305,48 @@ public class VueAventurier {
                         break;
                         
                     case LANCER_ASSECHEMENT:
+                        ihm.activerActionsTous(false, false, false, false, false, false, false);
+                        activerBoutons(true, false, true, true, false, nomAventurier == "Navigateur", true);
                         m = new Message(Commandes.LANCER_ASSECHEMENT);
                         m.idAventurier = idAventurier;
                         
                         ihm.notifierObservateurs(m);
                         break;
                         
-                    case DONNER:
-                        
-                        m = new Message(Commandes.DONNER);
-                        m.idAventurier = idAventurier;
-                        
-                        ihm.notifierObservateurs(m);
+                    case DONNER: 
+                    	
+                    	ihm.activerActionsTous(false, false, false, false, false, false, false);
+                       	activerBoutons(true, true, false, true, false, nomAventurier == "Navigateur", true);
+                       	
+                       	donnerCarte();
                         break;
                         
                     case RECUPERER_TRESOR:
-                        
+                        ihm.activerActionsTous(false, false, false, false, false, false, false);
+                        activerBoutons(true, true, true, false, false, nomAventurier == "Navigateur", true);
                         m = new Message(Commandes.RECUPERER_TRESOR);
                         m.idAventurier = idAventurier;
                         
                         ihm.notifierObservateurs(m);
                         break;
                         
-                    case DEPLACER:
-                        
-                        m = new Message(Commandes.DEPLACER);
-                        m.idAventurier = idAventurier;
-                        
-                        ihm.notifierObservateurs(m);
+                    case BOUGER:
+                        if(nomAventurier == "Navigateur") {
+                            activerBoutons(true, true, true, true, false, false, true);
+                            m = new Message(Commandes.BOUGER);
+                            m.idAventurier = idAventurier;
+
+                            ihm.notifierObservateurs(m);
+                        } else {
+                            m = new Message(Commandes.LANCER_PVNAVIGATEUR);
+                            m.idAventurier = idAventurier;
+
+                            ihm.notifierObservateurs(m);
+                        }
                         break;
                         
                     case TERMINER:
+                        ihm.activerActionsTous(false, false, false, false, false, false, false);
                         activerBoutons(false, false, false, false, false, false, false);
                         m = new Message(Commandes.TERMINER);
                         m.idAventurier = idAventurier;
@@ -419,6 +433,7 @@ public class VueAventurier {
         
     
         this.panelCartes.removeAll();
+        this.panelCartes.setLayout(new GridLayout(1,1));
         this.mainJoueur.clear();
         
         JButton button;
@@ -520,7 +535,7 @@ public class VueAventurier {
         }
         
         this.panelCartes.revalidate();
-            
+        this.panelCartes.repaint(); 
     }
     
     public void deffausseCarte() {
@@ -535,23 +550,54 @@ public class VueAventurier {
             
             b.addActionListener(new ActionListener() {
              
-             @Override
-             public void actionPerformed(ActionEvent e) {
-                 Message m = new Message(Commandes.DEFAUSSE_CARTE);
-                 m.idAventurier = idAventurier;
-                 m.idCarte = mainJoueur.indexOf(e.getSource());
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Message m = new Message(Commandes.DEFAUSSE_CARTE);
+                m.idAventurier = idAventurier;
+                m.idCarte = mainJoueur.indexOf(e.getSource());
                  
-                 defausseCarte.setText("");
+                description.setText("");
                  
-                 ihm.notifierObservateurs(m);
+                ihm.notifierObservateurs(m);
             }
             });
              
         }
         
-        this.defausseCarte.setText("Vous avez trop de carte !\nCliquez sur laquel vous voulez\ndefausser :");
+        this.description.setText("Vous avez trop de carte !\nCliquez sur laquel vous voulez\ndefausser :");
     }
     
+    
+    public void donnerCarte() {
+    	
+    	for(JButton b : this.mainJoueur) {
+            
+            b.setEnabled(true);
+             
+            for(ActionListener action : b.getActionListeners()) {
+                b.removeActionListener(action);
+            }
+            
+            b.addActionListener(new ActionListener() {
+             
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            		
+            	ihm.setIdCarteADonner(mainJoueur.indexOf(e.getSource()));
+            	
+            	ihm.activerActionsTous(false, false, false, false, true, false, false);
+            	activerBoutons(false, false, false, false, false, false, false);
+            	
+                 
+                description.setText("Cliquez maintenant sur\nle joueur à qui vous\nvoulez donner la carte :");
+            }
+            });
+             
+        }
+        
+        this.description.setText("Cliquez sur la carte carte\nque vous voulez\ndonner :");
+    	
+    }
     
     /**
      * 
@@ -566,5 +612,9 @@ public class VueAventurier {
     public ArrayList<JButton> getMainJoueur() {
         return this.mainJoueur;
     }
+
+    public void setDescription(String description) {
+		this.description.setText(description);
+	}
 
 }

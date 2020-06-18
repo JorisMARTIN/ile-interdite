@@ -36,7 +36,7 @@ public class Explorateur extends Aventurier{
         int indexTuileActuelle = this.getIleInterdite().getGrille().getTuiles(true).indexOf(getPosition());
         
         return peutNormal || ((indexTuileActuelle < 28 && indexTuileActuelle + 7 == indexTuileCible && (indexTuileActuelle % 6) != 5)
-                || (indexTuileActuelle < 30 && indexTuileActuelle + 5 == indexTuileCible && (indexTuileActuelle % 6) != 0)
+                || (indexTuileActuelle < 31 && indexTuileActuelle + 5 == indexTuileCible && (indexTuileActuelle % 6) != 0)
                 || (indexTuileActuelle > 6 && indexTuileActuelle - 7 == indexTuileCible && (indexTuileActuelle % 6) != 0)
                 || (indexTuileActuelle > 4 && indexTuileActuelle - 5 == indexTuileCible && (indexTuileActuelle % 6) != 5));
     }
@@ -53,7 +53,7 @@ public class Explorateur extends Aventurier{
         int indexTuileActuelle = this.getIleInterdite().getGrille().getTuiles(true).indexOf(getPosition());
 
         return peutNormal || ((indexTuileActuelle < 28 && indexTuileActuelle + 7 == indexTuileCible && (indexTuileActuelle % 6) != 5)
-                || (indexTuileActuelle < 30 && indexTuileActuelle + 5 == indexTuileCible && (indexTuileActuelle % 6) != 0)
+                || (indexTuileActuelle < 31 && indexTuileActuelle + 5 == indexTuileCible && (indexTuileActuelle % 6) != 0)
                 || (indexTuileActuelle > 6 && indexTuileActuelle - 7 == indexTuileCible && (indexTuileActuelle % 6) != 0)
                 || (indexTuileActuelle > 4 && indexTuileActuelle - 5 == indexTuileCible && (indexTuileActuelle % 6) != 5));
     }

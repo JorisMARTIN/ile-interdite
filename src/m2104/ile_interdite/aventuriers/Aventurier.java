@@ -3,11 +3,14 @@ package m2104.ile_interdite.aventuriers;
 import java.util.ArrayList;
 import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.cartes.CarteHelicoptere;
-import m2104.ile_interdite.cartes.CarteMonteeEaux; 
+import m2104.ile_interdite.cartes.CarteMonteeEaux;
+import m2104.ile_interdite.cartes.CarteSacDeSable;
+import m2104.ile_interdite.cartes.CarteTresor;
 import m2104.ile_interdite.modele.IleInterdite;  
 import m2104.ile_interdite.modele.Tuile; 
 import m2104.ile_interdite.util.Message; 
 import m2104.ile_interdite.util.Utils;
+import m2104.ile_interdite.util.Utils.Commandes;
 import m2104.ile_interdite.util.Utils.Tresor;
 import m2104.ile_interdite.modele.EtatTuile;
     
@@ -77,7 +80,7 @@ public abstract class Aventurier {
 
         int indexTuileCible = this.ileInterdite.getGrille().getTuiles(true).indexOf(tuile);
         int indexTuileActuelle = this.ileInterdite.getGrille().getTuiles(true).indexOf(getPosition());
-        return (indexTuileActuelle < 29 && indexTuileActuelle + 6 == indexTuileCible)
+        return (indexTuileActuelle < 30 && indexTuileActuelle + 6 == indexTuileCible)
             || (indexTuileActuelle < 35 && indexTuileActuelle + 1 == indexTuileCible && (indexTuileActuelle) % 6 != 5)
             || (indexTuileActuelle > 5 && indexTuileActuelle - 6 == indexTuileCible)
             || (indexTuileActuelle > 0 && indexTuileActuelle - 1 == indexTuileCible && (indexTuileActuelle) % 6 != 0);
@@ -101,7 +104,7 @@ public abstract class Aventurier {
     }
     
     protected boolean peutAssecher(Tuile tuile) {
-        if(tuile == null || !tuile.isInnondee() || tuile.isRetiree()) {
+        if(tuile == null || !tuile.isInnondee()) {
             return false;
         }
         
@@ -109,7 +112,7 @@ public abstract class Aventurier {
         int indexTuileActuelle = this.ileInterdite.getGrille().getTuiles(true).indexOf(getPosition());
 
         return (indexTuileCible == indexTuileActuelle)
-        	|| (indexTuileActuelle < 29 && indexTuileActuelle + 6 == indexTuileCible)
+            || (indexTuileActuelle < 30 && indexTuileActuelle + 6 == indexTuileCible)
             || (indexTuileActuelle < 35 && indexTuileActuelle + 1 == indexTuileCible && (indexTuileActuelle) % 6 != 5)
             || (indexTuileActuelle > 5 && indexTuileActuelle - 6 == indexTuileCible)
             || (indexTuileActuelle > 0 && indexTuileActuelle - 1 == indexTuileCible && (indexTuileActuelle) % 6 != 0);
@@ -133,20 +136,85 @@ public abstract class Aventurier {
         return this.position;
     }
         
-    public void donnerCarteTresor(Aventurier a, Carte carte) {
-        if (a.getPosition() == this.getPosition()
-            && carte.getClass().toString() != "CarteSacDeSable"
-            && carte.getClass().toString() != "CarteHelicoptere" ) {
-            a.getMain().add(carte);
-        }
-        
-        moinsActions();
+    public boolean peutDonnerCarteTresor(Aventurier receveur, int idCarte) {
+    	
+    	Carte carte = this.main.get(idCarte);
+    	
+    	return receveur.getPosition() == this.position && receveur.getMain().size() < 5 && !(carte instanceof CarteHelicoptere) && !(carte instanceof CarteSacDeSable);
+    	
     }
     
+    /**
+     * 
+     * <ol>
+     * 	<li>Ajoute la carte a la main du receuveur</li>
+     * 	<li>Retire la carte de la main du joueur</li>
+     * 	<li>Actualise les deux mains</li>
+     * </ol>
+     * 
+     * @param receveur : Le receveur de la carte
+     * @param idCarte : L'id de la carte donnee
+     * 
+     */
+    public void donnerCarteTresor(Aventurier receveur, int idCarte) {
+
+    	Carte carte = this.main.get(idCarte);
+    	
+        this.main.remove(carte);
+    	receveur.getMain().add(carte);
+    	
+    	moinsActions();
+    	
+    	Message msg = new Message(Commandes.ACTUALISER_MAIN);
+        msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
+    	msg.main = this.main;
+    	
+    	this.ileInterdite.notifierObservateurs(msg);
+    	
+        Message msg2 = new Message(Commandes.ACTUALISER_MAIN);
+    	msg2.idAventurier = this.ileInterdite.getAventuriers().indexOf(receveur);
+    	msg2.main = receveur.getMain();
+    	
+    	this.ileInterdite.notifierObservateurs(msg2);
+    	
+    }
+    
+    /**
+     * <ol>
+     * 	<li>Retrait de 4 carte trésor correspondante de la main du joueur</li>
+     * 	<li>Ajout du tresor a la liste "tresors" de l'aventurier</li>
+     * 	<li>Retrait du tresor de la liste "tresorsEnJeu" de IleInterdite</li>
+     * 	<li>Enlever une action</li>
+     * 	<li>Met a jour la vueAventurier</li>
+     * </ol>
+     */
     public void recupererTresor() {
-        //TODO
+    	 	
+    	Utils.Tresor tresor = this.position.getTresor();
+    	
+    	int i = 4;
+    	for(CarteTresor carte : getCartesTresorsEnMain()) {
+    		if(carte.getTresor() == tresor) {
+    			this.ileInterdite.getDeckTresor().getDefausse().add(carte);
+    			this.main.remove(carte);
+    			i--;
+    		}
+    		if(i == 0) break;
+    	}
+    	
+    	this.tresors.add(tresor);
+    	this.ileInterdite.getTresorsEnJeu().remove(tresor);
+    	
+    	moinsActions();
+    	
+    	Message msg = new Message(Utils.Commandes.ACTUALISER_MAIN);
+    	
+    	msg.main = main;
+        msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
         
-        moinsActions();
+        this.ileInterdite.notifierObservateurs(msg);
+      
+    	
     }
     
     public ArrayList<Carte> getMain() {
@@ -175,7 +243,7 @@ public abstract class Aventurier {
             this.ileInterdite.getDeckTresor().getPioche().remove(c);
         }
         
-        Message msg = new Message(Utils.Commandes.PIOCHE_CARTE);
+        Message msg = new Message(Utils.Commandes.ACTUALISER_MAIN);
         
         msg.main = main;
         msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
@@ -205,15 +273,15 @@ public abstract class Aventurier {
             }
             
             if(this.ileInterdite.getDeckTresor().isVide()) {
-            	this.ileInterdite.getDeckTresor().remplirPioche(this.ileInterdite.getDeckTresor().getDefausse());
-            	this.ileInterdite.getDeckTresor().getDefausse().clear();
+                this.ileInterdite.getDeckTresor().remplirPioche(this.ileInterdite.getDeckTresor().getDefausse());
+                this.ileInterdite.getDeckTresor().getDefausse().clear();
             }
             
         
         }
         
         
-            Message msg = new Message(Utils.Commandes.PIOCHE_CARTE);
+            Message msg = new Message(Utils.Commandes.ACTUALISER_MAIN);
             
             msg.main = main;
             msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
@@ -229,7 +297,6 @@ public abstract class Aventurier {
     }
 
     public void moinsActions() {
-        
         this.actionsRestantes--;
         
         ileInterdite.notifyActionRestantes(actionsRestantes, this);
@@ -247,9 +314,84 @@ public abstract class Aventurier {
     public int getActionsRestantes() {
         return actionsRestantes;
     }
+    
+    /**
+     * <ol>
+     * 	<li>Verifie si le joueur est sur une tuile permettant de recuperer un tresor</li>
+     * 	<li>Compte si il possède le bon nombre de carte tresor corespondante</li>
+     * 		<ul>
+     * 			<li>Si oui : return true</li>
+     * 			<li>Si non : return false</li>
+     * 		</ul>
+     * </ol>
+     */
+    public boolean peutRecupererTresor() {
+    	
+    	
+    	if(this.position.getTresor() != null) {
+    		
+    		int nbCarte = 0;
+    		
+    		switch (this.position.getTresor()) {
+    		
+			case CALICE:
+				
+				for(CarteTresor carte : this.getCartesTresorsEnMain()) {
+					
+					if(carte.getTresor() == Utils.Tresor.CALICE) {
+						nbCarte++;
+					}
+				}
+				
+				if(nbCarte >= 4) return true;
+				
+				break;
+				
+			case PIERRE:
+				
+				for(CarteTresor carte : this.getCartesTresorsEnMain()) {
+					
+					if(carte.getTresor() == Utils.Tresor.PIERRE) {
+						nbCarte++;
+					}
+				}
+				
+				if(nbCarte >= 4) return true;
+				
+				break;
+				
+			case CRISTAL:
+				
+				for(CarteTresor carte : this.getCartesTresorsEnMain()) {
+					
+					if(carte.getTresor() == Utils.Tresor.CRISTAL) {
+						nbCarte++;
+					}
+				}
+				
+				if(nbCarte >= 4) return true;
+				
+				break;
+				
+			case ZEPHYR:
+				
+				for(CarteTresor carte : this.getCartesTresorsEnMain()) {
+					
+					if(carte.getTresor() == Utils.Tresor.ZEPHYR) {
+						nbCarte++;
+					}
+				}
+				
+				if(nbCarte >= 4) return true;
+				
+				break;
 
-    public boolean peutRecupererTresort() {
-        return false;
+			}
+    		
+    	}
+    	
+		return false;
+
     }
     
     public Utils.Pion getPion() {
@@ -266,14 +408,14 @@ public abstract class Aventurier {
      */
     public void joueCarte(int idCarte) {
         
-    	Carte carte = this.main.get(idCarte);
-    	
-    	carte.action();
-    	
-    	this.main.remove(carte);
-		this.ileInterdite.getDeckTresor().getDefausse().add(carte);
-    	
-    	Message msg = new Message(Utils.Commandes.CARTE_JOUE);
+        Carte carte = this.main.get(idCarte);
+        
+        carte.action();
+        
+        this.main.remove(carte);
+        this.ileInterdite.getDeckTresor().getDefausse().add(carte);
+        
+        Message msg = new Message(Utils.Commandes.CARTE_JOUE);
         msg.main = this.main;
         msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
 
@@ -287,7 +429,7 @@ public abstract class Aventurier {
 
         this.ileInterdite.getDeckTresor().getDefausse().add(carte);
 
-        Message msg = new Message(Utils.Commandes.PIOCHE_CARTE);
+        Message msg = new Message(Utils.Commandes.ACTUALISER_MAIN);
 
         msg.main = this.main;
         msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
@@ -304,6 +446,27 @@ public abstract class Aventurier {
         return aPioche;
     }
 
-    public void setaPioche(boolean aPioche) { this.aPioche = aPioche;
+    public void setaPioche(boolean aPioche) {
+    	this.aPioche = aPioche;
     }
+
+	public void setPosition(Tuile position) {
+        this.position = position;
+	}
+	
+	public ArrayList<CarteTresor> getCartesTresorsEnMain(){
+		
+		ArrayList<CarteTresor> cartesTresor = new ArrayList<CarteTresor>();
+		
+		for(Carte carte : this.main) {
+			
+			if(carte instanceof CarteTresor) {
+				cartesTresor.add((CarteTresor) carte);
+			}
+			
+		}
+		
+		return cartesTresor;
+	}
+	
 }

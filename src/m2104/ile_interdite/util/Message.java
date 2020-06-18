@@ -36,6 +36,7 @@ public class Message {
     public Tuile tuileDepart;
     public Tuile tuileAction;
     public int action;
+	public boolean isReussi;
     
     public Message(Utils.Commandes cmd) {
         this.commande = cmd;

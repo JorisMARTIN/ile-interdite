@@ -2,6 +2,7 @@ package m2104.ile_interdite.cartes;
 
 import m2104.ile_interdite.modele.Deck;
 import m2104.ile_interdite.util.Utils;
+import m2104.ile_interdite.util.Utils.Tresor;
 /**
 *
 * @author Thomas JHISTARRY
@@ -27,7 +28,16 @@ public class CarteTresor extends Carte {
 	
 	@Override
 	public String toString() {
-		return "T";
+
+		if(this.tresor == Tresor.CALICE) return "Calice";
+		else if(this.tresor == Tresor.CRISTAL) return "Cristal";
+		else if(this.tresor == Tresor.PIERRE) return "Pierre";
+		else if(this.tresor == Tresor.ZEPHYR) return "Zephyr";
+		return "Tresor";
+	}
+	
+	public Utils.Tresor getTresor(){
+		return this.tresor;
 	}
 
 }

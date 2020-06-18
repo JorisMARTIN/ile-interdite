@@ -4,10 +4,12 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import m2104.ile_interdite.aventuriers.Aventurier;
 import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.modele.Grille;
 import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Utils;
+import m2104.ile_interdite.util.Utils.Commandes;
 import patterns.observateur.Observable;
 import patterns.observateur.Observateur;
 
@@ -22,6 +24,8 @@ public class IHM extends Observable<Message> {
     private VueJeu vueJeu;
     private VueNiveau vueNiveau;
     private VueFin vueFin;
+    
+    private int idCarteADonner; 
 
     public IHM(Observateur<Message> observateur) {
         this.vueInscription = new VueInscriptionJoueurs(this);
@@ -110,8 +114,19 @@ public class IHM extends Observable<Message> {
      */
     public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion, int action, int idAventurier) {
         this.vueJeu.surbrillerTuiles(possibilites, pion, action, idAventurier);
-        
-        //TODO Prendre en compte le paramètre action
+    }
+
+    public void lanceChoisirBougerJoueur(int idAventurier) {
+        this.vueAventuriers.forEach((i, va) -> {
+            if(i != idAventurier)
+                va.activerBoutons(false, false, false, false, false, true, false);
+        });
+    }
+    
+    public void activerActionsTous(boolean activerMove, boolean activerDry, boolean activerDonner, boolean activerRecuperer, boolean activerRecevoir, boolean activerDeplacer, boolean activerTerminer) {
+        this.vueAventuriers.forEach((i, va) -> {
+            va.activerBoutons(activerMove, activerDry, activerDonner, activerRecuperer, activerRecevoir, activerDeplacer, activerTerminer);
+        });
     }
 
     public void placerCurseur(int valeur) {
@@ -121,6 +136,7 @@ public class IHM extends Observable<Message> {
     public void majVueJeu() {
         this.vueJeu.affGrille();
         this.vueJeu.resetSelections();
+        this.vueJeu.refresh();
     }
 
     public void changerJoueurCourant(int idAventurier) {
@@ -129,7 +145,7 @@ public class IHM extends Observable<Message> {
             
             vue.resetActionRestantes();
             vue.desactiver();
-            bloquerActions(vue.getIdAventurier());
+            vue.activerBoutons(false, false, false, false, false, false, false);
             
             if(vue.getMainJoueur().size() > 5) {
                 vue.setEtatBoutonsCartes(false);
@@ -137,25 +153,20 @@ public class IHM extends Observable<Message> {
             
         }
         
-        this.vueAventuriers.get(idAventurier).activer();
+        VueAventurier va = this.vueAventuriers.get(idAventurier);
+
+        va.activer();
         
-        if(this.vueAventuriers.get(idAventurier).getMainJoueur().size() > 5) {
-            
-            this.vueAventuriers.get(idAventurier).setEtatBoutonsCartes(true);
-            
+        if(va.getMainJoueur().size() > 5) {
+            va.setEtatBoutonsCartes(true);
         } else {
-            
-            this.vueAventuriers.get(idAventurier).activerBoutons(true, true, true, true, true, true, true);
-            
+            activerActions(idAventurier, true, true, true, true, true, false, true);
         }
     }
     
-    public void bloquerActions(int idAventurier) {
-        this.vueAventuriers.get(idAventurier).activerBoutons(false, false, false, false, false, false, false);
-    }
-    
-    public void zeroActions(int idAventurier) {
-        this.vueAventuriers.get(idAventurier).activerBoutons(false, false, false, false, false, false, true);
+    public void activerActions(int idAventurier, boolean bouger, boolean assecher, boolean donner, boolean recuperer, boolean recevoir, boolean deplacer, boolean terminer) {
+        VueAventurier va = this.vueAventuriers.get(idAventurier);
+        va.activerBoutons(bouger, assecher, donner, recuperer, recevoir, va.nomAventurier == "Navigateur", terminer);
     }
 
     public void setActionRestantes(Integer idAventurier, Integer actionRestantes) {
@@ -176,5 +187,30 @@ public class IHM extends Observable<Message> {
     public void finGagne(boolean isGagnee) {
         this.vueFin.activer(false);
     }
+
+	public void demandeDonCarte(int idAventurier) {
+		this.vueAventuriers.get(idAventurier).donnerCarte();
+	}
+
+    public HashMap<Integer, VueAventurier> getVueAventuriers() {
+        return vueAventuriers;
+    }
+    
+    public void setIdCarteADonner(int idCarteADonner) {
+    	this.idCarteADonner = idCarteADonner;
+    }
+
+	public void donneCarte(int idReceveur) {
+		
+		Message m = new Message(Commandes.DONNER);
+		m.idCarte = idCarteADonner;
+		m.idAventurier = idReceveur;
+		
+		this.idCarteADonner = -1;
+		
+		notifierObservateurs(m);
+	}
+    
+    
 
 }

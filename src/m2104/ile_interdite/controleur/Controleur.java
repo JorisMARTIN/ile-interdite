@@ -1,5 +1,10 @@
+
 package m2104.ile_interdite.controleur;
 
+import java.util.ArrayList;
+
+import m2104.ile_interdite.aventuriers.Aventurier;
+import m2104.ile_interdite.modele.EtatTuile;
 import m2104.ile_interdite.modele.IleInterdite;
 import m2104.ile_interdite.modele.Tuile;
 import m2104.ile_interdite.util.Message;
@@ -46,19 +51,19 @@ public class Controleur implements Observateur<Message> {
                 break;
                 
             case LANCER_DEPLACEMENT:
-                this.ileInterdite.lanceDeplacement();
+                this.ileInterdite.lanceDeplacement(msg.idAventurier);
                 break;
                 
             case LANCER_ASSECHEMENT:
                 this.ileInterdite.lanceAssechement();
-                //this.ileInterdite.getAventuriers().get(msg.idAventurier).assecher(this.ileInterdite.getGrille().getTuile(msg.tuile));
                 break;
             
             case DONNER:
+            	this.ileInterdite.lanceDonCarte(msg.idAventurier, msg.idCarte);
                 break;
             
             case RECUPERER_TRESOR:
-                this.ileInterdite.getAventuriers().get(msg.idAventurier).recupererTresor();
+            	this.ileInterdite.lanceRecuperationTresor();
                 break;
             
             case TERMINER:
@@ -66,6 +71,7 @@ public class Controleur implements Observateur<Message> {
                 break;
             
             case RECEVOIR:
+            	this.ihm.donneCarte(msg.idAventurier);
                 break;
             
             case CHOISIR_CARTE:
@@ -74,11 +80,13 @@ public class Controleur implements Observateur<Message> {
             case CHOISIR_TUILE:
                 break;
             
-            /*case DEPLACER:
-                break;*/
-            
             case ZERO_ACTIONS:
-            this.ihm.zeroActions(msg.idAventurier);
+                ihm.getVueAventuriers().forEach((i, va) -> {
+                    if (msg.idAventurier == i)
+                        va.activerBoutons(false, false, false, false, false, false, true);
+                    else
+                        va.activerBoutons(false, false, false, false, false, false, false);
+                });
                 break;
 
             /*Ajout des nouveaux cas pour les nouveaux messages*/
@@ -91,16 +99,35 @@ public class Controleur implements Observateur<Message> {
                 break;
 
             case DEPLACER:
-                this.ileInterdite.deplacerAventurier(msg.nomTuile, msg.idAventurier);
+                if(msg.action == 0)
+                    this.ileInterdite.deplacerAventurier(msg.nomTuile, msg.idAventurier);
+                else { //pouvoir du navigateur
+                    Tuile tuile = this.ileInterdite.getGrille().getTuile(msg.nomTuile);
+                    Aventurier av = this.ileInterdite.getAventuriers().get(msg.idAventurier);
+                    av.getPosition().removeAventurier(av);
+                    av.setPosition(tuile);
+                    av.getPosition().addAventurier(av);
+                    ileInterdite.getAventuriers().get(ileInterdite.getJoueurCourant()).moinsActions();
+                    ihm.majVueJeu();
+                }
                 break;
 
             case ASSECHER:
                 Tuile tuile = this.ileInterdite.getGrille().getTuile(msg.nomTuile);
-                this.ileInterdite.getAventuriers().get(msg.idAventurier).assecher(tuile);
+                if(msg.action == 1)
+                    this.ileInterdite.getAventuriers().get(msg.idAventurier).assecher(tuile);
+                else
+                    tuile.setEtat(EtatTuile.NORMAL);
+                this.ihm.majVueJeu();
                 break;
 
-            case RECUP_TRESOR:
-                this.ileInterdite.lanceRecuperationTresor();
+            case BOUGER:
+                ihm.lanceChoisirBougerJoueur(msg.idAventurier);
+                break;
+
+            case LANCER_PVNAVIGATEUR:
+                ArrayList<Boolean> possibilites = this.ileInterdite.getAventuriers().get(msg.idAventurier).isDeplacementPossibles();
+                ileInterdite.lanceSurbriller(msg.idAventurier, possibilites, 3);
                 break;
 
             case LANCE_CURSEUR:
@@ -125,7 +152,7 @@ public class Controleur implements Observateur<Message> {
                 this.ihm.setActionRestantes(msg.idAventurier, msg.actionRestantes);
                 break;
                 
-            case PIOCHE_CARTE:
+            case ACTUALISER_MAIN:
                 this.ihm.actualiserMainJoueur(msg.main, msg.idAventurier);
                 break;
                 
@@ -145,7 +172,7 @@ public class Controleur implements Observateur<Message> {
             case CARTE_JOUE:
                 this.ihm.actualiserMainJoueur(msg.main, msg.idAventurier);
                 if(msg.idAventurier != this.ileInterdite.getJoueurCourant()) {
-                    this.ihm.bloquerActions(msg.idAventurier);
+                    this.ihm.activerActions(msg.idAventurier, false, false, false, false, false, false, false);
                 }
                 break;
                 
@@ -159,12 +186,16 @@ public class Controleur implements Observateur<Message> {
                 
             case DEPLACEMENT_DURGENCE:
                 this.ihm.surbrillerTuiles(msg.possibilites, msg.pion, msg.action, msg.idAventurier);
-                this.ihm.bloquerActions(msg.idAventurier);
                 break;
                 
             case ETAPE_JOUE_CARTE:
                 this.ihm.surbrillerTuiles(msg.possibilites, msg.pion, msg.action, msg.idAventurier);
                 break;
+                
+            case FIN_DON:
+            	this.ihm.activerActions(msg.idAventurier, true, true, true, true, false, true, true);
+            	this.ihm.getVueAventuriers().get(msg.idAventurier).setDescription(msg.isReussi == true ? "Don effectué !" : "Erreur, le don n'a\npas pu être effectué !");
+            	break;
 
             default:
                 if (Parameters.LOGS) {

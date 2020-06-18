@@ -6,6 +6,8 @@
 package m2104.ile_interdite.aventuriers;
 
 import m2104.ile_interdite.cartes.Carte;
+import m2104.ile_interdite.cartes.CarteHelicoptere;
+import m2104.ile_interdite.cartes.CarteSacDeSable;
 import m2104.ile_interdite.modele.IleInterdite;
 import m2104.ile_interdite.util.Utils.Pion;
 
@@ -25,8 +27,11 @@ public class Messager extends Aventurier{
     
     /*méthodes*/
     @Override
-    public void donnerCarteTresor(Aventurier a, Carte carte) {
-        super.donnerCarteTresor(a, carte); //To change body of generated methods, choose Tools | Templates.
+    public boolean peutDonnerCarteTresor(Aventurier receveur, int idCarte) {
+    	
+    	Carte carte = super.getMain().get(idCarte);
+    	
+    	return receveur.getMain().size() < 5 && !(carte instanceof CarteHelicoptere) && !(carte instanceof CarteSacDeSable);
     }
     
 }

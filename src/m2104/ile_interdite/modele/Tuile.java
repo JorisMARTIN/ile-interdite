@@ -64,4 +64,8 @@ public class Tuile {
     public void removeAventurier(Aventurier a) {
     	this.aventuriers.remove(a);
     }
+    
+    public Utils.Tresor getTresor(){
+    	return this.tresor;
+    }
 }

@@ -36,12 +36,11 @@ import m2104.ile_interdite.util.Message;
 public class VueJeu {
     private final IHM ihm;
     private final JFrame fenetre;
-    private  Panneau grillePanel;
-    private  Grille grille;
+    private Panneau grillePanel;
+    private Grille grille;
     private ArrayList<JButton> boutons;
     private Image[] imagesBtnNormales;
     private Image[] imagesBtnInondees;
-    private int aventurierADeplacer;
 
     public VueJeu(IHM ihm, Grille grille) {
         
@@ -88,10 +87,13 @@ public class VueJeu {
     }
     
     public void resetSelections() {
-        for (int tuile = 0; tuile < grille.getTuiles(true).size(); tuile++) {
-            if (this.boutons.get(tuile) != null && this.boutons.get(tuile).isVisible()) {
-                this.boutons.get(tuile).setEnabled(false);
-                this.boutons.get(tuile).setBorder(BorderFactory.createEmptyBorder());
+        for (int i = 0; i < grille.getTuiles(true).size(); i++) {
+            JButton bouton = this.boutons.get(i);
+            if (bouton != null && this.boutons.get(i).isVisible()) {
+                bouton.setEnabled(false);
+                bouton.setBorder(BorderFactory.createEmptyBorder());
+                for (ActionListener al : bouton.getActionListeners())
+                    bouton.removeActionListener(al);
             }
         }
     }
@@ -126,8 +128,7 @@ public class VueJeu {
      * @param idAventurier : Le numero de l'aventurier demandant l'action
      */
     public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion, int action, int idAventurier) {
-        aventurierADeplacer = idAventurier;
-
+        int aventurierADeplacer = idAventurier;
         for (int i = 0; i < grille.getTuiles(true).size(); i++) {
 
             JButton bouton = this.boutons.get(i);
@@ -145,8 +146,9 @@ public class VueJeu {
                 Border bigCompound = BorderFactory.createCompoundBorder(compound1, compound2);
                 bouton.setBorder(bigCompound);
                 
-                for(ActionListener al : bouton.getActionListeners())
+                for(ActionListener al : bouton.getActionListeners()) {
                     bouton.removeActionListener(al);
+                }
 
                 switch(action) {
                     case 0:
@@ -155,20 +157,37 @@ public class VueJeu {
                             public void actionPerformed(ActionEvent e) {
                                 Message m = new Message(Utils.Commandes.DEPLACER);
                                 m.nomTuile = bouton.getText();
-                                m.idAventurier = aventurierADeplacer;
+                                m.idAventurier = idAventurier;
+                                m.action = action;
                                 ihm.notifierObservateurs(m);
+                                ihm.activerActions(idAventurier, true, true, true, true, false, false, true);
                             }
                         });
                         break;
                     
-                    case 1:
+                    case 1: //ceci est fait exprès pour propager l'int action au controleur
+                    case 2:
                         bouton.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                System.out.println("helloo");
+                                Message m = new Message(Utils.Commandes.ASSECHER);
+                                m.nomTuile = bouton.getText();
+                                m.idAventurier = idAventurier;
+                                m.action = action;
+                                ihm.notifierObservateurs(m);
+                                ihm.activerActions(idAventurier, true, true, true, true, false, false, true);
+                            }
+                        });
+                        break;
+
+                    case 3: //deplacement par un navigateur
+                        bouton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
                                 Message m = new Message(Utils.Commandes.DEPLACER);
                                 m.nomTuile = bouton.getText();
-                                m.idAventurier = aventurierADeplacer;
+                                m.idAventurier = idAventurier;
+                                m.action = action;
                                 ihm.notifierObservateurs(m);
                             }
                         });
@@ -196,6 +215,8 @@ public class VueJeu {
             }
         }
     }
+    
+    //TODO : Affichage des trésor en fonction de la liste dans IleInterdite "tresorsEnJeu"
     
     public void affGrille() {
         grillePanel.removeAll();

@@ -156,7 +156,7 @@ public class VueJeu {
                                 m.idAventurier = idAventurier;
                                 m.action = action;
                                 ihm.notifierObservateurs(m);
-                                ihm.activerActions(idAventurier, true, true, true, true, true, false, true);
+                                ihm.activerActions(idAventurier, true, true, true, true, false, false, true);
                             }
                         });
                         break;
@@ -171,7 +171,7 @@ public class VueJeu {
                                 m.idAventurier = idAventurier;
                                 m.action = action;
                                 ihm.notifierObservateurs(m);
-                                ihm.activerActions(idAventurier, true, true, true, true, true, false, true);
+                                ihm.activerActions(idAventurier, true, true, true, true, false, false, true);
                             }
                         });
                         break;

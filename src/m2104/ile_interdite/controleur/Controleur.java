@@ -112,6 +112,7 @@ public class Controleur implements Observateur<Message> {
                 else
                     tuile.setEtat(EtatTuile.NORMAL);
                 this.ihm.majVueJeu();
+                this.ihm.activerActions(msg.idAventurier, true, true, true, true, true, true, true);
                 break;
 
             case BOUGER:

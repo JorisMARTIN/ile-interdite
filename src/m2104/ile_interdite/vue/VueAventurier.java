@@ -302,6 +302,7 @@ public class VueAventurier {
                         break;
                         
                     case LANCER_ASSECHEMENT:
+                        activerBoutons(true, false, true, true, true, true, true);
                         m = new Message(Commandes.LANCER_ASSECHEMENT);
                         m.idAventurier = idAventurier;
                         

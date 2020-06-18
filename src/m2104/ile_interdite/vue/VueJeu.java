@@ -129,7 +129,6 @@ public class VueJeu {
      * @param idAventurier : Le numero de l'aventurier demandant l'action
      */
     public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion, int action, int idAventurier) {
-        aventurierADeplacer = idAventurier;
         for (int i = 0; i < grille.getTuiles(true).size(); i++) {
             JButton bouton = this.boutons.get(i);
             bouton.setEnabled(false);
@@ -155,19 +154,21 @@ public class VueJeu {
                             public void actionPerformed(ActionEvent e) {
                                 Message m = new Message(Utils.Commandes.DEPLACER);
                                 m.nomTuile = bouton.getText();
-                                m.idAventurier = aventurierADeplacer;
+                                m.idAventurier = idAventurier;
                                 ihm.notifierObservateurs(m);
                             }
                         });
                         break;
                     
                     case 1:
+                    case 2:
                         bouton.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                System.out.println("helloo");
                                 Message m = new Message(Utils.Commandes.ASSECHER);
                                 m.nomTuile = bouton.getText();
+                                m.idAventurier = idAventurier;
+                                m.action = action;
                                 ihm.notifierObservateurs(m);
                             }
                         });

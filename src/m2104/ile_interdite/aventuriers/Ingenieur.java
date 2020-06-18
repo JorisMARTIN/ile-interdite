@@ -5,6 +5,7 @@
  */
 package m2104.ile_interdite.aventuriers;
 
+import m2104.ile_interdite.modele.EtatTuile;
 import m2104.ile_interdite.modele.IleInterdite;
 import m2104.ile_interdite.modele.Tuile;
 import m2104.ile_interdite.util.Utils.Pion;
@@ -18,15 +19,22 @@ import m2104.ile_interdite.util.Utils.Pion;
 * 
 */
 public class Ingenieur extends Aventurier{
-    /*construteur*/
+    private boolean aAssecheUneTuile;
+
     public Ingenieur(IleInterdite ileInterdite) {
         super(ileInterdite, Pion.ROUGE);
     }
     
-    /*méthodes*/
     @Override
-    public boolean peutAssecher(Tuile tuile) {
-        return false;
+    public void assecher(Tuile tuile) {
+        tuile.setEtat(EtatTuile.NORMAL);
+        if(aAssecheUneTuile) moinsActions();
+        aAssecheUneTuile = true;
     }
-    
+
+    @Override
+    public void initActionsRestantes() {
+        super.initActionsRestantes();
+        aAssecheUneTuile = false;
+    }
 }

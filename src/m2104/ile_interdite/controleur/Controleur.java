@@ -1,6 +1,7 @@
 
 package m2104.ile_interdite.controleur;
 
+import m2104.ile_interdite.modele.EtatTuile;
 import m2104.ile_interdite.modele.IleInterdite;
 import m2104.ile_interdite.modele.Tuile;
 import m2104.ile_interdite.util.Message;
@@ -97,7 +98,10 @@ public class Controleur implements Observateur<Message> {
 
             case ASSECHER:
                 Tuile tuile = this.ileInterdite.getGrille().getTuile(msg.nomTuile);
-                this.ileInterdite.getAventuriers().get(msg.idAventurier).assecher(tuile);
+                if(msg.action == 1)
+                    this.ileInterdite.getAventuriers().get(msg.idAventurier).assecher(tuile);
+                else
+                    tuile.setEtat(EtatTuile.NORMAL);
                 this.ihm.majVueJeu();
                 this.ihm.activerActions(msg.idAventurier, true, true, true, true, true, true, true);
                 break;

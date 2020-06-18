@@ -108,8 +108,6 @@ public class IHM extends Observable<Message> {
      */
     public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion, int action, int idAventurier) {
         this.vueJeu.surbrillerTuiles(possibilites, pion, action, idAventurier);
-        
-        //TODO Prendre en compte le paramètre action
     }
 
     public void placerCurseur(int valeur) {

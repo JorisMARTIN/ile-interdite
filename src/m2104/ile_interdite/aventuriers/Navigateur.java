@@ -6,7 +6,6 @@
 package m2104.ile_interdite.aventuriers;
 
 import m2104.ile_interdite.modele.IleInterdite;
-import m2104.ile_interdite.modele.Tuile;
 import m2104.ile_interdite.util.Utils.Pion;
 
 /**
@@ -18,12 +17,7 @@ import m2104.ile_interdite.util.Utils.Pion;
 * 
 */
 public class Navigateur extends Aventurier{
-    /*construteur*/
     public Navigateur(IleInterdite ileInterdite) {
         super(ileInterdite, Pion.JAUNE);
-    }
-    
-    /*méthodes*/  
-    public void deplaceAventurier(Aventurier a, Tuile tuile) {
     }
 }

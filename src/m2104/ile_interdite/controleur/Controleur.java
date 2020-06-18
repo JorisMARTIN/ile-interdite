@@ -79,7 +79,12 @@ public class Controleur implements Observateur<Message> {
                 break;
             
             case ZERO_ACTIONS:
-                this.ihm.activerActions(msg.idAventurier, false, false, false, false, false, false, true);
+                ihm.getVueAventuriers().forEach((i, va) -> {
+                    if (msg.idAventurier == i)
+                        va.activerBoutons(false, false, false, false, false, false, true);
+                    else
+                        va.activerBoutons(false, false, false, false, false, false, false);
+                });
                 break;
 
             /*Ajout des nouveaux cas pour les nouveaux messages*/
@@ -112,7 +117,6 @@ public class Controleur implements Observateur<Message> {
                 else
                     tuile.setEtat(EtatTuile.NORMAL);
                 this.ihm.majVueJeu();
-                this.ihm.activerActions(msg.idAventurier, true, true, true, true, true, true, true);
                 break;
 
             case BOUGER:

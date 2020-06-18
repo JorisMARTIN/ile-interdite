@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import m2104.ile_interdite.aventuriers.Aventurier;
 import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.modele.Grille;
 import m2104.ile_interdite.util.Message;
@@ -116,6 +117,12 @@ public class IHM extends Observable<Message> {
                 va.activerBoutons(false, false, false, false, false, true, false);
         });
     }
+    
+    public void activerActionsTous(boolean activerMove, boolean activerDry, boolean activerDonner, boolean activerRecuperer, boolean activerRecevoir, boolean activerDeplacer, boolean activerTerminer) {
+        this.vueAventuriers.forEach((i, va) -> {
+            va.activerBoutons(activerMove, activerDry, activerDonner, activerRecuperer, activerRecevoir, activerDeplacer, activerTerminer);
+        });
+    }
 
     public void placerCurseur(int valeur) {
         this.vueNiveau.setNiveau(valeur);
@@ -133,7 +140,7 @@ public class IHM extends Observable<Message> {
             
             vue.resetActionRestantes();
             vue.desactiver();
-            activerActions(vue.getIdAventurier(), false, false, false, false, false, false, false);
+            vue.activerBoutons(false, false, false, false, false, false, false);
             
             if(vue.getMainJoueur().size() > 5) {
                 vue.setEtatBoutonsCartes(false);
@@ -141,21 +148,20 @@ public class IHM extends Observable<Message> {
             
         }
         
-        this.vueAventuriers.get(idAventurier).activer();
+        VueAventurier va = this.vueAventuriers.get(idAventurier);
+
+        va.activer();
         
-        if(this.vueAventuriers.get(idAventurier).getMainJoueur().size() > 5) {
-            
-            this.vueAventuriers.get(idAventurier).setEtatBoutonsCartes(true);
-            
+        if(va.getMainJoueur().size() > 5) {
+            va.setEtatBoutonsCartes(true);
         } else {
-            
-            this.vueAventuriers.get(idAventurier).activerBoutons(true, true, true, true, true, true, true);
-            
+            activerActions(idAventurier, true, true, true, true, true, false, true);
         }
     }
     
     public void activerActions(int idAventurier, boolean bouger, boolean assecher, boolean donner, boolean recuperer, boolean recevoir, boolean deplacer, boolean terminer) {
-        this.vueAventuriers.get(idAventurier).activerBoutons(bouger, assecher, donner, recuperer, recevoir, deplacer, terminer);
+        VueAventurier va = this.vueAventuriers.get(idAventurier);
+        va.activerBoutons(bouger, assecher, donner, recuperer, recevoir, va.nomAventurier == "Navigateur", terminer);
     }
 
     public void setActionRestantes(Integer idAventurier, Integer actionRestantes) {
@@ -175,6 +181,10 @@ public class IHM extends Observable<Message> {
     
     public void finGagne(boolean isGagnee) {
         this.vueFin.activer(false);
+    }
+
+    public HashMap<Integer, VueAventurier> getVueAventuriers() {
+        return vueAventuriers;
     }
 
 }

@@ -272,7 +272,7 @@ public class IleInterdite extends Observable<Message> {
             msg.grille = grille;
             notifierObservateurs(msg);
         } else {
-            System.out.println("D�placement d'urgence !");
+            System.out.println("Déplacement d'urgence !");
         }
         
         return deplacementDUrgence;

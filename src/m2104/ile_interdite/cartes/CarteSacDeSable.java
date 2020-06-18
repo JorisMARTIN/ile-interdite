@@ -1,5 +1,7 @@
 package m2104.ile_interdite.cartes;
 
+import java.util.ArrayList;
+
 import m2104.ile_interdite.modele.Deck;
 import m2104.ile_interdite.modele.EtatTuile;
 import m2104.ile_interdite.modele.Tuile;
@@ -32,12 +34,20 @@ public class CarteSacDeSable extends Carte {
      * 
      */
 	@Override
-	public void action() {		
+	public void action() {
 		Message msg = new Message(Commandes.TUILES_POSSIBLES);
 		msg.pion = this.getAventurier().getPion();
-		msg.possibilites = this.getAventurier().isAssechementPossibles();
-		msg.action = 0;
-		
+        msg.possibilites = new ArrayList<Boolean>();
+        ArrayList<Tuile> tuiles = this.getDeck().getIleInterdite().getGrille().getTuiles(true);
+
+        for(int i = 0; i < tuiles.size(); i++) {
+            Tuile tuile = tuiles.get(i);
+            if(tuile != null)
+                msg.possibilites.set(i, tuile.getEtat() == EtatTuile.INONDEE);
+        }
+        
+		msg.action = 1;
+		msg.idAventurier = this.getDeck().getIleInterdite().getJoueurCourant();
 		this.getDeck().getIleInterdite().notifierObservateurs(msg);
 	}
 	

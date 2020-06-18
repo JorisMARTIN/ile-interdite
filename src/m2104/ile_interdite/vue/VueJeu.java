@@ -88,10 +88,13 @@ public class VueJeu {
     }
     
     public void resetSelections() {
-        for (int tuile = 0; tuile < grille.getTuiles(true).size(); tuile++) {
-            if (this.boutons.get(tuile) != null && this.boutons.get(tuile).isVisible()) {
-                this.boutons.get(tuile).setEnabled(false);
-                this.boutons.get(tuile).setBorder(BorderFactory.createEmptyBorder());
+        for (int i = 0; i < grille.getTuiles(true).size(); i++) {
+            JButton bouton = this.boutons.get(i);
+            if (bouton != null && this.boutons.get(i).isVisible()) {
+                bouton.setEnabled(false);
+                bouton.setBorder(BorderFactory.createEmptyBorder());
+                for (ActionListener al : bouton.getActionListeners())
+                    bouton.removeActionListener(al);
             }
         }
     }

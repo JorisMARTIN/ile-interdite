@@ -10,6 +10,7 @@ import m2104.ile_interdite.modele.IleInterdite;
 import m2104.ile_interdite.modele.Tuile; 
 import m2104.ile_interdite.util.Message; 
 import m2104.ile_interdite.util.Utils;
+import m2104.ile_interdite.util.Utils.Commandes;
 import m2104.ile_interdite.util.Utils.Tresor;
 import m2104.ile_interdite.modele.EtatTuile;
     
@@ -135,14 +136,47 @@ public abstract class Aventurier {
         return this.position;
     }
         
-    public boolean peutDonnerCarteTresor(Aventurier receveur, Carte carte) {
+    public boolean peutDonnerCarteTresor(Aventurier receveur, int idCarte) {
+    	
+    	Carte carte = this.main.get(idCarte);
     	
     	return receveur.getPosition() == this.position && receveur.getMain().size() < 5 && !(carte instanceof CarteHelicoptere) && !(carte instanceof CarteSacDeSable);
     	
     }
     
-    public void donnerCarteTresor(Aventurier a, Carte carte) {
-    	//TODO
+    /**
+     * 
+     * <ol>
+     * 	<li>Ajoute la carte a la main du receuveur</li>
+     * 	<li>Retire la carte de la main du joueur</li>
+     * 	<li>Actualise les deux mains</li>
+     * </ol>
+     * 
+     * @param receveur : Le receveur de la carte
+     * @param idCarte : L'id de la carte donnee
+     * 
+     */
+    public void donnerCarteTresor(Aventurier receveur, int idCarte) {
+
+    	Carte carte = this.main.get(idCarte);
+    	
+    	this.main.remove(idCarte);
+    	receveur.getMain().add(this.main.get(idCarte));
+    	
+    	moinsActions();
+    	
+    	Message msg = new Message(Commandes.ACTUALISER_MAIN);
+    	msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
+    	msg.main = this.main;
+    	
+    	this.ileInterdite.notifierObservateurs(msg);
+    	
+    	Message msg2 = new Message(Commandes.ACTUALISER_MAIN);
+    	msg2.idAventurier = this.ileInterdite.getAventuriers().indexOf(receveur);
+    	msg2.main = receveur.getMain();
+    	
+    	this.ileInterdite.notifierObservateurs(msg);
+    	
     }
     
     /**

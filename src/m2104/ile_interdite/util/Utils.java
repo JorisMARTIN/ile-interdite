@@ -53,7 +53,8 @@ public class Utils {
         CARTE_JOUE("Le Joueur vien de jouer une carte"),
         ETAPE_JOUE_CARTE("Demande quel déplacement est voulu pour la carte jouée."),
         DEPLACEMENT_DURGENCE("Demande au joueur de se d�placer si cela est possible, toute autre action est impossible en dehors des cartes action sp�ciale"),
-        DON_CARTE("Le joueur fait dont d'une carte");
+        DON_CARTE("Le joueur fait dont d'une carte"),
+        FIN_DON("Le don de carte est terminer");
 
 
         private final String libelle ;

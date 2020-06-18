@@ -61,7 +61,7 @@ public class VueAventurier {
     private ArrayList<JButton> mainJoueur;
     private JTextArea description;
 
-    public VueAventurier(IHM ihm, Integer id, String nomJoueur, String nomAventurier, String power, Integer num, Integer nbAventuriers, Color couleurActive, Color couleurInactive){
+	public VueAventurier(IHM ihm, Integer id, String nomJoueur, String nomAventurier, String power, Integer num, Integer nbAventuriers, Color couleurActive, Color couleurInactive){
         this.ihm = ihm;
         this.idAventurier = id ;
         this.nomJoueur = nomJoueur ;
@@ -107,7 +107,9 @@ public class VueAventurier {
             public void mouseClicked(MouseEvent e) {
                 if (titreCliquable) {
                     Message message = new Message(Commandes.RECEVOIR);
-                    System.out.println(message);
+                    
+                    message.idAventurier = idAventurier;
+                    
                     ihm.notifierObservateurs(message);
                 }
             }
@@ -581,16 +583,13 @@ public class VueAventurier {
             @Override
             public void actionPerformed(ActionEvent e) {
             		
+            	ihm.setIdCarteADonner(mainJoueur.indexOf(e.getSource()));
+            	
             	ihm.activerActionsTous(false, false, false, false, true, false, false);
             	activerBoutons(false, false, false, false, false, false, false);
             	
-                Message m = new Message(Commandes.DONNER);
-                m.idAventurier = idAventurier;
-                m.idCarte = mainJoueur.indexOf(e.getSource());
                  
                 description.setText("Cliquez maintenant sur\nle joueur à qui vous\nvoulez donner la carte :");
-                 
-                ihm.notifierObservateurs(m);
             }
             });
              
@@ -614,5 +613,8 @@ public class VueAventurier {
         return this.mainJoueur;
     }
 
+    public void setDescription(String description) {
+		this.description.setText(description);
+	}
 
 }

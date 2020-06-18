@@ -375,4 +375,24 @@ public class IleInterdite extends Observable<Message> {
 		return tresorsEnJeu;
 	}
 
+	public void lanceDonCarte(int idAventurier, int idCarte) {
+		
+		
+		boolean b;
+		
+		if(this.getAventuriers().get(joueurCourant).peutDonnerCarteTresor(this.getAventuriers().get(idAventurier), idCarte)) {
+			this.getAventuriers().get(joueurCourant).donnerCarteTresor(this.getAventuriers().get(idAventurier), idCarte);
+			b = true;
+		}else {
+			b = false;
+		}
+		
+		Message msg = new Message(Commandes.FIN_DON);
+		msg.isReussi = b;
+		msg.idAventurier = joueurCourant;
+		
+		notifierObservateurs(msg);
+		
+	}
+
 }

@@ -333,7 +333,7 @@ public class VueAventurier {
                         break;
                         
                     case TERMINER:
-                        
+                        activerBoutons(false, false, false, false, false, false, false);
                         m = new Message(Commandes.TERMINER);
                         m.idAventurier = idAventurier;
                         
@@ -419,7 +419,6 @@ public class VueAventurier {
         
     
         this.panelCartes.removeAll();
-        this.mainPanel.revalidate();
         this.mainJoueur.clear();
         
         JButton button;
@@ -430,22 +429,20 @@ public class VueAventurier {
             button = new JButton(carte.toString());
             if(carte instanceof CarteTresor) {
                 button.setEnabled(false);
-             }
-            
-                activerBoutons(true, true, true, true, true, true, true);
+            }
                 
-                button.addActionListener(new ActionListener() {
+            button.addActionListener(new ActionListener() {
+                
+                
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    Message m = new Message(Commandes.JOUE_CARTE);
+                    m.idAventurier = idAventurier;
+                    m.idCarte = mainJoueur.indexOf(e.getSource());
                     
-                    
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        Message m = new Message(Commandes.JOUE_CARTE);
-                        m.idAventurier = idAventurier;
-                        m.idCarte = mainJoueur.indexOf(e.getSource());
-                        
-                        ihm.notifierObservateurs(m);
-                    }
-                });
+                    ihm.notifierObservateurs(m);
+                }
+            });
             
             this.mainJoueur.add(button);
         }
@@ -501,8 +498,8 @@ public class VueAventurier {
                 break;
             
             case 6:
-            	this.panelCartes.setLayout(new GridLayout(2,3));
-            	
+                this.panelCartes.setLayout(new GridLayout(2,3));
+                
                 this.panelCartes.add(this.mainJoueur.get(0));
                 this.panelCartes.add(this.mainJoueur.get(1));
                 this.panelCartes.add(this.mainJoueur.get(2));
@@ -513,50 +510,46 @@ public class VueAventurier {
                 break;
                 
             default:
-            	this.panelCartes.setLayout(new GridLayout(3,3));
-            	
-            	for(JButton b : this.mainJoueur) {
-            		this.panelCartes.add(b);
-            	}
-            	
+                this.panelCartes.setLayout(new GridLayout(3,3));
+                
+                for(JButton b : this.mainJoueur) {
+                    this.panelCartes.add(b);
+                }
+                
                 break;
         }
         
         this.panelCartes.revalidate();
-        	
+            
     }
     
     public void deffausseCarte() {
-    	
-    	for(JButton b : this.mainJoueur) {
-    		
-    		 activerBoutons(false, false, false, false, false, false, false);
-             b.setEnabled(true);
+        
+        for(JButton b : this.mainJoueur) {
+            
+            b.setEnabled(true);
              
-             for(ActionListener action : b.getActionListeners()) {
-            	 
-            	 b.removeActionListener(action);
-             }
+            for(ActionListener action : b.getActionListeners()) {
+                b.removeActionListener(action);
+            }
+            
+            b.addActionListener(new ActionListener() {
              
-             b.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 Message m = new Message(Commandes.DEFAUSSE_CARTE);
+                 m.idAventurier = idAventurier;
+                 m.idCarte = mainJoueur.indexOf(e.getSource());
                  
-                 @Override
-                 public void actionPerformed(ActionEvent e) {
-                     Message m = new Message(Commandes.DEFAUSSE_CARTE);
-                     m.idAventurier = idAventurier;
-                     m.idCarte = mainJoueur.indexOf(e.getSource());
-                     
-                     defausseCarte.setText("");
-                     
-                     ihm.notifierObservateurs(m);
-                 }
-             });
+                 defausseCarte.setText("");
+                 
+                 ihm.notifierObservateurs(m);
+            }
+            });
              
-    	}
-    	
-    	this.defausseCarte.setText("Vous avez trop de carte !\nCliquez sur laquel vous voulez\ndefausser :");
-    	
-
+        }
+        
+        this.defausseCarte.setText("Vous avez trop de carte !\nCliquez sur laquel vous voulez\ndefausser :");
     }
     
     

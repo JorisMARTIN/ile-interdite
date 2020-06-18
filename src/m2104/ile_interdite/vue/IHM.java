@@ -122,7 +122,7 @@ public class IHM extends Observable<Message> {
 
     public void changerJoueurCourant(int idAventurier) {
 
-        for(VueAventurier vue : this.vueAventuriers.values()) {
+        for (VueAventurier vue : this.vueAventuriers.values()) {
             
             vue.resetActionRestantes();
             vue.desactiver();
@@ -138,7 +138,6 @@ public class IHM extends Observable<Message> {
         
         if(this.vueAventuriers.get(idAventurier).getMainJoueur().size() > 5) {
             
-            this.bloquerActions(idAventurier);
             this.vueAventuriers.get(idAventurier).setEtatBoutonsCartes(true);
             
         } else {
@@ -161,7 +160,6 @@ public class IHM extends Observable<Message> {
         VueAventurier vue = this.vueAventuriers.get(idAventurier);
         
         vue.setActionRestantes(actionRestantes);
-        vue.activerBoutons(true, true, true, true, true, true, true);
     }
 
     public void actualiserMainJoueur(ArrayList<Carte> main, Integer idAventurier) {
@@ -169,7 +167,7 @@ public class IHM extends Observable<Message> {
     }
 
     public void demandeDefausse(int idAventurier) {
-    	this.vueAventuriers.get(idAventurier).deffausseCarte();
+        this.vueAventuriers.get(idAventurier).deffausseCarte();
     }
     
     public void finGagne(boolean isGagnee) {

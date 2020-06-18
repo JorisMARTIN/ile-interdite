@@ -107,8 +107,10 @@ public class IHM extends Observable<Message> {
     /**
      * 
      * @param possibilites : Liste de boolean selon les possibilitées.
-     * @param pion : Le pions voulant effectuer l'action
-     * @param action : 0 = Assechement, 1 = Deplacement, 2 = Deplacement par helicoptère
+     * @param pion         : Le pions voulant effectuer l'action
+     * @param action       : 0 = Assechement, 1 = Deplacement, 2 = Deplacement par
+     *                     helicoptère
+     * @param idAventurier : Le numero de l'aventurier demandant l'action
      */
     public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion, int action, int idAventurier) {
         this.vueJeu.surbrillerTuiles(possibilites, pion, action, idAventurier);

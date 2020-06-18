@@ -313,7 +313,6 @@ public class IleInterdite extends Observable<Message> {
     public void deplacerAventurier(String nomTuile, int idAventurier) {
         Tuile tuile = this.grille.getTuile(nomTuile);
         this.aventuriers.get(idAventurier).deplacer(tuile);
-        System.out.println(deplacementDUrgence);
         if (deplacementDUrgence) {
             joueurSuivant();
         } else {

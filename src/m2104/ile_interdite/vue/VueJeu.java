@@ -128,12 +128,16 @@ public class VueJeu {
      * @param idAventurier : Le numero de l'aventurier demandant l'action
      */
     public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion, int action, int idAventurier) {
+        int aventurierADeplacer = idAventurier;
         for (int i = 0; i < grille.getTuiles(true).size(); i++) {
+
             JButton bouton = this.boutons.get(i);
             bouton.setEnabled(false);
             bouton.setBorder(BorderFactory.createEmptyBorder());
+
             if (possibilites.get(i)) {
                 bouton.setEnabled(true);
+
                 Border borderUp = BorderFactory.createEtchedBorder(EtchedBorder.RAISED, Color.BLACK, Color.BLACK);
                 Border borderDown = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED, Color.BLACK, Color.BLACK);
                 Border coloredBorder = BorderFactory.createLineBorder(pion.getCouleur(), 2);

@@ -110,6 +110,13 @@ public class IHM extends Observable<Message> {
         this.vueJeu.surbrillerTuiles(possibilites, pion, action, idAventurier);
     }
 
+    public void lanceChoisirBougerJoueur(int idAventurier) {
+        this.vueAventuriers.forEach((i, va) -> {
+            if(i != idAventurier)
+                va.activerBoutons(false, false, false, false, false, true, false);
+        });
+    }
+
     public void placerCurseur(int valeur) {
         this.vueNiveau.setNiveau(valeur);
     }

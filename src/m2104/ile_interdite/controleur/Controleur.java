@@ -1,6 +1,9 @@
 
 package m2104.ile_interdite.controleur;
 
+import java.util.ArrayList;
+
+import m2104.ile_interdite.aventuriers.Aventurier;
 import m2104.ile_interdite.modele.EtatTuile;
 import m2104.ile_interdite.modele.IleInterdite;
 import m2104.ile_interdite.modele.Tuile;
@@ -48,7 +51,7 @@ public class Controleur implements Observateur<Message> {
                 break;
                 
             case LANCER_DEPLACEMENT:
-                this.ileInterdite.lanceDeplacement();
+                this.ileInterdite.lanceDeplacement(msg.idAventurier);
                 break;
                 
             case LANCER_ASSECHEMENT:
@@ -75,9 +78,6 @@ public class Controleur implements Observateur<Message> {
             case CHOISIR_TUILE:
                 break;
             
-            /*case DEPLACER:
-                break;*/
-            
             case ZERO_ACTIONS:
                 this.ihm.activerActions(msg.idAventurier, false, false, false, false, false, false, true);
                 break;
@@ -92,8 +92,17 @@ public class Controleur implements Observateur<Message> {
                 break;
 
             case DEPLACER:
-                this.ileInterdite.deplacerAventurier(msg.nomTuile, msg.idAventurier);
-                this.ihm.activerActions(msg.idAventurier, true, true, true, true, true, true, true);
+                if(msg.action == 0)
+                    this.ileInterdite.deplacerAventurier(msg.nomTuile, msg.idAventurier);
+                else { //pouvoir du navigateur
+                    Tuile tuile = this.ileInterdite.getGrille().getTuile(msg.nomTuile);
+                    Aventurier av = this.ileInterdite.getAventuriers().get(msg.idAventurier);
+                    av.getPosition().removeAventurier(av);
+                    av.setPosition(tuile);
+                    av.getPosition().addAventurier(av);
+                    ileInterdite.getAventuriers().get(ileInterdite.getJoueurCourant()).moinsActions();
+                    ihm.majVueJeu();
+                }
                 break;
 
             case ASSECHER:
@@ -103,6 +112,15 @@ public class Controleur implements Observateur<Message> {
                 else
                     tuile.setEtat(EtatTuile.NORMAL);
                 this.ihm.majVueJeu();
+                break;
+
+            case BOUGER:
+                ihm.lanceChoisirBougerJoueur(msg.idAventurier);
+                break;
+
+            case LANCER_PVNAVIGATEUR:
+                ArrayList<Boolean> possibilites = this.ileInterdite.getAventuriers().get(msg.idAventurier).isDeplacementPossibles();
+                ileInterdite.lanceSurbriller(msg.idAventurier, possibilites, 3);
                 break;
 
             case RECUP_TRESOR:

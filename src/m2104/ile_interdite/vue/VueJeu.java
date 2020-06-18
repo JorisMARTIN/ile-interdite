@@ -36,12 +36,11 @@ import m2104.ile_interdite.util.Message;
 public class VueJeu {
     private final IHM ihm;
     private final JFrame fenetre;
-    private  Panneau grillePanel;
-    private  Grille grille;
+    private Panneau grillePanel;
+    private Grille grille;
     private ArrayList<JButton> boutons;
     private Image[] imagesBtnNormales;
     private Image[] imagesBtnInondees;
-    private int aventurierADeplacer;
 
     public VueJeu(IHM ihm, Grille grille) {
         
@@ -155,17 +154,32 @@ public class VueJeu {
                                 Message m = new Message(Utils.Commandes.DEPLACER);
                                 m.nomTuile = bouton.getText();
                                 m.idAventurier = idAventurier;
+                                m.action = action;
                                 ihm.notifierObservateurs(m);
+                                ihm.activerActions(idAventurier, true, true, true, true, true, true, true);
                             }
                         });
                         break;
                     
-                    case 1:
+                    case 1: //ceci est fait exprès pour propager l'int action au controleur
                     case 2:
                         bouton.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
                                 Message m = new Message(Utils.Commandes.ASSECHER);
+                                m.nomTuile = bouton.getText();
+                                m.idAventurier = idAventurier;
+                                m.action = action;
+                                ihm.notifierObservateurs(m);
+                            }
+                        });
+                        break;
+
+                    case 3: //deplacement par un navigateur
+                        bouton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                Message m = new Message(Utils.Commandes.DEPLACER);
                                 m.nomTuile = bouton.getText();
                                 m.idAventurier = idAventurier;
                                 m.action = action;

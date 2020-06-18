@@ -37,7 +37,8 @@ public class Utils {
         /*Ajout de nouveaux messages*/
         RECUP_TRESOR("Recupération d'un trésort"),
         MAJ_GRILLE("Mise à jour de la grille"),
-        DEPLACEMENT("Traite le début d'un déplacement du joueur courant"),
+        BOUGER("Pouvoir du Navigateur"),
+        LANCER_PVNAVIGATEUR("Lance le déplacement d'un pion en tant que pouvoir du Navigateur"),
         TUILES_POSSIBLES("Avec possibilité, met en valeur les tuiles sur lequel l'action est possible"),
         AUGMENTER_CURSEUR("Augmenter le curseur de montée des eaux"),
         LANCE_CURSEUR("Lance le traitement afin d'augmenter le curseur de montée des eaux"),

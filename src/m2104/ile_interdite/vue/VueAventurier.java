@@ -182,7 +182,7 @@ public class VueAventurier {
         this.btnPrendre = creerBouton(4, "Prendre", Utils.Commandes.RECUPERER_TRESOR, "Récupérer le trésor de la tuile courante") ;
         panelBoutons_ligne2.add(btnPrendre);
 
-        this.btnDeplacer = creerBouton(5, "Bouger", Utils.Commandes.DEPLACER, "Déplacer un autre joueur vers une tuile adjacente") ;
+        this.btnDeplacer = creerBouton(5, "Bouger", Utils.Commandes.BOUGER, "Déplacer un autre joueur vers une tuile adjacente") ;
         panelBoutons_ligne2.add(btnDeplacer);
 
         this.btnTerminer = creerBouton(6, "Finir", Utils.Commandes.TERMINER, "Terminer son tour") ;
@@ -324,12 +324,18 @@ public class VueAventurier {
                         ihm.notifierObservateurs(m);
                         break;
                         
-                    case DEPLACER:
-                        
-                        m = new Message(Commandes.DEPLACER);
-                        m.idAventurier = idAventurier;
-                        
-                        ihm.notifierObservateurs(m);
+                    case BOUGER:
+                        if(nomAventurier == "Navigateur") {
+                            m = new Message(Commandes.BOUGER);
+                            m.idAventurier = idAventurier;
+
+                            ihm.notifierObservateurs(m);
+                        } else {
+                            m = new Message(Commandes.LANCER_PVNAVIGATEUR);
+                            m.idAventurier = idAventurier;
+
+                            ihm.notifierObservateurs(m);
+                        }
                         break;
                         
                     case TERMINER:

@@ -277,26 +277,22 @@ public class IleInterdite extends Observable<Message> {
         
         return deplacementDUrgence;
     }
-    
-    public void lanceDeplacement() {
-        ArrayList<Boolean> possibilite = aventuriers.get(this.joueurCourant).isDeplacementPossibles();
+
+    public void lanceSurbriller(int idAventurier, ArrayList<Boolean> possibilites, int action) {
         Message msg = new Message(Utils.Commandes.TUILES_POSSIBLES);
-        msg.possibilites = possibilite;
-        msg.idAventurier = this.joueurCourant;
-        msg.pion = this.aventuriers.get(joueurCourant).getPion();
-        msg.action = 0;
+        msg.idAventurier = idAventurier;
+        msg.possibilites = possibilites;
+        msg.pion = this.aventuriers.get(msg.idAventurier).getPion();
+        msg.action = action;
         notifierObservateurs(msg);
     }
     
+    public void lanceDeplacement(int idAventurier) {
+        lanceSurbriller(idAventurier, aventuriers.get(idAventurier).isDeplacementPossibles(), 0);
+    }
+    
     public void lanceAssechement() {
-        ArrayList<Boolean> possibilite = aventuriers.get(this.joueurCourant).isAssechementPossibles();
-        System.out.println(possibilite);
-        Message msg = new Message(Utils.Commandes.TUILES_POSSIBLES);
-        msg.possibilites = possibilite;
-        msg.idAventurier = this.joueurCourant;
-        msg.action = 1;
-        msg.pion = this.aventuriers.get(joueurCourant).getPion();
-        notifierObservateurs(msg);
+        lanceSurbriller(this.joueurCourant, aventuriers.get(this.joueurCourant).isAssechementPossibles(), 1);
     }
     
     public void lanceRecuperationTresor() {

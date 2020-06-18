@@ -305,4 +305,8 @@ public abstract class Aventurier {
 
     public void setaPioche(boolean aPioche) { this.aPioche = aPioche;
     }
+
+	public void setPosition(Tuile position) {
+        this.position = position;
+	}
 }

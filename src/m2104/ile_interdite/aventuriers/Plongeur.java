@@ -28,6 +28,7 @@ public class Plongeur extends Aventurier{
     /*méthodes*/
     @Override
     public ArrayList<Boolean> isDeplacementPossibles() {
+    	
         ArrayList<Boolean> assechementsPossibles = new ArrayList<Boolean>();
         ArrayList<Tuile> tetesChercheuses = new ArrayList<Tuile>();
         ArrayList<Tuile> tuiles = this.getIleInterdite().getGrille().getTuiles(true);

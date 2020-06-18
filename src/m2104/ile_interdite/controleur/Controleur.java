@@ -62,7 +62,7 @@ public class Controleur implements Observateur<Message> {
                 break;
             
             case RECUPERER_TRESOR:
-                this.ileInterdite.getAventuriers().get(msg.idAventurier).recupererTresor();
+            	this.ileInterdite.lanceRecuperationTresor();
                 break;
             
             case TERMINER:
@@ -122,10 +122,6 @@ public class Controleur implements Observateur<Message> {
             case LANCER_PVNAVIGATEUR:
                 ArrayList<Boolean> possibilites = this.ileInterdite.getAventuriers().get(msg.idAventurier).isDeplacementPossibles();
                 ileInterdite.lanceSurbriller(msg.idAventurier, possibilites, 3);
-                break;
-
-            case RECUP_TRESOR:
-                this.ileInterdite.lanceRecuperationTresor();
                 break;
 
             case LANCE_CURSEUR:

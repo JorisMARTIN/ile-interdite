@@ -3,7 +3,8 @@ package m2104.ile_interdite.aventuriers;
 import java.util.ArrayList;
 import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.cartes.CarteHelicoptere;
-import m2104.ile_interdite.cartes.CarteMonteeEaux; 
+import m2104.ile_interdite.cartes.CarteMonteeEaux;
+import m2104.ile_interdite.cartes.CarteTresor;
 import m2104.ile_interdite.modele.IleInterdite;  
 import m2104.ile_interdite.modele.Tuile; 
 import m2104.ile_interdite.util.Message; 
@@ -143,9 +144,32 @@ public abstract class Aventurier {
         moinsActions();
     }
     
+    /**
+     * <ol>
+     * 	<li>Retrait de 4 carte trésor correspondante de la main du joueur</li>
+     * 	<li>Ajout du tresor a la liste "tresors" de l'aventurier</li>
+     * 	<li>Retrait du tresor de la liste "tresorsEnJeu" de IleInterdite</li>
+     * 	<li>Notifie l'ihm du retrait du tresor</li>
+     * </ol>
+     */
     public void recupererTresor() {
-        //TODO
-        
+    	 	
+    	Utils.Tresor tresor = this.position.getTresor();
+    	
+    	int i = 4;
+    	for(CarteTresor carte : getCartesTresorsEnMain()) {
+    		if(carte.getTresor() == tresor) {
+    			this.ileInterdite.getDeckTresor().getDefausse().add(carte);
+    			this.main.remove(carte);
+    			i--;
+    		}
+    		if(i == 0) break;
+    	}
+    	
+    	this.tresors.add(tresor);
+    	this.ileInterdite.getTresorsEnJeu().remove(tresor);
+    	
+    	
         moinsActions();
     }
     
@@ -246,9 +270,84 @@ public abstract class Aventurier {
     public int getActionsRestantes() {
         return actionsRestantes;
     }
-
+    
+    /**
+     * <ol>
+     * 	<li>Verifie si le joueur est sur une tuile permettant de recuperer un tresor</li>
+     * 	<li>Compte si il possède le bon nombre de carte tresor corespondante</li>
+     * 		<ul>
+     * 			<li>Si oui : return true</li>
+     * 			<li>Si non : return false</li>
+     * 		</ul>
+     * </ol>
+     */
     public boolean peutRecupererTresort() {
-        return false;
+    	
+    	
+    	if(this.position.getTresor() != null) {
+    		
+    		int nbCarte = 0;
+    		
+    		switch (this.position.getTresor()) {
+    		
+			case CALICE:
+				
+				for(CarteTresor carte : this.getCartesTresorsEnMain()) {
+					
+					if(carte.getTresor() == Utils.Tresor.CALICE) {
+						nbCarte++;
+					}
+				}
+				
+				if(nbCarte >= 4) return true;
+				
+				break;
+				
+			case PIERRE:
+				
+				for(CarteTresor carte : this.getCartesTresorsEnMain()) {
+					
+					if(carte.getTresor() == Utils.Tresor.PIERRE) {
+						nbCarte++;
+					}
+				}
+				
+				if(nbCarte >= 4) return true;
+				
+				break;
+				
+			case CRISTAL:
+				
+				for(CarteTresor carte : this.getCartesTresorsEnMain()) {
+					
+					if(carte.getTresor() == Utils.Tresor.CRISTAL) {
+						nbCarte++;
+					}
+				}
+				
+				if(nbCarte >= 4) return true;
+				
+				break;
+				
+			case ZEPHYR:
+				
+				for(CarteTresor carte : this.getCartesTresorsEnMain()) {
+					
+					if(carte.getTresor() == Utils.Tresor.ZEPHYR) {
+						nbCarte++;
+					}
+				}
+				
+				if(nbCarte >= 4) return true;
+				
+				break;
+
+			}
+    		
+    	}
+    	
+		return false;
+
     }
     
     public Utils.Pion getPion() {
@@ -309,4 +408,20 @@ public abstract class Aventurier {
 	public void setPosition(Tuile position) {
         this.position = position;
 	}
+	
+	public ArrayList<CarteTresor> getCartesTresorsEnMain(){
+		
+		ArrayList<CarteTresor> cartesTresor = new ArrayList<CarteTresor>();
+		
+		for(Carte carte : this.main) {
+			
+			if(carte instanceof CarteTresor) {
+				cartesTresor.add((CarteTresor) carte);
+			}
+			
+		}
+		
+		return cartesTresor;
+	}
+	
 }

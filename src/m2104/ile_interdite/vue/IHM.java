@@ -119,6 +119,7 @@ public class IHM extends Observable<Message> {
     public void majVueJeu() {
         this.vueJeu.affGrille();
         this.vueJeu.resetSelections();
+        this.vueJeu.refresh();
     }
 
     public void changerJoueurCourant(int idAventurier) {

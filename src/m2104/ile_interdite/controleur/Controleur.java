@@ -92,6 +92,7 @@ public class Controleur implements Observateur<Message> {
 
             case DEPLACER:
                 this.ileInterdite.deplacerAventurier(msg.nomTuile, msg.idAventurier);
+                this.ihm.changerJoueurCourant(msg.idAventurier);
                 break;
 
             case ASSECHER:

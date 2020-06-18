@@ -50,8 +50,7 @@ public class Controleur implements Observateur<Message> {
                 break;
                 
             case LANCER_ASSECHEMENT:
-                this.ileInterdite.lanceAssechement();
-                //this.ileInterdite.getAventuriers().get(msg.idAventurier).assecher(this.ileInterdite.getGrille().getTuile(msg.tuile));
+                this.ileInterdite.lanceAssechement(msg.idAventurier);
                 break;
             
             case DONNER:

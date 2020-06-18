@@ -101,7 +101,7 @@ public abstract class Aventurier {
     }
     
     protected boolean peutAssecher(Tuile tuile) {
-        if(tuile == null || !tuile.isInnondee() || tuile.isRetiree()) {
+        if(tuile == null || !tuile.isInnondee()) {
             return false;
         }
         
@@ -109,7 +109,7 @@ public abstract class Aventurier {
         int indexTuileActuelle = this.ileInterdite.getGrille().getTuiles(true).indexOf(getPosition());
 
         return (indexTuileCible == indexTuileActuelle)
-        	|| (indexTuileActuelle < 29 && indexTuileActuelle + 6 == indexTuileCible)
+            || (indexTuileActuelle < 29 && indexTuileActuelle + 6 == indexTuileCible)
             || (indexTuileActuelle < 35 && indexTuileActuelle + 1 == indexTuileCible && (indexTuileActuelle) % 6 != 5)
             || (indexTuileActuelle > 5 && indexTuileActuelle - 6 == indexTuileCible)
             || (indexTuileActuelle > 0 && indexTuileActuelle - 1 == indexTuileCible && (indexTuileActuelle) % 6 != 0);
@@ -205,8 +205,8 @@ public abstract class Aventurier {
             }
             
             if(this.ileInterdite.getDeckTresor().isVide()) {
-            	this.ileInterdite.getDeckTresor().remplirPioche(this.ileInterdite.getDeckTresor().getDefausse());
-            	this.ileInterdite.getDeckTresor().getDefausse().clear();
+                this.ileInterdite.getDeckTresor().remplirPioche(this.ileInterdite.getDeckTresor().getDefausse());
+                this.ileInterdite.getDeckTresor().getDefausse().clear();
             }
             
         
@@ -266,14 +266,14 @@ public abstract class Aventurier {
      */
     public void joueCarte(int idCarte) {
         
-    	Carte carte = this.main.get(idCarte);
-    	
-    	carte.action();
-    	
-    	this.main.remove(carte);
-		this.ileInterdite.getDeckTresor().getDefausse().add(carte);
-    	
-    	Message msg = new Message(Utils.Commandes.CARTE_JOUE);
+        Carte carte = this.main.get(idCarte);
+        
+        carte.action();
+        
+        this.main.remove(carte);
+        this.ileInterdite.getDeckTresor().getDefausse().add(carte);
+        
+        Message msg = new Message(Utils.Commandes.CARTE_JOUE);
         msg.main = this.main;
         msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
 

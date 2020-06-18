@@ -99,6 +99,7 @@ public class Controleur implements Observateur<Message> {
                 Tuile tuile = this.ileInterdite.getGrille().getTuile(msg.nomTuile);
                 this.ileInterdite.getAventuriers().get(msg.idAventurier).assecher(tuile);
                 this.ihm.majVueJeu();
+                this.ihm.activerActions(msg.idAventurier, true, true, true, true, true, true, true);
                 break;
 
             case RECUP_TRESOR:

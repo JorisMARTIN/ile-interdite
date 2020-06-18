@@ -127,12 +127,16 @@ public class VueJeu {
      */
     public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion, int action, int idAventurier) {
         aventurierADeplacer = idAventurier;
+
         for (int i = 0; i < grille.getTuiles(true).size(); i++) {
+
             JButton bouton = this.boutons.get(i);
             bouton.setEnabled(false);
             bouton.setBorder(BorderFactory.createEmptyBorder());
+
             if (possibilites.get(i)) {
                 bouton.setEnabled(true);
+
                 Border borderUp = BorderFactory.createEtchedBorder(EtchedBorder.RAISED, Color.BLACK, Color.BLACK);
                 Border borderDown = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED, Color.BLACK, Color.BLACK);
                 Border coloredBorder = BorderFactory.createLineBorder(pion.getCouleur(), 2);
@@ -163,6 +167,19 @@ public class VueJeu {
                             public void actionPerformed(ActionEvent e) {
                                 System.out.println("helloo");
                                 Message m = new Message(Utils.Commandes.DEPLACER);
+                                m.nomTuile = bouton.getText();
+                                m.idAventurier = aventurierADeplacer;
+                                ihm.notifierObservateurs(m);
+                            }
+                        });
+                        break;
+
+                    case 2:
+                        bouton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                System.out.println("Deplacement par hélicoptère.");
+                                Message m = new Message(Utils.Commandes.DEPLACEMENT);
                                 m.nomTuile = bouton.getText();
                                 m.idAventurier = aventurierADeplacer;
                                 ihm.notifierObservateurs(m);

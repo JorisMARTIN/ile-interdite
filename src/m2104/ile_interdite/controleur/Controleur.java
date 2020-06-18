@@ -1,3 +1,4 @@
+
 package m2104.ile_interdite.controleur;
 
 import m2104.ile_interdite.modele.IleInterdite;
@@ -50,7 +51,7 @@ public class Controleur implements Observateur<Message> {
                 break;
                 
             case LANCER_ASSECHEMENT:
-                this.ileInterdite.lanceAssechement(msg.idAventurier);
+                this.ileInterdite.lanceAssechement();
                 break;
             
             case DONNER:
@@ -97,6 +98,7 @@ public class Controleur implements Observateur<Message> {
             case ASSECHER:
                 Tuile tuile = this.ileInterdite.getGrille().getTuile(msg.nomTuile);
                 this.ileInterdite.getAventuriers().get(msg.idAventurier).assecher(tuile);
+                this.ihm.majVueJeu();
                 break;
 
             case RECUP_TRESOR:

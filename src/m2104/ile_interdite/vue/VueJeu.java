@@ -141,8 +141,9 @@ public class VueJeu {
                 Border bigCompound = BorderFactory.createCompoundBorder(compound1, compound2);
                 bouton.setBorder(bigCompound);
                 
-                for(ActionListener al : bouton.getActionListeners())
+                for(ActionListener al : bouton.getActionListeners()) {
                     bouton.removeActionListener(al);
+                }
 
                 switch(action) {
                     case 0:
@@ -162,9 +163,8 @@ public class VueJeu {
                             @Override
                             public void actionPerformed(ActionEvent e) {
                                 System.out.println("helloo");
-                                Message m = new Message(Utils.Commandes.DEPLACER);
+                                Message m = new Message(Utils.Commandes.ASSECHER);
                                 m.nomTuile = bouton.getText();
-                                m.idAventurier = aventurierADeplacer;
                                 ihm.notifierObservateurs(m);
                             }
                         });

@@ -293,7 +293,9 @@ public class IleInterdite extends Observable<Message> {
         System.out.println(possibilite);
         Message msg = new Message(Utils.Commandes.TUILES_POSSIBLES);
         msg.possibilites = possibilite;
+        msg.idAventurier = this.joueurCourant;
         msg.action = 1;
+        msg.pion = this.aventuriers.get(joueurCourant).getPion();
         notifierObservateurs(msg);
     }
     

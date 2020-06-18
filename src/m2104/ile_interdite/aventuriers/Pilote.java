@@ -49,7 +49,14 @@ public class Pilote extends Aventurier{
         }
         super.deplacer(tuile);
     }
-    
+        
+    /**
+     * <h1>Déroulement</h1>
+     * <ul>
+     * 	<li>Réiinitialiser </li>
+     * 	<li>Lancer l'assechement</li>
+     * </ul>
+     */
     @Override
     public void initActionsRestantes() {
         super.initActionsRestantes();

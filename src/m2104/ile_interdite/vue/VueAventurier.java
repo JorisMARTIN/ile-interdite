@@ -166,10 +166,10 @@ public class VueAventurier {
         panelBoutons_ligne1.setOpaque(false);
         panelBoutons.add(panelBoutons_ligne1);
 
-        this.btnAller = creerBouton(1, "Aller", Utils.Commandes.BOUGER, "Se déplacer vers une tuile") ;
+        this.btnAller = creerBouton(1, "Aller", Utils.Commandes.LANCER_DEPLACEMENT, "Se déplacer vers une tuile") ;
         panelBoutons_ligne1.add(btnAller);
 
-        this.btnAssecher = creerBouton(2, "Sécher", Utils.Commandes.ASSECHER, "Assécher une tuile") ;
+        this.btnAssecher = creerBouton(2, "Sécher", Utils.Commandes.LANCER_ASSECHEMENT, "Assécher une tuile") ;
         panelBoutons_ligne1.add(btnAssecher);
 
         this.btnDonner = creerBouton(3, "Donner", Utils.Commandes.DONNER, "Donner une carte à un autre joueur") ;
@@ -293,16 +293,16 @@ public class VueAventurier {
                 Message m;
                 
                 switch (commande) {
-                    case BOUGER:
+                    case LANCER_DEPLACEMENT:
                         activerBoutons(false, true, true, true, true, true, true);
-                        m = new Message(Commandes.BOUGER);
+                        m = new Message(Commandes.LANCER_DEPLACEMENT);
                         m.idAventurier = idAventurier;
                         
                         ihm.notifierObservateurs(m);
                         break;
                         
-                    case ASSECHER:
-                        m = new Message(Commandes.ASSECHER);
+                    case LANCER_ASSECHEMENT:
+                        m = new Message(Commandes.LANCER_ASSECHEMENT);
                         m.idAventurier = idAventurier;
                         
                         ihm.notifierObservateurs(m);

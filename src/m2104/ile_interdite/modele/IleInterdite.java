@@ -272,7 +272,7 @@ public class IleInterdite extends Observable<Message> {
             msg.grille = grille;
             notifierObservateurs(msg);
         } else {
-            System.out.println("Déplacement d'urgence !");
+            System.out.println("Dï¿½placement d'urgence !");
         }
         
         return deplacementDUrgence;
@@ -284,16 +284,16 @@ public class IleInterdite extends Observable<Message> {
         msg.possibilites = possibilite;
         msg.idAventurier = this.joueurCourant;
         msg.pion = this.aventuriers.get(joueurCourant).getPion();
-        msg.action = 1;
+        msg.action = 0;
         notifierObservateurs(msg);
     }
     
     public void lanceAssechement() {
-        
         ArrayList<Boolean> possibilite = aventuriers.get(this.joueurCourant).isAssechementPossibles();
+        System.out.println(possibilite);
         Message msg = new Message(Utils.Commandes.TUILES_POSSIBLES);
         msg.possibilites = possibilite;
-        msg.action = 0;
+        msg.action = 1;
         notifierObservateurs(msg);
     }
     

@@ -36,7 +36,7 @@ public class IHM extends Observable<Message> {
         assert nomsJoueurs.length == nomAventuriers.length;
         
         Color active;
-        
+         
         for (int id = 0; id < nomAventuriers.length; ++id) {
             
             switch (nomAventuriers[id]) {
@@ -100,14 +100,16 @@ public class IHM extends Observable<Message> {
         this.vueNiveau = new VueNiveau(difficulte);
     }
     
+    /**
+     * 
+     * @param possibilites : Liste de boolean selon les possibilitées.
+     * @param pion : Le pions voulant effectuer l'action
+     * @param action : 0 = Assechement, 1 = Deplacement, 2 = Deplacement par helicoptère
+     */
     public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion, int action, int idAventurier) {
-        /**
-         * 
-         * @param possibilites : Liste de boolean selon les possibilitées.
-         * @param pion : Le pions voulant effectuer l'action
-         * @param action : 0 = Assechement, 1 = Deplacement, 2 = Deplacement par helicoptère
-         */
         this.vueJeu.surbrillerTuiles(possibilites, pion, action, idAventurier);
+        
+        //TODO Prendre en compte le paramètre action
     }
 
     public void placerCurseur(int valeur) {
@@ -117,7 +119,6 @@ public class IHM extends Observable<Message> {
     public void majVueJeu() {
         this.vueJeu.affGrille();
         this.vueJeu.resetSelections();
-        this.vueJeu.refresh();
     }
 
     public void changerJoueurCourant(int idAventurier) {
@@ -126,7 +127,7 @@ public class IHM extends Observable<Message> {
             
             vue.resetActionRestantes();
             vue.desactiver();
-            this.bloquerActions(vue.getIdAventurier());
+            bloquerActions(vue.getIdAventurier());
             
             if(vue.getMainJoueur().size() > 5) {
                 vue.setEtatBoutonsCartes(false);

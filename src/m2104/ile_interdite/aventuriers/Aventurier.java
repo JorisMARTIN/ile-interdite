@@ -109,10 +109,10 @@ public abstract class Aventurier {
         int indexTuileActuelle = this.ileInterdite.getGrille().getTuiles(true).indexOf(getPosition());
 
         return (indexTuileCible == indexTuileActuelle)
-        	||	(indexTuileActuelle < 29 && indexTuileActuelle + 6 == indexTuileCible)
+        	|| (indexTuileActuelle < 29 && indexTuileActuelle + 6 == indexTuileCible)
             || (indexTuileActuelle < 35 && indexTuileActuelle + 1 == indexTuileCible && (indexTuileActuelle) % 6 != 5)
-            || (indexTuileActuelle > 5 && indexTuileActuelle - 6 == indexTuileCible && (indexTuileActuelle) % 6 != 0)
-            || (indexTuileActuelle > 0 && indexTuileActuelle - 1 == indexTuileCible);
+            || (indexTuileActuelle > 5 && indexTuileActuelle - 6 == indexTuileCible)
+            || (indexTuileActuelle > 0 && indexTuileActuelle - 1 == indexTuileCible && (indexTuileActuelle) % 6 != 0);
     }
     
     public ArrayList<Boolean> isAssechementPossibles() {

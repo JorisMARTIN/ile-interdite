@@ -162,13 +162,13 @@ public class IHM extends Observable<Message> {
         if(va.getMainJoueur().size() > 5) {
             va.setEtatBoutonsCartes(true);
         } else {
-            activerActions(idAventurier, true, true, true, true, true, false, true);
+            activerActions(idAventurier, true, true, true, true, true, va.getNomAventurier() == "Navigateur", true);
         }
     }
     
     public void activerActions(int idAventurier, boolean bouger, boolean assecher, boolean donner, boolean recuperer, boolean recevoir, boolean deplacer, boolean terminer) {
         VueAventurier va = this.vueAventuriers.get(idAventurier);
-        va.activerBoutons(bouger, assecher, donner, recuperer, recevoir, va.nomAventurier == "Navigateur", terminer);
+        va.activerBoutons(bouger, assecher, donner, recuperer, recevoir, deplacer, terminer);
     }
 
     public void setActionRestantes(Integer idAventurier, Integer actionRestantes) {
@@ -190,30 +190,30 @@ public class IHM extends Observable<Message> {
         this.vueFin.activer(isGagnee);
     }
 
-	public void demandeDonCarte(int idAventurier) {
-		this.vueAventuriers.get(idAventurier).donnerCarte();
-	}
+    public void demandeDonCarte(int idAventurier) {
+        this.vueAventuriers.get(idAventurier).donnerCarte();
+    }
 
     public HashMap<Integer, VueAventurier> getVueAventuriers() {
         return vueAventuriers;
     }
     
     public void setIdCarteADonner(int idCarteADonner) {
-    	this.idCarteADonner = idCarteADonner;
+        this.idCarteADonner = idCarteADonner;
     }
 
-	public void donneCarte(int idReceveur) {
-		
-		
-		
-		Message m = new Message(Commandes.DONNER);
-		m.idCarte = idCarteADonner;
-		m.idAventurier = idReceveur;
-		
-		this.idCarteADonner = -1;
-		
-		notifierObservateurs(m);
-	}
+    public void donneCarte(int idReceveur) {
+        
+        
+        
+        Message m = new Message(Commandes.DONNER);
+        m.idCarte = idCarteADonner;
+        m.idAventurier = idReceveur;
+        
+        this.idCarteADonner = -1;
+        
+        notifierObservateurs(m);
+    }
 
     public void setVueInscription() {
         new Controleur();

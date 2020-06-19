@@ -51,10 +51,12 @@ public class VueJeu {
         this.tresors = tresors;
         fenetre = new JFrame("L'île interdite");
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        fenetre.setUndecorated(Parameters.UNDECORATED);
+        fenetre.setResizable(false);
+        
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         
-        fenetre.setLocation((int) (dim.getWidth()/2)-500, (int) (dim.getHeight()/2)-300);
-        fenetre.setLocationRelativeTo(null);
+        fenetre.setLocation((int) dim.getWidth() - 830, (int) (dim.getHeight()/2)-410);
         
         fenetre.setSize(800, 800);
         
@@ -167,12 +169,11 @@ public class VueJeu {
                                 m.idAventurier = idAventurier;
                                 m.action = action;
                                 ihm.notifierObservateurs(m);
-                                ihm.activerActions(idAventurier, true, true, true, true, false, false, true);
                             }
                         });
                         break;
                     
-                    case 1: //ceci est fait exprès pour propager l'int action au controleur
+                    case 1: //ceci est fait exprès pour propager l'int action au controleur (Cas 1 : ass�chement, cas 2 : sac de sable)
                     case 2:
                         bouton.addActionListener(new ActionListener() {
                             @Override

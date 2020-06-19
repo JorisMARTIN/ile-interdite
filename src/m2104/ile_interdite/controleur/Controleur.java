@@ -60,11 +60,11 @@ public class Controleur implements Observateur<Message> {
                 break;
             
             case DONNER:
-            	this.ileInterdite.lanceDonCarte(msg.idAventurier, msg.idCarte);
+                this.ileInterdite.lanceDonCarte(msg.idAventurier, msg.idCarte);
                 break;
             
             case RECUPERER_TRESOR:
-            	this.ileInterdite.lanceRecuperationTresor();
+                this.ileInterdite.lanceRecuperationTresor();
                 break;
             
             case TERMINER:
@@ -72,7 +72,7 @@ public class Controleur implements Observateur<Message> {
                 break;
             
             case RECEVOIR:
-            	this.ihm.donneCarte(msg.idAventurier);
+                this.ihm.donneCarte(msg.idAventurier);
                 break;
             
             case CHOISIR_CARTE:
@@ -100,9 +100,10 @@ public class Controleur implements Observateur<Message> {
                 break;
 
             case DEPLACER:
-                if(msg.action == 0)
+                if(msg.action == 0) {
                     this.ileInterdite.deplacerAventurier(msg.nomTuile, msg.idAventurier);
-                else { //pouvoir du navigateur
+                    this.ihm.activerActions(msg.idAventurier, true, true, true, true, false, this.ihm.getVueAventuriers().get(msg.idAventurier).getNomAventurier() == "Navigateur", true);
+                } else { //pouvoir du navigateur
                     Tuile tuile = this.ileInterdite.getGrille().getTuile(msg.nomTuile);
                     Aventurier av = this.ileInterdite.getAventuriers().get(msg.idAventurier);
                     av.getPosition().removeAventurier(av);
@@ -115,11 +116,12 @@ public class Controleur implements Observateur<Message> {
 
             case ASSECHER:
                 Tuile tuile = this.ileInterdite.getGrille().getTuile(msg.nomTuile);
-                if(msg.action == 1)
+                if (msg.action == 1)
                     this.ileInterdite.getAventuriers().get(msg.idAventurier).assecher(tuile);
                 else
                     tuile.setEtat(EtatTuile.NORMAL);
                 this.ihm.majVueJeu();
+                this.ihm.activerActions(msg.idAventurier, true, true, true, true, false, this.ihm.getVueAventuriers().get(msg.idAventurier).getNomAventurier() == "Navigateur", true);
                 break;
 
             case BOUGER:
@@ -190,13 +192,12 @@ public class Controleur implements Observateur<Message> {
                 break;
                 
             case FIN_DON:
-            	this.ihm.activerActions(msg.idAventurier, true, true, true, true, false, true, true);
-            	this.ihm.getVueAventuriers().get(msg.idAventurier).setDescription(msg.isReussi == true ? "Don effectué !" : "Erreur, le don n'a\npas pu être effectué !");
-            	break;
-            	
+                this.ihm.getVueAventuriers().get(msg.idAventurier).setDescription(msg.isReussi == true ? "Don effectué !" : "Erreur, le don n'a\npas pu être effectué !");
+                break;
+                
             case DEPLACER_HELICO:
-            	this.ileInterdite.deplacerAventuriers(msg.nomTuile, msg.idAventurier);
-            	break;
+                this.ileInterdite.deplacerAventuriers(msg.nomTuile, msg.idAventurier);
+                break;
 
             default:
                 if (Parameters.LOGS) {

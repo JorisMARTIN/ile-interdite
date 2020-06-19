@@ -25,6 +25,7 @@ import m2104.ile_interdite.util.Panneau;
 import m2104.ile_interdite.util.Parameters;
 import m2104.ile_interdite.util.Utils;
 import m2104.ile_interdite.util.Message;
+import m2104.ile_interdite.util.Utils.Tresor;
 
 /**
 *
@@ -41,11 +42,13 @@ public class VueJeu {
     private ArrayList<JButton> boutons;
     private Image[] imagesBtnNormales;
     private Image[] imagesBtnInondees;
+    private ArrayList<Tresor> tresors;
 
-    public VueJeu(IHM ihm, Grille grille) {
+    public VueJeu(IHM ihm, Grille grille, ArrayList<Tresor> tresors) {
         
         this.ihm = ihm;
         this.grille = grille;
+        this.tresors = tresors;
         fenetre = new JFrame("L'île interdite");
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -54,7 +57,7 @@ public class VueJeu {
         
         fenetre.setSize(800, 800);
         
-        grillePanel = new Panneau(new ImageIcon(Parameters.IMAGES + "ocean.jpeg").getImage(), new GridLayout(6, 6));
+        grillePanel = new Panneau(new ImageIcon(Parameters.IMAGES + "ile.png").getImage(), new GridLayout(6, 6));
 
         ArrayList<Tuile> tuiles = this.grille.getTuiles(true);
         this.imagesBtnNormales = new Image[tuiles.size()];
@@ -82,7 +85,10 @@ public class VueJeu {
 
     private Image generateImageBtn(String path) {
         ImageIcon icon = new ImageIcon(path);
-        Image img = icon.getImage().getScaledInstance((int) (fenetre.getSize().width / 6.3), (int) (fenetre.getSize().height / 6.55), Image.SCALE_SMOOTH);
+        float scale = (int) Math.max(icon.getIconWidth(), icon.getIconHeight());
+        int largeur = (int) (icon.getIconWidth() / scale * fenetre.getSize().width / 6.3);
+        int hauteur = (int) (icon.getIconHeight() / scale * fenetre.getSize().height / 6.6);
+        Image img = icon.getImage().getScaledInstance(largeur, hauteur, Image.SCALE_SMOOTH);
         return img;
     }
     
@@ -175,7 +181,6 @@ public class VueJeu {
                                 m.idAventurier = idAventurier;
                                 m.action = action;
                                 ihm.notifierObservateurs(m);
-                                ihm.activerActions(idAventurier, true, true, true, true, false, false, true);
                             }
                         });
                         break;
@@ -247,7 +252,50 @@ public class VueJeu {
                     }
                 }
             } else {
-                button.setVisible(false);
+                switch (i) {
+                    case 0:
+                        if (this.tresors.contains(Tresor.CALICE)) {
+                            String path = tresors.get(tresors.indexOf(Tresor.CALICE)).getPathPicture();
+                            System.out.println(path);
+                            Image img = generateImageBtn(path);
+                            button.setIcon(new ImageIcon(img));
+                            button.setDisabledIcon(new ImageIcon(img));
+                        }
+                        break;
+                    
+                    case 5:
+                        if (this.tresors.contains(Tresor.CRISTAL)) {
+                            String path = tresors.get(tresors.indexOf(Tresor.CRISTAL)).getPathPicture();
+                            System.out.println(path);
+                            Image img = generateImageBtn(path);
+                            button.setIcon(new ImageIcon(img));
+                            button.setDisabledIcon(new ImageIcon(img));
+                        }
+                        break;
+                    
+                    case 30:
+                        if (this.tresors.contains(Tresor.ZEPHYR)) {
+                            String path = tresors.get(tresors.indexOf(Tresor.ZEPHYR)).getPathPicture();
+                            System.out.println(path);
+                            Image img = generateImageBtn(path);
+                            button.setIcon(new ImageIcon(img));
+                            button.setDisabledIcon(new ImageIcon(img));
+                        }
+                        break;
+                    
+                    case 35:
+                        if (this.tresors.contains(Tresor.PIERRE)) {
+                            String path = tresors.get(tresors.indexOf(Tresor.PIERRE)).getPathPicture();
+                            System.out.println(path);
+                            Image img = generateImageBtn(path);
+                            button.setIcon(new ImageIcon(img));
+                            button.setDisabledIcon(new ImageIcon(img));
+                        }
+                        break;
+                    
+                    default:
+                        button.setVisible(false);
+                }
             }
             grillePanel.add(button);
             boutons.add(button);

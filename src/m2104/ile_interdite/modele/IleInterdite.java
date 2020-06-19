@@ -153,7 +153,9 @@ public class IleInterdite extends Observable<Message> {
         }
         
         Message m = new Message(Commandes.INITIALISER_GRILLE);
-        m.grille = grille;
+        m.grille = this.grille;
+        m.tresors = this.tresorsEnJeu;
+        ;
         notifierObservateurs(m);
         
     }

@@ -10,6 +10,7 @@ import m2104.ile_interdite.modele.Grille;
 import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Utils;
 import m2104.ile_interdite.util.Utils.Commandes;
+import m2104.ile_interdite.util.Utils.Tresor;
 import patterns.observateur.Observable;
 import patterns.observateur.Observateur;
 
@@ -91,9 +92,9 @@ public class IHM extends Observable<Message> {
         }
     }
     
-    public void creeVueJeu(Grille grille) {
+    public void creeVueJeu(Grille grille, ArrayList<Tresor> tresors) {
         
-        vueJeu = new VueJeu(this, grille);
+        vueJeu = new VueJeu(this, grille, tresors);
         Message msg = new Message(Utils.Commandes.LANCER_JEU);
         
         notifierObservateurs(msg);

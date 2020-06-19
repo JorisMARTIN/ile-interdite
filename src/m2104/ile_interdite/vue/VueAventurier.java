@@ -52,8 +52,7 @@ public class VueAventurier {
     private final JButton btnPrendre;
     private final JButton btnDeplacer;
     private final JButton btnTerminer;
-    private Boolean titreCliquable;
-    private boolean cartesActivees;
+    private boolean titreCliquable;
     
     private JPanel panelCentre, panelCartes, panelText;
     private JLabel actionRestantes;
@@ -70,7 +69,6 @@ public class VueAventurier {
         this.couleurActive = couleurActive ;
         this.couleurInactive = couleurInactive ;
         this.titreCliquable = false ;
-        this.cartesActivees = false;
         
         this.mainJoueur = new ArrayList<JButton>();
         

@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import m2104.ile_interdite.aventuriers.Aventurier;
 import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.controleur.Controleur;
 import m2104.ile_interdite.modele.Grille;

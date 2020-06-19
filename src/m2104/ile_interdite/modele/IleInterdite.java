@@ -423,14 +423,11 @@ public class IleInterdite extends Observable<Message> {
 	}
 
 	public void lanceDonCarte(int idAventurier, int idCarte) {
-		
-		
 		boolean b;
 		
 		if(this.getAventuriers().get(joueurCourant).peutDonnerCarteTresor(this.getAventuriers().get(idAventurier), idCarte)) {
-			this.getAventuriers().get(joueurCourant).donnerCarteTresor(this.getAventuriers().get(idAventurier), idCarte);
 			b = true;
-		}else {
+		} else {
 			b = false;
 		}
 		
@@ -438,8 +435,10 @@ public class IleInterdite extends Observable<Message> {
 		msg.isReussi = b;
 		msg.idAventurier = joueurCourant;
 		
-		notifierObservateurs(msg);
-		
+        notifierObservateurs(msg);
+        
+        if(b)
+            this.getAventuriers().get(joueurCourant).donnerCarteTresor(this.getAventuriers().get(idAventurier), idCarte);
 	}
 
 }

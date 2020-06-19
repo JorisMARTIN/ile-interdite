@@ -268,7 +268,7 @@ public class IleInterdite extends Observable<Message> {
                 for (Aventurier aventurier : carte.getTuile().getAventuriers()) {
                     ArrayList<Boolean> possibilite = aventurier.isDeplacementPossibles();
 
-                    if (possibilite.contains(true)) {
+                    if (!possibilite.contains(true)) {
                         Message msg = new Message(Utils.Commandes.DEPLACEMENT_DURGENCE);
                         
                         msg.possibilites = possibilite;

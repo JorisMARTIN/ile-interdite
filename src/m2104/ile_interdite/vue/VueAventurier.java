@@ -38,7 +38,6 @@ import m2104.ile_interdite.util.Message;
 public class VueAventurier {
     private final IHM ihm;
     protected final Integer idAventurier ;
-    protected final String power ;
     protected final String nomAventurier ;
     protected final String nomJoueur ;
     protected Color couleurActive ;
@@ -61,14 +60,13 @@ public class VueAventurier {
     private ArrayList<JButton> mainJoueur;
     private JTextArea description;
 
-	public VueAventurier(IHM ihm, Integer id, String nomJoueur, String nomAventurier, String power, Integer num, Integer nbAventuriers, Color couleurActive, Color couleurInactive){
+	public VueAventurier(IHM ihm, Integer id, String nomJoueur, String nomAventurier, Integer num, Integer nbAventuriers, Color couleurActive, Color couleurInactive){
         this.ihm = ihm;
         this.idAventurier = id ;
         this.nomJoueur = nomJoueur ;
         this.nomAventurier = nomAventurier ;
         this.couleurActive = couleurActive ;
         this.couleurInactive = couleurInactive ;
-        this.power = power ;
         this.couleurActive = couleurActive ;
         this.couleurInactive = couleurInactive ;
         this.titreCliquable = false ;

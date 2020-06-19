@@ -45,7 +45,7 @@ public class CarteHelicoptere extends Carte {
      */
     @Override
     public void action() {
-
+        
         if (this.getAventurier().getPosition().getAventuriers().size() == this.getDeck().getIleInterdite().getAventuriers().size()) {
             ArrayList<Tresor> tresors = new ArrayList<>();
             for(Aventurier a : this.getDeck().getIleInterdite().getAventuriers() ) {

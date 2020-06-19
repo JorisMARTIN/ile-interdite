@@ -186,7 +186,7 @@ public class IHM extends Observable<Message> {
     }
     
     public void finGagne(boolean isGagnee) {
-        this.vueFin.activer(false);
+        this.vueFin.activer(isGagnee);
     }
 
 	public void demandeDonCarte(int idAventurier) {

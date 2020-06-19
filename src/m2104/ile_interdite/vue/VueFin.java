@@ -24,39 +24,42 @@ public class VueFin {
     private final JButton btnQuitter;
     private final JButton btnRejouer;
     private final JLabel textGagne;
-    private final JPanel mainPanel;
+    private final JLabel textGagnePartie2;
     private final JPanel topPanel;
+    private final JPanel centerPanel;
+    private final JPanel bottomPanel;
 
     public VueFin(IHM ihm) {
         this.ihm = ihm;
 
-        textGagne =  new JLabel();
+        textGagne = new JLabel("");
+        textGagnePartie2 = new JLabel("");
+
         btnQuitter = new JButton("Quitter");
         btnRejouer = new JButton("Rejouer");
+
         topPanel = new JPanel();
-        mainPanel = new JPanel(new GridLayout(3, 2));
+        centerPanel = new JPanel(new GridLayout(2, 1));
+        bottomPanel = new JPanel(new GridLayout(1, 3));
 
         window = new JFrame("L'île interdite - Fin");
         window.setResizable(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setSize(400, 200);
-        
+
+        /* Panel du haut */        
         topPanel.add(new JLabel("Vous avez quitté l'île interdite."));
 
         window.add(topPanel,BorderLayout.NORTH);
-        
-        /*Insertion de JLabel vide*/
-        mainPanel.add(new JLabel(""));
-        mainPanel.add(new JLabel(""));
-        // Pourquoi pas insérer les statistiques de la partie
-        //TODO insérer les statistiques de la partie
 
-        mainPanel.add(new JLabel(""));
-        mainPanel.add(new JLabel(""));
-        mainPanel.add(new JLabel(""));
-        mainPanel.add(new JLabel(""));
+        /*Panel du centre*/
+        centerPanel.add(textGagne);
+        centerPanel.add(textGagnePartie2);
 
-        mainPanel.add(btnRejouer);
+        window.add(centerPanel, BorderLayout.CENTER);
+
+        /* Panel du bas */
+        bottomPanel.add(btnRejouer);
 
         btnRejouer.addMouseListener(new MouseListener() {
             @Override
@@ -83,7 +86,7 @@ public class VueFin {
         });
 
         /* Insertion de JLabel vide */
-        mainPanel.add(new JLabel(""));
+        bottomPanel.add(new JLabel(""));
 
         btnQuitter.addMouseListener(new MouseListener() {
             @Override
@@ -108,23 +111,28 @@ public class VueFin {
             }
         });
 
-        mainPanel.add(btnQuitter);
+        bottomPanel.add(btnQuitter);
 
-        window.add(mainPanel, BorderLayout.SOUTH);
+        window.add(bottomPanel, BorderLayout.SOUTH);
 
         window.setVisible(false);
     }
 
     // ====================================================== Activation de la VueJeu à son tour
     public void activer(boolean b) {
-        textGagne.setText((b ? "Bravo vous avez gagné !" : "Dommage, vous êtes parti sans avoir tou les trésorts.\nRééssayer pour gagner."));
-        this.mainPanel.repaint();
+        if (b) {
+            textGagne.setText("Bravo vous avez gagné !");
+        } else {
+            textGagne.setText("Dommage, vous êtes parti sans avoir tout les trésorts.");
+            textGagnePartie2.setText("Rééssayer pour gagner.");
+        }
+        this.centerPanel.repaint();
         this.window.setVisible(true);
     }
 
     public void desactiver() {
         this.window.setVisible(false);
-        this.mainPanel.repaint();
+        this.centerPanel.repaint();
     }
     
 }

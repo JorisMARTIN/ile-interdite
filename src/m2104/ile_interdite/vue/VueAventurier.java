@@ -298,7 +298,6 @@ public class VueAventurier {
                     case LANCER_DEPLACEMENT:
                         ihm.activerActionsTous(false, false, false, false, false, false, false);
                         activerBoutons(false, true, true, true, false, nomAventurier == "Navigateur", true);
-                        setDescription("");
                         m = new Message(Commandes.LANCER_DEPLACEMENT);
                         m.idAventurier = idAventurier;
                         
@@ -320,6 +319,8 @@ public class VueAventurier {
                     	ihm.activerActionsTous(false, false, false, false, false, false, false);
                        	activerBoutons(true, true, false, true, false, nomAventurier == "Navigateur", true);
                        	setDescription("");
+                       	
+                       	ihm.majVueJeu();
                        	
                        	donnerCarte();
                         break;

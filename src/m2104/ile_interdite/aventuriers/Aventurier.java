@@ -223,7 +223,7 @@ public abstract class Aventurier {
     
     /**
      * 
-     * Donne 2 cartes au début de la partie
+     * Donne 2 cartes au début de la partie differente de montée des eaux
      */
     public void initCarte() {
         

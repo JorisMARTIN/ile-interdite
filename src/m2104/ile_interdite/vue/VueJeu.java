@@ -198,6 +198,19 @@ public class VueJeu {
                             }
                         });
                         break;
+                        
+                    case 4: //deplacement par helicoptere
+                        bouton.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                Message m = new Message(Utils.Commandes.DEPLACER_HELICO);
+                                m.nomTuile = bouton.getText();
+                                m.idAventurier = idAventurier;
+                                m.action = action;
+                                ihm.notifierObservateurs(m);
+                            }
+                        });
+                        break;
 
                     default:
                         System.err.println("VueJeu.surbrillerTuiles : action invalide");

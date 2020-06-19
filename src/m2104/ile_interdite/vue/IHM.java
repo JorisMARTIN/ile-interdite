@@ -204,6 +204,8 @@ public class IHM extends Observable<Message> {
 
 	public void donneCarte(int idReceveur) {
 		
+		
+		
 		Message m = new Message(Commandes.DONNER);
 		m.idCarte = idCarteADonner;
 		m.idAventurier = idReceveur;

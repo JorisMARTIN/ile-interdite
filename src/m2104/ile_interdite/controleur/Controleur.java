@@ -24,6 +24,7 @@ public class Controleur implements Observateur<Message> {
 
     private final IleInterdite ileInterdite;
     private final IHM ihm;
+    
 
     public Controleur() {
         this.ileInterdite = new IleInterdite(this);
@@ -188,13 +189,17 @@ public class Controleur implements Observateur<Message> {
                 this.ihm.surbrillerTuiles(msg.possibilites, msg.pion, msg.action, msg.idAventurier);
                 break;
                 
-            case ETAPE_JOUE_CARTE:
+            case CLICK_HELICO:
                 this.ihm.surbrillerTuiles(msg.possibilites, msg.pion, msg.action, msg.idAventurier);
                 break;
                 
             case FIN_DON:
             	this.ihm.activerActions(msg.idAventurier, true, true, true, true, false, true, true);
             	this.ihm.getVueAventuriers().get(msg.idAventurier).setDescription(msg.isReussi == true ? "Don effectué !" : "Erreur, le don n'a\npas pu être effectué !");
+            	break;
+            	
+            case DEPLACER_HELICO:
+            	this.ileInterdite.deplacerAventuriers(msg.nomTuile, msg.idAventurier);
             	break;
 
             default:

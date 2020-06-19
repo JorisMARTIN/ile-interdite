@@ -193,6 +193,7 @@ public class Controleur implements Observateur<Message> {
                 
             case FIN_DON:
                 this.ihm.getVueAventuriers().get(msg.idAventurier).setDescription(msg.isReussi == true ? "Don effectué !" : "Erreur, le don n'a\npas pu être effectué !");
+                this.ihm.getVueAventuriers().get(msg.idAventurier).activerBoutons(true, true, true, true, false, true, true);
                 break;
                 
             case DEPLACER_HELICO:

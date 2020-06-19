@@ -25,8 +25,7 @@ public class VueFin {
     private final JButton btnRejouer;
     private final JLabel textGagne;
     private final JLabel textGagnePartie2;
-    private final JPanel topPanel;
-    private final JPanel centerPanel;
+    private final JPanel mainPanel;
     private final JPanel bottomPanel;
 
     public VueFin(IHM ihm) {
@@ -38,25 +37,23 @@ public class VueFin {
         btnQuitter = new JButton("Quitter");
         btnRejouer = new JButton("Rejouer");
 
-        topPanel = new JPanel();
-        centerPanel = new JPanel(new GridLayout(2, 1));
+        mainPanel = new JPanel(new GridLayout(3, 1));
         bottomPanel = new JPanel(new GridLayout(1, 3));
 
         window = new JFrame("L'île interdite - Fin");
         window.setResizable(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setSize(400, 200);
+        window.setSize(400, 150);
+        window.setLocationRelativeTo(null);
 
-        /* Panel du haut */        
-        topPanel.add(new JLabel("Vous avez quitté l'île interdite."));
+        /*Panel principal*/
+        textGagne.setHorizontalAlignment(JLabel.CENTER);
+        textGagnePartie2.setHorizontalAlignment(JLabel.CENTER);
 
-        window.add(topPanel,BorderLayout.NORTH);
+        mainPanel.add(textGagne);
+        mainPanel.add(textGagnePartie2);
 
-        /*Panel du centre*/
-        centerPanel.add(textGagne);
-        centerPanel.add(textGagnePartie2);
-
-        window.add(centerPanel, BorderLayout.CENTER);
+        window.add(mainPanel, BorderLayout.CENTER);
 
         /* Panel du bas */
         bottomPanel.add(btnRejouer);
@@ -121,18 +118,18 @@ public class VueFin {
     // ====================================================== Activation de la VueJeu à son tour
     public void activer(boolean b) {
         if (b) {
-            textGagne.setText("Bravo vous avez gagné !");
+            textGagnePartie2.setText("Bravo vous avez gagné !");
         } else {
-            textGagne.setText("Dommage, vous êtes parti sans avoir tout les trésorts.");
+            textGagne.setText("Dommage, vous avez perdu.");
             textGagnePartie2.setText("Rééssayer pour gagner.");
         }
-        this.centerPanel.repaint();
+        this.mainPanel.repaint();
         this.window.setVisible(true);
     }
 
     public void desactiver() {
         this.window.setVisible(false);
-        this.centerPanel.repaint();
+        this.mainPanel.repaint();
     }
     
 }

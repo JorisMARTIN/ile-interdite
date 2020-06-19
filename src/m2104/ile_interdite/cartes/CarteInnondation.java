@@ -3,6 +3,8 @@ package m2104.ile_interdite.cartes;
 import m2104.ile_interdite.modele.Deck;
 import m2104.ile_interdite.modele.EtatTuile;
 import m2104.ile_interdite.modele.Tuile;
+import m2104.ile_interdite.util.Message;
+import m2104.ile_interdite.util.Utils.Commandes;
 
 /**
 *
@@ -27,9 +29,14 @@ public class CarteInnondation extends Carte {
         if(this.tuile.getEtat() == EtatTuile.NORMAL) {
             this.tuile.setEtat(EtatTuile.INONDEE);
             this.getDeck().defausseCarte(this);
-        } else if (this.tuile.getEtat() == EtatTuile.INONDEE) {
+        } else if (this.tuile.getEtat() == EtatTuile.INONDEE && this.tuile.getNom() != "Helicoptere") {
             this.tuile.setEtat(EtatTuile.RETIREE);
             this.getDeck().getPioche().remove(this);
+        } else if (this.tuile.getEtat() == EtatTuile.INONDEE && this.tuile.getNom() != "Helicoptere") {
+            Message msg = new Message(Commandes.FIN);
+            msg.isReussi = false;
+
+            this.getDeck().getIleInterdite().notifierObservateurs(msg);
         }
     }
     

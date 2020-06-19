@@ -264,20 +264,34 @@ public class IleInterdite extends Observable<Message> {
         for (int i = 0; i < nb; i++) {
             CarteInnondation carte = (CarteInnondation) this.deckInnondation.getPremiereCarte();
             carte.action();
-            
-            if (carte.getTuile().getEtat() == EtatTuile.RETIREE) {
+            if (carte.getTuile().getEtat() == EtatTuile.RETIREE && carte.getTuile().getNom() != "Heliport") {
                 for (Aventurier aventurier : carte.getTuile().getAventuriers()) {
                     ArrayList<Boolean> possibilite = aventurier.isDeplacementPossibles();
+
+                    if (possibilite.contains(true)) {
+                        Message msg = new Message(Utils.Commandes.DEPLACEMENT_DURGENCE);
+                        
+                        msg.possibilites = possibilite;
+                        msg.pion = aventurier.getPion();
+                        msg.idAventurier = aventuriers.indexOf(aventurier);
+                        
+                        notifierObservateurs(msg);
+                        deplacementDUrgence = true;
+
+                    } else {
+                        Message msg = new Message(Utils.Commandes.FIN);
+                        msg.isReussi = false;
+
+                        notifierObservateurs(msg);
+                    }
                     
-                    Message msg = new Message(Utils.Commandes.DEPLACEMENT_DURGENCE);
-                    
-                    msg.possibilites = possibilite;
-                    msg.pion = aventurier.getPion();
-                    msg.idAventurier = aventuriers.indexOf(aventurier);
-                    
-                    notifierObservateurs(msg);
-                    deplacementDUrgence = true;
                 }
+            } else if (carte.getTuile().getEtat() == EtatTuile.RETIREE && carte.getTuile().getNom() == "Heliport") {
+
+                Message msg = new Message(Utils.Commandes.FIN);
+                msg.isReussi = false;
+
+                notifierObservateurs(msg);
             }
         }
         

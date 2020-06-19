@@ -178,11 +178,7 @@ public class Controleur implements Observateur<Message> {
                 break;
                 
             case FIN:
-                this.ihm.finGagne(false);
-                break;
-
-            case GAGNEE:
-                this.ihm.finGagne(true);
+                this.ihm.finGagne(msg.isReussi);
                 break;
                 
             case DEPLACEMENT_DURGENCE:

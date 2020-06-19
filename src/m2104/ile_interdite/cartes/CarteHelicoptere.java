@@ -1,6 +1,5 @@
 package m2104.ile_interdite.cartes;
 
-import java.util.ArrayList;
 
 import m2104.ile_interdite.aventuriers.Aventurier;
 import m2104.ile_interdite.modele.Tuile;
@@ -8,7 +7,6 @@ import m2104.ile_interdite.modele.Deck;
 import m2104.ile_interdite.modele.EtatTuile;
 import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Utils.Commandes;
-import m2104.ile_interdite.util.Utils.Tresor;
 
 /**
 *
@@ -58,7 +56,8 @@ public class CarteHelicoptere extends Carte {
     		
     		if(nbAventurierBienPlacer == 4) {
     			
-    			Message m = new Message(Commandes.GAGNEE);
+                Message m = new Message(Commandes.FIN); 
+                m.isReussi = true;             
     			this.getDeck().getIleInterdite().notifierObservateurs(m);
     		}
     		

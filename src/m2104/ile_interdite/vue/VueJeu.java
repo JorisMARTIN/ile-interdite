@@ -54,7 +54,6 @@ public class VueJeu {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         
         fenetre.setLocation((int) (dim.getWidth()/2)-500, (int) (dim.getHeight()/2)-300);
-        fenetre.setLocationRelativeTo(null);
         
         fenetre.setSize(800, 800);
         
@@ -182,6 +181,7 @@ public class VueJeu {
                                 m.idAventurier = idAventurier;
                                 m.action = action;
                                 ihm.notifierObservateurs(m);
+                                ihm.activerActions(idAventurier, true, true, true, true, false, false, true);
                             }
                         });
                         break;

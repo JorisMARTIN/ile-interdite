@@ -351,7 +351,6 @@ public class VueAventurier {
                         
                     case TERMINER:
                         ihm.activerActionsTous(false, false, false, false, false, false, false);
-                        activerBoutons(false, false, false, false, false, false, false);
                         setDescription("");
                         m = new Message(Commandes.TERMINER);
                         m.idAventurier = idAventurier;

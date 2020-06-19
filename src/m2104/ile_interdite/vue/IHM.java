@@ -83,7 +83,6 @@ public class IHM extends Observable<Message> {
                             id,
                             nomsJoueurs[id],
                             nomAventuriers[id],
-                            "YYY",  // TODO: à remplacer par le bon pouvoir
                             id,
                             nomAventuriers.length,
                             active,

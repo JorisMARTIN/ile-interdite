@@ -222,8 +222,6 @@ public class VueJeu {
         }
     }
     
-    //TODO : Affichage des trésor en fonction de la liste dans IleInterdite "tresorsEnJeu"
-    
     public void affGrille() {
         grillePanel.removeAll();
         //tuiles

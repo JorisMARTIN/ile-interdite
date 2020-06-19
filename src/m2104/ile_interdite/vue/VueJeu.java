@@ -60,7 +60,7 @@ public class VueJeu {
         
         fenetre.setSize(800, 800);
         
-        grillePanel = new Panneau(new ImageIcon(Parameters.IMAGES + "ile.png").getImage(), new GridLayout(6, 6));
+        grillePanel = new Panneau(new ImageIcon(Parameters.IMAGES + "ocean.jpg").getImage(), new GridLayout(6, 6));
 
         ArrayList<Tuile> tuiles = this.grille.getTuiles(true);
         this.imagesBtnNormales = new Image[tuiles.size()];

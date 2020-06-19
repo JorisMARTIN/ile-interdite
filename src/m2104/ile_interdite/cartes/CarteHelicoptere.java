@@ -84,7 +84,7 @@ public class CarteHelicoptere extends Carte {
 
     @Override
 	public String toString() {
-		return "H";
+		return "Helicoptere";
 	}
 
 }

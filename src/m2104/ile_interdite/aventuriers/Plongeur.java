@@ -93,7 +93,7 @@ public class Plongeur extends Aventurier{
                         indexNextTete = indexTete - 6;
                         if (indexNextTete > 5) {
                             nextTete = tuiles.get(indexNextTete);
-                            if (nextTete != null && !tuilesDejaVerifies.contains(nextTete) && (indexNextTete - 6) != indexTuileActuelle) {
+                            if (nextTete != null && !tuilesDejaVerifies.contains(nextTete) && indexNextTete != indexTuileActuelle) {
                                 System.out.println("---");
                                 nextTetesChercheuses.add(nextTete);
                                 tuilesDejaVerifies.add(nextTete);

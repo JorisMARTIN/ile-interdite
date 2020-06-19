@@ -21,10 +21,7 @@ public class CarteTresor extends Carte {
     }
 
 	@Override
-	public void action() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void action() {}
 	
 	@Override
 	public String toString() {

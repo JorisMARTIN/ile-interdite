@@ -2,10 +2,10 @@ package m2104.ile_interdite.util;
 
 import java.util.ArrayList;
 
-import m2104.ile_interdite.aventuriers.Aventurier;
 import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.modele.Grille;
 import m2104.ile_interdite.modele.Tuile;
+import m2104.ile_interdite.util.Utils.Tresor;
 import m2104.ile_interdite.util.Utils.Pion;
 
 /**
@@ -36,7 +36,8 @@ public class Message {
     public Tuile tuileDepart;
     public Tuile tuileAction;
     public int action;
-	public boolean isReussi;
+    public boolean isReussi;
+    public ArrayList<Tresor> tresors;
     
     public Message(Utils.Commandes cmd) {
         this.commande = cmd;

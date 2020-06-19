@@ -48,7 +48,7 @@ public class Controleur implements Observateur<Message> {
                 break;
                 
             case INITIALISER_GRILLE:
-                this.ihm.creeVueJeu(msg.grille);
+                this.ihm.creeVueJeu(msg.grille, msg.tresors);
                 break;
                 
             case LANCER_DEPLACEMENT:

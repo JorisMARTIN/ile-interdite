@@ -419,6 +419,10 @@ public class VueAventurier {
     public Integer getIdAventurier() {
         return this.idAventurier ;
     }
+    
+    public String getNomAventurier() {
+        return this.nomAventurier ;
+    }
 
     public void resetActionRestantes() {
         this.actionRestantes.setText("");

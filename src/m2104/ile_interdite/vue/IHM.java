@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import m2104.ile_interdite.aventuriers.Aventurier;
 import m2104.ile_interdite.cartes.Carte;
+import m2104.ile_interdite.controleur.Controleur;
 import m2104.ile_interdite.modele.Grille;
 import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Utils;
@@ -31,7 +32,7 @@ public class IHM extends Observable<Message> {
         this.vueInscription = new VueInscriptionJoueurs(this);
         this.addObservateur(observateur);
         this.vueAventuriers = new HashMap<>();
-        vueFin = new VueFin(this);
+        this.vueFin = new VueFin(this);
     }
 
     public void creerVuesAventuriers(String[] nomAventuriers) {
@@ -210,7 +211,8 @@ public class IHM extends Observable<Message> {
 		
 		notifierObservateurs(m);
 	}
-    
-    
 
+    public void setVueInscription() {
+        new Controleur();
+    }
 }

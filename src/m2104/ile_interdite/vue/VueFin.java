@@ -3,6 +3,8 @@ package m2104.ile_interdite.vue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 import java.awt.event.MouseEvent;
@@ -23,6 +25,7 @@ public class VueFin {
     private final JButton btnRejouer;
     private final JLabel textGagne;
     private final JPanel mainPanel;
+    private final JPanel topPanel;
 
     public VueFin(IHM ihm) {
         this.ihm = ihm;
@@ -30,13 +33,26 @@ public class VueFin {
         textGagne =  new JLabel();
         btnQuitter = new JButton("Quitter");
         btnRejouer = new JButton("Rejouer");
-        mainPanel = new JPanel(new GridLayout(4, 2));
+        topPanel = new JPanel();
+        mainPanel = new JPanel(new GridLayout(3, 2));
 
         window = new JFrame("L'île interdite - Fin");
+        window.setResizable(false);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setSize(400, 200);
+        
+        topPanel.add(new JLabel("Vous avez quitté l'île interdite."));
 
-        mainPanel.add(new JLabel("Vous avez quitté l'île interdite."));
-
+        window.add(topPanel,BorderLayout.NORTH);
+        
         /*Insertion de JLabel vide*/
+        mainPanel.add(new JLabel(""));
+        mainPanel.add(new JLabel(""));
+        // Pourquoi pas insérer les statistiques de la partie
+        //TODO insérer les statistiques de la partie
+
+        mainPanel.add(new JLabel(""));
+        mainPanel.add(new JLabel(""));
         mainPanel.add(new JLabel(""));
         mainPanel.add(new JLabel(""));
 
@@ -45,8 +61,8 @@ public class VueFin {
         btnRejouer.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                ihm.setVueInscription();
                 desactiver();
-                //TODO afficher la VueInscription
             }
 
             @Override
@@ -94,7 +110,7 @@ public class VueFin {
 
         mainPanel.add(btnQuitter);
 
-        window.add(mainPanel);
+        window.add(mainPanel, BorderLayout.SOUTH);
 
         window.setVisible(false);
     }

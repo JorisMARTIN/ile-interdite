@@ -423,13 +423,7 @@ public class IleInterdite extends Observable<Message> {
 	}
 
 	public void lanceDonCarte(int idAventurier, int idCarte) {
-		boolean b;
-		
-		if(this.getAventuriers().get(joueurCourant).peutDonnerCarteTresor(this.getAventuriers().get(idAventurier), idCarte)) {
-			b = true;
-		} else {
-			b = false;
-		}
+		boolean b = getAventuriers().get(joueurCourant).peutDonnerCarteTresor(this.getAventuriers().get(idAventurier), idCarte);
 		
 		Message msg = new Message(Commandes.FIN_DON);
 		msg.isReussi = b;

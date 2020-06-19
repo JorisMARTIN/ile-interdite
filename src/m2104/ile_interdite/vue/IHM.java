@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import m2104.ile_interdite.aventuriers.Aventurier;
 import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.controleur.Controleur;
 import m2104.ile_interdite.modele.Grille;
@@ -83,7 +82,6 @@ public class IHM extends Observable<Message> {
                             id,
                             nomsJoueurs[id],
                             nomAventuriers[id],
-                            "YYY",  // TODO: à remplacer par le bon pouvoir
                             id,
                             nomAventuriers.length,
                             active,

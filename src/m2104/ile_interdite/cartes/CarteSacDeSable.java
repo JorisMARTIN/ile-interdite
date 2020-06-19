@@ -3,11 +3,9 @@ package m2104.ile_interdite.cartes;
 import java.util.ArrayList;
 
 import m2104.ile_interdite.modele.Deck;
-import m2104.ile_interdite.modele.EtatTuile;
 import m2104.ile_interdite.modele.Tuile;
 import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Utils.Commandes;
-import java.util.ArrayList;
 
 /**
 *

@@ -40,7 +40,6 @@ import m2104.ile_interdite.util.Message;
 public class VueAventurier {
     private final IHM ihm;
     protected final Integer idAventurier ;
-    protected final String power ;
     protected final String nomAventurier ;
     protected final String nomJoueur ;
     protected Color couleurActive ;
@@ -55,26 +54,23 @@ public class VueAventurier {
     private final JButton btnPrendre;
     private final JButton btnDeplacer;
     private final JButton btnTerminer;
-    private Boolean titreCliquable;
-    private boolean cartesActivees;
+    private boolean titreCliquable;
     
     private JPanel panelCentre, panelCartes, panelText;
     private JLabel actionRestantes;
     private ArrayList<JButton> mainJoueur;
     private JTextArea description;
 
-    public VueAventurier(IHM ihm, Integer id, String nomJoueur, String nomAventurier, String power, Integer num, Integer nbAventuriers, Color couleurActive, Color couleurInactive){
+    public VueAventurier(IHM ihm, Integer id, String nomJoueur, String nomAventurier, Integer num, Integer nbAventuriers, Color couleurActive, Color couleurInactive) {
         this.ihm = ihm;
         this.idAventurier = id ;
         this.nomJoueur = nomJoueur ;
         this.nomAventurier = nomAventurier ;
         this.couleurActive = couleurActive ;
         this.couleurInactive = couleurInactive ;
-        this.power = power ;
         this.couleurActive = couleurActive ;
         this.couleurInactive = couleurInactive ;
         this.titreCliquable = false ;
-        this.cartesActivees = false;
         
         this.mainJoueur = new ArrayList<JButton>();
         
@@ -220,7 +216,17 @@ public class VueAventurier {
         this.window.setVisible(true);
         mainPanel.repaint();
     }
-
+	
+	/**
+	 * 
+	 * @param activerMove
+	 * @param activerDry
+	 * @param activerDonner
+	 * @param activerRecuperer
+	 * @param activerRecevoir
+	 * @param activerDeplacer
+	 * @param activerTerminer
+	 */
     public void activerBoutons(Boolean activerMove, Boolean activerDry, Boolean activerDonner, Boolean activerRecuperer, Boolean activerRecevoir, Boolean activerDeplacer, Boolean activerTerminer) {
         if (Parameters.LOGS) {
             System.out.println(this.nomAventurier + " : VueAventurier.activerBoutons(activerMove=" + activerMove + ", activerDry=" + activerDry + ", activerDonner=" + activerDonner + ", activerRecuperer=" + activerRecuperer + ", activerRecevoir=" + activerRecevoir + ", activerTerminer=" + activerTerminer + ")");
@@ -566,12 +572,10 @@ public class VueAventurier {
              
             @Override
             public void actionPerformed(ActionEvent e) {
-                    
-                ihm.setIdCarteADonner(mainJoueur.indexOf(e.getSource()));
-                
-                ihm.activerActionsTous(false, false, false, false, true, false, false);
-                activerBoutons(false, false, false, false, false, false, false);
-                
+            	ihm.setIdCarteADonner(mainJoueur.indexOf(e.getSource()));
+            	
+            	ihm.activerActionsTous(false, false, false, false, true, false, false);
+            	activerBoutons(false, false, false, false, false, false, true);
                  
                 description.setText("Cliquez maintenant sur\nle joueur à qui vous\nvoulez donner la carte :");
             }

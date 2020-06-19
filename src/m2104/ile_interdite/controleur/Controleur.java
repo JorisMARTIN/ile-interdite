@@ -10,6 +10,7 @@ import m2104.ile_interdite.modele.Tuile;
 import m2104.ile_interdite.util.Message;
 import m2104.ile_interdite.util.Parameters;
 import m2104.ile_interdite.vue.IHM;
+import m2104.ile_interdite.vue.VueAventurier;
 import patterns.observateur.Observateur;
 
 /**
@@ -115,13 +116,14 @@ public class Controleur implements Observateur<Message> {
                 break;
 
             case ASSECHER:
+                VueAventurier vueA = this.ihm.getVueAventuriers().get(msg.idAventurier);
+                vueA.activerBoutons(true, true, true, true, false, vueA.getNomAventurier() == "Navigateur", true);
                 Tuile tuile = this.ileInterdite.getGrille().getTuile(msg.nomTuile);
                 if(msg.action == 1)
                     this.ileInterdite.getAventuriers().get(msg.idAventurier).assecher(tuile);
                 else
                     tuile.setEtat(EtatTuile.NORMAL);
                 this.ihm.majVueJeu();
-                this.ihm.activerActions(msg.idAventurier, true, true, true, true, false, this.ihm.getVueAventuriers().get(msg.idAventurier).getNomAventurier() == "Navigateur", true);
                 break;
 
             case BOUGER:
@@ -180,11 +182,7 @@ public class Controleur implements Observateur<Message> {
                 break;
                 
             case FIN:
-                this.ihm.finGagne(false);
-                break;
-
-            case GAGNEE:
-                this.ihm.finGagne(true);
+                this.ihm.finGagne(msg.isReussi);
                 break;
                 
             case DEPLACEMENT_DURGENCE:
@@ -196,7 +194,9 @@ public class Controleur implements Observateur<Message> {
                 break;
                 
             case FIN_DON:
-                this.ihm.getVueAventuriers().get(msg.idAventurier).setDescription(msg.isReussi == true ? "Don effectué !" : "Erreur, le don n'a\npas pu être effectué !");
+                VueAventurier va = this.ihm.getVueAventuriers().get(msg.idAventurier);
+                va.setDescription(msg.isReussi ? "Don effectué !" : "Erreur, le don n'a\npas pu être effectué !");
+                va.activerBoutons(true, true, true, true, true, va.getNomAventurier() == "Navigateur", true);
                 break;
                 
             case DEPLACER_HELICO:

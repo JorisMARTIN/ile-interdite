@@ -82,7 +82,7 @@ public class VueJeu {
         this.affGrille();
 
         fenetre.add(grillePanel);
-        
+
         fenetre.setVisible(true);
     }
 
@@ -137,7 +137,6 @@ public class VueJeu {
      * @param idAventurier : Le numero de l'aventurier demandant l'action
      */
     public void surbrillerTuiles(ArrayList<Boolean> possibilites, Utils.Pion pion, int action, int idAventurier) {
-        int aventurierADeplacer = idAventurier;
         for (int i = 0; i < grille.getTuiles(true).size(); i++) {
 
             JButton bouton = this.boutons.get(i);
@@ -222,8 +221,6 @@ public class VueJeu {
             }
         }
     }
-    
-    //TODO : Affichage des trésor en fonction de la liste dans IleInterdite "tresorsEnJeu"
     
     public void affGrille() {
         grillePanel.removeAll();

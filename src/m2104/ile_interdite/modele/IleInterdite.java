@@ -264,20 +264,34 @@ public class IleInterdite extends Observable<Message> {
         for (int i = 0; i < nb; i++) {
             CarteInnondation carte = (CarteInnondation) this.deckInnondation.getPremiereCarte();
             carte.action();
-            
-            if (carte.getTuile().getEtat() == EtatTuile.RETIREE) {
+            if (carte.getTuile().getEtat() == EtatTuile.RETIREE && carte.getTuile().getNom() != "Heliport") {
                 for (Aventurier aventurier : carte.getTuile().getAventuriers()) {
                     ArrayList<Boolean> possibilite = aventurier.isDeplacementPossibles();
+
+                    if (possibilite.contains(true)) {
+                        Message msg = new Message(Utils.Commandes.DEPLACEMENT_DURGENCE);
+                        
+                        msg.possibilites = possibilite;
+                        msg.pion = aventurier.getPion();
+                        msg.idAventurier = aventuriers.indexOf(aventurier);
+                        
+                        notifierObservateurs(msg);
+                        deplacementDUrgence = true;
+
+                    } else {
+                        Message msg = new Message(Utils.Commandes.FIN);
+                        msg.isReussi = false;
+
+                        notifierObservateurs(msg);
+                    }
                     
-                    Message msg = new Message(Utils.Commandes.DEPLACEMENT_DURGENCE);
-                    
-                    msg.possibilites = possibilite;
-                    msg.pion = aventurier.getPion();
-                    msg.idAventurier = aventuriers.indexOf(aventurier);
-                    
-                    notifierObservateurs(msg);
-                    deplacementDUrgence = true;
                 }
+            } else if (carte.getTuile().getEtat() == EtatTuile.RETIREE && carte.getTuile().getNom() == "Heliport") {
+
+                Message msg = new Message(Utils.Commandes.FIN);
+                msg.isReussi = false;
+
+                notifierObservateurs(msg);
             }
         }
         
@@ -409,23 +423,16 @@ public class IleInterdite extends Observable<Message> {
 	}
 
 	public void lanceDonCarte(int idAventurier, int idCarte) {
-		
-		
-		boolean b;
-		
-		if(this.getAventuriers().get(joueurCourant).peutDonnerCarteTresor(this.getAventuriers().get(idAventurier), idCarte)) {
-			this.getAventuriers().get(joueurCourant).donnerCarteTresor(this.getAventuriers().get(idAventurier), idCarte);
-			b = true;
-		}else {
-			b = false;
-		}
+		boolean b = getAventuriers().get(joueurCourant).peutDonnerCarteTresor(this.getAventuriers().get(idAventurier), idCarte);
 		
 		Message msg = new Message(Commandes.FIN_DON);
 		msg.isReussi = b;
 		msg.idAventurier = joueurCourant;
 		
-		notifierObservateurs(msg);
-		
+        notifierObservateurs(msg);
+        
+        if(b)
+            this.getAventuriers().get(joueurCourant).donnerCarteTresor(this.getAventuriers().get(idAventurier), idCarte);
 	}
 
 }

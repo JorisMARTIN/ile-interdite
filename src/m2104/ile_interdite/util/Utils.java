@@ -6,6 +6,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import javax.swing.JOptionPane;
 
+import javax.swing.JFrame;
+import java.awt.GraphicsEnvironment;
+import java.awt.GraphicsDevice;
+
 import m2104.ile_interdite.aventuriers.Aventurier;
 
 /**
@@ -212,5 +216,17 @@ public class Utils {
      */
     public static void afficherInformation(String message) {
         JOptionPane.showMessageDialog(null, message, "Information", JOptionPane.OK_OPTION);
+    }
+
+    public static void showOnScreen(int screen, JFrame frame) {
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice[] gd = ge.getScreenDevices();
+        if (screen > -1 && screen < gd.length) {
+            frame.setLocation(gd[screen].getDefaultConfiguration().getBounds().x, frame.getY());
+        } else if (gd.length > 0) {
+            frame.setLocation(gd[0].getDefaultConfiguration().getBounds().x, frame.getY());
+        } else {
+            throw new RuntimeException("No Screens Found");
+        }
     }
 }

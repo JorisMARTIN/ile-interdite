@@ -41,21 +41,30 @@ public class CarteHelicoptere extends Carte {
      * </li>
      * </ol>
      * 
-     * msg.action : 2 = Deplacement par helicoptère
+     * msg.action : 4 = Deplacement par helicoptère
      */
     @Override
     public void action() {
-
-        if (this.getAventurier().getPosition().getAventuriers().size() == this.getDeck().getIleInterdite().getAventuriers().size()) {
-            ArrayList<Tresor> tresors = new ArrayList<>();
-            for(Aventurier a : this.getDeck().getIleInterdite().getAventuriers() ) {
-                for (Tresor t : a.getTresors()) {
-                    tresors.add(t);
-                }
-            }
-            this.getDeck().getIleInterdite().gagnee(tresors.size() == 4);
-        } else {
-            Message msg = new Message(Commandes.ETAPE_JOUE_CARTE);
+        	
+    	Tuile heliport = this.getDeck().getIleInterdite().getGrille().getTuile("Heliport");
+    	
+    	if(this.getAventurier().getPosition() == heliport && this.getDeck().getIleInterdite().getTresorsEnJeu().size() == 0) {
+    		
+    		int nbAventurierBienPlacer = 0;
+    		
+    		for(Aventurier aventurier : this.getDeck().getIleInterdite().getAventuriers()) {
+    			if(aventurier.getPosition() == heliport) nbAventurierBienPlacer ++;
+    		}
+    		
+    		if(nbAventurierBienPlacer == 4) {
+    			
+    			Message m = new Message(Commandes.GAGNEE);
+    			this.getDeck().getIleInterdite().notifierObservateurs(m);
+    		}
+    		
+    	}else{
+    		
+        	Message msg = new Message(Commandes.CLICK_HELICO);
 
             for (Tuile t : this.getDeck().getIleInterdite().getGrille().getTuiles(true)){
                 if (t != null && t != this.getAventurier().getPosition() && t.getEtat() != EtatTuile.RETIREE) {
@@ -66,10 +75,12 @@ public class CarteHelicoptere extends Carte {
             }
 
             msg.pion = this.getAventurier().getPion();
-            msg.action = 3;
-
+            msg.action = 4;
+            
+            msg.idAventurier = this.getDeck().getIleInterdite().getAventuriers().indexOf(this.getAventurier());
+            
             this.getDeck().getIleInterdite().notifierObservateurs(msg);
-        }
+    	}
     }
 
     @Override

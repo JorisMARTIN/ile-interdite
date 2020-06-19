@@ -41,8 +41,8 @@ public class IleInterdite extends Observable<Message> {
     private boolean deplacementDUrgence;
     private ArrayList<Utils.Tresor> tresorsEnJeu;
     
-    
-    public IleInterdite(Observateur<Message> observateur) {
+
+	public IleInterdite(Observateur<Message> observateur) {
         this.grille = new Grille();
         
         // Création des decks
@@ -143,11 +143,19 @@ public class IleInterdite extends Observable<Message> {
 
     public void initGrille() {
         
-        Carte carte;
+        CarteInnondation carte;
         
         for(int i=0; i<6; i++) {
             
-            carte = deckInnondation.getPremiereCarte();
+            carte = (CarteInnondation) deckInnondation.getPremiereCarte();
+            
+            int size = this.deckInnondation.getPioche().size() - 2;
+            
+            while(carte.getTuile() == this.grille.getTuile("Heliport")) {
+                carte = (CarteInnondation) this.deckInnondation.getPioche().get(size);
+                size --;
+            }
+            
             carte.action();
             
         }
@@ -319,6 +327,30 @@ public class IleInterdite extends Observable<Message> {
             Message msg = new Message(Utils.Commandes.MAJ_GRILLE);
             notifierObservateurs(msg);
         }
+    }
+    
+    public void deplacerAventuriers(String nomTuile, int idAventurier) {
+    	
+    	Tuile destination = this.grille.getTuile(nomTuile);
+    	
+    	ArrayList<Aventurier> aventuriersADeplacer = new ArrayList<Aventurier>() ;
+    	
+    	for(Aventurier a : this.aventuriers.get(idAventurier).getPosition().getAventuriers()) {
+    		aventuriersADeplacer.add(a);
+    	}
+
+    	System.out.println(aventuriersADeplacer.size());
+    	
+    	for(Aventurier aventurier : aventuriersADeplacer) {
+    		
+    		aventurier.getPosition().removeAventurier(aventurier);
+    		aventurier.setPosition(destination);
+    		destination.addAventurier(aventurier);
+    	}
+    	
+    	Message msg = new Message(Utils.Commandes.MAJ_GRILLE);
+        notifierObservateurs(msg);
+    	
     }
 
     

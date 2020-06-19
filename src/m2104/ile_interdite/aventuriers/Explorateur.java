@@ -26,7 +26,7 @@ public class Explorateur extends Aventurier{
     /*méthodes*/
     @Override
     public boolean peutAssecher(Tuile tuile) {
-        if (tuile == null || !tuile.isInnondee() || tuile.isRetiree() || getPosition() == tuile) {
+        if (tuile == null || !tuile.isInnondee() || tuile.isRetiree()) {
             return false;
         }
 

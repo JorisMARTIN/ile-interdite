@@ -2,10 +2,10 @@ package m2104.ile_interdite.util;
 
 import java.util.ArrayList;
 
+import m2104.ile_interdite.aventuriers.Aventurier;
 import m2104.ile_interdite.cartes.Carte;
 import m2104.ile_interdite.modele.Grille;
 import m2104.ile_interdite.modele.Tuile;
-import m2104.ile_interdite.util.Utils;
 import m2104.ile_interdite.util.Utils.Pion;
 
 /**

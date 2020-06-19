@@ -52,6 +52,6 @@ public class CarteSacDeSable extends Carte {
     
     @Override
     public String toString() {
-        return "SS";
+        return "SacsDeSable";
     }
 }

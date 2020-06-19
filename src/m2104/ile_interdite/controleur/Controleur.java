@@ -116,7 +116,7 @@ public class Controleur implements Observateur<Message> {
 
             case ASSECHER:
                 Tuile tuile = this.ileInterdite.getGrille().getTuile(msg.nomTuile);
-                if (msg.action == 1)
+                if(msg.action == 1)
                     this.ileInterdite.getAventuriers().get(msg.idAventurier).assecher(tuile);
                 else
                     tuile.setEtat(EtatTuile.NORMAL);

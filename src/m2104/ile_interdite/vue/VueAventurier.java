@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.Image;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -21,6 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.MatteBorder;
+import javax.swing.ImageIcon;
 import m2104.ile_interdite.util.Parameters;
 import m2104.ile_interdite.util.Utils;
 import m2104.ile_interdite.util.Utils.Commandes;
@@ -61,7 +63,7 @@ public class VueAventurier {
     private ArrayList<JButton> mainJoueur;
     private JTextArea description;
 
-	public VueAventurier(IHM ihm, Integer id, String nomJoueur, String nomAventurier, String power, Integer num, Integer nbAventuriers, Color couleurActive, Color couleurInactive){
+    public VueAventurier(IHM ihm, Integer id, String nomJoueur, String nomAventurier, String power, Integer num, Integer nbAventuriers, Color couleurActive, Color couleurInactive){
         this.ihm = ihm;
         this.idAventurier = id ;
         this.nomJoueur = nomJoueur ;
@@ -79,7 +81,7 @@ public class VueAventurier {
 
         this.window = new JFrame(nomAventurier);
         //window.setSize(180, Parameters.HAUTEUR_VUE_AVENTURIER);
-        window.setSize(375, 395);
+        window.setSize(375, 400);
         this.window.setUndecorated(Parameters.UNDECORATED);
         this.window.setResizable(Parameters.RESIZABLE);
 
@@ -93,22 +95,22 @@ public class VueAventurier {
         //window.setLocation(marginLeft + num * 190, Parameters.TOP_VUE_AVENTURIER);
         
         switch (num) {
-		case 0:
-				window.setLocation(marginLeft, marginTop);
-			break;
-			
-		case 1:
-				window.setLocation(marginLeft + 435, marginTop);
-			break;
-				
-		case 2:
-				window.setLocation(marginLeft, marginTop + 415);
-			break;
-			
-		case 3:
-				window.setLocation(marginLeft + 435, marginTop + 415);
-			break;
-		}
+        case 0:
+                window.setLocation(marginLeft, marginTop);
+            break;
+            
+        case 1:
+                window.setLocation(marginLeft + 435, marginTop);
+            break;
+                
+        case 2:
+                window.setLocation(marginLeft, marginTop + 415);
+            break;
+            
+        case 3:
+                window.setLocation(marginLeft + 435, marginTop + 415);
+            break;
+        }
         
 
         mainPanel = new JPanel(new BorderLayout());
@@ -163,9 +165,9 @@ public class VueAventurier {
         this.panelCentre = new JPanel();
         this.panelCentre.setLayout(new BorderLayout());
         
-        this.panelCartes = new JPanel();
-        this.panelText = new JPanel(new BorderLayout());
+        this.panelCartes = new JPanel(new GridLayout(0, 4));
         
+        this.panelText = new JPanel(new BorderLayout());
         
         this.panelCentre.add(panelCartes, BorderLayout.NORTH);
         
@@ -175,7 +177,7 @@ public class VueAventurier {
         
         this.actionRestantes = new JLabel("");
         
-        this.panelText.add(description, BorderLayout.CENTER);
+        this.panelText.add(description, BorderLayout.NORTH);
         this.panelText.add(actionRestantes, BorderLayout.SOUTH);
         
         this.panelCentre.add(panelText);
@@ -340,14 +342,14 @@ public class VueAventurier {
                         break;
                         
                     case DONNER: 
-                    	
-                    	ihm.activerActionsTous(false, false, false, false, false, false, false);
-                       	activerBoutons(true, true, false, true, false, nomAventurier == "Navigateur", true);
-                       	setDescription("");
-                       	
-                       	ihm.majVueJeu();
-                       	
-                       	donnerCarte();
+                        
+                        ihm.activerActionsTous(false, false, false, false, false, false, false);
+                        activerBoutons(true, true, false, true, false, nomAventurier == "Navigateur", true);
+                        setDescription("");
+                        
+                        ihm.majVueJeu();
+                        
+                        donnerCarte();
                         break;
                         
                     case RECUPERER_TRESOR:
@@ -464,10 +466,8 @@ public class VueAventurier {
      * 
      */
     public void actualiserMain(ArrayList<Carte> main) {
-        
     
         this.panelCartes.removeAll();
-        this.panelCartes.setLayout(new GridLayout(1,1));
         this.mainJoueur.clear();
         
         JButton button;
@@ -475,11 +475,31 @@ public class VueAventurier {
         for(Carte carte : main) {
             
                 
-            button = new JButton(carte.toString());
+            button = new JButton();
             if(carte instanceof CarteTresor) {
                 button.setEnabled(false);
             }
-                
+            button.setOpaque(false);
+            button.setContentAreaFilled(false);
+            button.setFocusPainted(false);
+            if (button.isEnabled()) {
+                button.setBorder(BorderFactory.createLineBorder(this.couleurActive, 2, false));
+            } else {
+                button.setBorder(null);
+            }
+            button.setToolTipText(carte.toString());
+
+            
+            String path = Parameters.CARTES + carte.toString() + ".png";
+            System.out.println(path);
+            ImageIcon icon = new ImageIcon(path);
+            float scale = (int) Math.max(icon.getIconWidth(), icon.getIconHeight());
+            int largeur = (int) (icon.getIconWidth() / scale * mainPanel.getSize().width / 3);
+            int hauteur = (int) (icon.getIconHeight() / scale * mainPanel.getSize().height / 3);
+            Image img = icon.getImage().getScaledInstance(largeur, hauteur, Image.SCALE_SMOOTH);
+            button.setIcon(new ImageIcon(img));
+            button.setDisabledIcon(new ImageIcon(img));
+            
             button.addActionListener(new ActionListener() {
                 
                 
@@ -494,78 +514,7 @@ public class VueAventurier {
             });
             
             this.mainJoueur.add(button);
-        }
-        
-        
-        switch(this.mainJoueur.size()) {
-        
-            case 1:
-                this.panelCartes.setLayout(new GridLayout(1,1));
-                this.panelCartes.add(this.mainJoueur.get(0));
-                break;
-                
-            case 2:
-                
-                this.panelCartes.setLayout(new GridLayout(1,2));
-                
-                this.panelCartes.add(this.mainJoueur.get(0));
-                this.panelCartes.add(this.mainJoueur.get(1));
-                break;
-                
-            case 3:
-                
-                this.panelCartes.setLayout(new GridLayout(1,3));
-                
-                this.panelCartes.add(this.mainJoueur.get(0));
-                this.panelCartes.add(this.mainJoueur.get(1));
-                this.panelCartes.add(this.mainJoueur.get(2));
-                break;
-                
-            case 4:
-                this.panelCartes.setLayout(new GridLayout(2,2));
-                
-                this.panelCartes.add(this.mainJoueur.get(0));
-                this.panelCartes.add(this.mainJoueur.get(1));
-                this.panelCartes.add(this.mainJoueur.get(2));
-                this.panelCartes.add(this.mainJoueur.get(3));
-                
-                break;
-                
-            case 5:
-                this.panelCartes.setLayout(new GridLayout(3,3));
-                
-                this.panelCartes.add(new JLabel(""));
-                this.panelCartes.add(this.mainJoueur.get(0));
-                this.panelCartes.add(new JLabel(""));
-                this.panelCartes.add(this.mainJoueur.get(1));
-                this.panelCartes.add(this.mainJoueur.get(2));
-                this.panelCartes.add(this.mainJoueur.get(3));
-                this.panelCartes.add(new JLabel(""));
-                this.panelCartes.add(this.mainJoueur.get(4));
-                this.panelCartes.add(new JLabel(""));
-                
-                break;
-            
-            case 6:
-                this.panelCartes.setLayout(new GridLayout(2,3));
-                
-                this.panelCartes.add(this.mainJoueur.get(0));
-                this.panelCartes.add(this.mainJoueur.get(1));
-                this.panelCartes.add(this.mainJoueur.get(2));
-                this.panelCartes.add(this.mainJoueur.get(3));
-                this.panelCartes.add(this.mainJoueur.get(4));
-                this.panelCartes.add(this.mainJoueur.get(5));
-                
-                break;
-                
-            default:
-                this.panelCartes.setLayout(new GridLayout(3,3));
-                
-                for(JButton b : this.mainJoueur) {
-                    this.panelCartes.add(b);
-                }
-                
-                break;
+            this.panelCartes.add(button);
         }
         
         this.panelCartes.revalidate();
@@ -577,6 +526,7 @@ public class VueAventurier {
         for(JButton b : this.mainJoueur) {
             
             b.setEnabled(true);
+            b.setBorder(BorderFactory.createLineBorder(this.couleurActive, 2, false));
              
             for(ActionListener action : b.getActionListeners()) {
                 b.removeActionListener(action);
@@ -598,13 +548,13 @@ public class VueAventurier {
              
         }
         
-        this.description.setText("Vous avez trop de carte !\nCliquez sur laquel vous voulez\ndefausser :");
+        this.description.setText("Vous avez trop de carte !\nCliquez sur laquel vous voulez defausser :");
     }
     
     
     public void donnerCarte() {
-    	
-    	for(JButton b : this.mainJoueur) {
+        
+        for(JButton b : this.mainJoueur) {
             
             b.setEnabled(true);
              
@@ -616,12 +566,12 @@ public class VueAventurier {
              
             @Override
             public void actionPerformed(ActionEvent e) {
-            		
-            	ihm.setIdCarteADonner(mainJoueur.indexOf(e.getSource()));
-            	
-            	ihm.activerActionsTous(false, false, false, false, true, false, false);
-            	activerBoutons(false, false, false, false, false, false, false);
-            	
+                    
+                ihm.setIdCarteADonner(mainJoueur.indexOf(e.getSource()));
+                
+                ihm.activerActionsTous(false, false, false, false, true, false, false);
+                activerBoutons(false, false, false, false, false, false, false);
+                
                  
                 description.setText("Cliquez maintenant sur\nle joueur à qui vous\nvoulez donner la carte :");
             }
@@ -630,7 +580,7 @@ public class VueAventurier {
         }
         
         this.description.setText("Cliquez sur la carte carte\nque vous voulez\ndonner :");
-    	
+        
     }
     
     /**
@@ -648,7 +598,7 @@ public class VueAventurier {
     }
 
     public void setDescription(String description) {
-		this.description.setText(description);
-	}
+        this.description.setText(description);
+    }
 
 }

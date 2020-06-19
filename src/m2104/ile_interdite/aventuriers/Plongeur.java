@@ -28,7 +28,7 @@ public class Plongeur extends Aventurier{
     /*méthodes*/
     @Override
     public ArrayList<Boolean> isDeplacementPossibles() {
-    	
+        
         ArrayList<Boolean> assechementsPossibles = new ArrayList<Boolean>();
         ArrayList<Tuile> tetesChercheuses = new ArrayList<Tuile>();
         ArrayList<Tuile> tuiles = this.getIleInterdite().getGrille().getTuiles(true);
@@ -59,34 +59,44 @@ public class Plongeur extends Aventurier{
                     assechementsPossibles.set(tuiles.indexOf(tete), true);
                 }
                 if (tete.getEtat() != EtatTuile.NORMAL) {
-                    if (tuiles.indexOf(tete) < 35 && tuiles.get(tuiles.indexOf(tete) + 1) != null) {
-                        if (!tuilesDejaVerifies.contains(tuiles.get(tuiles.indexOf(tete) + 1)) && (tuiles.indexOf(tete) + 1) != indexTuileActuelle && (tuiles.indexOf(tete) % 6) % 6 != 5) {
+                    int indexTete = tuiles.indexOf(tete);
+                    int indexNextTete = indexTete + 1;
+                    Tuile nextTete;
+                    if (indexNextTete < 35) {
+                        nextTete = tuiles.get(indexNextTete);
+                        if (nextTete != null && !tuilesDejaVerifies.contains(nextTete) && indexNextTete != indexTuileActuelle && (indexTete % 6) != 5) {
                             System.out.println("--");
-                            nextTetesChercheuses.add(tuiles.get(tuiles.indexOf(tete) + 1));
-                            tuilesDejaVerifies.add(tuiles.get(tuiles.indexOf(tete) + 1));
+                            nextTetesChercheuses.add(nextTete);
+                            tuilesDejaVerifies.add(nextTete);
                             System.out.println("--");
                         }
-                        if (tuiles.indexOf(tete) < 30 && tuiles.get(tuiles.indexOf(tete) + 6) != null) {
-                            if (!tuilesDejaVerifies.contains(tuiles.get(tuiles.indexOf(tete) + 6)) && (tuiles.indexOf(tete) + 6) != indexTuileActuelle) {
+                        indexNextTete = indexTete + 6;
+                        if (indexNextTete < 30) {
+                            nextTete = tuiles.get(indexNextTete);
+                            if (nextTete != null && !tuilesDejaVerifies.contains(nextTete) && indexNextTete != indexTuileActuelle) {
                                 System.out.println("-");
-                                nextTetesChercheuses.add(tuiles.get(tuiles.indexOf(tete) + 6));
-                                tuilesDejaVerifies.add(tuiles.get(tuiles.indexOf(tete) + 6));
+                                nextTetesChercheuses.add(nextTete);
+                                tuilesDejaVerifies.add(nextTete);
                                 System.out.println("-");
                             }
                         }
                     }
-                    if (tuiles.indexOf(tete) > 0 && tuiles.get(tuiles.indexOf(tete) - 1) != null) {
-                        if (!tuilesDejaVerifies.contains(tuiles.get(tuiles.indexOf(tete) - 1)) && (tuiles.indexOf(tete) - 1) != indexTuileActuelle && (tuiles.indexOf(tete) % 6) != 0) {
+                    indexNextTete = indexTete - 1;
+                    if (indexNextTete > 0) {
+                        nextTete = tuiles.get(indexNextTete);
+                        if (nextTete != null && !tuilesDejaVerifies.contains(nextTete) && indexNextTete != indexTuileActuelle && (indexTete % 6) != 0) {
                             System.out.println("----");
-                            nextTetesChercheuses.add(tuiles.get(tuiles.indexOf(tete) - 1));
-                            tuilesDejaVerifies.add(tuiles.get(tuiles.indexOf(tete) - 1));
+                            nextTetesChercheuses.add(nextTete);
+                            tuilesDejaVerifies.add(nextTete);
                             System.out.println("----");
                         }
-                        if (tuiles.indexOf(tete) > 5 && tuiles.get(tuiles.indexOf(tete) - 6) != null) {
-                            if (!tuilesDejaVerifies.contains(tuiles.get(tuiles.indexOf(tete) - 6)) && (tuiles.indexOf(tete) - 6) != indexTuileActuelle) {
+                        indexNextTete = indexTete - 6;
+                        if (indexNextTete > 5) {
+                            nextTete = tuiles.get(indexNextTete);
+                            if (nextTete != null && !tuilesDejaVerifies.contains(nextTete) && (indexNextTete - 6) != indexTuileActuelle) {
                                 System.out.println("---");
-                                nextTetesChercheuses.add(tuiles.get(tuiles.indexOf(tete) - 6));
-                                tuilesDejaVerifies.add(tuiles.get(tuiles.indexOf(tete) - 6));
+                                nextTetesChercheuses.add(nextTete);
+                                tuilesDejaVerifies.add(nextTete);
                                 System.out.println("---");
                             }
                         }

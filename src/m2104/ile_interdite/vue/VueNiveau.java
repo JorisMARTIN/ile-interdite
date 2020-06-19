@@ -194,4 +194,8 @@ public class VueNiveau {
 
         scanner.close();
     }
+
+    public void setVisible(boolean b) {
+        this.setVisible(b);
+    }
 }

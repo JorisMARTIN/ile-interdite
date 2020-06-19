@@ -649,6 +649,10 @@ public class VueAventurier {
 
     public void setDescription(String description) {
 		this.description.setText(description);
-	}
+    }
+    
+    public void setVisible(boolean b){
+        this.setVisible(b);
+    }
 
 }

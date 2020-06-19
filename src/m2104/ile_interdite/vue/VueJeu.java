@@ -315,4 +315,8 @@ public class VueJeu {
             boutons.add(button);
         }
     }
+
+    public void setVisible(boolean b) {
+        this.setVisible(b);
+    }
 }

@@ -62,7 +62,7 @@ public class Plongeur extends Aventurier{
                     int indexTete = tuiles.indexOf(tete);
                     int indexNextTete = indexTete + 1;
                     Tuile nextTete;
-                    if (indexNextTete < 35) {
+                    if (indexTete < 35) {
                         nextTete = tuiles.get(indexNextTete);
                         if (nextTete != null && !tuilesDejaVerifies.contains(nextTete) && indexNextTete != indexTuileActuelle && (indexTete % 6) != 5) {
                             System.out.println("--");
@@ -71,7 +71,7 @@ public class Plongeur extends Aventurier{
                             System.out.println("--");
                         }
                         indexNextTete = indexTete + 6;
-                        if (indexNextTete < 30) {
+                        if (indexTete < 30) {
                             nextTete = tuiles.get(indexNextTete);
                             if (nextTete != null && !tuilesDejaVerifies.contains(nextTete) && indexNextTete != indexTuileActuelle) {
                                 System.out.println("-");
@@ -82,7 +82,7 @@ public class Plongeur extends Aventurier{
                         }
                     }
                     indexNextTete = indexTete - 1;
-                    if (indexNextTete > 0) {
+                    if (indexTete > 0) {
                         nextTete = tuiles.get(indexNextTete);
                         if (nextTete != null && !tuilesDejaVerifies.contains(nextTete) && indexNextTete != indexTuileActuelle && (indexTete % 6) != 0) {
                             System.out.println("----");
@@ -91,7 +91,7 @@ public class Plongeur extends Aventurier{
                             System.out.println("----");
                         }
                         indexNextTete = indexTete - 6;
-                        if (indexNextTete > 5) {
+                        if (indexTete > 5) {
                             nextTete = tuiles.get(indexNextTete);
                             if (nextTete != null && !tuilesDejaVerifies.contains(nextTete) && indexNextTete != indexTuileActuelle) {
                                 System.out.println("---");

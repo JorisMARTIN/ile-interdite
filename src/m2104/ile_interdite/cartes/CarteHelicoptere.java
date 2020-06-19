@@ -55,9 +55,9 @@ public class CarteHelicoptere extends Carte {
     		}
     		
     		if(nbAventurierBienPlacer == 4) {
-    			
                 Message m = new Message(Commandes.FIN); 
-                m.isReussi = true;             
+                m.isReussi = true;
+                
     			this.getDeck().getIleInterdite().notifierObservateurs(m);
     		}
     		

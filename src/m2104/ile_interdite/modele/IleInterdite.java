@@ -179,9 +179,19 @@ public class IleInterdite extends Observable<Message> {
             this.deckTresor.remplirPioche(this.deckTresor.getDefausse());
         }
 
-        Message msg = new Message(Commandes.AUGMENTER_CURSEUR);
-        msg.valeur = this.getCurseur();
-        notifierObservateurs(msg);
+        if (this.curseur < 10) {
+            Message msg = new Message(Commandes.AUGMENTER_CURSEUR);
+            msg.valeur = this.getCurseur();
+
+            notifierObservateurs(msg);
+        } else {
+            Message msg = new Message(Commandes.FIN);
+            msg.isReussi = false;
+            msg.messageFin = "L'ile a sombré dans l'oubli";
+
+            notifierObservateurs(msg);
+        }
+
     }
 
     public Grille getGrille() {
@@ -281,6 +291,7 @@ public class IleInterdite extends Observable<Message> {
                     } else {
                         Message msg = new Message(Utils.Commandes.FIN);
                         msg.isReussi = false;
+                        msg.messageFin = "Vous avez coulé";
 
                         notifierObservateurs(msg);
                     }
@@ -290,6 +301,7 @@ public class IleInterdite extends Observable<Message> {
 
                 Message msg = new Message(Utils.Commandes.FIN);
                 msg.isReussi = false;
+                msg.messageFin = "L'Heliport a coulé";
 
                 notifierObservateurs(msg);
             }

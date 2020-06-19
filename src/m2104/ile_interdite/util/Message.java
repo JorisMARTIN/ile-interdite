@@ -38,6 +38,7 @@ public class Message {
     public int action;
     public boolean isReussi;
     public ArrayList<Tresor> tresors;
+    public String messageFin;
     
     public Message(Utils.Commandes cmd) {
         this.commande = cmd;

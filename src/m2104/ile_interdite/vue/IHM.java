@@ -150,7 +150,6 @@ public class IHM extends Observable<Message> {
             if(vue.getMainJoueur().size() > 5) {
                 vue.setEtatBoutonsCartes(false);
             }
-            
         }
         
         VueAventurier va = this.vueAventuriers.get(idAventurier);
@@ -184,10 +183,10 @@ public class IHM extends Observable<Message> {
         this.vueAventuriers.get(idAventurier).deffausseCarte();
     }
     
-    public void finGagne(boolean isGagnee) {
-        this.vueFin.activer(isGagnee);
+    public void finGagne(boolean isGagnee, String message) {
+        this.vueFin.activer(isGagnee, message);
     }
-
+    
     public void demandeDonCarte(int idAventurier) {
         this.vueAventuriers.get(idAventurier).donnerCarte();
     }
@@ -201,8 +200,6 @@ public class IHM extends Observable<Message> {
     }
 
     public void donneCarte(int idReceveur) {
-        
-        
         
         Message m = new Message(Commandes.DONNER);
         m.idCarte = idCarteADonner;

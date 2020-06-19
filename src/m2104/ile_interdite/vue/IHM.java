@@ -216,4 +216,12 @@ public class IHM extends Observable<Message> {
     public void setVueInscription() {
         new Controleur();
     }
+
+    public VueJeu getVueJeu() {
+        return this.vueJeu;
+    }
+
+    public VueNiveau getVueNiveau() {
+        return this.vueNiveau;
+    }
 }

@@ -123,6 +123,11 @@ public class VueFin {
             textGagne.setText("Dommage, vous avez perdu.");
             textGagnePartie2.setText("Rééssayer pour gagner.");
         }
+        for (VueAventurier vA : this.ihm.getVueAventuriers().values()) {
+            vA.setVisible(false);
+        }
+        this.ihm.getVueJeu().setVisible(false);
+        this.ihm.getVueNiveau().setVisible(false);
         this.mainPanel.repaint();
         this.window.setVisible(true);
     }

@@ -78,13 +78,38 @@ public class VueAventurier {
         
 
         this.window = new JFrame(nomAventurier);
-        window.setSize(180, Parameters.HAUTEUR_VUE_AVENTURIER);
+        //window.setSize(180, Parameters.HAUTEUR_VUE_AVENTURIER);
+        window.setSize(375, 395);
         this.window.setUndecorated(Parameters.UNDECORATED);
         this.window.setResizable(Parameters.RESIZABLE);
 
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        int marginLeft = (dim.width - nbAventuriers * 190) / 2 ;
-        window.setLocation(marginLeft + num * 190, Parameters.TOP_VUE_AVENTURIER);
+        
+        //int marginLeft = (dim.width - nbAventuriers * 190) / 2;
+        
+        int marginLeft = 164;
+        int marginTop = (dim.height / nbAventuriers) - ((nbAventuriers == 2) ? 215 : 150);
+        
+        //window.setLocation(marginLeft + num * 190, Parameters.TOP_VUE_AVENTURIER);
+        
+        switch (num) {
+		case 0:
+				window.setLocation(marginLeft, marginTop);
+			break;
+			
+		case 1:
+				window.setLocation(marginLeft + 435, marginTop);
+			break;
+				
+		case 2:
+				window.setLocation(marginLeft, marginTop + 415);
+			break;
+			
+		case 3:
+				window.setLocation(marginLeft + 435, marginTop + 415);
+			break;
+		}
+        
 
         mainPanel = new JPanel(new BorderLayout());
         this.window.add(mainPanel);

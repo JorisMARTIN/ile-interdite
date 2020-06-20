@@ -1,7 +1,6 @@
 
 package m2104.ile_interdite.controleur;
 
-import java.util.ArrayList;
 
 import m2104.ile_interdite.aventuriers.Aventurier;
 import m2104.ile_interdite.modele.EtatTuile;

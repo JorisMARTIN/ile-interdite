@@ -70,6 +70,7 @@ public class Explorateur extends Aventurier{
         boolean deplacementPossible = false;
         
         for (Tuile tuile : tuiles) {
+            System.out.println(tuiles.indexOf(tuile));
             if (tuile == null || tuile.isRetiree() || getPosition() == tuile) {
                 deplacementPossible = false;
             } else {
@@ -83,19 +84,27 @@ public class Explorateur extends Aventurier{
                 } else if (indexTuileActuelle > 0 && indexTuileActuelle - 1 == indexTuileCible && (indexTuileActuelle % 6) != 0) {
                     deplacementPossible = true;
                 } else if (indexTuileActuelle < 24 && indexTuileActuelle + 12 == indexTuileCible) {
-                    if (!tuiles.get(indexTuileActuelle + 6).isRetiree()) {
+                    if ((!tuiles.get(indexTuileActuelle + 6).isRetiree())
+                     || (!tuiles.get(indexTuileActuelle + 5).isRetiree())
+                     || (!tuiles.get(indexTuileActuelle + 7).isRetiree())) {
                         deplacementPossible = true;
                     }
                 } else if (indexTuileActuelle < 34 && indexTuileActuelle + 2 == indexTuileCible && (indexTuileActuelle % 6) < 4) {
-                    if (!tuiles.get(indexTuileActuelle + 1).isRetiree()) {
+                    if ((!tuiles.get(indexTuileActuelle + 1).isRetiree())
+                     || (!tuiles.get(indexTuileActuelle - 5).isRetiree())
+                     || (!tuiles.get(indexTuileActuelle + 7).isRetiree())) {
                         deplacementPossible = true;
                     }
                 } else if (indexTuileActuelle > 11 && indexTuileActuelle - 12 == indexTuileCible) {
-                    if (!tuiles.get(indexTuileActuelle - 6).isRetiree()) {
+                    if ((!tuiles.get(indexTuileActuelle - 6).isRetiree())
+                     || (!tuiles.get(indexTuileActuelle - 5).isRetiree())
+                     || (!tuiles.get(indexTuileActuelle - 7).isRetiree())) {
                         deplacementPossible = true;
                     }
                 } else if (indexTuileActuelle > 1  && indexTuileActuelle - 2 == indexTuileCible && (indexTuileActuelle % 6) > 1) {
-                    if (!tuiles.get(indexTuileActuelle - 1).isRetiree()) {
+                    if ((!tuiles.get(indexTuileActuelle - 1).isRetiree())
+                     || (!tuiles.get(indexTuileActuelle + 5).isRetiree())
+                     || (!tuiles.get(indexTuileActuelle - 7).isRetiree())) {
                         deplacementPossible = true;
                     }
                 } else if (indexTuileActuelle < 29 && indexTuileActuelle + 7 == indexTuileCible) {
@@ -117,23 +126,23 @@ public class Explorateur extends Aventurier{
                         deplacementPossible = true;
                     }
                 } else if (indexTuileActuelle < 28 && indexTuileActuelle + 8 == indexTuileCible && (indexTuileActuelle % 6) < 4) {
-                    if ((!tuiles.get(indexTuileActuelle + 6).isRetiree())
-                     || (!tuiles.get(indexTuileActuelle + 1).isRetiree())) {
+                    if ((!tuiles.get(indexTuileActuelle + 1).isRetiree())
+                     || (!tuiles.get(indexTuileActuelle + 7).isRetiree())) {
                         deplacementPossible = true;
                     }
                 } else if (indexTuileActuelle < 32 && indexTuileActuelle + 4 == indexTuileCible && (indexTuileActuelle % 6) > 1) {
-                    if ((!tuiles.get(indexTuileActuelle + 6).isRetiree())
-                     || (!tuiles.get(indexTuileActuelle - 1).isRetiree())) {
+                    if ((!tuiles.get(indexTuileActuelle - 1).isRetiree())
+                     || (!tuiles.get(indexTuileActuelle + 5).isRetiree())) {
                         deplacementPossible = true;
                     }
                 } else if (indexTuileActuelle > 3 && indexTuileActuelle - 4 == indexTuileCible && (indexTuileActuelle % 6) < 4) {
-                    if ((!tuiles.get(indexTuileActuelle - 6).isRetiree())
-                     || (!tuiles.get(indexTuileActuelle + 1).isRetiree())) {
+                    if ((!tuiles.get(indexTuileActuelle + 1).isRetiree())
+                     || (!tuiles.get(indexTuileActuelle - 5).isRetiree())) {
                         deplacementPossible = true;
                     }
-                } else if (indexTuileActuelle > 2 && indexTuileActuelle - 8 == indexTuileCible && (indexTuileActuelle % 6) > 1) {
-                    if ((!tuiles.get(indexTuileActuelle - 6).isRetiree())
-                     || (!tuiles.get(indexTuileActuelle - 1).isRetiree())) {
+                } else if (indexTuileActuelle > 7 && indexTuileActuelle - 8 == indexTuileCible && (indexTuileActuelle % 6) > 1) {
+                    if ((!tuiles.get(indexTuileActuelle - 1).isRetiree())
+                     || (!tuiles.get(indexTuileActuelle - 7).isRetiree())) {
                         deplacementPossible = true;
                     }
                 } else if (indexTuileActuelle > 10 && indexTuileActuelle - 11 == indexTuileCible && (indexTuileActuelle % 6) != 5) {

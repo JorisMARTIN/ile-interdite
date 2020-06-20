@@ -131,8 +131,7 @@ public class Controleur implements Observateur<Message> {
                 break;
 
             case LANCER_PVNAVIGATEUR:
-                ArrayList<Boolean> possibilites = this.ileInterdite.getAventuriers().get(msg.idAventurier).isDeplacementPossibles();
-                ileInterdite.lanceSurbriller(msg.idAventurier, possibilites, 3);
+                this.ileInterdite.getAventuriers().get(msg.idAventurier).seFaireDeplacer();
                 break;
 
             case LANCE_CURSEUR:
@@ -202,6 +201,7 @@ public class Controleur implements Observateur<Message> {
             case DEPLACER_HELICO:
                 this.ileInterdite.deplacerAventuriers(msg.nomTuile, msg.idAventurier);
                 break;
+                
 
             default:
                 if (Parameters.LOGS) {

@@ -268,7 +268,6 @@ public class VueJeu {
                     case 0:
                         if (this.tresors.contains(Tresor.CALICE)) {
                             String path = tresors.get(tresors.indexOf(Tresor.CALICE)).getPathPicture();
-                            System.out.println(path);
                             Image img = generateImageBtn(path);
                             button.setIcon(new ImageIcon(img));
                             button.setDisabledIcon(new ImageIcon(img));
@@ -278,7 +277,6 @@ public class VueJeu {
                     case 5:
                         if (this.tresors.contains(Tresor.CRISTAL)) {
                             String path = tresors.get(tresors.indexOf(Tresor.CRISTAL)).getPathPicture();
-                            System.out.println(path);
                             Image img = generateImageBtn(path);
                             button.setIcon(new ImageIcon(img));
                             button.setDisabledIcon(new ImageIcon(img));
@@ -288,7 +286,6 @@ public class VueJeu {
                     case 30:
                         if (this.tresors.contains(Tresor.ZEPHYR)) {
                             String path = tresors.get(tresors.indexOf(Tresor.ZEPHYR)).getPathPicture();
-                            System.out.println(path);
                             Image img = generateImageBtn(path);
                             button.setIcon(new ImageIcon(img));
                             button.setDisabledIcon(new ImageIcon(img));
@@ -298,7 +295,6 @@ public class VueJeu {
                     case 35:
                         if (this.tresors.contains(Tresor.PIERRE)) {
                             String path = tresors.get(tresors.indexOf(Tresor.PIERRE)).getPathPicture();
-                            System.out.println(path);
                             Image img = generateImageBtn(path);
                             button.setIcon(new ImageIcon(img));
                             button.setDisabledIcon(new ImageIcon(img));
@@ -315,6 +311,6 @@ public class VueJeu {
     }
 
     public void setVisible(boolean b) {
-        this.setVisible(b);
+        this.fenetre.setVisible(b);
     }
 }

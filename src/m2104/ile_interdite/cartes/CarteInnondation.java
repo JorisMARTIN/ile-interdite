@@ -29,14 +29,9 @@ public class CarteInnondation extends Carte {
         if(this.tuile.getEtat() == EtatTuile.NORMAL) {
             this.tuile.setEtat(EtatTuile.INONDEE);
             this.getDeck().defausseCarte(this);
-        } else if (this.tuile.getEtat() == EtatTuile.INONDEE && this.tuile.getNom() != "Helicoptere") {
+        } else if (this.tuile.getEtat() == EtatTuile.INONDEE) {
             this.tuile.setEtat(EtatTuile.RETIREE);
             this.getDeck().getPioche().remove(this);
-        } else if (this.tuile.getEtat() == EtatTuile.INONDEE && this.tuile.getNom() != "Helicoptere") {
-            Message msg = new Message(Commandes.FIN);
-            msg.isReussi = false;
-
-            this.getDeck().getIleInterdite().notifierObservateurs(msg);
         }
     }
     

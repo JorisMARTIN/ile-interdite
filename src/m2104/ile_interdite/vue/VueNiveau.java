@@ -196,6 +196,6 @@ public class VueNiveau {
     }
 
     public void setVisible(boolean b) {
-        this.setVisible(b);
+        this.window.setVisible(b);
     }
 }

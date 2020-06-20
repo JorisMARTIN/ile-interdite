@@ -9,6 +9,8 @@ import m2104.ile_interdite.modele.IleInterdite;
 import m2104.ile_interdite.modele.Tuile;
 import m2104.ile_interdite.modele.EtatTuile;
 import m2104.ile_interdite.util.Utils.Pion;
+import m2104.ile_interdite.util.Message;
+import m2104.ile_interdite.util.Utils.Commandes;
 import java.util.ArrayList;
 
 /**
@@ -38,7 +40,6 @@ public class Plongeur extends Aventurier{
             if (tuile != null) {
                 
                 int indexTuileCible = tuiles.indexOf(tuile);
-                System.out.println(indexTuileActuelle + "-" + indexTuileCible);
                 
                 if ((indexTuileActuelle < 29 && indexTuileActuelle + 6 == indexTuileCible)
                 || (indexTuileActuelle < 35 && indexTuileActuelle + 1 == indexTuileCible && (indexTuileActuelle) % 6 != 5)
@@ -52,7 +53,6 @@ public class Plongeur extends Aventurier{
         }
         
         while (tetesChercheuses.size() > 0) {
-            System.out.println(tetesChercheuses);
             ArrayList<Tuile> nextTetesChercheuses = new ArrayList<Tuile>();
             for (Tuile tete : tetesChercheuses) {
                 if (tete.getEtat() != EtatTuile.RETIREE) {
@@ -65,19 +65,15 @@ public class Plongeur extends Aventurier{
                     if (indexTete < 35) {
                         nextTete = tuiles.get(indexNextTete);
                         if (nextTete != null && !tuilesDejaVerifies.contains(nextTete) && indexNextTete != indexTuileActuelle && (indexTete % 6) != 5) {
-                            System.out.println("--");
                             nextTetesChercheuses.add(nextTete);
                             tuilesDejaVerifies.add(nextTete);
-                            System.out.println("--");
                         }
                         indexNextTete = indexTete + 6;
                         if (indexTete < 30) {
                             nextTete = tuiles.get(indexNextTete);
                             if (nextTete != null && !tuilesDejaVerifies.contains(nextTete) && indexNextTete != indexTuileActuelle) {
-                                System.out.println("-");
                                 nextTetesChercheuses.add(nextTete);
                                 tuilesDejaVerifies.add(nextTete);
-                                System.out.println("-");
                             }
                         }
                     }
@@ -85,19 +81,15 @@ public class Plongeur extends Aventurier{
                     if (indexTete > 0) {
                         nextTete = tuiles.get(indexNextTete);
                         if (nextTete != null && !tuilesDejaVerifies.contains(nextTete) && indexNextTete != indexTuileActuelle && (indexTete % 6) != 0) {
-                            System.out.println("----");
                             nextTetesChercheuses.add(nextTete);
                             tuilesDejaVerifies.add(nextTete);
-                            System.out.println("----");
                         }
                         indexNextTete = indexTete - 6;
                         if (indexTete > 5) {
                             nextTete = tuiles.get(indexNextTete);
                             if (nextTete != null && !tuilesDejaVerifies.contains(nextTete) && indexNextTete != indexTuileActuelle) {
-                                System.out.println("---");
                                 nextTetesChercheuses.add(nextTete);
                                 tuilesDejaVerifies.add(nextTete);
-                                System.out.println("---");
                             }
                         }
                     }
@@ -110,5 +102,57 @@ public class Plongeur extends Aventurier{
         
         System.out.println("Fin de boucle");
         return assechementsPossibles;
+    }
+    
+    public void seFaireDeplacer() {
+        ArrayList<Boolean> deplacementsPossibles = new ArrayList<Boolean>();
+
+        ArrayList<Tuile> tuiles = this.getIleInterdite().getGrille().getTuiles(true);
+        int indexTuileActuelle = tuiles.indexOf(getPosition());
+        int indexTuileCible;
+        boolean deplacementPossible = false;
+        
+        for (Tuile tuile : tuiles) {
+            if (tuile == null || tuile.isRetiree() || getPosition() == tuile) {
+                deplacementPossible = false;
+            } else {
+                indexTuileCible = tuiles.indexOf(tuile);
+                if (indexTuileActuelle < 30 && indexTuileActuelle + 6 == indexTuileCible) {
+                    deplacementPossible = true;
+                } else if (indexTuileActuelle < 35 && indexTuileActuelle + 1 == indexTuileCible && (indexTuileActuelle % 6) != 5) {
+                    deplacementPossible = true;
+                } else if (indexTuileActuelle > 5 && indexTuileActuelle - 6 == indexTuileCible) {
+                    deplacementPossible = true;
+                } else if (indexTuileActuelle > 0 && indexTuileActuelle - 1 == indexTuileCible && (indexTuileActuelle % 6) != 0) {
+                    deplacementPossible = true;
+                } else if (indexTuileActuelle < 24 && indexTuileActuelle + 12 == indexTuileCible) {
+                    deplacementPossible = true;
+                } else if (indexTuileActuelle < 34 && indexTuileActuelle + 2 == indexTuileCible && (indexTuileActuelle % 6) < 4) {
+                    deplacementPossible = true;
+                } else if (indexTuileActuelle > 11 && indexTuileActuelle - 12 == indexTuileCible) {
+                    deplacementPossible = true;
+                } else if (indexTuileActuelle > 1  && indexTuileActuelle - 2 == indexTuileCible && (indexTuileActuelle % 6) > 1) {
+                    deplacementPossible = true;
+                } else if (indexTuileActuelle < 29 && indexTuileActuelle + 7 == indexTuileCible) {
+                    deplacementPossible = true;
+                } else if (indexTuileActuelle < 31 && indexTuileActuelle + 5 == indexTuileCible) {
+                    deplacementPossible = true;
+                } else if (indexTuileActuelle > 4 && indexTuileActuelle - 5 == indexTuileCible) {
+                    deplacementPossible = true;
+                } else if (indexTuileActuelle > 6 && indexTuileActuelle - 7 == indexTuileCible) {
+                    deplacementPossible = true;
+                } else {
+                    deplacementPossible = false;
+                }
+            }
+            deplacementsPossibles.add(deplacementPossible);
+        }
+        Message msg = new Message(Commandes.TUILES_POSSIBLES);
+        msg.idAventurier = this.getIleInterdite().getAventuriers().indexOf(this);
+        msg.possibilites = deplacementsPossibles;
+        msg.pion = this.getPion();
+        msg.action = 3;
+        this.getIleInterdite().notifierObservateurs(msg);
+        
     }
 }

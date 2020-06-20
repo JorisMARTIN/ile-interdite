@@ -65,8 +65,14 @@ public class VueFin {
         btnRejouer.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                for (VueAventurier vA : ihm.getVueAventuriers().values()) {
+                    vA.setVisible(false);
+                }
+                ihm.getVueJeu().setVisible(false);
+                ihm.getVueNiveau().setVisible(false);
+                window.setVisible(false);
+                
                 ihm.setVueInscription();
-                desactiver();
             }
 
             @Override
@@ -92,7 +98,12 @@ public class VueFin {
         btnQuitter.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                desactiver();
+                for (VueAventurier vA : ihm.getVueAventuriers().values()) {
+                    vA.setVisible(false);
+                }
+                ihm.getVueJeu().setVisible(false);
+                ihm.getVueNiveau().setVisible(false);
+                window.setVisible(false);
             }
 
             @Override
@@ -128,18 +139,7 @@ public class VueFin {
             textGagnePartie2.setText("Rééssayer pour gagner.");
             textGagnePartie3.setText(msg);
         }
-        for (VueAventurier vA : this.ihm.getVueAventuriers().values()) {
-            vA.setVisible(false);
-        }
-        this.ihm.getVueJeu().setVisible(false);
-        this.ihm.getVueNiveau().setVisible(false);
-        this.mainPanel.repaint();
         this.window.setVisible(true);
-    }
-
-    public void desactiver() {
-        this.window.setVisible(false);
-        this.mainPanel.repaint();
     }
     
 }

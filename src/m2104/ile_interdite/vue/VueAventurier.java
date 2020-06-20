@@ -497,7 +497,6 @@ public class VueAventurier {
 
             
             String path = Parameters.CARTES + carte.toString() + ".png";
-            System.out.println(path);
             ImageIcon icon = new ImageIcon(path);
             float scale = (int) Math.max(icon.getIconWidth(), icon.getIconHeight());
             int largeur = (int) (icon.getIconWidth() / scale * mainPanel.getSize().width / 3);
@@ -606,7 +605,7 @@ public class VueAventurier {
     }
     
     public void setVisible(boolean b){
-        this.setVisible(b);
+        this.window.setVisible(b);
     }
 
 }

@@ -159,7 +159,9 @@ public class VueJeu {
                 }
 
                 switch(action) {
-                    case 0:
+                    case 0: //ceci est fait exprÃ¨s pour propager l'int action au controleur (Cas 0 : déplacement, cas 1 : déplacement par navigateur, cas 2 : déplacement d'urgence)
+                    case 1:
+                    case 2:
                         bouton.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
@@ -172,8 +174,8 @@ public class VueJeu {
                         });
                         break;
                     
-                    case 1: //ceci est fait exprÃ¨s pour propager l'int action au controleur (Cas 1 : assï¿½chement, cas 2 : sac de sable)
-                    case 2:
+                    case 3: //ceci est fait exprÃ¨s pour propager l'int action au controleur (Cas 3 : assï¿½chement, cas 4 : sac de sable)
+                    case 4:
                         bouton.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
@@ -185,21 +187,8 @@ public class VueJeu {
                             }
                         });
                         break;
-
-                    case 3: //deplacement par un navigateur
-                        bouton.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                                Message m = new Message(Utils.Commandes.DEPLACER);
-                                m.nomTuile = bouton.getText();
-                                m.idAventurier = idAventurier;
-                                m.action = action;
-                                ihm.notifierObservateurs(m);
-                            }
-                        });
-                        break;
                         
-                    case 4: //deplacement par helicoptere
+                    case 5: //deplacement par helicoptere
                         bouton.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
@@ -307,6 +296,40 @@ public class VueJeu {
             }
             grillePanel.add(button);
             boutons.add(button);
+        }
+    }
+    
+    public void actualisationSuperficielle() {
+        for(int i = 0; i < grille.getTuiles(true).size(); i++) {
+            Tuile t = grille.getTuiles(true).get(i);
+            JButton button = boutons.get(i);
+            button.setBorder(BorderFactory.createEmptyBorder());
+            button.setOpaque(false);
+            button.setContentAreaFilled(false);
+            button.setFocusPainted(false);
+            button.setEnabled(false);
+            if (t != null && t.getEtat() != EtatTuile.RETIREE) {
+                button.removeAll();
+                JLabel labelPion;
+                int nbPion = t.getAventuriers().size();
+                if (nbPion == 4) {
+                    button.setLayout(new GridLayout(2, 2));
+                } else {
+                    button.setLayout(new BorderLayout());
+                }
+                for (int pion = 0; pion < nbPion; pion++) {
+                    ImageIcon icon = new ImageIcon(Parameters.PIONS + "pion" + t.getAventuriers().get(pion).getPion() + ".png");
+                    Image imgPion = icon.getImage().getScaledInstance(fenetre.getSize().width / (8 + 2 * nbPion), fenetre.getSize().height / (8 + 2 * nbPion), Image.SCALE_SMOOTH);
+                    labelPion = new JLabel(new ImageIcon(imgPion));
+                    if (nbPion == 4) {
+                        button.add(labelPion);
+                    } else {
+                        button.add(labelPion, getPositionPion(t.getAventuriers().size(), pion));
+                    }
+                }
+                button.repaint();
+                button.revalidate();
+            }
         }
     }
 

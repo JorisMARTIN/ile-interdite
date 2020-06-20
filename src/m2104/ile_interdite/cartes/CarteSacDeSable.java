@@ -29,7 +29,7 @@ public class CarteSacDeSable extends Carte {
      *  <li>Lancer l'assechement</li>
      * </ol>
      * 
-     *  msg.action : 0 = Assechement
+     *  msg.action : 4 = Assechement
      * 
      */
     @Override
@@ -42,7 +42,7 @@ public class CarteSacDeSable extends Carte {
             msg.possibilites.add(tuile != null && tuile.isInnondee());
         }
         
-        msg.action = 2;
+        msg.action = 4;
         msg.idAventurier = this.getDeck().getIleInterdite().getJoueurCourant();
         
         this.getDeck().getIleInterdite().notifierObservateurs(msg);

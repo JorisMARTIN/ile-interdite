@@ -258,7 +258,7 @@ public class IleInterdite extends Observable<Message> {
         return this.deckInnondation;
     }
     
-    public boolean lanceInnondation() {
+    public void lanceInnondation() {
         int nb = 0;
         if (this.curseur < 3) {
             nb = 2;
@@ -274,30 +274,7 @@ public class IleInterdite extends Observable<Message> {
         for (int i = 0; i < nb; i++) {
             CarteInnondation carte = (CarteInnondation) this.deckInnondation.getPremiereCarte();
             carte.action();
-            if (carte.getTuile().getEtat() == EtatTuile.RETIREE && carte.getTuile().getNom() != "Heliport") {
-                for (Aventurier aventurier : carte.getTuile().getAventuriers()) {
-                    ArrayList<Boolean> possibilite = aventurier.isDeplacementPossibles();
-
-                    if (!possibilite.contains(true)) {
-                        Message msg = new Message(Utils.Commandes.DEPLACEMENT_DURGENCE);
-                        
-                        msg.possibilites = possibilite;
-                        msg.pion = aventurier.getPion();
-                        msg.idAventurier = aventuriers.indexOf(aventurier);
-                        
-                        notifierObservateurs(msg);
-                        deplacementDUrgence = true;
-
-                    } else {
-                        Message msg = new Message(Utils.Commandes.FIN);
-                        msg.isReussi = false;
-                        msg.messageFin = "Vous avez coulé";
-
-                        notifierObservateurs(msg);
-                    }
-                    
-                }
-            } else if (carte.getTuile().getEtat() == EtatTuile.RETIREE && carte.getTuile().getNom() == "Heliport") {
+            if (carte.getTuile().getEtat() == EtatTuile.RETIREE && carte.getTuile().getNom() == "Heliport") {
 
                 Message msg = new Message(Utils.Commandes.FIN);
                 msg.isReussi = false;
@@ -306,17 +283,6 @@ public class IleInterdite extends Observable<Message> {
                 notifierObservateurs(msg);
             }
         }
-        
-        if (!deplacementDUrgence) {
-            System.out.println("Fin de tour normale");
-            Message msg = new Message(Utils.Commandes.MAJ_GRILLE);
-            msg.grille = grille;
-            notifierObservateurs(msg);
-        } else {
-            System.out.println("Déplacement d'urgence !");
-        }
-        
-        return deplacementDUrgence;
     }
 
     public void lanceSurbriller(int idAventurier, ArrayList<Boolean> possibilites, int action) {
@@ -333,7 +299,7 @@ public class IleInterdite extends Observable<Message> {
     }
     
     public void lanceAssechement() {
-        lanceSurbriller(this.joueurCourant, aventuriers.get(this.joueurCourant).isAssechementPossibles(), 1);
+        lanceSurbriller(this.joueurCourant, aventuriers.get(this.joueurCourant).isAssechementPossibles(), 3);
     }
     
     public void lanceRecuperationTresor() {
@@ -367,7 +333,6 @@ public class IleInterdite extends Observable<Message> {
             aventuriersADeplacer.add(a);
         }
 
-        System.out.println(aventuriersADeplacer.size());
         
         for(Aventurier aventurier : aventuriersADeplacer) {
             
@@ -413,11 +378,9 @@ public class IleInterdite extends Observable<Message> {
             
         
             // Lance la phase d'innondation
-            boolean deplacementDUrgence = lanceInnondation();
-            if (!deplacementDUrgence) {
-                // Passe au joueur suivant
-                joueurSuivant();
-            }
+            this.lanceInnondation();
+            
+            this.testDeplacementDUrgence();
             
         }
 
@@ -453,6 +416,42 @@ public class IleInterdite extends Observable<Message> {
         msg2.main = aventuriers.get(joueurCourant).getMain();
         
         this.notifierObservateurs(msg2);
+    }
+    
+    public void testDeplacementDUrgence() {
+        int indexTuile = 0;
+        boolean arretDuTest = false;
+        while (!arretDuTest && indexTuile < 24) {
+            Tuile tuile = this.grille.getTuiles(false).get(indexTuile);
+            if (tuile.isRetiree()) {
+                if (tuile.getAventuriers().size() > 0) {
+                    Aventurier aventurier = tuile.getAventuriers().get(0);
+                    ArrayList<Boolean> possibilite = aventurier.isDeplacementPossibles();
+                    if (possibilite.contains(true)) {
+                        Message msg = new Message(Utils.Commandes.DEPLACEMENT_DURGENCE);
+                        deplacementDUrgence = true;
+                        arretDuTest = true;
+                        
+                        msg.possibilites = possibilite;
+                        msg.pion = aventurier.getPion();
+                        msg.idAventurier = aventuriers.indexOf(aventurier);
+                        
+                        notifierObservateurs(msg);
+                    } else {
+                        Message msg = new Message(Utils.Commandes.FIN);
+                        arretDuTest = true;
+                        msg.isReussi = false;
+                        msg.messageFin = "Vous avez coulé";
+        
+                        notifierObservateurs(msg);
+                    }
+                }
+            }
+            indexTuile ++;
+        }
+        if (!arretDuTest) {
+            this.joueurSuivant();
+        }
     }
 
 }

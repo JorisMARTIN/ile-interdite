@@ -122,7 +122,6 @@ public abstract class Aventurier {
         ArrayList<Boolean> assechementsPossibles = new ArrayList<Boolean>();
         for (Tuile tuile : this.ileInterdite.getGrille().getTuiles(true)) {
             assechementsPossibles.add(this.peutAssecher(tuile));
-            
         }
         return assechementsPossibles;
     }
@@ -529,7 +528,7 @@ public abstract class Aventurier {
         msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
         msg.possibilites = deplacementsPossibles;
         msg.pion = this.getPion();
-        msg.action = 3;
+        msg.action = 1;
         this.ileInterdite.notifierObservateurs(msg);
         
     }

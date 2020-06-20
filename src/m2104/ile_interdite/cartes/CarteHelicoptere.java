@@ -39,7 +39,7 @@ public class CarteHelicoptere extends Carte {
      * </li>
      * </ol>
      * 
-     * msg.action : 4 = Deplacement par helicoptère
+     * msg.action : 5 = Deplacement par helicoptère
      */
     @Override
     public void action() {
@@ -74,7 +74,7 @@ public class CarteHelicoptere extends Carte {
             }
 
             msg.pion = this.getAventurier().getPion();
-            msg.action = 4;
+            msg.action = 5;
             
             msg.idAventurier = this.getDeck().getIleInterdite().getAventuriers().indexOf(this.getAventurier());
             

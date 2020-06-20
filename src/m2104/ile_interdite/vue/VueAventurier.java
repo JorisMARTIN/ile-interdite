@@ -228,9 +228,7 @@ public class VueAventurier {
 	 * @param activerTerminer
 	 */
     public void activerBoutons(Boolean activerMove, Boolean activerDry, Boolean activerDonner, Boolean activerRecuperer, Boolean activerRecevoir, Boolean activerDeplacer, Boolean activerTerminer) {
-        if (Parameters.LOGS) {
-            System.out.println(this.nomAventurier + " : VueAventurier.activerBoutons(activerMove=" + activerMove + ", activerDry=" + activerDry + ", activerDonner=" + activerDonner + ", activerRecuperer=" + activerRecuperer + ", activerRecevoir=" + activerRecevoir + ", activerTerminer=" + activerTerminer + ")");
-        }
+
         if (activerMove != null) {
             btnAller.setEnabled(activerMove);
             if (!activerMove) {
@@ -260,9 +258,6 @@ public class VueAventurier {
         }
 
         if (activerRecevoir != null) {
-            if (Parameters.LOGS) {
-                System.out.println("VueAventurier_nopic.activerBoutons.activerRecevoir = " + activerRecevoir);
-            }
             this.titreCliquable = activerRecevoir ;
             labelTitre.setCursor(new Cursor((activerRecevoir ? Cursor.HAND_CURSOR : Cursor.DEFAULT_CURSOR)));
             labelTitre.setToolTipText(activerRecevoir ? "Recevoir la carte d'un autre joueur" : "");
@@ -285,17 +280,11 @@ public class VueAventurier {
 
     // ====================================================== Activation de la carte à son tour
     public void activer() {
-        if (Parameters.LOGS) {
-            System.out.println("VueAventurier.activer() de " + this.nomAventurier);
-        }
         this.labelTitre.setText(getTitle(Color.BLACK, this.couleurActive));
         this.mainPanel.repaint();
     }
 
     public void desactiver() {
-        if (Parameters.LOGS) {
-            System.out.println(this.nomAventurier + " : VueAventurier.desactiver()");
-        }
         this.labelTitre.setText(getTitle(Color.WHITE, this.couleurInactive));
         this.mainPanel.repaint();
     }

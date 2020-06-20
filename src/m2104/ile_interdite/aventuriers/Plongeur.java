@@ -95,12 +95,9 @@ public class Plongeur extends Aventurier{
                     }
                 }
             }
-            System.out.println(nextTetesChercheuses);
             tetesChercheuses = nextTetesChercheuses;
-            System.out.println(tetesChercheuses);
         }
         
-        System.out.println("Fin de boucle");
         return assechementsPossibles;
     }
     
@@ -151,7 +148,7 @@ public class Plongeur extends Aventurier{
         msg.idAventurier = this.getIleInterdite().getAventuriers().indexOf(this);
         msg.possibilites = deplacementsPossibles;
         msg.pion = this.getPion();
-        msg.action = 3;
+        msg.action = 1;
         this.getIleInterdite().notifierObservateurs(msg);
         
     }

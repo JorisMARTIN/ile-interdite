@@ -101,27 +101,36 @@ public class Controleur implements Observateur<Message> {
                 break;
 
             case DEPLACER:
-                if(msg.action == 0) {
+                if (msg.action == 0) { //Déplacement normal
                     this.ileInterdite.deplacerAventurier(msg.nomTuile, msg.idAventurier);
                     this.ihm.activerActions(msg.idAventurier, true, true, true, true, false, this.ihm.getVueAventuriers().get(msg.idAventurier).getNomAventurier() == "Navigateur", true);
-                } else { //pouvoir du navigateur
+                } else if (msg.action == 1) { //pouvoir du navigateur
                     Tuile tuile = this.ileInterdite.getGrille().getTuile(msg.nomTuile);
                     Aventurier av = this.ileInterdite.getAventuriers().get(msg.idAventurier);
                     av.getPosition().removeAventurier(av);
                     av.setPosition(tuile);
                     av.getPosition().addAventurier(av);
-                    ileInterdite.getAventuriers().get(ileInterdite.getJoueurCourant()).moinsActions();
-                    ihm.majVueJeu();
+                    this.ileInterdite.getAventuriers().get(ileInterdite.getJoueurCourant()).moinsActions();
+                    this.ihm.majVueJeu();
+                } else { //Déplacement d'urgence
+                    Tuile tuile = this.ileInterdite.getGrille().getTuile(msg.nomTuile);
+                    Aventurier av = this.ileInterdite.getAventuriers().get(msg.idAventurier);
+                    av.getPosition().removeAventurier(av);
+                    av.setPosition(tuile);
+                    av.getPosition().addAventurier(av);
+                    this.ileInterdite.testDeplacementDUrgence();
+                    this.ihm.getVueJeu().actualisationSuperficielle();
                 }
                 break;
 
             case ASSECHER:
                 this.ihm.activerActions(msg.idAventurier, true, true, true, true, false, this.ihm.getVueAventuriers().get(msg.idAventurier).getNomAventurier() == "Navigateur", true);
                 Tuile tuile = this.ileInterdite.getGrille().getTuile(msg.nomTuile);
-                if(msg.action == 1)
+                if (msg.action == 3) { //Assèchement normal
                     this.ileInterdite.getAventuriers().get(msg.idAventurier).assecher(tuile);
-                else
+                } else { //Sac de sable
                     tuile.setEtat(EtatTuile.NORMAL);
+                }
                 this.ihm.majVueJeu();
                 break;
 
@@ -184,7 +193,7 @@ public class Controleur implements Observateur<Message> {
                 break;
                 
             case DEPLACEMENT_DURGENCE:
-                this.ihm.surbrillerTuiles(msg.possibilites, msg.pion, msg.action, msg.idAventurier);
+                this.ihm.surbrillerTuiles(msg.possibilites, msg.pion, 2, msg.idAventurier);
                 break;
                 
             case CLICK_HELICO:

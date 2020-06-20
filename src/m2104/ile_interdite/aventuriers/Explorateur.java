@@ -70,7 +70,6 @@ public class Explorateur extends Aventurier{
         boolean deplacementPossible = false;
         
         for (Tuile tuile : tuiles) {
-            System.out.println(tuiles.indexOf(tuile));
             if (tuile == null || tuile.isRetiree() || getPosition() == tuile) {
                 deplacementPossible = false;
             } else {
@@ -181,7 +180,7 @@ public class Explorateur extends Aventurier{
         msg.idAventurier = this.getIleInterdite().getAventuriers().indexOf(this);
         msg.possibilites = deplacementsPossibles;
         msg.pion = this.getPion();
-        msg.action = 3;
+        msg.action = 1;
         this.getIleInterdite().notifierObservateurs(msg);
         
     }

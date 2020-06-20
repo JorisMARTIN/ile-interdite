@@ -25,6 +25,7 @@ public class VueFin {
     private final JButton btnRejouer;
     private final JLabel textGagne;
     private final JLabel textGagnePartie2;
+    private final JLabel textGagnePartie3;
     private final JPanel mainPanel;
     private final JPanel bottomPanel;
 
@@ -33,6 +34,7 @@ public class VueFin {
 
         textGagne = new JLabel("");
         textGagnePartie2 = new JLabel("");
+        textGagnePartie3 = new JLabel("");
 
         btnQuitter = new JButton("Quitter");
         btnRejouer = new JButton("Rejouer");
@@ -49,9 +51,11 @@ public class VueFin {
         /*Panel principal*/
         textGagne.setHorizontalAlignment(JLabel.CENTER);
         textGagnePartie2.setHorizontalAlignment(JLabel.CENTER);
+        textGagnePartie3.setHorizontalAlignment(JLabel.CENTER);
 
         mainPanel.add(textGagne);
         mainPanel.add(textGagnePartie2);
+        mainPanel.add(textGagnePartie3);
 
         window.add(mainPanel, BorderLayout.CENTER);
 
@@ -127,12 +131,13 @@ public class VueFin {
     }
 
     // ====================================================== Activation de la VueJeu à son tour
-    public void activer(boolean b) {
+    public void activer(boolean b, String msg) {
         if (b) {
             textGagnePartie2.setText("Bravo vous avez gagné !");
         } else {
             textGagne.setText("Dommage, vous avez perdu.");
             textGagnePartie2.setText("Rééssayer pour gagner.");
+            textGagnePartie3.setText(msg);
         }
         this.window.setVisible(true);
     }

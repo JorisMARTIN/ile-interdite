@@ -46,6 +46,7 @@ public class Controleur implements Observateur<Message> {
                 this.ileInterdite.setCurseur(msg.difficulte);
                 this.ihm.creerVuesAventuriers(nomAventuriers);
                 this.ileInterdite.initGrille();
+                this.ihm.finGagne(false, "L'ile a sombré dans l'oubli");
                 break;
                 
             case INITIALISER_GRILLE:
@@ -181,7 +182,7 @@ public class Controleur implements Observateur<Message> {
                 break;
                 
             case FIN:
-                this.ihm.finGagne(msg.isReussi);
+                this.ihm.finGagne(msg.isReussi, msg.messageFin);
                 break;
                 
             case DEPLACEMENT_DURGENCE:

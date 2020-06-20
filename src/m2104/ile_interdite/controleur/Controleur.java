@@ -116,8 +116,7 @@ public class Controleur implements Observateur<Message> {
                 break;
 
             case ASSECHER:
-                VueAventurier vueA = this.ihm.getVueAventuriers().get(msg.idAventurier);
-                vueA.activerBoutons(true, true, true, true, false, vueA.getNomAventurier() == "Navigateur", true);
+                this.ihm.activerActions(msg.idAventurier, true, true, true, true, false, this.ihm.getVueAventuriers().get(msg.idAventurier).getNomAventurier() == "Navigateur", true);
                 Tuile tuile = this.ileInterdite.getGrille().getTuile(msg.nomTuile);
                 if(msg.action == 1)
                     this.ileInterdite.getAventuriers().get(msg.idAventurier).assecher(tuile);
@@ -195,6 +194,7 @@ public class Controleur implements Observateur<Message> {
             case FIN_DON:
                 VueAventurier va = this.ihm.getVueAventuriers().get(msg.idAventurier);
                 va.setDescription(msg.isReussi ? "Don effectué !" : "Erreur, le don n'a\npas pu être effectué !");
+                this.ihm.activerActionsTous(false, false, false, false, false, false, false);
                 va.activerBoutons(true, true, true, true, true, va.getNomAventurier() == "Navigateur", true);
                 break;
                 

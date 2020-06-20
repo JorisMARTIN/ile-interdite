@@ -42,7 +42,7 @@ public class IleInterdite extends Observable<Message> {
     private ArrayList<Utils.Tresor> tresorsEnJeu;
     
 
-	public IleInterdite(Observateur<Message> observateur) {
+    public IleInterdite(Observateur<Message> observateur) {
         this.grille = new Grille();
         
         // Création des decks
@@ -337,7 +337,7 @@ public class IleInterdite extends Observable<Message> {
     }
     
     public void lanceRecuperationTresor() {
-    	
+        
         if (aventuriers.get(joueurCourant).peutRecupererTresor()) {
             aventuriers.get(joueurCourant).recupererTresor();
         }
@@ -358,27 +358,27 @@ public class IleInterdite extends Observable<Message> {
     }
     
     public void deplacerAventuriers(String nomTuile, int idAventurier) {
-    	
-    	Tuile destination = this.grille.getTuile(nomTuile);
-    	
-    	ArrayList<Aventurier> aventuriersADeplacer = new ArrayList<Aventurier>() ;
-    	
-    	for(Aventurier a : this.aventuriers.get(idAventurier).getPosition().getAventuriers()) {
-    		aventuriersADeplacer.add(a);
-    	}
+        
+        Tuile destination = this.grille.getTuile(nomTuile);
+        
+        ArrayList<Aventurier> aventuriersADeplacer = new ArrayList<Aventurier>() ;
+        
+        for(Aventurier a : this.aventuriers.get(idAventurier).getPosition().getAventuriers()) {
+            aventuriersADeplacer.add(a);
+        }
 
-    	System.out.println(aventuriersADeplacer.size());
-    	
-    	for(Aventurier aventurier : aventuriersADeplacer) {
-    		
-    		aventurier.getPosition().removeAventurier(aventurier);
-    		aventurier.setPosition(destination);
-    		destination.addAventurier(aventurier);
-    	}
-    	
-    	Message msg = new Message(Utils.Commandes.MAJ_GRILLE);
+        System.out.println(aventuriersADeplacer.size());
+        
+        for(Aventurier aventurier : aventuriersADeplacer) {
+            
+            aventurier.getPosition().removeAventurier(aventurier);
+            aventurier.setPosition(destination);
+            destination.addAventurier(aventurier);
+        }
+        
+        Message msg = new Message(Utils.Commandes.MAJ_GRILLE);
         notifierObservateurs(msg);
-    	
+        
     }
 
     
@@ -430,21 +430,29 @@ public class IleInterdite extends Observable<Message> {
 
     }
 
-	public ArrayList<Utils.Tresor> getTresorsEnJeu() {
-		return tresorsEnJeu;
-	}
+    public ArrayList<Utils.Tresor> getTresorsEnJeu() {
+        return tresorsEnJeu;
+    }
 
-	public void lanceDonCarte(int idAventurier, int idCarte) {
-		boolean b = getAventuriers().get(joueurCourant).peutDonnerCarteTresor(this.getAventuriers().get(idAventurier), idCarte);
-		
-		Message msg = new Message(Commandes.FIN_DON);
-		msg.isReussi = b;
-		msg.idAventurier = joueurCourant;
-		
+    public void lanceDonCarte(int idAventurier, int idCarte) {
+        boolean b = getAventuriers().get(joueurCourant).peutDonnerCarteTresor(this.getAventuriers().get(idAventurier), idCarte);
+        
+        Message msg = new Message(Commandes.FIN_DON);
+        msg.isReussi = b;
+        msg.idAventurier = joueurCourant;
+        
         notifierObservateurs(msg);
         
-        if(b)
+        if(b) {
             this.getAventuriers().get(joueurCourant).donnerCarteTresor(this.getAventuriers().get(idAventurier), idCarte);
-	}
+        }
+        
+        
+        Message msg2 = new Message(Commandes.ACTUALISER_MAIN);
+        msg2.idAventurier = joueurCourant;
+        msg2.main = aventuriers.get(joueurCourant).getMain();
+        
+        this.notifierObservateurs(msg2);
+    }
 
 }

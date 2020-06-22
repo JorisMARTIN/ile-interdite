@@ -118,15 +118,14 @@ public class Controleur implements Observateur<Message> {
                     av.setPosition(tuile);
                     av.getPosition().addAventurier(av);
                     this.ileInterdite.testDeplacementDUrgence();
-                    this.ihm.getVueJeu().actualisationSuperficielle();
                 }
                 break;
 
             case ASSECHER:
-                this.ihm.activerActions(msg.idAventurier, true, true, true, true, false, this.ihm.getVueAventuriers().get(msg.idAventurier).getNomAventurier() == "Navigateur", true);
                 Tuile tuile = this.ileInterdite.getGrille().getTuile(msg.nomTuile);
                 if (msg.action == 3) { //Assèchement normal
                     this.ileInterdite.getAventuriers().get(msg.idAventurier).assecher(tuile);
+                    this.ihm.activerActions(msg.idAventurier, true, true, true, true, false, this.ihm.getVueAventuriers().get(msg.idAventurier).getNomAventurier() == "Navigateur", true);
                 } else { //Sac de sable
                     tuile.setEtat(EtatTuile.NORMAL);
                 }
@@ -189,9 +188,11 @@ public class Controleur implements Observateur<Message> {
                 
             case FIN:
                 this.ihm.finGagne(msg.isReussi, msg.messageFin);
+                this.ihm.majVueJeu();
                 break;
                 
             case DEPLACEMENT_DURGENCE:
+                this.ihm.getVueJeu().actualisationSuperficielle();
                 this.ihm.surbrillerTuiles(msg.possibilites, msg.pion, 2, msg.idAventurier);
                 break;
                 

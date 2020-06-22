@@ -216,17 +216,17 @@ public class VueAventurier {
         this.window.setVisible(true);
         mainPanel.repaint();
     }
-	
-	/**
-	 * 
-	 * @param activerMove
-	 * @param activerDry
-	 * @param activerDonner
-	 * @param activerRecuperer
-	 * @param activerRecevoir
-	 * @param activerDeplacer
-	 * @param activerTerminer
-	 */
+    
+    /**
+     * 
+     * @param activerMove
+     * @param activerDry
+     * @param activerDonner
+     * @param activerRecuperer
+     * @param activerRecevoir
+     * @param activerDeplacer
+     * @param activerTerminer
+     */
     public void activerBoutons(Boolean activerMove, Boolean activerDry, Boolean activerDonner, Boolean activerRecuperer, Boolean activerRecevoir, Boolean activerDeplacer, Boolean activerTerminer) {
 
         if (activerMove != null) {
@@ -560,10 +560,10 @@ public class VueAventurier {
              
             @Override
             public void actionPerformed(ActionEvent e) {
-            	ihm.setIdCarteADonner(mainJoueur.indexOf(e.getSource()));
-            	
-            	ihm.activerActionsTous(false, false, false, false, true, false, false);
-            	activerBoutons(false, false, false, false, false, false, true);
+                ihm.setIdCarteADonner(mainJoueur.indexOf(e.getSource()));
+                
+                ihm.activerActionsTous(false, false, false, false, true, false, false);
+                activerBoutons(false, false, false, false, false, false, true);
                  
                 description.setText("Cliquez maintenant sur\nle joueur à qui vous\nvoulez donner la carte :");
             }
@@ -590,7 +590,7 @@ public class VueAventurier {
     }
 
     public void setDescription(String description) {
-		this.description.setText(description);
+        this.description.setText(description);
     }
     
     public void setVisible(boolean b){

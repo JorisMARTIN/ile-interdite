@@ -140,7 +140,6 @@ public class IHM extends Observable<Message> {
     }
 
     public void changerJoueurCourant(int idAventurier) {
-
         for (VueAventurier vue : this.vueAventuriers.values()) {
             
             vue.resetActionRestantes();

@@ -23,6 +23,7 @@ public interface Observateur<Message> extends Flow.Subscriber<Message> {
 
     @Override
     public default void onError(Throwable throwable) {
+        throwable.printStackTrace();
     }
 
     @Override

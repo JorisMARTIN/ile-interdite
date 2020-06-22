@@ -215,9 +215,9 @@ public class VueJeu {
         grillePanel.removeAll();
         //tuiles
         JButton button;
-        boutons = new ArrayList<JButton>();
-        for(int i = 0; i < grille.getTuiles(true).size(); i++) {
-            Tuile t = grille.getTuiles(true).get(i);
+        this.boutons = new ArrayList<JButton>();
+        for(int i = 0; i < this.grille.getTuiles(true).size(); i++) {
+            Tuile t = this.grille.getTuiles(true).get(i);
             button = new JButton();
             button.setBorder(BorderFactory.createEmptyBorder());
             button.setOpaque(false);
@@ -300,15 +300,15 @@ public class VueJeu {
     }
     
     public void actualisationSuperficielle() {
-        for(int i = 0; i < grille.getTuiles(true).size(); i++) {
-            Tuile t = grille.getTuiles(true).get(i);
-            JButton button = boutons.get(i);
+        for (int i = 0; i < this.grille.getTuiles(true).size(); i++) {
+            Tuile t = this.grille.getTuiles(true).get(i);
+            JButton button = this.boutons.get(i);
             button.setBorder(BorderFactory.createEmptyBorder());
             button.setOpaque(false);
             button.setContentAreaFilled(false);
             button.setFocusPainted(false);
             button.setEnabled(false);
-            if (t != null && t.getEtat() != EtatTuile.RETIREE) {
+            if (t != null && !t.isRetiree()) {
                 button.removeAll();
                 JLabel labelPion;
                 int nbPion = t.getAventuriers().size();

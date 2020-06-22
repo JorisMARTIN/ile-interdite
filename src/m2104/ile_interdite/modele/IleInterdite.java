@@ -272,16 +272,12 @@ public class IleInterdite extends Observable<Message> {
         
         
         for (int i = 0; i < nb; i++) {
+            if (this.deckInnondation.getPioche().size() == 0) {
+                this.deckInnondation.remplirPioche(this.deckInnondation.getDefausse());
+                this.deckInnondation.getDefausse().clear();
+            }
             CarteInnondation carte = (CarteInnondation) this.deckInnondation.getPremiereCarte();
             carte.action();
-            if (carte.getTuile().getEtat() == EtatTuile.RETIREE && carte.getTuile().getNom() == "Heliport") {
-
-                Message msg = new Message(Utils.Commandes.FIN);
-                msg.isReussi = false;
-                msg.messageFin = "L'Heliport a coulé";
-
-                notifierObservateurs(msg);
-            }
         }
     }
 
@@ -305,7 +301,48 @@ public class IleInterdite extends Observable<Message> {
     public void lanceRecuperationTresor() {
         
         if (aventuriers.get(joueurCourant).peutRecupererTresor()) {
-            aventuriers.get(joueurCourant).recupererTresor();
+            Tresor tresor = aventuriers.get(joueurCourant).getPosition().getTresor();
+            aventuriers.get(joueurCourant).recupererTresor(tresor);
+            
+            for (Aventurier aventurier : this.aventuriers) {
+                for (CarteTresor carte : aventurier.getCartesTresorsEnMain()) {
+                    if (carte.getTresor() == tresor) {
+                        aventurier.getMain().remove(carte);
+                        Message msg = new Message(Utils.Commandes.ACTUALISER_MAIN);
+                        msg.main = aventurier.getMain();
+                        msg.idAventurier = this.aventuriers.indexOf(aventurier);
+                        notifierObservateurs(msg);
+                    }
+                }
+            }
+            
+            ArrayList<Carte> piocheTemp = new ArrayList<Carte>() ;
+            for(Carte c : this.deckTresor.getPioche()) {
+                piocheTemp.add(c);
+            }
+        
+            for (Carte carte : piocheTemp) {
+                if (carte instanceof CarteTresor) {
+                    CarteTresor carteTresor = (CarteTresor) carte;
+                    if (carteTresor.getTresor() == tresor) {
+                        this.deckTresor.getPioche().remove(carteTresor);
+                    }
+                }
+            }
+            
+            ArrayList<Carte> defausseTemp = new ArrayList<Carte>() ;
+            for(Carte c : this.deckTresor.getDefausse()) {
+                defausseTemp.add(c);
+            }
+        
+            for (Carte carte : defausseTemp) {
+                if (carte instanceof CarteTresor) {
+                    CarteTresor carteTresor = (CarteTresor) carte;
+                    if (carteTresor.getTresor() == tresor) {
+                        this.deckTresor.getDefausse().remove(carteTresor);
+                    }
+                }
+            }
         }
         
         Message msg = new Message(Utils.Commandes.MAJ_GRILLE);
@@ -379,11 +416,53 @@ public class IleInterdite extends Observable<Message> {
         
             // Lance la phase d'innondation
             this.lanceInnondation();
-            
-            this.testDeplacementDUrgence();
-            
+            if (!this.testFinHeliportTresor()) {
+                this.testDeplacementDUrgence();
+            }
         }
 
+    }
+    
+    public boolean testFinHeliportTresor() {
+        boolean fin = false;
+        
+        int calice = 0;
+        int pierre = 0;
+        int cristal = 0;
+        int zephyr = 0;
+        for (Tuile tuile : this.grille.getTuiles(false)) {
+            if (tuile.isRetiree() && tuile.getNom() == "Heliport") {
+
+                Message msg = new Message(Utils.Commandes.FIN);
+                msg.isReussi = false;
+                msg.messageFin = "L'Heliport a coulé";
+
+                notifierObservateurs(msg);
+                fin = true;
+            }
+            if (tuile.isRetiree() && tuile.getTresor() != null) {
+                if (tuile.getTresor() == Tresor.CALICE && this.tresorsEnJeu.contains(Tresor.CALICE)) {
+                    calice ++;
+                } else if (tuile.getTresor() == Tresor.PIERRE && this.tresorsEnJeu.contains(Tresor.PIERRE)) {
+                    pierre++;
+                } else if (tuile.getTresor() == Tresor.CRISTAL && this.tresorsEnJeu.contains(Tresor.CRISTAL)) {
+                    cristal++;
+                } else if (tuile.getTresor() == Tresor.ZEPHYR && this.tresorsEnJeu.contains(Tresor.ZEPHYR)) {
+                    zephyr++;
+                }
+            }
+        }
+        
+        if (calice == 2 || pierre == 2 || cristal == 2 || zephyr == 2) {
+            Message msg = new Message(Utils.Commandes.FIN);
+            msg.isReussi = false;
+            msg.messageFin = "Vous avez perdu un tr�sor";
+
+            notifierObservateurs(msg);
+            fin = true;
+        }
+        
+        return fin;
     }
     
     public void gagnee(boolean b) {

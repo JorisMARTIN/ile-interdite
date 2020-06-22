@@ -180,19 +180,7 @@ public abstract class Aventurier {
      *  <li>Met a jour la vueAventurier</li>
      * </ol>
      */
-    public void recupererTresor() {
-            
-        Utils.Tresor tresor = this.position.getTresor();
-        
-        int i = 4;
-        for(CarteTresor carte : getCartesTresorsEnMain()) {
-            if(carte.getTresor() == tresor) {
-                this.ileInterdite.getDeckTresor().getDefausse().add(carte);
-                this.main.remove(carte);
-                i--;
-            }
-            if(i == 0) break;
-        }
+    public void recupererTresor(Tresor tresor) {
         
         this.tresors.add(tresor);
         this.ileInterdite.getTresorsEnJeu().remove(tresor);
@@ -205,8 +193,6 @@ public abstract class Aventurier {
         msg.idAventurier = this.ileInterdite.getAventuriers().indexOf(this);
         
         this.ileInterdite.notifierObservateurs(msg);
-      
-        
     }
     
     public ArrayList<Carte> getMain() {
@@ -450,9 +436,9 @@ public abstract class Aventurier {
         
         ArrayList<CarteTresor> cartesTresor = new ArrayList<CarteTresor>();
         
-        for(Carte carte : this.main) {
+        for (Carte carte : this.main) {
             
-            if(carte instanceof CarteTresor) {
+            if (carte instanceof CarteTresor) {
                 cartesTresor.add((CarteTresor) carte);
             }
             
@@ -514,8 +500,8 @@ public abstract class Aventurier {
                         deplacementPossible = true;
                     }
                 } else if (indexTuileActuelle > 6 && indexTuileActuelle - 7 == indexTuileCible && (indexTuileActuelle % 6) != 0) {
-                    if ((tuiles.get(indexTuileActuelle - 1).isRetiree())
-                     || (tuiles.get(indexTuileActuelle - 6).isRetiree())) {
+                    if ((!tuiles.get(indexTuileActuelle - 1).isRetiree())
+                     || (!tuiles.get(indexTuileActuelle - 6).isRetiree())) {
                         deplacementPossible = true;
                     }
                 } else {

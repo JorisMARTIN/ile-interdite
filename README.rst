@@ -6,6 +6,7 @@ Projet Île Interdite
 :**Membres**: JHISTARRY Thomas, SIGNORET Tanguy, MARTIN Joris, PAPPALARDO Mattéo
 :**Chef de projet**: JHISTARRY Thomas
 
+VIDÉO DE PRÉSENTATION : https://www.youtube.com/watch?v=7uwoD4g1XvA
 
 Description du projet
 ---------------------

@@ -49,7 +49,7 @@ public class VueInscriptionJoueurs {
         JPanel panelDifficulte = new JPanel(new GridLayout(1,2));
 
         
-        // Choix difficult�
+        // Choix difficulté
         curseur = new JComboBox<Integer>(new Integer[] {1, 2, 3, 4});
         panelDifficulte.add(new JLabel("Difficulte :"));
         panelDifficulte.add(curseur);

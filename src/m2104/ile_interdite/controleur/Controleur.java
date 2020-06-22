@@ -100,7 +100,7 @@ public class Controleur implements Observateur<Message> {
                 break;
 
             case DEPLACER:
-                if (msg.action == 0) { //D�placement normal
+                if (msg.action == 0) { //Déplacement normal
                     this.ileInterdite.deplacerAventurier(msg.nomTuile, msg.idAventurier);
                     this.ihm.activerActions(msg.idAventurier, true, true, true, true, false, this.ihm.getVueAventuriers().get(msg.idAventurier).getNomAventurier() == "Navigateur", true);
                 } else if (msg.action == 1) { //pouvoir du navigateur
@@ -111,7 +111,7 @@ public class Controleur implements Observateur<Message> {
                     av.getPosition().addAventurier(av);
                     this.ileInterdite.getAventuriers().get(ileInterdite.getJoueurCourant()).moinsActions();
                     this.ihm.majVueJeu();
-                } else { //D�placement d'urgence
+                } else { //Déplacement d'urgence
                     Tuile tuile = this.ileInterdite.getGrille().getTuile(msg.nomTuile);
                     Aventurier av = this.ileInterdite.getAventuriers().get(msg.idAventurier);
                     av.getPosition().removeAventurier(av);
@@ -123,7 +123,7 @@ public class Controleur implements Observateur<Message> {
 
             case ASSECHER:
                 Tuile tuile = this.ileInterdite.getGrille().getTuile(msg.nomTuile);
-                if (msg.action == 3) { //Ass�chement normal
+                if (msg.action == 3) { //Asséchement normal
                     this.ileInterdite.getAventuriers().get(msg.idAventurier).assecher(tuile);
                     this.ihm.activerActions(msg.idAventurier, true, true, true, true, false, this.ihm.getVueAventuriers().get(msg.idAventurier).getNomAventurier() == "Navigateur", true);
                 } else { //Sac de sable
@@ -198,7 +198,7 @@ public class Controleur implements Observateur<Message> {
                 
             case FIN_DON:
                 VueAventurier va = this.ihm.getVueAventuriers().get(msg.idAventurier);
-                va.setDescription(msg.isReussi ? "Don effectu� !" : "Erreur, le don n'a\npas pu �tre effectu� !");
+                va.setDescription(msg.isReussi ? "Don effectué !" : "Erreur, le don n'a\npas pu étre effectué !");
                 this.ihm.activerActionsTous(false, false, false, false, false, false, false);
                 va.activerBoutons(true, true, true, true, true, va.getNomAventurier() == "Navigateur", true);
                 break;

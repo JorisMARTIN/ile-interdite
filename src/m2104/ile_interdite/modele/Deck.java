@@ -45,7 +45,7 @@ public class Deck {
         return pioche.get(pioche.size() - 1);
     }
     
-    // Melange la collection de carte placer en param�tre
+    // Melange la collection de carte placer en paramétre
     private ArrayList<Carte> melanger(ArrayList<Carte> cartes){
     	
     	Collections.shuffle(cartes);

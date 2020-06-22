@@ -94,7 +94,7 @@ public class IleInterdite extends Observable<Message> {
         String[] nomAventuriers = new String[nbJoueurs];
         
         ArrayList<String> selections = new ArrayList<>(Arrays.asList(
-            "Explorateur", "Pilote", "Navigateur", "Ingénieur", "Messager", "Plongeur"
+            "Explorateur", "Pilote", "Navigateur", "IngÃ©nieur", "Messager", "Plongeur"
         ));
 
         for(int i = 0; i < nbJoueurs; i++) {
@@ -115,7 +115,7 @@ public class IleInterdite extends Observable<Message> {
                     aventurier = new Navigateur(this);
                     break;
 
-                case "Ingénieur":
+                case "IngÃ©nieur":
                     aventurier = new Ingenieur(this);
                     break;
 
@@ -187,7 +187,7 @@ public class IleInterdite extends Observable<Message> {
         } else {
             Message msg = new Message(Commandes.FIN);
             msg.isReussi = false;
-            msg.messageFin = "L'île a sombrée dans l'oubli";
+            msg.messageFin = "L'Ã©le a sombrÃ©e dans l'oubli";
 
             notifierObservateurs(msg);
         }
@@ -435,7 +435,7 @@ public class IleInterdite extends Observable<Message> {
 
                 Message msg = new Message(Utils.Commandes.FIN);
                 msg.isReussi = false;
-                msg.messageFin = "L'Heliport a coulé";
+                msg.messageFin = "L'Heliport a coulÃ©";
 
                 notifierObservateurs(msg);
                 fin = true;
@@ -456,7 +456,7 @@ public class IleInterdite extends Observable<Message> {
         if (calice == 2 || pierre == 2 || cristal == 2 || zephyr == 2) {
             Message msg = new Message(Utils.Commandes.FIN);
             msg.isReussi = false;
-            msg.messageFin = "Vous avez perdu un trésor";
+            msg.messageFin = "Vous avez perdu un trÃ©sor";
 
             notifierObservateurs(msg);
             fin = true;
@@ -520,7 +520,7 @@ public class IleInterdite extends Observable<Message> {
                         Message msg = new Message(Utils.Commandes.FIN);
                         arretDuTest = true;
                         msg.isReussi = false;
-                        msg.messageFin = "Vous avez coulé";
+                        msg.messageFin = "Vous avez coulÃ©";
         
                         notifierObservateurs(msg);
                     }

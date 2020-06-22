@@ -49,7 +49,7 @@ public class VueJeu {
         this.ihm = ihm;
         this.grille = grille;
         this.tresors = tresors;
-        fenetre = new JFrame("L'�le interdite");
+        fenetre = new JFrame("L'île interdite");
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fenetre.setUndecorated(Parameters.UNDECORATED);
         fenetre.setResizable(false);
@@ -159,7 +159,7 @@ public class VueJeu {
                 }
 
                 switch(action) {
-                    case 0: //ceci est fait exprès pour propager l'int action au controleur (Cas 0 : d�placement, cas 1 : d�placement par navigateur, cas 2 : d�placement d'urgence)
+                    case 0: //ceci est fait exprès pour propager l'int action au controleur (Cas 0 : déplacement, cas 1 : déplacement par navigateur, cas 2 : déplacement d'urgence)
                     case 1:
                     case 2:
                         bouton.addActionListener(new ActionListener() {
@@ -174,7 +174,7 @@ public class VueJeu {
                         });
                         break;
                     
-                    case 3: //ceci est fait exprès pour propager l'int action au controleur (Cas 3 : ass�chement, cas 4 : sac de sable)
+                    case 3: //ceci est fait exprès pour propager l'int action au controleur (Cas 3 : asséchement, cas 4 : sac de sable)
                     case 4:
                         bouton.addActionListener(new ActionListener() {
                             @Override

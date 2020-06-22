@@ -55,7 +55,6 @@ public class Utils {
         ACTUALISER_MAIN("Actualise la main du joueur"),
         DEMANDE_DEFFAUSE("Réclame au joueur de deffausser une carte"),
         CARTE_JOUE("Le Joueur vient de jouer une carte"),
-        CLICK_HELICO("Demande quel déplacement est voulu pour la carte jouée."),
         DEPLACEMENT_DURGENCE("Demande au joueur de se d�placer si cela est possible, toute autre action est impossible en dehors des cartes action sp�ciale"),
         DON_CARTE("Le joueur fait dont d'une carte"),
         FIN_DON("Le don de carte est terminer"),

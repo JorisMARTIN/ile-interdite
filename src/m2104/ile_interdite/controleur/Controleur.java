@@ -100,7 +100,7 @@ public class Controleur implements Observateur<Message> {
                 break;
 
             case DEPLACER:
-                if (msg.action == 0) { //Déplacement normal
+                if (msg.action == 0) { //Dï¿½placement normal
                     this.ileInterdite.deplacerAventurier(msg.nomTuile, msg.idAventurier);
                     this.ihm.activerActions(msg.idAventurier, true, true, true, true, false, this.ihm.getVueAventuriers().get(msg.idAventurier).getNomAventurier() == "Navigateur", true);
                 } else if (msg.action == 1) { //pouvoir du navigateur
@@ -111,7 +111,7 @@ public class Controleur implements Observateur<Message> {
                     av.getPosition().addAventurier(av);
                     this.ileInterdite.getAventuriers().get(ileInterdite.getJoueurCourant()).moinsActions();
                     this.ihm.majVueJeu();
-                } else { //Déplacement d'urgence
+                } else { //Dï¿½placement d'urgence
                     Tuile tuile = this.ileInterdite.getGrille().getTuile(msg.nomTuile);
                     Aventurier av = this.ileInterdite.getAventuriers().get(msg.idAventurier);
                     av.getPosition().removeAventurier(av);
@@ -123,7 +123,7 @@ public class Controleur implements Observateur<Message> {
 
             case ASSECHER:
                 Tuile tuile = this.ileInterdite.getGrille().getTuile(msg.nomTuile);
-                if (msg.action == 3) { //Assèchement normal
+                if (msg.action == 3) { //Assï¿½chement normal
                     this.ileInterdite.getAventuriers().get(msg.idAventurier).assecher(tuile);
                     this.ihm.activerActions(msg.idAventurier, true, true, true, true, false, this.ihm.getVueAventuriers().get(msg.idAventurier).getNomAventurier() == "Navigateur", true);
                 } else { //Sac de sable
@@ -194,10 +194,6 @@ public class Controleur implements Observateur<Message> {
             case DEPLACEMENT_DURGENCE:
                 this.ihm.getVueJeu().actualisationSuperficielle();
                 this.ihm.surbrillerTuiles(msg.possibilites, msg.pion, 2, msg.idAventurier);
-                break;
-                
-            case CLICK_HELICO:
-                this.ihm.surbrillerTuiles(msg.possibilites, msg.pion, msg.action, msg.idAventurier);
                 break;
                 
             case FIN_DON:

@@ -58,7 +58,7 @@ public class IHM extends Observable<Message> {
                         active = Utils.Pion.JAUNE.getCouleur();
                     break;
                     
-                case "IngÃ©nieur" :
+                case "Ingénieur" :
                         active = Utils.Pion.ROUGE.getCouleur();
                     break;
                 

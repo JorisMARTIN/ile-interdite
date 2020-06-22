@@ -191,10 +191,10 @@ public class VueAventurier {
         panelBoutons_ligne1.setOpaque(false);
         panelBoutons.add(panelBoutons_ligne1);
 
-        this.btnAller = creerBouton(1, "Aller", Utils.Commandes.LANCER_DEPLACEMENT, "Se d√©placer vers une tuile") ;
+        this.btnAller = creerBouton(1, "Aller", Utils.Commandes.LANCER_DEPLACEMENT, "Se dÈplacer vers une tuile") ;
         panelBoutons_ligne1.add(btnAller);
 
-        this.btnAssecher = creerBouton(2, "S√©cher", Utils.Commandes.LANCER_ASSECHEMENT, "Ass√©cher une tuile") ;
+        this.btnAssecher = creerBouton(2, "SÈcher", Utils.Commandes.LANCER_ASSECHEMENT, "AssÈcher une tuile") ;
         panelBoutons_ligne1.add(btnAssecher);
 
         this.btnDonner = creerBouton(3, "Donner", Utils.Commandes.DONNER, "Donner une carte √† un autre joueur") ;
@@ -204,10 +204,10 @@ public class VueAventurier {
         panelBoutons_ligne2.setOpaque(false);
         panelBoutons.add(panelBoutons_ligne2);
 
-        this.btnPrendre = creerBouton(4, "Prendre", Utils.Commandes.RECUPERER_TRESOR, "R√©cup√©rer le tr√©sor de la tuile courante") ;
+        this.btnPrendre = creerBouton(4, "Prendre", Utils.Commandes.RECUPERER_TRESOR, "RÈcupÈrer le tr√©sor de la tuile courante") ;
         panelBoutons_ligne2.add(btnPrendre);
 
-        this.btnDeplacer = creerBouton(5, "Bouger", Utils.Commandes.BOUGER, "D√©placer un autre joueur vers une tuile adjacente") ;
+        this.btnDeplacer = creerBouton(5, "Bouger", Utils.Commandes.BOUGER, "DÈplacer un autre joueur vers une tuile adjacente") ;
         panelBoutons_ligne2.add(btnDeplacer);
 
         this.btnTerminer = creerBouton(6, "Finir", Utils.Commandes.TERMINER, "Terminer son tour") ;
@@ -451,7 +451,7 @@ public class VueAventurier {
     }
     
     public void setActionRestantes(Integer actionRestantes) {
-        this.actionRestantes.setText("Action restantes : " + actionRestantes);
+        this.actionRestantes.setText("Actions restantes : " + actionRestantes);
     }
 
     /**
@@ -542,7 +542,7 @@ public class VueAventurier {
              
         }
         
-        this.description.setText("Vous avez trop de carte !\nCliquez sur laquel vous voulez defausser :");
+        this.description.setText("Vous avez trop de carte !\nCliquez sur celle vous voulez dÈfausser :");
     }
     
     
@@ -565,7 +565,7 @@ public class VueAventurier {
                 ihm.activerActionsTous(false, false, false, false, true, false, false);
                 activerBoutons(false, false, false, false, false, false, true);
                  
-                description.setText("Cliquez maintenant sur\nle joueur √† qui vous\nvoulez donner la carte :");
+                description.setText("Cliquez maintenant sur\nle joueur ‡ qui vous\nvoulez donner la carte :");
             }
             });
              

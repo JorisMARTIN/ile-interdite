@@ -202,7 +202,7 @@ public class Controleur implements Observateur<Message> {
                 
             case FIN_DON:
                 VueAventurier va = this.ihm.getVueAventuriers().get(msg.idAventurier);
-                va.setDescription(msg.isReussi ? "Don effectuÃ© !" : "Erreur, le don n'a\npas pu Ãªtre effectuÃ© !");
+                va.setDescription(msg.isReussi ? "Don effectué !" : "Erreur, le don n'a\npas pu être effectué !");
                 this.ihm.activerActionsTous(false, false, false, false, false, false, false);
                 va.activerBoutons(true, true, true, true, true, va.getNomAventurier() == "Navigateur", true);
                 break;

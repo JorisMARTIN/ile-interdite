@@ -94,7 +94,7 @@ public class IleInterdite extends Observable<Message> {
         String[] nomAventuriers = new String[nbJoueurs];
         
         ArrayList<String> selections = new ArrayList<>(Arrays.asList(
-            "Explorateur", "Pilote", "Navigateur", "IngÃ©nieur", "Messager", "Plongeur"
+            "Explorateur", "Pilote", "Navigateur", "Ingénieur", "Messager", "Plongeur"
         ));
 
         for(int i = 0; i < nbJoueurs; i++) {
@@ -115,7 +115,7 @@ public class IleInterdite extends Observable<Message> {
                     aventurier = new Navigateur(this);
                     break;
 
-                case "IngÃ©nieur":
+                case "Ingénieur":
                     aventurier = new Ingenieur(this);
                     break;
 
@@ -187,7 +187,7 @@ public class IleInterdite extends Observable<Message> {
         } else {
             Message msg = new Message(Commandes.FIN);
             msg.isReussi = false;
-            msg.messageFin = "L'ile a sombrÃ© dans l'oubli";
+            msg.messageFin = "L'île a sombrée dans l'oubli";
 
             notifierObservateurs(msg);
         }
@@ -435,7 +435,7 @@ public class IleInterdite extends Observable<Message> {
 
                 Message msg = new Message(Utils.Commandes.FIN);
                 msg.isReussi = false;
-                msg.messageFin = "L'Heliport a coulÃ©";
+                msg.messageFin = "L'Heliport a coulé";
 
                 notifierObservateurs(msg);
                 fin = true;
@@ -520,7 +520,7 @@ public class IleInterdite extends Observable<Message> {
                         Message msg = new Message(Utils.Commandes.FIN);
                         arretDuTest = true;
                         msg.isReussi = false;
-                        msg.messageFin = "Vous avez coulÃ©";
+                        msg.messageFin = "Vous avez coulé";
         
                         notifierObservateurs(msg);
                     }

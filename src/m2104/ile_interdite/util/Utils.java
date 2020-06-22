@@ -25,41 +25,41 @@ public class Utils {
 
     public static enum Commandes {
         VALIDER_JOUEURS("Valider l'inscription des joueurs"),
-        LANCER_DEPLACEMENT("Choisir une case pour dÃ©placer son pion"),
-        LANCER_ASSECHEMENT("Choisir une case pour assÃ©cher une tuile"),
+        LANCER_DEPLACEMENT("Choisir une case pour déplacer son pion"),
+        LANCER_ASSECHEMENT("Choisir une case pour assécher une tuile"),
         DONNER("Donner une carte Ã  un autre joueur"),
-        RECUPERER_TRESOR("RÃ©cupÃ©rer le trÃ©sor de la tuile"),
+        RECUPERER_TRESOR("Récupérer le trésor de la tuile"),
         TERMINER("Terminer son tour"),
-        RECEVOIR("Recevoir la carte donnÃ©e par un autre joueur"),
-        CHOISIR_CARTE("Utiliser une carte trÃ©sor"),
-        CHOISIR_TUILE("SÃ©lectionner une tuile"),
-        DEPLACER("DÃ©placer un joueur"),
-        ASSECHER("AssÃ©cher une tuile"),
-        ZERO_ACTIONS("Le joueur ne peut que utiliser une carte action spï¿½ciale ou finir son tour"),
-        INITIALISER_GRILLE("Grille initialiser avec les tuiles innondÃ©es"),
+        RECEVOIR("Recevoir la carte donnée par un autre joueur"),
+        CHOISIR_CARTE("Utiliser une carte trésor"),
+        CHOISIR_TUILE("Sélectionner une tuile"),
+        DEPLACER("Déplacer un joueur"),
+        ASSECHER("Assécher une tuile"),
+        ZERO_ACTIONS("Le joueur ne peut que utiliser une carte action spéciale ou finir son tour"),
+        INITIALISER_GRILLE("Grille initialiser avec les tuiles innondées"),
         INITIALISER("Initialisation joueur"),
         /*Ajout de nouveaux messages*/
         MAJ_GRILLE("Mise Ã  jour de la grille"),
         BOUGER("Pouvoir du Navigateur"),
-        LANCER_PVNAVIGATEUR("Lance le dÃ©placement d'un pion en tant que pouvoir du Navigateur"),
-        TUILES_POSSIBLES("Avec possibilitÃ©, met en valeur les tuiles sur lequel l'action est possible"),
-        AUGMENTER_CURSEUR("Augmenter le curseur de montÃ©e des eaux"),
-        LANCE_CURSEUR("Lance le traitement afin d'augmenter le curseur de montÃ©e des eaux"),
+        LANCER_PVNAVIGATEUR("Lance le déplacement d'un pion en tant que pouvoir du Navigateur"),
+        TUILES_POSSIBLES("Avec possibilité, met en valeur les tuiles sur lequel l'action est possible"),
+        AUGMENTER_CURSEUR("Augmenter le curseur de montée des eaux"),
+        LANCE_CURSEUR("Lance le traitement afin d'augmenter le curseur de montée des eaux"),
         LANCER_JEU("Lancement du Jeu"),
         JOUEUR_SUIVANT("Passe au joueur suivant."),
-        FIN("Fin de la partie les aventurier ont dÃ©colÃ©s mais ont perdu."),
-        GAGNEE("Fin de la partie les aventurier ont dÃ©colÃ©s et ils ont gagnÃ©es."),
+        FIN("Fin de la partie les aventurier ont décolés mais ont perdu."),
+        GAGNEE("Fin de la partie les aventurier ont décolés et ils ont gagnées."),
         ACTION_RESTANTES("Nombre d'action restantes pour un joueur"),
-        DEFAUSSE_CARTE("Le joueur dÃ©fausse une carte"),
+        DEFAUSSE_CARTE("Le joueur défausse une carte"),
         JOUE_CARTE("Le Joueur joue une carte"),
         ACTUALISER_MAIN("Actualise la main du joueur"),
-        DEMANDE_DEFFAUSE("RÃ©clame au joueur de deffausser une carte"),
+        DEMANDE_DEFFAUSE("Demande au joueur de déffausser une carte"),
         CARTE_JOUE("Le Joueur vient de jouer une carte"),
-        CLICK_HELICO("Demande quel dÃ©placement est voulu pour la carte jouÃ©e."),
-        DEPLACEMENT_DURGENCE("Demande au joueur de se dï¿½placer si cela est possible, toute autre action est impossible en dehors des cartes action spï¿½ciale"),
+        CLICK_HELICO("Demande quel déplacement est voulu pour la carte jouÃ©e."),
+        DEPLACEMENT_DURGENCE("Demande au joueur de se déplacer si cela est possible, toute autre action est impossible en dehors des cartes action spéciale"),
         DON_CARTE("Le joueur fait dont d'une carte"),
         FIN_DON("Le don de carte est terminer"),
-        DEPLACER_HELICO("Deplacement par helicoptÃ¨re");
+        DEPLACER_HELICO("Deplacement par helicoptère");
 
 
         private final String libelle ;
@@ -75,8 +75,8 @@ public class Utils {
     }
 
     public static enum Tresor {
-        PIERRE("La Pierre SacrÃ©e", new Color(141,79,9), new Color(255,242,0), Parameters.TRESORS + "pierre.png"),
-        ZEPHYR("La statue du ZÃ©phyr", new Color(255,215,0), new Color(208,26,136), Parameters.TRESORS + "zephyr.png"),
+        PIERRE("La Pierre Sacrée", new Color(141,79,9), new Color(255,242,0), Parameters.TRESORS + "pierre.png"),
+        ZEPHYR("La statue du Zéphyr", new Color(255,215,0), new Color(208,26,136), Parameters.TRESORS + "zephyr.png"),
         CRISTAL("Le Cristal Ardent", new Color(219,56,154), new Color(99,187,242), Parameters.TRESORS + "cristal.png"),
         CALICE("Le Calice de l'Onde", new Color(27,188,245), new Color(141,79,9), Parameters.TRESORS + "calice.png") ;
 
@@ -206,7 +206,7 @@ public class Utils {
     public static Boolean poserQuestion(String question) {
         System.out.println("Divers.poserQuestion(" + question + ")");
         int reponse = JOptionPane.showConfirmDialog (null, question, "", JOptionPane.YES_NO_OPTION) ;
-        System.out.println("\trÃ©ponse : " + (reponse == JOptionPane.YES_OPTION ? "Oui" : "Non"));
+        System.out.println("\tréponse : " + (reponse == JOptionPane.YES_OPTION ? "Oui" : "Non"));
         return reponse == JOptionPane.YES_OPTION;
     }
 

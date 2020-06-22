@@ -83,91 +83,91 @@ public class Explorateur extends Aventurier{
                 } else if (indexTuileActuelle > 0 && indexTuileActuelle - 1 == indexTuileCible && (indexTuileActuelle % 6) != 0) {
                     deplacementPossible = true;
                 } else if (indexTuileActuelle < 24 && indexTuileActuelle + 12 == indexTuileCible) {
-                    if ((!tuiles.get(indexTuileActuelle + 6).isRetiree())
-                     || (!tuiles.get(indexTuileActuelle + 5).isRetiree())
-                     || (!tuiles.get(indexTuileActuelle + 7).isRetiree())) {
+                    if ((tuiles.get(indexTuileActuelle + 6) != null && !tuiles.get(indexTuileActuelle + 6).isRetiree())
+                     || (tuiles.get(indexTuileActuelle + 5) != null && !tuiles.get(indexTuileActuelle + 5).isRetiree())
+                     || (tuiles.get(indexTuileActuelle + 7) != null && !tuiles.get(indexTuileActuelle + 7).isRetiree())) {
                         deplacementPossible = true;
                     }
                 } else if (indexTuileActuelle < 34 && indexTuileActuelle + 2 == indexTuileCible && (indexTuileActuelle % 6) < 4) {
-                    if ((!tuiles.get(indexTuileActuelle + 1).isRetiree())
-                     || (!tuiles.get(indexTuileActuelle - 5).isRetiree())
-                     || (!tuiles.get(indexTuileActuelle + 7).isRetiree())) {
+                    if ((tuiles.get(indexTuileActuelle + 1) != null && !tuiles.get(indexTuileActuelle + 1).isRetiree())
+                     || (tuiles.get(indexTuileActuelle - 5) != null && !tuiles.get(indexTuileActuelle - 5).isRetiree())
+                     || (tuiles.get(indexTuileActuelle + 7) != null && !tuiles.get(indexTuileActuelle + 7).isRetiree())) {
                         deplacementPossible = true;
                     }
                 } else if (indexTuileActuelle > 11 && indexTuileActuelle - 12 == indexTuileCible) {
-                    if ((!tuiles.get(indexTuileActuelle - 6).isRetiree())
-                     || (!tuiles.get(indexTuileActuelle - 5).isRetiree())
-                     || (!tuiles.get(indexTuileActuelle - 7).isRetiree())) {
+                    if ((tuiles.get(indexTuileActuelle - 6) != null && !tuiles.get(indexTuileActuelle - 6).isRetiree())
+                     || (tuiles.get(indexTuileActuelle - 5) != null && !tuiles.get(indexTuileActuelle - 5).isRetiree())
+                     || (tuiles.get(indexTuileActuelle - 7) != null && !tuiles.get(indexTuileActuelle - 7).isRetiree())) {
                         deplacementPossible = true;
                     }
                 } else if (indexTuileActuelle > 1  && indexTuileActuelle - 2 == indexTuileCible && (indexTuileActuelle % 6) > 1) {
-                    if ((!tuiles.get(indexTuileActuelle - 1).isRetiree())
-                     || (!tuiles.get(indexTuileActuelle + 5).isRetiree())
-                     || (!tuiles.get(indexTuileActuelle - 7).isRetiree())) {
+                    if ((tuiles.get(indexTuileActuelle - 1) != null && !tuiles.get(indexTuileActuelle - 1).isRetiree())
+                     || (tuiles.get(indexTuileActuelle + 5) != null && !tuiles.get(indexTuileActuelle + 5).isRetiree())
+                     || (tuiles.get(indexTuileActuelle - 7) != null && !tuiles.get(indexTuileActuelle - 7).isRetiree())) {
                         deplacementPossible = true;
                     }
-                } else if (indexTuileActuelle < 29 && indexTuileActuelle + 7 == indexTuileCible) {
+                } else if (indexTuileActuelle < 29 && indexTuileActuelle + 7 == indexTuileCible && (indexTuileActuelle % 6) != 5) {
                     deplacementPossible = true;
-                } else if (indexTuileActuelle < 31 && indexTuileActuelle + 5 == indexTuileCible) {
+                } else if (indexTuileActuelle < 31 && indexTuileActuelle + 5 == indexTuileCible && (indexTuileActuelle % 6) != 0) {
                     deplacementPossible = true;
-                } else if (indexTuileActuelle > 4 && indexTuileActuelle - 5 == indexTuileCible) {
+                } else if (indexTuileActuelle > 4 && indexTuileActuelle - 5 == indexTuileCible && (indexTuileActuelle % 6) != 5) {
                     deplacementPossible = true;
-                } else if (indexTuileActuelle > 6 && indexTuileActuelle - 7 == indexTuileCible) {
+                } else if (indexTuileActuelle > 6 && indexTuileActuelle - 7 == indexTuileCible && (indexTuileActuelle % 6) != 0) {
                     deplacementPossible = true;
                 } else if (indexTuileActuelle < 23 && indexTuileActuelle + 13 == indexTuileCible && (indexTuileActuelle % 6) != 5) {
-                    if ((!tuiles.get(indexTuileActuelle + 6).isRetiree())
-                     || (!tuiles.get(indexTuileActuelle + 7).isRetiree())) {
+                    if ((tuiles.get(indexTuileActuelle + 6) != null && !tuiles.get(indexTuileActuelle + 6).isRetiree())
+                     || (tuiles.get(indexTuileActuelle + 7) != null && !tuiles.get(indexTuileActuelle + 7).isRetiree())) {
                         deplacementPossible = true;
                     }
                 } else if (indexTuileActuelle < 25 && indexTuileActuelle + 11 == indexTuileCible && (indexTuileActuelle % 6) != 0) {
-                    if ((!tuiles.get(indexTuileActuelle + 6).isRetiree())
-                     || (!tuiles.get(indexTuileActuelle + 5).isRetiree())) {
+                    if ((tuiles.get(indexTuileActuelle + 6) != null && !tuiles.get(indexTuileActuelle + 6).isRetiree())
+                     || (tuiles.get(indexTuileActuelle + 5) != null && !tuiles.get(indexTuileActuelle + 5).isRetiree())) {
                         deplacementPossible = true;
                     }
                 } else if (indexTuileActuelle < 28 && indexTuileActuelle + 8 == indexTuileCible && (indexTuileActuelle % 6) < 4) {
-                    if ((!tuiles.get(indexTuileActuelle + 1).isRetiree())
-                     || (!tuiles.get(indexTuileActuelle + 7).isRetiree())) {
+                    if ((tuiles.get(indexTuileActuelle + 1) != null && !tuiles.get(indexTuileActuelle + 1).isRetiree())
+                     || (tuiles.get(indexTuileActuelle + 7) != null && !tuiles.get(indexTuileActuelle + 7).isRetiree())) {
                         deplacementPossible = true;
                     }
                 } else if (indexTuileActuelle < 32 && indexTuileActuelle + 4 == indexTuileCible && (indexTuileActuelle % 6) > 1) {
-                    if ((!tuiles.get(indexTuileActuelle - 1).isRetiree())
-                     || (!tuiles.get(indexTuileActuelle + 5).isRetiree())) {
+                    if ((tuiles.get(indexTuileActuelle - 1) != null && !tuiles.get(indexTuileActuelle - 1).isRetiree())
+                     || (tuiles.get(indexTuileActuelle + 5) != null && !tuiles.get(indexTuileActuelle + 5).isRetiree())) {
                         deplacementPossible = true;
                     }
                 } else if (indexTuileActuelle > 3 && indexTuileActuelle - 4 == indexTuileCible && (indexTuileActuelle % 6) < 4) {
-                    if ((!tuiles.get(indexTuileActuelle + 1).isRetiree())
-                     || (!tuiles.get(indexTuileActuelle - 5).isRetiree())) {
+                    if ((tuiles.get(indexTuileActuelle + 1) != null && !tuiles.get(indexTuileActuelle + 1).isRetiree())
+                     || (tuiles.get(indexTuileActuelle - 5) != null && !tuiles.get(indexTuileActuelle - 5).isRetiree())) {
                         deplacementPossible = true;
                     }
                 } else if (indexTuileActuelle > 7 && indexTuileActuelle - 8 == indexTuileCible && (indexTuileActuelle % 6) > 1) {
-                    if ((!tuiles.get(indexTuileActuelle - 1).isRetiree())
-                     || (!tuiles.get(indexTuileActuelle - 7).isRetiree())) {
+                    if ((tuiles.get(indexTuileActuelle - 1) != null && !tuiles.get(indexTuileActuelle - 1).isRetiree())
+                     || (tuiles.get(indexTuileActuelle - 7) != null && !tuiles.get(indexTuileActuelle - 7).isRetiree())) {
                         deplacementPossible = true;
                     }
                 } else if (indexTuileActuelle > 10 && indexTuileActuelle - 11 == indexTuileCible && (indexTuileActuelle % 6) != 5) {
-                    if ((!tuiles.get(indexTuileActuelle - 6).isRetiree())
-                     || (!tuiles.get(indexTuileActuelle - 5).isRetiree())) {
+                    if ((tuiles.get(indexTuileActuelle - 6) != null && !tuiles.get(indexTuileActuelle - 6).isRetiree())
+                     || (tuiles.get(indexTuileActuelle - 5) != null && !tuiles.get(indexTuileActuelle - 5).isRetiree())) {
                         deplacementPossible = true;
                     }
                 } else if (indexTuileActuelle > 12 && indexTuileActuelle - 13 == indexTuileCible && (indexTuileActuelle % 6) != 0) {
-                    if ((!tuiles.get(indexTuileActuelle - 6).isRetiree())
-                     || (!tuiles.get(indexTuileActuelle - 7).isRetiree())) {
+                    if ((tuiles.get(indexTuileActuelle - 6) != null && !tuiles.get(indexTuileActuelle - 6).isRetiree())
+                     || (tuiles.get(indexTuileActuelle - 7) != null && !tuiles.get(indexTuileActuelle - 7).isRetiree())) {
                         deplacementPossible = true;
                     }
                 } else if (indexTuileActuelle < 22 && indexTuileActuelle + 14 == indexTuileCible && (indexTuileActuelle % 6) < 4) {
-                    if (!tuiles.get(indexTuileActuelle + 7).isRetiree()) {
+                    if (tuiles.get(indexTuileActuelle + 7) != null && !tuiles.get(indexTuileActuelle + 7).isRetiree()) {
                         deplacementPossible = true;
                     }
                 } else if (indexTuileActuelle < 26 && indexTuileActuelle + 10 == indexTuileCible && (indexTuileActuelle % 6) > 1) {
-                    if (!tuiles.get(indexTuileActuelle + 5).isRetiree()) {
+                    if (tuiles.get(indexTuileActuelle + 5) != null && !tuiles.get(indexTuileActuelle + 5).isRetiree()) {
                         deplacementPossible = true;
                     }
                 } else if (indexTuileActuelle > 9 && indexTuileActuelle - 10 == indexTuileCible && (indexTuileActuelle % 6) < 4) {
-                    if (!tuiles.get(indexTuileActuelle - 5).isRetiree()) {
+                    if (tuiles.get(indexTuileActuelle - 5) != null && !tuiles.get(indexTuileActuelle - 5).isRetiree()) {
                         deplacementPossible = true;
                     }
                 } else if (indexTuileActuelle > 13 && indexTuileActuelle - 14 == indexTuileCible && (indexTuileActuelle % 6) > 1) {
-                    if (!tuiles.get(indexTuileActuelle - 7).isRetiree()) {
+                    if (tuiles.get(indexTuileActuelle - 7) != null && !tuiles.get(indexTuileActuelle - 7).isRetiree()) {
                         deplacementPossible = true;
                     }
                 } else {

@@ -49,7 +49,7 @@ public class VueJeu {
         this.ihm = ihm;
         this.grille = grille;
         this.tresors = tresors;
-        fenetre = new JFrame("L'Ã®le interdite");
+        fenetre = new JFrame("L'île interdite");
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fenetre.setUndecorated(Parameters.UNDECORATED);
         fenetre.setResizable(false);

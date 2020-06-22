@@ -61,9 +61,9 @@ public class CarteHelicoptere extends Carte {
     			this.getDeck().getIleInterdite().notifierObservateurs(m);
     		}
     		
-    	}else{
+    	} else {
     		
-        	Message msg = new Message(Commandes.CLICK_HELICO);
+        	Message msg = new Message(Commandes.TUILES_POSSIBLES);
 
             for (Tuile t : this.getDeck().getIleInterdite().getGrille().getTuiles(true)){
                 if (t != null && t != this.getAventurier().getPosition() && t.getEtat() != EtatTuile.RETIREE) {

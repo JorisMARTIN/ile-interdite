@@ -55,8 +55,7 @@ public class Utils {
         ACTUALISER_MAIN("Actualise la main du joueur"),
         DEMANDE_DEFFAUSE("Demande au joueur de déffausser une carte"),
         CARTE_JOUE("Le Joueur vient de jouer une carte"),
-        CLICK_HELICO("Demande quel déplacement est voulu pour la carte jouÃ©e."),
-        DEPLACEMENT_DURGENCE("Demande au joueur de se déplacer si cela est possible, toute autre action est impossible en dehors des cartes action spéciale"),
+        DEPLACEMENT_DURGENCE("Demande au joueur de se dï¿½placer si cela est possible, toute autre action est impossible en dehors des cartes action spï¿½ciale"),
         DON_CARTE("Le joueur fait dont d'une carte"),
         FIN_DON("Le don de carte est terminer"),
         DEPLACER_HELICO("Deplacement par helicoptère");
